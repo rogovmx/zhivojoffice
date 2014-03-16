@@ -1,0 +1,75 @@
+<%#  @tov3=Tov3.find(params[:id]) %>
+<% content_for(:tit) do %>
+ <%#=@tov3.name%>Лето низких цен 
+<%end%>
+<% content_for(:cont) do %>
+  <%#= hk(params[:id]) %>
+   <br>
+
+
+    <span style="color: #f09ec4; font-size: 10pt;">товары для офиса по самым низким ценам ..... каждую неделю  <%#= @tov3.name %>   </span>
+
+
+  
+
+     <div id="tovar">
+
+
+       <br>
+    <!--
+       <div style="width:540px;vertical-align: bottom;">
+      <span id="sel2" style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;display:inline;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 10px;"onchange=perp($F('br11')); >
+   <%#= options_for_select([12,15,18,21],selected=@per_page.to_i) %>
+
+
+    </select></span>&nbsp;&nbsp;<span  style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;">
+<%#= link_to  'Показывать списком',:controller=>'kt2',:action=>'tg_n',:id=>@tov3.id %></span>
+    <span style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;">
+<%#= will_paginate @tg  ,:style=>'font-size:9px;text-align:right;width: 250px;float:right;vertical-align: bottom;'%></span>  </div>
+
+
+-->
+   
+<%ff=0%>
+       <div id="<%#=@cat.tg%>" style="width:540px; ">
+         <table   style=" border-collapse: collapse; border: 2px solid white;" ><tr>
+       
+  <% for tg in @all do %>
+  <%# for tg in @tg do %>
+
+     
+    <% @cat=Cat1.find_by_k1c(tg.k1c)  %>
+<% if @cat %>
+      <%ff+=1%>
+
+  <td valign="top" style="padding:0px;margin:0px; border: 2px dotted #f09ec4;">
+    <div style="margin:0px;padding:0px;display:block;">
+  
+
+<%= render(:partial => 'kt3/cat22s',:object =>@cat,:object=>@tov3) %>
+    </div>
+
+  </td>
+<% end %>
+  
+<% if (ff%5)==0 %>
+              </tr><tr>
+  <%end%>
+
+
+
+
+
+
+    <% end %>
+               </tr></table>
+          </div>
+<%#= will_paginate @tg ,:style=>'font-size:9px;text-align:left;width: 250px;float:left;vertical-align: bottom;'%>
+     </div>
+<%  end %>
+
+
+
+
+

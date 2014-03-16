@@ -1,0 +1,50 @@
+<div class="info_menu" >
+
+  <div class="info_title">информация для клиентов</div>
+
+    <div class="info_link">
+<%if @menu==8 %> <span class="sel">«</span>
+  <%= link_to 'Реквизиты',{:controller=>'info' , :action=>'bank_info'}, :class=>'info_act' %> <% else %> <%= link_to 'Реквизиты' ,{:controller=>'info' , :action=>'bank_info'} %>
+<% end %>
+  </div>
+
+  <div class="info_link">
+<%if @menu==1 %> <span class="sel">«</span>
+  <%= link_to 'Как сделать заказ',{:controller=>'info' , :action=>'zakaz'}, :class=>'info_act' %> <% else %> <%= link_to 'Как сделать заказ' ,{:controller=>'info' , :action=>'zakaz'} %>
+<% end %>
+  </div>
+  <div class="info_link">
+<%if @menu==2 %> <span class="sel">«</span>
+  <%= link_to 'Условия доставки' ,{:controller=>'info' , :action=>'dostavka'} , :class=>'info_act' %> <% else %>  <%= link_to 'Условия доставки' ,{:controller=>'info' , :action=>'dostavka'} %>
+<% end %>
+  </div>
+  <div class="info_link">
+<%if @menu==3 %> <span class="sel">«</span>
+  <%= link_to 'Как принимать товар' ,{:controller=>'info' , :action=>'priem'}, :class=>'info_act' %> <% else %> <%= link_to 'Как принимать товар',{:controller=>'info' , :action=>'priem'} %>
+<% end %>
+  </div>
+  <div class="info_link">
+<%if @menu==4 %> <span class="sel">«</span>
+  <%= link_to 'Гарантийные мастерские',{:controller=>'info' , :action=>'talon'}, :class=>'info_act' %>  <% else %> <%= link_to 'Гарантийные мастерские',{:controller=>'info' , :action=>'talon'} %>
+<% end %>
+  </div>
+  <div class="info_link">
+<%if @menu==5 %> <span class="sel">«</span>
+  <%= link_to 'Шаблоны документов' ,{:controller=>'info' , :action=>'doci'}, :class=>'info_act'  %>  <% else %>  <%= link_to 'Шаблоны документов' ,{:controller=>'info' , :action=>'doci'}  %>
+<% end %>
+  </div>
+  <div class="info_link">
+<%if @menu==6 %> <span class="sel">«</span>
+  <%= link_to 'Пользуйтесь интернет-магазином!' ,{:controller=>'info' , :action=>'shop'}, :class=>'info_act' %> <% else %> <%= link_to 'Пользуйтесь интернет-магазином!',{:controller=>'info' ,:action=>'shop'} %>
+<% end %>
+  </div>
+
+  <div class="info_link">
+<%if @menu==7 %> <span class="sel">«</span>
+  <%= link_to 'Заказ для большого офиса',{:controller=>'info' , :action=>'metress'}, :class=>'info_act' %> <% else %> <%= link_to 'Заказ для большого офиса' ,{:controller=>'desknews' , :action=>'metress'} %>
+<% end %>
+  </div>
+
+  
+
+</div>

@@ -1,0 +1,19 @@
+<% content_for(:cont) do %>
+
+
+<div class="ipgeo" style="margin-top: 20px; padding: 15px;">
+<h2> <%= @ipgeo.title  %>  </h2>
+<br/>
+<% form_for :ipgeo , :url=>{:action => 'ipgeo'} do |f|  %>
+
+<select name="ipgeo[code]" id="ipgeo_code" style="width:410px; height: 22px;  border:1px solid #808285;" >
+  <option value="0" <%= 'selected="selected"' if @ipgeo.code == 0 %> >Сервис отключен</option>
+  <option value="1" <%= 'selected="selected"' if @ipgeo.code == 1 %> ><b>Основной сервис!</b></option>
+  <option value="2" <%= 'selected="selected"' if @ipgeo.code == 2 %> >Дополнительный сервис(в крайнем случае)</option>
+  </select>
+<%= f.submit 'Сохранить' %>
+<% end %>
+
+</div>
+<hr/>
+ <% end %>

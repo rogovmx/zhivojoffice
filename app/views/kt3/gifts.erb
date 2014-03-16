@@ -1,0 +1,80 @@
+
+<% content_for(:tit) do %>
+Живой офис. Подарки
+<%end%>
+
+
+<% content_for(:sort) do %>
+<%= render :partial=>'/part2/sort_gift' %>
+     <!--  сортировка конец  -->
+<% end %>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+<% content_for(:cont) do %>
+<div style="position: relative; top: -20px;">
+  <a href="/" style="color: #808285; text-decoration: none;">Главная >> </a> <span style="color:#03B1EE;">Подарки </span>
+
+</div>
+  <div style="position: relative; top: -16px;">
+    <img src="/images2/gift_ban.jpg" width="550px" />
+   </div>
+
+<%= render :partial => 'gift_menu' %>
+
+
+
+     <div id="tovar">
+
+    <div style="width:550px; vertical-align: bottom;">
+      
+
+ <span  style="font-family: Arial; font-size: 11px;position:relative;top:-5px;">
+<%#= link_to  'Показывать списком',:controller=>'kt3',:action=>'msk_sale'%></span>
+
+      <div style="position: relative; top: -10px">
+<%= will_paginate @tg  %>
+      </div>
+
+<%ff=0%>
+
+
+
+
+
+       <div id="<%#=@cat.tg%>"  >
+         <table border="0"  ><tr>
+       <% for tg in @tg do %>
+       <%ff+=1%>
+    <% @cat=Cat1.find(tg.id)  %>
+
+
+<td valign="top" style="padding-right:10px; padding-top: 3px; <%= 'padding-right:0px;' if (ff%3)==0%> margin:0px;border-bottom:1px dashed #808285; ">
+    <div style="margin:0px;padding:0px;display:block;">
+
+
+<%= render(:partial => 'kt3/cat22v',:object =>@cat,:object=>@tov3) %>
+    </div>
+
+  </td>
+
+<% if (ff%3)==0 %>
+  </tr><tr>
+  <%end%>
+
+    <% end %>
+  </tr></table>
+          </div>
+<%= will_paginate @tg %>
+     </div>
+
+
+ </div>
+
+<%  end %>
+
+
+
+
+

@@ -1,0 +1,134 @@
+
+<% content_for(:cont) do %>
+
+<style type="text/css">
+.orange{ font-size: 14px; color: #f15a26;}
+.tbl td , tbl2 td {padding:2px; padding-left: 5px; padding-right: 10px;}
+.tbl2 { border-collapse: collapse;}
+.tbl2 td , .tbl2 th  { padding-left: 5px; padding-right: 10px; padding-top: 3px; padding-bottom: 3px;}
+.tbl2 th {color:black;}
+.l1{background: #b3d9f3}
+  .l2{ background: white}
+
+</style>
+
+<h2>ПЕРИОД:&nbsp;<b><%= params[:ndb] %>&nbsp;::&nbsp;<%=params[:kdb]%></b> </h2>
+
+
+
+
+<% z1=[] %>
+<%z2=[]%>
+<% z3=[] %>
+<%ddd=0%>
+<%@zakaz.each do |zakaz|%>
+<% ddd+=1 %>
+<% if zakaz.client_id !=1 %>
+<% cl=Client.find(zakaz.client_id) %>
+<% @m=Km1.find :first, :conditions=>["k1c=?",cl.k1c] %>
+<% if @m %>
+
+<% z1<< @m.m1 %>
+<!--  <%#= zakaz.client_id %> ::<%#= m.manager1_id %> <br> -->
+<%#=@m.m1%>
+<%else%>
+<%#=zakaz.id%>
+<% z3<<zakaz.id %>
+<%end%>
+
+
+
+<%else%>
+<%begin%>
+<%@user=User.find(zakaz.user_id)%>
+<%rescue ActiveRecord::RecordNotFound%>
+
+<%else%>
+<% @client=Client.find(@user.client1_id) unless @user.client1_id ==0  %>
+
+
+<%@m=Km1.find :first ,:conditions=>["k1c=?",@client.k1c]%>
+<% if @m %>
+
+<% z1<< @m.m1 %>
+<%else%>
+<% z2<<zakaz.id %>
+<!-- нет менеджера ::<%= zakaz.id %><br> -->
+ 
+ <%end%>
+ <%end%>
+<%end%>
+<%end%>
+
+<table class="tbl" cellpadding="0" cellspacing="0" border="0">
+  <tr> <td>
+      <b>Всего заказов:</b></td> <td>  <%= ddd %></td> </tr>
+  <tr> <td>
+     <b> Менеджер не назначен:</b></td> <td><%= z2.length %> </td> </tr>
+  <tr> <td>
+     <b> Исключенные заказы(тестовая компания , нулевые заказы): </b></td> <td><%= z3.length  %>
+    <% z1i=z1.length %>
+<% z2i= z2.length%>
+<% z3i= z3.length%>
+
+    </td> </tr>
+
+  <tr> <td>
+     <b> Заказы удаленных пользователей:</b> </td> <td><%= ddd-z1i-z2i-z3i %>
+
+ </td>
+
+</tr>
+
+
+</table>
+
+
+<%#=z1.length%>
+<br><br>
+<% z1.sort! %>
+<% z5=z1.uniq %>
+
+<table class="tbl2" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr> <th>Менеджер</th>  <th>Кол-во заказов</th> <th>Кол-во клиентов</th> </tr>
+
+<% z5.each do |zz| %>
+<%  zm=z1.find_all{ |elem| elem == zz  }%>
+<%clients=[]%>
+
+
+<%@zakaz.each do |zakaz|%>
+<% if  zakaz.client_id !=1 %>
+<% cl=Client.find(zakaz.client_id) %>
+<% @m=Km1.find :first, :conditions=>["k1c=?",cl.k1c] %>
+<% if @m and @m.m1==zz %>
+<% clients << cl.id %>
+<%end%>
+<%else%>
+<%begin%>
+<%@user=User.find(zakaz.user_id)%>
+<%rescue ActiveRecord::RecordNotFound%>
+
+<%else%>
+<% @client=Client.find(@user.client1_id) unless @user.client1_id ==0  %>
+
+
+<%@m=Km1.find :first ,:conditions=>["k1c=?",@client.k1c]%>
+<% if @m and @m.m1==zz %>
+<% clients << @client.id %>
+<%end%>
+<%end%>
+<%end%>
+<%end%>
+<% clients1=clients.uniq %>
+    <tr class="<%= cycle('l1', 'l2')%>">
+      <td><%= zz %></td> <td><%= zm.length %></td><td><%=clients1.length  %></td>
+     </tr>
+
+<%end%>
+
+  </tbody> </table>
+
+
+<%end%>

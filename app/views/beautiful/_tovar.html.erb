@@ -1,0 +1,38 @@
+ <div id="tovar" style="width: 910px; margin-left:8px; ">
+
+<div style="vertical-align: bottom;">
+    
+
+
+
+
+<%ff=0%>
+
+       <div>
+         <table border="0" ><tr>
+<% for tg in @tg do %>
+       <%ff+=1%>
+    <% @cat=Cat1.find(tg.id)  %>
+
+
+  <td valign="top" style="padding:0px;margin:0px;border-bottom:1px dashed #808285; ">
+    <div style="margin:0px;padding:0px;display:block;">
+
+
+<%= render :partial => 'kt3/cat22v',:object =>@cat %>
+    </div>
+
+  </td>
+
+    <% if (ff%5)==0 %>
+     </tr><tr>
+    <%end%>
+
+    <%end%>
+  </tr></table>
+          </div>
+
+     </div>
+
+
+ </div>

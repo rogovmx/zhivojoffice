@@ -1,0 +1,214 @@
+<% content_for(:cont) do %>
+<div style="margin-left: 50px;">
+<style type="text/css">
+.orange{ font-size: 14px; color: #f15a26;}
+.tbl td , tbl2 td {padding:2px; padding-left: 5px; padding-right: 10px;}
+.tbl2 , .tbl {border: 2px solid white; border-collapse: collapse;}
+.tbl2 td , .tbl2 th ,.tbl td , .tbl th  {border: 1px solid #3265a4; padding-left: 5px; padding-right: 10px;}
+.tbl2 th , .tbl th {color:black;}
+</style>
+<h2>ПЕРИОД:&nbsp;<b><%= params[:nd] %>::<%=params[:kd]%></b> </h2>
+
+<br><br><br>
+
+<p class="orange"> ОБЩАЯ СТАТИСТИКА </p>
+<!--
+<table class="tbl" cellpadding="0" cellspacing="0" border="0">
+  <tbody>
+    <tr> <td>
+        <b>Количество заказов :</b> </td> <td> <%=@count3%> </td>
+    </tr>
+    <tr> <td> <b>Общая сумма заказов:</b> </td>
+      <td>
+  <% @count.each do |count|  %>
+ <% @countsum=count.sum  %>
+<%= count.sum %><br>
+<% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+<%  sch= @countsum.to_f/@count3.to_f %>
+
+        <b>Средний чек:</b>;
+      </td>
+      <td>
+<%= sch %>
+<% co=0 %>
+      </td>
+    </tr>
+</tbody>
+</table>
+-->
+<% z1=[] %>
+<%raspr=0%>
+<%@zakaz.each do |zakaz|%>
+<%sss=0 %>
+<% flag=0 %>
+  <% @li=Lineitem.find :all ,:conditions=>["order_id=?",zakaz.id]%>
+  <% @li.each do |li| %>
+  <%if li.otdel=='raspr'%>
+  <% flag+=1 %>
+   <%if flag ==1%>
+    <% raspr+=1 %>
+   <% end %>
+  <%end%>
+ <% sss += li.quantity * li.price %>
+  <%end%>
+ <%#=zakaz.id%> <%#=sss%>
+ <% if sss!=0 %>
+<% co+=1 %>
+ <% z1 << sss %>
+ <%end%>
+
+   <%  end %>
+
+<% zz= z1.length %>
+ <% zz_n=((zz/100)*10)/2 %>
+
+  <% z1.sort!  %>
+ <% dd=0 %>
+ <% while dd < zz_n.to_i %>
+ <% dd +=1 %>
+ <% z1.shift %>
+ <%end%>
+ <%dd1=0%>
+ <% while dd1 < zz_n.to_i %>
+ <% dd1 +=1 %>
+ <% z1.pop %>
+ <%end%>
+ <% sss=0 %>
+ <% z1.each do |z11|   %>
+ <%#= z1 %>
+ <%  sss+=z11 %>
+ <%end%>
+<table class="tbl" cellpadding="0" cellspacing="0" border="0">
+  <tr><th>Информация </th> <th>Всего:</th> <th>Всего C-Пб:</th> <th>Всего Москва:</th> <th>Всего Смоленск:</th> </tr>
+  <tr> <td>
+      <b>Количество заказов:</b></td>
+    <td> <%#=z1.length%> Всего: <%=@count_all.length%></td>
+    <td> <%=@count_spb.length%></td>
+    <td> <%=@count_msk.length%></td>
+    <td> <%=@count_smo.length%></td>
+  </tr>
+  <tr> <td>
+     <b> Общая сумма заказов:</b></td> <td>(<%=sss %>) <%=number_to_currency(@count_all.sum{|s| s.summa if s.summa!=nil}, :unit => '',:delimiter=>' ')%>р.&nbsp; </td>
+    <td> <%= number_to_currency(@count_spb.sum{|s| s.summa if s.summa!=nil}, :unit => '',:delimiter=>' ') if @count_spb%>p </td>
+    <td>  <%=number_to_currency(@count_msk.sum{|s| s.summa if s.summa!=nil}, :unit => '',:delimiter=>' ') if @count_msk%>p </td>
+    <td> <%=number_to_currency(@count_smo.sum{|s| s.summa if s.summa!=nil}, :unit => '',:delimiter=>' ') if @count_smo%>p </td>
+
+  </tr>
+  <tr> <td>
+     <b> Средний чек: </b></td> <td><%=number_to_currency(sss/z1.length, :unit => '',:delimiter=>' ') if z1.length != 0%>р.&nbsp;  </td> </tr>
+
+
+</table>
+
+
+
+
+
+
+<br/>
+
+
+
+
+
+<table class="tbl2" cellpadding="0" cellspacing="0" > <thead><tr><th>диапазон</th> <th>количество заказов</th></tr></thead>
+  <tbody>
+    <tr> <td>  менее 1000 </td>
+      <td><%  z01=z1.find_all{ |elem| elem < 1000 }%> <%summ1=0%>
+ <% z01.each do |zm1000| %>
+ <%#= zm1000 %>
+ <% summ1+=1 %>
+ <% end %>
+ <%= summ1+zz_n.to_i %></td> </tr>
+
+    <tr> <td>
+ от 1000 до 3000 </td> <td>
+ <%  z13=z1.find_all{ |elem| elem >= 1000 and elem < 3000  }%>
+  <%summ2=0%>
+ <% z13.each do |zm1000| %>
+ <%#= zm1000 %>
+ <% summ2+=1 %>
+ <% end %>
+ <%= summ2 %>
+      </td> </tr>
+    <tr> <td>
+        от 3000 до 5000 </td> <td>
+ <%  z35=z1.find_all{ |elem| elem >= 3000 and elem < 5000 }%>
+  <%summ3=0%>
+ <% z35.each do |zm1000| %>
+ <%#= zm1000 %>
+ <% summ3+=1 %>
+ <% end %>
+  <%= summ3 %> </td> </tr>
+    <tr> <td>
+ от 5000 до 10000 </td> <td>
+ <%  z50=z1.find_all{ |elem| elem >= 5000 and elem < 10000 }%>
+  <%summ4=0%>
+ <% z50.each do |zm1000| %>
+ <%#= zm1000 %>
+ <% summ4+=1 %>
+ <% end %>
+   <%= summ4 %> </td> </tr>
+
+          <tr> <td>
+ от 10000 до 15000 </td> <td>
+ <%  z10_15 = z1.find_all{ |elem| elem >= 10000 and elem < 15000 }%>
+  <%summ5=0%>
+ <% z10_15.each do |zm1000| %>
+ <%#= zm1000 %>
+ <% summ5+=1 %>
+ <% end %>
+   <%= summ5 %> </td> </tr>
+
+         <tr> <td>
+ от 15000 до 25000 </td> <td>
+ <%  z15_25=z1.find_all{ |elem| elem >= 15000 and elem < 25000 }%>
+  <%  summ6=0 %>
+ <% z15_25.each do |zm1000| %>
+ <%#= zm1000 %>
+ <% summ6+=1 %>
+ <% end %>
+   <%= summ6 %> </td> </tr>
+
+
+
+
+
+    <tr> <td>
+        более 25000 </td> <td>
+ <%  z_25=z1.find_all{ |elem| elem >= 25000  }%>
+  <%summ7=0%>
+ <% z_25.each do |zm1000| %>
+ <%#= zm1000 %>
+ <% summ7+=1 %>
+ <% end %>
+ <%= summ7+zz_n.to_i %>
+      </td> </tr> </tbody> </table>
+
+
+
+<br>
+
+<p class="orange"> АКТИВНОСТЬ </p>
+<table class="tbl" cellpadding="0" cellspacing="0" border="0">
+  <tr> <td>
+      <b>Регистрации:</b> </td> <td><%= @rer %> </td> </tr>
+  <tr> <td>
+      <b>Доставка каталога:</b></td><td> <%= @katalog %> </td> </tr> </table>
+
+<br></br>
+
+<a href="/an1"> Вернуться к выбору даты </a>
+
+
+
+
+
+
+ </div>
+
+ <% end %>

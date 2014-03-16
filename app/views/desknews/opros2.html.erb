@@ -1,0 +1,46 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+  .r_opros{height: 15px; margin: 3px; padding: 3px; color: white; background-color:#85c441; font-weight: bold; overflow: hidden;}
+  .r_opr_name{padding: 3px; font-weight: bold;}
+</style>
+<div style="margin-left: 50px; min-height: 600px;">
+<p style=" font-weight: bold; color: red"> Вопрос:&nbsp; <%= @questions.qestion %>   </p>
+
+<table>
+ 
+  <tr>
+    <td class="r_opr_name"><%= @questions.answ1 %> </td> <td>
+      <% if @a1==0  %> <% else %>
+      <div class="r_opros" style="width:<%=@a1d %>px "><%= @a1p %> %</div>
+    <% end %> 
+    </td> 
+  </tr>
+ <tr>
+    <td class="r_opr_name"><%= @questions.answ2 %> </td> <td>
+      <% if @a2==0  %> <% else %>
+      <div class="r_opros" style="width:<%=@a2d %>px "><%= @a2p %> %</div>  <% end %> </td>
+  </tr>
+   <tr>
+    <td class="r_opr_name"><%= @questions.answ3 %> </td> <td>
+      <% if @a3==0  %> <% else %>
+      <div class="r_opros" style="width:<%=@a3d %>px "><%= @a3p %> %</div> <% end %>  </td>
+  </tr>
+   <tr>
+    <td class="r_opr_name"><%= @questions.answ4 %> </td> <td>
+      <% if @a4==0  %> <% else %>
+      <div class="r_opros" style="width:<%=@a4d %>px "><%= @a4p %> %</div> <% end %>  </td>
+  </tr>
+   <tr>
+    <td class="r_opr_name"> Свой вариант </td> <td>
+      <% if @a5==0  %> <% else %>
+      <div class="r_opros" style="width:<%=@a5d %>px ">  <%= @a5p %> %</div> <% end %> </td>
+  </tr>
+</table>
+
+<br/>
+<br/>
+<%= link_to 'Вернуться к новостям' , :controller=>'desk_subjs' %>
+
+
+</div>
+<% end %>

@@ -1,0 +1,76 @@
+
+<% content_for(:tit) do %>
+ 15 самых популярных товаров для офиса по супер ценам
+<%end%>
+
+<% content_for(:sort) do %>
+
+    <!-- сортировка -->
+
+<%#= render :partial=>'/part2/sort_n' %>
+     <!--  сортировка конец  -->
+<% end %>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+<% content_for(:cont) do %>
+
+
+
+   <script type="text/javascript" src="/javascripts/function.js"></script>
+   <div style="margin-bottom: 15px;">
+   <img src="/images/sale_msk.jpg" width="550px" />
+   </div>
+
+     <div id="tovar">
+
+      <span id="sel2" style="font-family: Arial; font-size: 11px;position:relative;top:-5px;display:inline;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 11px;"onchange=perp($F('br11')); >
+   <%= options_for_select([10,15,20], @per_page.to_i) %>
+ </select></span>&nbsp;&nbsp;
+
+ <span  style="font-family: Arial; font-size: 11px;position:relative;top:-5px;">
+<%= link_to  'Показывать витриной',:controller=>'kt3',:action=>'msk_sale_v'%></span>
+
+
+<%= will_paginate @tg  %>
+
+ <table width="100%" border="0" style="background-color:#5c2d91; color:white; text-align: center; font-size: 11px; padding: 5px;">
+  <tr>
+    <td style="width:65px;">Вид </td>
+     <td style="width:70px;"> Код каталога </td>
+     <td> Наименование товара </td>
+       <td style="width:80px;"> Цена </td>
+        <td style="width:80px;"> Корзина</td>
+  </tr>
+</table>
+
+       <% for tg in @tg do %>
+
+ <% @cat=Cat1.find(tg.id)  %>
+
+
+ <div class="grn11" id="<%=@cat.id%>" >
+<%= render(:partial => 'kt1/cat22',:object =>@cat,:object=>@tov3) %>
+
+
+ </div>
+
+
+
+
+
+
+
+    <% end %>
+
+<%= will_paginate @tg %>
+     </div>
+
+
+<%  end %>
+
+
+
+

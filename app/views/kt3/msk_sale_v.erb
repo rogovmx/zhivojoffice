@@ -1,0 +1,80 @@
+
+<% content_for(:tit) do %>
+ 15 самых популярных товаров для офиса по супер ценам
+<%end%>
+
+
+<% content_for(:sort) do %>
+<%#= render :partial=>'/part2/sort_v' %>
+     <!--  сортировка конец  -->
+<% end %>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+<% content_for(:cont) do %>
+  <div style="margin-bottom: 15px;">
+   <img src="/images/sale_msk.jpg" width="550px" />
+   </div>
+     <div id="tovar">
+
+    <div style="width:550px; vertical-align: bottom;">
+      <span id="sel2" style="font-family: Arial; font-size: 11px;position:relative;top:-5px;display:inline;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 11px;"onchange=perp($F('br11')); >
+   <%= options_for_select([12, 15,18], @per_page.to_i) %>
+ </select></span>&nbsp;&nbsp;
+
+ <span  style="font-family: Arial; font-size: 11px;position:relative;top:-5px;">
+<%= link_to  'Показывать списком',:controller=>'kt3',:action=>'msk_sale'%></span>
+
+
+<%= will_paginate @tg  %>
+
+
+<%ff=0%>
+
+
+       <% if login? and @user.role == 'redaktor' %>
+         <div>
+           <%= link_to_remote "Добавить товар" ,{:url=>{:controller=>'kt1',:action=>'add_tov',:id=>params[:id]},:update=>'new_tov'},:href => url_for(:controller=>'login',:action => "login")%>
+          </div>
+       <div id="new_tov">  </div>
+       <% end %>
+
+
+
+       <div id="<%#=@cat.tg%>" >
+         <table border="0"  ><tr>
+       <% for tg in @tg do %>
+       <%ff+=1%>
+    <% @cat=Cat1.find(tg.id)  %>
+
+
+  <td valign="top" style="padding:0px;margin:0px;border-bottom:1px dashed #808285; ">
+    <div style="margin:0px;padding:0px;display:block;">
+
+
+<%= render(:partial => 'kt3/cat22v',:object =>@cat,:object=>@tov3) %>
+    </div>
+
+  </td>
+
+<% if (ff%3)==0 %>
+  </tr><tr>
+  <%end%>
+
+    <% end %>
+  </tr></table>
+          </div>
+<%= will_paginate @tg %>
+     </div>
+
+
+ </div>
+
+<%  end %>
+
+
+
+
+

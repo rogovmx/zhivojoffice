@@ -1,0 +1,59 @@
+
+<table width="100%" height="100%" border="0">
+  <tr>
+    <td width="25%" valign="top">
+      <h3>Активные</h3>
+      <div id="mm">
+        
+<% @mess.each do |mess| %>
+  <%=  mess.id%> :: 
+  <%  @ll=Mcontent1.find :first,:conditions=>["messager_id=?",mess.id],:order=>'created_at desc'%>
+<% if @ll.name=='Елена' %>
+ <span style="color:red;">
+   Ждем ответа
+  <%else%>
+    <script>
+          alert('wwwww');
+          //function ff(){
+        // document.write('www');
+         // this.focus();
+       // }
+        </script>
+        <span style="color:green;">
+   Ответить
+  <%end%>
+          <%#=@ll.name%>
+          </span>
+  <%= link_to_remote   mess.name ,:url=>{:controller=>'mess2',:action=>'oper',:id=>mess.id},:update=>'mess111'%>
+  &nbsp;&nbsp; <%=  link_to 'В архив' ,:controller=>'mess2',:action=>'arhiv',:id=>mess.id %><br>
+<%end%>
+      </div>
+      <%= periodically_call_remote :frequency =>25,
+:url=>{:controller=>'mess2',:action=>'index1',:id_m=>@id},:update=>'mm'
+%>
+      <br><br>
+      <h3>  Архив</h3>
+      <div>
+        <%@messA.each do |arh|%>
+       <%=  arh.id%> :: <%= link_to_remote   arh.name ,:url=>{:controller=>'mess2',:action=>'oper1',:id=>arh.id},:update=>'mess111'%>
+        &nbsp;&nbsp; <%=  link_to 'Убрать' ,:controller=>'mess2',:action=>'arhiv1',:id=>arh.id %>
+       <br>
+        <%end%>
+      </div>
+    </td>
+    <td align="center" valign="top">
+      <div id="mess111">
+          
+      </div>
+    </td>
+
+</tr>
+<tr>
+  <td><br><br>
+    <%= link_to 'Выключить',:action=>'logout' %>
+  </td>
+  <td>
+   
+  </td>
+</tr>
+</table>

@@ -1,0 +1,57 @@
+<% content_for(:cont) do %>
+
+<!--
+<div class="viktorina_start">
+<div class="start">
+  
+     <%unless login?%>
+                   <div style="text-align: center;">
+                  <%=link_to "войти <br />" , "/login/login"  %>
+                  
+              </div>
+   <div align="center" style="font-color: #ea2652;">войти <br /> </div>
+   <a href="/login/login"> <img src="/images/blue_arr.gif" border="0" style="margin-top:40px;" /></a>
+     <%else%>
+              
+              
+              <% if @pravo and @user.id != 2019 %>
+              <% @out = 'Вы уже участвовали в викторине в этом месяце' %>
+              <%else%>
+               <% @out = ' ' %>
+              <div style="text-align: center;">
+                  <%=link_to "начать <br />    игру" , :controller =>"victorinas" , :action => "save_vict_users"  %>
+                  
+              </div>
+              <% end %>
+     <% end %>
+<a href="/victorinas/start"> <img src="/images/blue_arr.gif" border="0" /></a>
+</div>
+</div> 
+-->
+
+  <h1> <%= @out %> </h1>
+    <br />
+
+   <% if @v_users and @v_users.size != 0 %>
+  <div style=" float: left; margin-bottom: 140px; margin-top: 50px; color: #f15a26; font-size: 12px; font-weight: bold; ">
+    <h1>В викторине уже выиграли:</h1>   <br/> <br/>
+    <% for victor_users in @v_users %>
+  <% @wins = User.find_by_id(victor_users.user_id) %>
+
+
+    <%=h @wins.scr_name %>
+    <%=h @wins.patronymic %>
+    <%=h @wins.surname %> , 
+    <%#=h @wins.phone %>
+   <%=h @wins.company_ind %> <br/><br/>
+
+<% end %>
+
+
+  </div>
+  <% end %>
+
+ <br />
+ <br /><br /><br /><br />
+  <%  end %>
+

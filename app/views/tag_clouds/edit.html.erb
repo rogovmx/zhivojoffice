@@ -1,0 +1,36 @@
+
+<% content_for(:cont) do%>
+<h1>Редактирование облака тэгов</h1>
+
+<% form_for(@tag_cloud) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    Наименование<br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  Ссылка<br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    Стиль<br />
+    <%= f.text_field :styleTag %>
+  </p>
+    <p>
+    Категория<br />
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    Сортировка<br />
+    <%= f.text_field :por %>
+  </p>
+  <p>
+    <%= f.submit "Обновить" %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Вернуться', tag_clouds_path %>
+<%end%>
+

@@ -1,0 +1,48 @@
+
+<% content_for(:tit) do %>
+ Живой офис. Веселые товары.
+<%end%>
+
+<% content_for(:cont) do %>
+
+ 
+
+ <div class="red_title" style="margin-bottom: 10px; background-color: #7fcec8;">Веселые товары.</div>
+     <div id="tovar">
+
+    <div style="width:550px; vertical-align: bottom;">
+
+<%ff=0%>
+      <div>
+         <table border="0"  ><tr>
+       <% for tg in @tg do %>
+       <%ff+=1%>
+    <% @cat=tg  %>
+
+
+  <td valign="top" style="padding-right:10px; padding-top: 3px; <%= 'padding-right:0px;' if (ff%3)==0%> margin:0px;border-bottom:1px dashed #808285; ">
+    <div style="margin:0px;padding:0px;display:block;">
+
+<%= render(:partial => 'kt3/cat22v',:object =>@cat) %>
+    </div>
+
+  </td>
+
+<% if (ff%3)==0 %>
+  </tr><tr>
+  <%end%>
+
+    <% end %>
+  </tr></table>
+          </div>
+
+     </div>
+
+ </div>
+
+<%  end %>
+
+
+
+
+

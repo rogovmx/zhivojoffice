@@ -1,0 +1,38 @@
+<div id="comm">
+<%#= @id %>
+<%#=@name%>
+<%#=@content.content%>
+<!--<div id="boltov"> -->
+<!--<div class="header"> Сообщение: </div>-->
+<iframe width="345px" height="300px" src="/mess3/index/?id_m=<%=@id%>" class="message200" style="border: thin solid #0BAF4E;">
+</iframe>
+  
+<!--  <textarea cols="40" rows="15"> -->
+<%# @content.each do |cont| -%>
+<%#=h cont.content %>
+<%#end-%>
+   <!-- </textarea> -->
+<!--</div> -->
+<%#= periodically_call_remote :frequency =>10,
+:url=>{:controller=>'mess1',:action=>'boltov',:id_m=>@id},:update=>'boltov'
+%>
+<div>
+
+<% form_for :mcontent,:url=>{:controller=>'mess1',:action=>'newcontent'} do |f| %>
+  <%= f.error_messages %>
+
+ 
+    <%= f.hidden_field :messager_id, :value=>@id %>
+    <%= f.hidden_field :name, :value=>@name %>
+  <p>
+    <div class="header"> Сообщение: </div>
+
+    <%= f.text_area :content,:class=>"message" %>
+  </p>
+  
+  <p>
+    <%= f.submit "Отправить" ,:class=>'ok' %>
+  </p>
+<% end %>
+</div>
+</div>

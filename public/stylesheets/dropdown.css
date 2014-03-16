@@ -1,0 +1,48 @@
+
+ .floatleft {display: inline; float: left; position: relative;}
+.ddheader2 {line-height: 30px; cursor: pointer;}
+.ddheader2:hover {line-height: 30px; cursor: pointer; text-decoration: underline;}
+.ddcontent {position:absolute; overflow:hidden; width:160px; display:none; background:#fff; z-index:1200; position: relative; top: 8px;}
+.ddcontent2 {position:absolute; overflow:hidden; width:235px; display:none; background:#fff; z-index:1200; left: -10px;}
+.ddinner {width:156px; border:2px solid #F47920; border-top:none;
+         }
+
+
+.ddinner ul {display:block; list-style:none; margin:0; padding:0; background:white;}
+.ddinner li {margin:0; padding:5px; cursor:pointer}
+.ddinner li:hover {}
+
+
+ .ddinner2 {width:235px;  line-height: 13px; color:red; background-color: #FDE6EA; }
+ #menu1 .ddinner2 a 
+ {color:#03B1EE;  line-height: 15px; font-weight: bold; }
+ .main_cabinet  a
+ {color:#03B1EE;  line-height: 15px; font-weight: bold; text-decoration: none; }
+  .main_cabinet  a:hover {text-decoration: underline;}
+
+
+.ddinner2 ul {display:block; list-style:none; margin:0; padding:0; background-color: #F7F4F3 ;}
+.ddinner2 li {margin:0; padding:5px; cursor:pointer; border-bottom: 2px solid #E0E1E3 ;}
+.ddinner2 li:hover {}
+
+
+.underline {}
+
+.underline a.r_sub {color: #F47920;}
+.underline a.r_sub:hover {text-decoration: underline;}
+
+
+.routin_menu a, .routin_menu span { color: white; text-decoration: none; margin-right: 20px; cursor: pointer; font-weight: bold;}
+.routin_menu a:hover, .routin_menu span:hover {text-decoration: underline}
+
+
+span.div_menu {
+          float: left;
+          margin-left: 19px;
+          margin-right: 19px;
+          line-height: 30px;
+          display: inline-block;
+          width: 1px;
+          height: 30px;
+        background: url('/images2/div.png') top left no-repeat; 
+}

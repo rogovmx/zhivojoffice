@@ -1,0 +1,35 @@
+<% content_for(:cont) do %>
+
+
+  <table border="1" cellpadding="3" cellspacing="3" >
+    <tr>
+      <th>Товарная группа</th>
+      <th>Сумма</th>
+    </tr>
+
+<% @tov3.each do |tg| %>
+    <tr style="background-color:<%= cycle('white','papayawhip')  %>  ">
+
+
+<%@items.each do |li|%>
+
+<%
+  sum = 0
+  cat = Cat1.find_by_k1c(li.k1c)
+  tov3 = cat.tov3 if cat
+  sum += li.quantity * li.price if tov3 and tov3.id == tg.id and li.quantity and li.price
+ %>
+ <%end%>
+      <td> <%=tg.name %>  </td>
+      <td> <%=sum %>  </td>
+
+
+
+
+
+    </tr>
+ <%end%>
+
+  </table>
+
+ <%end%>

@@ -1,0 +1,141 @@
+<% content_for(:cont) do %>
+
+<script>
+    function f() {
+        var login = document.getElementById('user_name')
+        login.value = login.value.replace(/\s/g, '')
+    }
+</script>
+ 
+
+<img src="/images2/150.gif" alt="150" style="float: left; margin-bottom: 10px; margin-right: 10px;"/>
+
+<p style="color: #F47920; font-weight: bold;  display: inline">
+ Зарегистрируйся на сайте «Живой офис» <br/>и получи 150 бонусов на свой счет! <br/>  <br/>
+Подробнее о  <%= link_to 'бонусной программе' , {:controller => 'bonus2' , :action => 'rule'}, :popup => true %>
+</p>
+<div class="clear"></div>
+<div class="add_user_title">
+  Заполните регистрационную форму.
+</div>
+<div class="add_user">
+ 
+  <p class="red"> Поля в красной рамке обязательны для заполнения.</p>
+  <p>После регистрации на указанный вами e-mail придет письмо с вашими регистрационными данными. Обратите внимание: письмо может попасть в папку «Спам». </p>
+
+  <%=error_messages_for 'user'%>
+
+    <% form_for :user do |form| %>
+   <!--   <input name="authenticity_token" type="hidden" value="3a0328c1591f06d9095a4c59aa9c22d9ec3afd49" />  -->
+      <%= form.hidden_field :ip , :value=>request.remote_ip.to_s %>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr class="odd">
+          <td><label for="user_name"><b>E-mail.</b> В дальнейшем он будет использоваться в качестве логина для идентификации на сайте.</label></td>
+          <td style="width: 400px;"> <%= form.text_field :name,:class=>'it' , :onblur=>'f()' %></td>
+        </tr>
+        <tr>
+          <td><label for="user_password"><b>Пароль.</b>  Не менее пяти и не более двадцати символов</label></td>
+          <td> <%= form.text_field :password  %></td>
+        </tr>
+
+        <tr class="odd">
+          <td><label for="user_surname"><b>Фамилия.</b></label></td>
+          <td> <%= form.text_field :surname , :class=>"input_n" %></td>
+        </tr>
+        <tr>
+          <td><label for="user_scr_name"><b>Имя.</b></label></td>
+          <td><%= form.text_field :scr_name  %></td>
+        </tr>
+
+         <tr class="odd">
+           <td><label for="user_phone"><b>Телефон.</b> Мы свяжемся с вами сразу после завершения регистрации</label></td>
+          <td>
+         <!-- <input id="user_phone" name="user[phoneprefix]" pattern="\S" size="4" type="text" />&nbsp;&nbsp;&nbsp;-->
+            <%= form.text_field :phone  %>
+            </td>
+        </tr>
+
+        <tr>
+          <td>
+         
+         <label for="company_ind"><b>Название организации.</b></label>
+          </td>
+          <td>  <%= form.text_field :company_ind  %></td>
+        </tr>
+        <tr  class="odd">
+          <td>
+      <label for="inn"><b>ИНН организации.</b></label>
+          </td>
+          <td>  <%= form.text_field :inn  %></td>
+        </tr>
+        <tr>
+          <td>
+
+         <label for="city"><b>Город.</b></label>
+          </td>
+          <td>
+            <select name="user[city]" id="user_city" style="width:410px; height: 22px;  border:1px solid #808285;" >
+  <option value="Санкт-Петербург" <%= 'selected="selected"' if session[:city]=='spb' %> >Санкт-Петербург</option>
+  <option value="Москва" <%= 'selected="selected"' if session[:city]=='msk' %> >Москва</option>
+  <option value="Смоленск" <%= 'selected="selected"' if session[:city]=='smo' %> >Смоленск</option>
+  </select>
+
+    </td>
+        </tr>
+<!--
+        <tr  class="odd" >
+          <td><label for="rout_name">Название команды в игре «Убей Рутину!»</label> </td>
+          <td><%#= form.text_field :rout_name  , :class=>"input_n"%> </td>
+        </tr>
+        <tr>
+          <td> <label for="rout_name">Ссылка на команду в игре «Убей Рутину!»</label> </td>
+          <td><%#= form.text_field :rout_link  , :class=>"input_n" %> </td>
+
+        </tr>
+-->
+
+        <tr  class="odd">
+          <td colspan="2">
+            <p style=" float: left;">
+            <label for="soglasen" >Я согласна (согласен) получать от www.zhivojoffice.ru поздравления, информацию о рекламных акциях и бонусной программе.</label>
+            </p>
+            <p style="float: right;">
+<%= form.check_box :soglasen, :checked=>'checked' %>
+            </p>
+
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <p style="text-align: right;">
+         <%= submit_tag "Зарегистрироваться", :class => "submit" %>
+      </p>
+    
+    <%end%>
+     
+</div>
+
+<div class="clear" style="margin-bottom: 15px;"></div>
+<p style="color: #808285;" >
+   Личные сведения, полученные в распоряжение www.zhivojoffice.ru при регистрации или каким-либо иным образом, не будут без разрешения пользователей передаваться третьим организациям и лицам, за исключением ситуаций, когда этого требует закон или судебное решение.
+      </p>
+
+<% 
+=begin %>
+<p>
+
+  <%= link_to image_tag('/images2/rout_logo.gif' , :style=>"float: left; margin-right: 10px;") , '/routine', :popup => true %>
+
+  <span style="position: relative; top: 20px;"><%= link_to 'Узнайте' , '/routine', :popup => true %>,  как получить дополнительные 150 бонусов участнику игры «Убей Рутину!». </span>
+
+</p>
+
+<% 
+=end %>
+
+
+
+<%  end %>
+
+
+

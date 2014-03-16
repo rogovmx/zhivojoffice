@@ -1,0 +1,40 @@
+<div class="hk">
+ <span style="color:#808285;">
+<%= link_to 'Главная' ,{:controller=>'kt1',:action=>'index'},:class=>'hk',:style=>'color:#808285;text-transform: lowercase;' %>
+  </span>
+»
+      
+     <form>
+       <select onChange="redir(this)" style="color:#808285; display: inline; border:  none; background-color: #eeeeee; text-transform: lowercase; max-width: 250px; width: 250px; cursor: pointer; ">
+          <% for first in @first_all %>
+         <option value="<%='/kt3/kanc1/'+first.kod.to_s %>" <%= 'selected="selected"' if (first.id == @first.id)%> ><%=first.name%></option>
+         <% end %>
+       </select>
+     </form>
+
+»
+
+     <form>
+        <select onChange="redir(this)" style="color:#03b1ee; display: inline; border:  none; background-color: #eeeeee;  max-width: 200px; width: 200px; cursor: pointer; ">
+
+         <% for t3all in @tov3all %>
+          <option value="<%='/kt3/tg_v/'+t3all.id.to_s %>" <%= 'selected="selected"' if (t3all.id == @tov3_hk.id)%> ><%=t3all.name %></option>
+  
+        <% end %>
+      </select>
+    </form>
+
+
+  <div style="margin-top: 20px;">
+    <span style="color:#808285;">
+      Вернуться к подкатегории:
+      <b>
+      <%= link_to @tov3_hk.name   ,{:controller=>'kt3',:action=>'tg_v',:id=>@tov3_hk.id},:class=>'hk',:style=>'color:#F47920;font-size:11px;' %>
+      </b>
+    </span>
+
+»
+     <span style="color:#03b1ee; font-size:11px; "><%= @tov_hk.name   %></span>
+  </div>
+
+</div>

@@ -1,0 +1,54 @@
+
+<div id="comm">
+<div style="margin-top:30px" >
+<div class="img_face"> <img src="/images/parfenov.jpg" /></div>
+<div class="text">
+<div class="name_cons"> Елена </div>
+<div class="prof"> Дежурный консультант </div>
+<div class="contacts">
+
+  т.:  +7(812) 324-80-50 <br />
+e-mail: info@spens.ru</div>
+
+</div>
+</div>
+
+<% form_for :messager, :url=>{:controller=>'mess1',:action=>'first'} do |f| %>
+  <%= f.error_messages %>
+
+
+
+    <%= f.hidden_field :data, :value=> Time.now %>
+
+  <%
+  @user=User.find_by_id(session[:user_id])
+     if @user
+       user_id=@user.id
+     end
+     @session= request.session_options[:id]
+   %>
+
+    <%= f.hidden_field :user_id,:value=>user_id %>
+  <%= f.hidden_field :session_id,:value=>@session %>
+
+  <p>
+   <div class="header"> Ваше имя: </div>
+ 
+    <%= f.text_field :name ,:value=>'Гость',:class=>"input_comm" %>
+  </p>
+   <p>
+    <div class="header"> Ваш вопрос: </div>
+
+    <%= f.text_area :content ,:class=>"message" %>
+  </p>
+  <p>
+    <%= f.submit "Спросить",:class=>'ok' %>
+  </p>
+<% end %>
+
+
+ 
+
+
+</div>
+

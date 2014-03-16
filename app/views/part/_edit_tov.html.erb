@@ -1,0 +1,130 @@
+ <div id="edit_tov<%=@cat1.id %>" >
+
+   <div class="edit_tov">
+   <style type="text/css">
+    .edit td { background-color: #CCFFCC; padding: 3px; }
+   </style>
+ <div style="text-align:center;">
+
+   <h2 style="background-color:white;"> Редактируем <%=@cat1.name %>. ID= <%=@cat1.id.to_s %>. </h2>
+
+<% form_for(@cat1 ,:html=>{:multipart => true} ) do |f| %>
+<%# form_for(@cat1) do |f| %>
+  <%= f.error_messages %>
+
+<% @k1c=Nprice1.find :first , :conditions=>['k1c=?', @cat1.k1c] %>
+<% unless @k1c %>
+   <h3 style="color: red;">  Неверный код 1с (возможно лишние пробелы или нехватает 00) </h3>
+   
+<% end %>
+  <table width="620px;" border="1" class="edit" >
+  <tr>
+    <td>
+      <b>   Код 1С: </b>
+  <b style="color:red;">  <%= @cat1.k1c %></b> <br/>
+     Изменить код 1С:
+  <b>  <%= f.text_field :k1c %></b>
+    </td>
+
+ 
+    <td>
+      <b>   Подкатегория: </b> <b style="color:red;"> <%=@cat1.tov3.id %>  <%=@cat1.tov3.name %></b> <br />
+      Изменить подкатегорию:<br />
+    <%= f.text_field :tov3_id %>
+       </td>
+       
+      <td rowspan="7" valign="top">
+  <b>   Название:</b> <br />
+    <%= f.text_area :name , :style=>'height: 80px;'%><br/>
+    <br/>
+      <b>   Полное название:</b> <br />
+    <%= f.text_area :fullname,:style=>'height: 80px;' %>
+<br/><br/>
+    
+<div id="togift">
+  <%= button_to_remote 'В подарок' , :url=>{:controller => 'service' , :action => 'togift' , :id=> @cat1.k1c} if Gift.find_by_k1c(@cat1.k1c) == nil %>
+  <%= button_to_remote 'Убрать из подарка' , :url=>{:controller => 'service' , :action => 'out_of_gift' , :id=> @cat1.k1c}  if Gift.find_by_k1c(@cat1.k1c) %>
+</div>
+
+  <b style="display: block; padding: 10px; border: 1px solid red; margin-top: 10px; background-color: white;">Видимость   
+ <%= f.check_box :vis %> , <br/> видимость СПб <%= f.check_box :spb %>
+   , видимость Мск <%= f.check_box :msk %>  , <br/> видимость Смоленск <%= f.check_box :smo %>
+  </b>
+      </td>
+  </tr>
+
+
+
+   <tr>
+     <td>
+  <b>  Код печатного каталога: </b>
+    <%= f.text_field :kpk %>
+
+    </td>
+     <td>
+       <b>  Бренд: </b> <br />
+    <%= f.text_field :brend %>
+   </td>
+   </tr>
+
+   <tr>
+     <td>
+       <b>   Рисунок 1:</b><br />
+    <%#= f.text_field :pic1 %>  <%= f.file_field :pic1 %>
+  </td>
+  <td>
+    <b>   Срок доставки:</b><br />
+    <%= f.text_field :delivery %>
+  </td>
+   </tr>
+
+   <tr>
+     <td>
+       <b>  1-суперпредложение, 2-распродажа, 3-набор, 4-школа:</b><br />
+    <%= f.text_field :raspr %>
+    </td>
+        <td>
+          <b>  Статус:</b><br />
+    <%= f.text_field :status %>
+    </td>
+   </tr>
+
+  
+
+    <tr>
+      <td colspan="2"> <b>    Синоним для поиска: </b><br />
+    <%= f.text_field :dop , :size=>'70'%>
+  </td>
+    </tr>
+
+    <tr>
+     <td>
+       <b>  ID связанного товара: </b><br />
+    <%= f.text_field :st %>
+   </td>
+       <td>
+         <b> Цена: </b><br />
+    <%= f.text_field :price %>
+   </td>
+   </tr>
+
+    <tr>
+     <td colspan="2">
+       <b>  Комплимент: </b><br />
+    <%= f.text_field :comp , :size=>'70' %>
+  </td>
+   </tr>
+
+  </table>
+ <br/>
+    <%= f.submit "Обновить и закрыть" %>&nbsp;
+
+    <span style="color: red; font-weight: bold;">  <%= link_to_remote "Закрыть не сохраняя" ,{:url=>{:controller=>'kt1',:action=>'close'},:update=>'edit_tov'+ @cat1.id.to_s}%>
+    </span>
+ 
+<% end %>
+
+</div>
+     
+ </div>
+ </div>

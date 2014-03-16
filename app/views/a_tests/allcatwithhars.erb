@@ -1,0 +1,84 @@
+<% for @btg in @btg1s do %>
+
+<% @bcat1s=Bcat1.find :all,:conditions=>["btg1_id=?", @btg] %>
+<h1> <%= @btg.name %>  </h1>
+<table border="0" cellpadding="0" cellspacing="0"  >
+  <tr>
+    <% if @btg.s1 !='no' and @btg.s1 !='' %>  <th>  <%= @btg.s1 %> </th> <%end%>
+    <% if @btg.s2 !='no' and @btg.s2 !='' %>   <th><%= @btg.s2 %></th>  <%end%>
+    <% if @btg.s3 !='no' and @btg.s3 !='' %>   <th><%= @btg.s3 %></th>   <%end%>
+    <% if @btg.s4 !='no' and @btg.s4 !='' %>   <th><%= @btg.s4 %></th>   <%end%>
+    <% if @btg.s5 !='no' and @btg.s5 !='' %>   <th><%= @btg.s5 %></th>   <%end%>
+    <% if @btg.s6 !='no' and @btg.s6 !='' %>   <th><%= @btg.s6 %></th>   <%end%>
+    <% if @btg.s7 !='no' and @btg.s7 !='' %>   <th><%= @btg.s7 %></th>   <%end%>
+    <% if @btg.s8 !='no' and @btg.s8 !='' %>   <th><%= @btg.s8 %></th>   <%end%>
+    <% if @btg.s9 !='no' and @btg.s9 !='' %>   <th><%= @btg.s9 %></th>   <%end%>
+    <% if @btg.s10 !='no' and @btg.s10 !='' %>  <th><%= @btg.s10 %></th>  <%end%>
+    <% if @btg.s11 !='no' and @btg.s11 !='' %>  <th><%= @btg.s11 %></th>  <%end%>
+    <% if @btg.s12 !='no' and @btg.s12 !='' %>  <th><%= @btg.s12 %></th>  <%end%>
+    <% if @btg.s13 !='no' and @btg.s13 !='' %>  <th><%= @btg.s13 %></th>  <%end%>
+    <% if @btg.s14 !='no' and @btg.s14 !='' %>  <th><%= @btg.s14 %></th>  <%end%>
+    <% if @btg.s15 !='no' and @btg.s15 !='' %>  <th><%= @btg.s15 %></th>  <%end%>
+    <% if @btg.s16 !='no' and @btg.s16 !='' %>  <th><%= @btg.s16 %></th>  <%end%>
+    <% if @btg.s17 !='no' and @btg.s17 !='' %>  <th><%= @btg.s17 %></th>  <%end%>
+    <% if @btg.s18 !='no' and @btg.s18 !='' %>  <th><%= @btg.s18 %></th>  <%end%>
+    <% if @btg.s19 !='no' and @btg.s19 !='' %>  <th><%= @btg.s19 %></th>  <%end%>
+    <% if @btg.s20 !='no' and @btg.s20 !='' %>  <th><%= @btg.s20 %></th>  <%end%>
+    <% if @btg.s21 !='no' and @btg.s21 !='' %>  <th><%= @btg.s21 %></th>  <%end%>
+    <% if @btg.s22 !='no' and @btg.s22 !='' %>  <th><%= @btg.s22 %></th>  <%end%>
+    <% if @btg.s23 !='no' and @btg.s23 !='' %>  <th><%= @btg.s23 %></th>  <%end%>
+    <% if @btg.s24 !='no' and @btg.s24 !='' %>  <th><%= @btg.s24 %></th>  <%end%>
+    <% if @btg.s25 !='no' and @btg.s25 !='' %>  <th><%= @btg.s25 %></th>  <%end%>
+    <% if @btg.s26 !='no' and @btg.s26 !='' %>  <th><%= @btg.s26 %></th>  <%end%>
+    <% if @btg.s27 !='no' and @btg.s27 !='' %>  <th><%= @btg.s27 %></th>  <%end%>
+    <% if @btg.s28 !='no' and @btg.s28 !='' %>  <th><%= @btg.s28 %></th>  <%end%>
+    <% if @btg.s29 !='no' and @btg.s29 !='' %>  <th><%= @btg.s29 %></th>  <%end%>
+    <% if @btg.s30 !='no' and @btg.s30 !='' %>  <th><%= @btg.s30 %></th>  <%end%>
+
+  </tr>
+
+<% @bcat1s.each do |bcat1| %>
+  <tr>
+
+ 
+    <% if @btg.s1!='no' and @btg.s1 !='' %>   <td><%=bcat1.s1 %></td>    <%end%>
+    <% if @btg.s2!='no' and @btg.s2 !='' %>   <td style=""><%=h (bcat1.s2) %></td>    <%end%>
+    <% if @btg.s3!='no' and @btg.s3 !='' %>   <td><%=h (bcat1.s3) %></td>    <%end%>
+    <% if @btg.s4!='no' and @btg.s4 !='' %>   <td><%=h (bcat1.s4) %></td>    <%end%>
+    <% if @btg.s5!='no' and @btg.s5 !='' %>   <td><%=h (bcat1.s5) %></td>    <%end%>
+    <% if @btg.s6!='no' and @btg.s6 !='' %>   <td><%=h (bcat1.s6) %></td>    <%end%>
+    <% if @btg.s7!='no' and @btg.s7 !='' %>   <td><%=h (bcat1.s7) %></td>    <%end%>
+    <% if @btg.s8!='no' and @btg.s8 !='' %>   <td><%=h (bcat1.s8) %></td>    <%end%>
+    <% if @btg.s9!='no' and @btg.s9 !='' %>   <td><%=h (bcat1.s9) %></td>    <%end%>
+    <% if @btg.s10!='no' and @btg.s10 !='' %>  <td><%=h (bcat1.s10) %></td>   <%end%>
+    <% if @btg.s11!='no' and @btg.s11 !='' %>  <td><%=h (bcat1.s11) %></td>   <%end%>
+    <% if @btg.s12!='no' and @btg.s12 !='' %>  <td><%=h (bcat1.s12) %></td>   <%end%>
+    <% if @btg.s13!='no' and @btg.s13 !='' %>  <td><%=h (bcat1.s13) %></td>   <%end%>
+    <% if @btg.s14!='no' and @btg.s14 !='' %>  <td><%=h (bcat1.s14) %></td>   <%end%>
+    <% if @btg.s15!='no' and @btg.s15 !='' %>  <td><%=h (bcat1.s15) %></td>   <%end%>
+    <% if @btg.s16!='no' and @btg.s16 !='' %>  <td><%=h (bcat1.s16) %></td>   <%end%>
+    <% if @btg.s17!='no' and @btg.s17 !='' %>  <td><%=h (bcat1.s17) %></td>   <%end%>
+    <% if @btg.s18!='no' and @btg.s18 !='' %>  <td><%=h (bcat1.s18) %></td>   <%end%>
+    <% if @btg.s19!='no' and @btg.s19 !='' %>  <td><%=h (bcat1.s19) %></td>   <%end%>
+    <% if @btg.s20!='no' and @btg.s20 !='' %>  <td><%=h (bcat1.s20) %></td>   <%end%>
+    <% if @btg.s21!='no' and @btg.s21 !='' %>  <td><%=h (bcat1.s21) %></td>   <%end%>
+    <% if @btg.s22!='no' and @btg.s22 !='' %>  <td><%=h (bcat1.s22) %></td>   <%end%>
+    <% if @btg.s23!='no' and @btg.s23 !='' %>  <td><%=h (bcat1.s23) %></td>   <%end%>
+    <% if @btg.s24!='no' and @btg.s24 !='' %>  <td><%=h (bcat1.s24) %></td>   <%end%>
+    <% if @btg.s25!='no' and @btg.s25 !='' %>  <td><%=h (bcat1.s25) %></td>   <%end%>
+    <% if @btg.s26!='no' and @btg.s26 !='' %>  <td><%=h (bcat1.s26) %></td>   <%end%>
+    <% if @btg.s27!='no' and @btg.s27 !='' %>  <td><%=h (bcat1.s27) %></td>   <%end%>
+    <% if @btg.s28!='no' and @btg.s28 !='' %>  <td><%=h (bcat1.s28) %></td>   <%end%>
+    <% if @btg.s29!='no' and @btg.s29 !='' %>  <td><%=h (bcat1.s29) %></td>   <%end%>
+    <% if @btg.s30!='no' and @btg.s30 !='' %>  <td><%=h (bcat1.s30) %></td>   <%end%>
+
+
+
+
+
+  </tr>
+<% end %>
+</table>
+
+
+<% end %>

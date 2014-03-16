@@ -1,0 +1,47 @@
+<% @sum2 = 0 %>
+<% @allw.each do |allw| %>
+
+<% @order = allw %>
+
+ФИО:&nbsp;<%=@order.name %> <br />
+Телефон:&nbsp;<%=@order.phone%><br />
+<br>
+
+Адрес доставки:<%= @order.adres  %><br>
+<%
+@sum1 = 0
+@sum11 = 0
+%>
+<% @order.liwater1.each do |cart| %>
+
+<% @water=Water1.find_by_id(cart.water1_id) if cart.water1_id %>
+<% @disp = Wdisp.find_by_id(cart.wdisp_id) if cart.wdisp_id%>
+
+<% if cart.water1_id %>
+<b >Название воды:</b>&nbsp; <%= @water.name %> <br/>
+<b>Количество: </b>&nbsp;<%= cart.wquantity %><br/>
+<b>Цена: </b>&nbsp;<% @sum11 = cart.price*cart.wquantity %> <%= @sum11 %> <br/>
+<% elsif cart.wdisp_id %>
+<b >Название диспенсера/кулера:</b>&nbsp; <%= @disp.name %> <br/>
+<b>Количество: </b>&nbsp;<%= cart.dquantity %><br/>
+<b>Цена: </b>&nbsp; <% @sum1 = cart.price*cart.dquantity %> <%= @sum1 %><br/>
+<% end %>
+<br/>
+
+   Сумма заказа: <%=@sum11 + @sum1  %>  <br/>
+  
+<%end%>
+  
+------------------------------------------------- <br/> <br/>
+
+<% end %>
+<% @order = Liwater1.find :all %>
+<% @order.each do |cart| %>
+<% if cart.water1_id %>
+<% @sum2+= cart.price*cart.wquantity%>
+<% elsif cart.wdisp_id %>
+<% @sum2+= cart.price*cart.dquantity%>
+<% end %>
+
+<% end %>
+<b>Общая сумма заказов: <%=@sum2  %> </b>

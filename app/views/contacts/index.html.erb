@@ -1,0 +1,75 @@
+<% content_for(:tit) do%>
+ Живой офис. Контакты 
+<%  end %>
+
+<% content_for(:cont) do %>
+
+<div style="width:750px;">
+<h2 style ="color:red;">«Живой офис» в Санкт-Петербурге</h2>
+<br/> <br/>
+<div style="border-bottom:2px dashed #E7E7E7">
+
+      <table cellspacing="0" cellpadding="8" style="color:#A0A0A0">
+<tbody>
+
+<tr>
+  <td><!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (начало) -->
+<div id="ymaps-map-id_13563486950272152799" style="width: 450px; height: 350px;"></div>
+<div style="width: 450px; text-align: right;"><a href="http://api.yandex.ru/maps/tools/constructor/index.xml" target="_blank" style="color: #1A3DC1; font: 13px Arial, Helvetica, sans-serif;">Создано с помощью инструментов Яндекс.Карт</a></div>
+<script type="text/javascript">function fid_13563486950272152799(ymaps) {var map = new ymaps.Map("ymaps-map-id_13563486950272152799", {center: [30.393221999999984, 59.91826638748502], zoom: 16, type: "yandex#map"});map.controls.add("zoomControl").add("mapTools").add(new ymaps.control.TypeSelector(["yandex#map", "yandex#satellite", "yandex#hybrid", "yandex#publicMap"]));map.geoObjects.add(new ymaps.Placemark([30.39262118518044, 59.917512714523845], {balloonContent: "Живой Офис"}, {preset: "twirl#greenDotIcon"}));};</script>
+<script type="text/javascript" src="http://api-maps.yandex.ru/2.0-stable/?lang=ru-RU&coordorder=longlat&load=package.full&wizard=constructor&onload=fid_13563486950272152799"></script>
+<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (конец) --></td>
+  <td valign ="top" style="padding-left:15px;"> <span style="color:gray; font-weight:bold;">Офис</span><br>
+
+193019, г. Санкт-Петербург, наб. Обводного канала, д. 14<br/>
+Телефон: +7 (812) 324-80-50<br/>
+Факс: +7 (812) 324-80-51<br/>
+Время работы: с 10:00 до 18:00<br/>
+Выходные — суббота, воскресенье </td>
+</tr>
+
+</tbody>
+</table>
+
+<br><br>
+</div><br>
+<br>
+<div style="border-bottom:2px dashed #E7E7E7">
+
+        <table cellspacing="0" cellpadding="8" >
+<tbody>
+
+<tr>
+  <td></td>
+  <td valign ="top" style="padding-left:15px;">
+</tr>
+
+</tbody>
+</table>
+
+<div style="border-bottom:2px dashed #E7E7E7">
+
+      <table cellspacing="0" cellpadding="8" style="color:#A0A0A0">
+<tbody>
+
+<tr>
+  <td><script type="text/javascript" charset="utf-8" src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=SVXgQp7bRGsIvkP0zHe6XiimMms2zIcW&width=450&height=350"></script></td>
+  <td valign ="top" style="padding-left:15px;"> <span style="color:gray; font-weight:bold;">Склад</span><br>
+
+194292, г. Санкт-Петербург, пр.Культуры, д.48,  литер А<br/>
+Телефон: +7 (812) 615-12-24<br/>
+Время работы: с 9:00 до 18:30<br/>
+Выходные — суббота, воскресенье<br/></td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+</div>
+
+</div>
+
+<%end%>

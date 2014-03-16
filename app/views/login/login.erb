@@ -1,0 +1,63 @@
+<% content_for(:cont) do %>
+<p style="color: #808285; font-weight: bold; position:relative; top: -15px;">
+  Регистрация
+</p>
+
+<%= render :partial=>'/part2/right_menu' %>
+
+  <div class="add_user_title" style="width: 682px;">
+Пожалуйста авторизируйтесь
+</div>
+
+<div class="login_user">
+
+
+  <br />
+
+    <% form_tag do %>
+     
+        <p>Логин или E-mail:<br/>
+        <%= text_field_tag :name, params[:name] , :style=>'width: 400px' %>
+      </p>
+
+      <p>
+        Пароль:<br/>
+        <%= password_field_tag :password, params[:password]  , :style=>'width: 400px'%>
+         </p>
+   <p style="height: 16px; margin-top: 15px;">
+        <b>
+        Запомнить меня на этом компьютере:
+
+        <%= check_box_tag :save, params[:save] %>
+        </b>
+      </p>
+      <br />
+     <%= link_to 'Забыли пароль?', {:controller=>'eml',:action=>'em'} , :class=>'g_link'  %>
+ 
+      
+ <div style="margin-top: 20px;">
+
+<%= submit_tag " Войти " , :class=>'submit'  %> &nbsp;&nbsp;
+
+<a href="/login/add_user" style="color:#F88120;position:relative; top:-1px;font-weight:bolder; text-decoration: none; margin-left: 100px;">РЕГИСТРАЦИЯ</a>&nbsp;
+<span style="position:relative; top:4px;">
+<%= link_to (image_tag("/images/link_cvet.jpg",:width=>'22' )),:controller=>'login',:action=>'add_user' %>
+</span>
+
+</div>
+
+     
+    <% end %>
+
+ 
+
+      <br />
+      <!--
+      <div style="margin-top: 15px; color: #00aeef;">
+        <img src="/images/snouboll.jpg"/> <a href="/desknews/wallpaper">скачать</a> обои для рабочего стола из весенней коллекции
+      </div>
+      -->
+</div>
+
+
+<%end%>

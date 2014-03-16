@@ -1,0 +1,12 @@
+<% for pict in @picture do %>
+<br>
+   <%= pict.comment %>
+<br>
+  <%= pict.name %>
+  <br>
+<img src="<%= url_for(:action =>'picture' , :id => pict.id) %>" /><br>
+   <%=link_to 'Удалить', :action =>'destroy' , :id => pict.id %> <br><br>
+<% end %>
+
+<br>
+  <%= link_to 'Вернуться ',:controller=>'atest'   %>

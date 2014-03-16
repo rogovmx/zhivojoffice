@@ -1,0 +1,26 @@
+
+
+  <h1>Праздник каждый день</h1> <br/>
+  <div class="months">
+
+  <%=render :partial=>'/holiday/upmenu2', :month=>@month  %>
+  </div>
+
+
+<img alt=" " src="<%='/images/holidays/calend_'+@month.to_s+'.jpg'%>" /><br/><br/>
+<% @days=Holiday.find :all , :conditions=>['month=?',@month] %>
+<p style="font-weight: bold;">
+
+<% for day in @days %>
+
+  <span style="color:#F88120;">
+  <%if day.day<10 %>
+  &nbsp;<%= day.day %>.
+  <% else %>
+  <%= day.day %>.
+  <% end %>
+  </span>&nbsp;&nbsp; <%= day.title %> <br/>
+<%end%>
+</p>
+<br/>
+<br/>

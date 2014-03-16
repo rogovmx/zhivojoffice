@@ -1,0 +1,18 @@
+<p>
+  <b>Subj:</b>
+  <%=h @desk_subj.subj %>
+</p>
+
+<p>
+  <b>S text:</b>
+  <%=h @desk_subj.s_text %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @desk_subj.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_desk_subj_path(@desk_subj) %> |
+<%= link_to 'Back', desk_subjs_path %>

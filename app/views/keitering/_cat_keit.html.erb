@@ -1,0 +1,78 @@
+
+<table width="160px;" height="100%" border="0" style="padding-top:0px; float: left; margin-right: 10px; ">
+  <tr>
+    <td style=" height:160px;" align="center" valign="center" colspan="2">
+     <% if @s.prw and @s.prw != ''  %>
+
+       <div class="highslide-gallery">
+
+	<a href="<%='/images/keit/'+@s.img %> " class="highslide"
+			title="<%=@s.name%>"
+			onclick="return hs.expand(this, config1)">
+		 <%= image_tag("/images/keit/"+@s.prw , :alt=>@s.name ) %>
+	</a>
+      
+       </div>
+<%else%>
+
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=160px/>
+
+                  <br/>
+           <%end%>
+         
+    </td>
+  </tr>
+
+  <tr>
+   
+    <td colspan="2" align="left" valign="top" style="height:28px;" class="tit_tov">
+      <%=  @s.name %>
+       
+    </td>
+  
+  </tr>
+ 
+    <tr>
+      <td align="left" valign="top"  class="water_opis" style="height: 30px;"  >
+       
+      <%= @s.opis %>
+    </td>
+
+  </tr>
+        <tr>
+          <td style="padding-left: 10px; height: 30px;">
+
+
+     <%= (link_to 'подробнее' , {:controller=>'keitering' , :action=>'tov' , :id=>@s.id} , :style=>'color: #999999;' ) if @s.id !=4%>
+            <span style="color: #999999;"> <%= 'Вес, гр. '+ @s.weight if @s.id ==4 %> </span>
+
+      </td>
+    </tr>
+
+     <tr >
+       <td style="padding-left: 10px; min-height: 40px; ">
+       <span  style="color: #c49550;"> <%=@s.price %> р. </span> <br/>
+          <span  style="color: #999999; font-size: 11px;"> Вес, гр. <%=@s.weight %>  </span>
+       </td>
+    </tr>
+
+      <tr>
+      <td style="padding-left: 10px;">
+       
+ <%= render(:partial=> '/keitering/zakaz', :object=>@s ) %>
+      </td>
+    </tr>
+
+</table>
+
+   
+    
+      <div id="<%='id_'+ @s.id.to_s %>"> </div>
+
+
+
+
+
+
+
+

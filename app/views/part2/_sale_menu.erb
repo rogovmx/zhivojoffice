@@ -1,0 +1,18 @@
+
+
+  <form method="get" action="/kt3/sale" style="margin-bottom: 10px;" >
+  <label for="search" >Вы ищете: </label>  <%= text_field_tag  :search  , params[:search] , :value=>params[:search] , :style=>"width: 225px;"%>
+  
+<%= submit_tag 'Искать' %>
+  </form>
+
+<div class="superprice">
+<h2>Выберите категорию </h2>
+<% for first in @first do %>
+
+<%= link_to first.name , {:controller => 'kt3' , :action =>controller.action_name , :id => first.id} , :style=>"#{(@name and (@name.id == first.id )) ? 'font-weight: bold; text-decoration: none; background-color: #AAD04B;' : ''}"  if insale?(first.id) and first.id != 45 %>
+
+
+
+<% end %>
+</div>

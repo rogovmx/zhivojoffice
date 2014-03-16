@@ -1,0 +1,10 @@
+<ul>
+
+   <li>     <%= link_to 'Регистрации на сайте',{:controller=>'call1' }  %> </li>
+    <li>     <%= link_to 'Пользователи, клиенты',{:controller=>'call1' , :action => 'users' }  %> </li>
+    <% if @user.city == "Смоленск" %>
+   <li><%= link_to "Загрузка бонусов (Смоленск)" ,:controller=>'service',:action=>'upload_smo_bonuses'%></li>
+    <% end %>
+<li style="text-align: right;">       <%= link_to 'Выход' , {:controller=>'login' , :action=>'logout'} , :style=>'color: red' %> </li>
+</ul>
+

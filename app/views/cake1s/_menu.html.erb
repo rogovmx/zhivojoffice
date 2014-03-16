@@ -1,0 +1,26 @@
+<% if params[:menu] == nil  %>
+<% @m = '0'   %>
+<% else %>
+<% @m=params[:menu]  %>
+<% end %>
+<div class="cake_menu">
+  <% @w =  %w{index shef recipe price dost}%>
+  <% ff=0 %>
+  <% %w{торты шеф-кондитер рецепты цены условия&nbspдоставки}.each do |action| -%>
+  <% if @m == ff.to_s %>
+      <% if action == 'торты' %>
+      <a href="/торты на заказ" class="cake_act"> торты  </a>
+      <% else %>
+      <%= link_to action, {:controller=>'cake1s' ,:action=>@w[ff].to_s, :menu=>ff} , :class=>'cake_act'  %>
+      <% end %>
+  <% else  %>
+      <% if action == 'торты' %>
+      <a href="/торты на заказ" class="cake_p"> торты  </a>
+      <% else %>
+      <%= link_to action, {:controller=>'cake1s' ,:action=>@w[ff].to_s, :menu=>ff} , :class=>'cake_p'  %>
+      <% end %>
+ <% end %>
+<% ff+=1 %>
+  <% end %>
+  
+</div>

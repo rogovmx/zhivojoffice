@@ -1,0 +1,68 @@
+<% content_for(:cont) do %>
+
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="it_title">
+ Договора и спецификации
+</div>
+
+
+
+ <div class="hk" style="margin-top: 10px;" >
+
+<%= 'Все товары' unless params[:group] %>
+      <span style="color:#f97c13;">
+<form style="display: inline;" >
+        <select onChange="redir(this)" style="color:#03b1ee;  display: inline; border:  none; background-color: #eeeeee; text-transform: lowercase;  cursor: pointer; font-size:13px;">
+        <option value="" >Выберите группу товаров: </option>
+          <% for tov in @first1_names %>
+         <option value="<%='/cabinet/tov_spec?group='+tov[0].to_s %>" <%= 'selected="selected"' if (tov[0].to_s == params[:group])%> ><%=tov[1] %></option>
+         <% end %>
+         <option value="/cabinet/tov_spec" >Все товары: </option>
+            </select>
+ </form>
+  </span>
+
+ </div>
+
+
+
+ <div style="width:715px;vertical-align: bottom;">
+   <span id="sel2" style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;display:none;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 10px;"onchange=perp($F('br11')); >
+   <%= options_for_select([5, 10,15,20],@per_page.to_i) %>
+
+    </select></span>
+<%= will_paginate @it_tov %> </div>
+
+<table border="0" width="695px;" style="background-color:#5c2d91; color:white; text-align: center; font-size: 11px; padding: 5px;">
+  <tbody>
+    <tr>
+    <td style="width:65px;">Вид </td>
+    <td style="width:35px;"> Код </td>
+    <td> Наименование товара </td>
+    <td style="width:80px;"> Цена </td>
+    <td style="width:80px;"> Корзина</td>
+    </tr>
+ </tbody>
+</table>
+
+
+      <% @it_tov.each do |it_tov| %>
+
+   <% @cat=Cat1.find_by_k1c(it_tov.k1c) %>
+
+<%= render(:partial => '/cabinet/cat_tovs',:object =>@cat) if @cat %>
+
+        <%end%>
+
+
+
+<div style="float: left; text-align: left">
+      <%= will_paginate @it_tov %>
+</div>
+<%end%>
+
+

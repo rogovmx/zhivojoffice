@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  divup: MyString
+  divdown: MyString
+  tov1_id: 1
+  tov1name: MyString
+  tov2_id: 1
+  tov2name: MyString
+  tov3_id: 1
+  tov3name: MyString
+  tov4_id: 1
+  tov4name: MyString
+
+two:
+  divup: MyString
+  divdown: MyString
+  tov1_id: 1
+  tov1name: MyString
+  tov2_id: 1
+  tov2name: MyString
+  tov3_id: 1
+  tov3name: MyString
+  tov4_id: 1
+  tov4name: MyString

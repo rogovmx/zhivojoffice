@@ -1,0 +1,50 @@
+ <% content_for(:cont) do %>
+
+<div class="hk" style="width:545px;">Назад:<span class="ts">&nbsp;<%= link_to 'Вернуться на сайт',:back,:class=>'hk',:style=>'color:#019f3d;' %></span></div>
+ <span style="color: rgb(249, 124, 19); font-size: 12pt;"> Кабинет менеджера   </span>
+   <div style="width:720px; height: 25px; font-size:12px;background:transparent url(/images/zel.jpg) no-repeat;color:#ffffff;background-color:#88cc60;line-height:18px;padding:2px 2px 2px;">
+   </div>
+   <br>
+    <div style="width:715px;vertical-align: bottom;">   <span id="sel2" style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;display:none;">Показывать по:
+ </span>  <span style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;">    </span>  </div>
+
+
+    <table border="0">
+     <tr>
+       <td  style="width:170px;background-color:#C8E2AE;border:1px dashed #A3C046;padding-left:3px;height:550px;" valign="top" align="left">
+         Список клиентов.<br><br>
+         <% @clients.each do |client| %>
+
+          <%=  link_to_remote  client.name ,{:url=>{:controller=>'manager',:action=>'client',:id=>client.id},:update=>'manager'} %><br>
+          <br>
+         <%end%>
+    </td>
+
+    <td valign="top" style="min-height:550px;">
+<script>
+function loadTab( tab ) {
+	new Ajax.Updater( 'content', tab, { method: 'get' } );
+}
+loadTab( '/manager/t3' );
+
+            </script>
+      
+      <div id="manager">
+      
+      </div>
+    </td>
+
+      </tr>
+      </table>
+      
+<%end%>
+
+
+<% content_for(:bs) do %>
+  <%=bs %>
+  <%  end %>
+<% content_for(:sp) do %>
+  <%=  sp %>
+  <%  end %>
+
+ 

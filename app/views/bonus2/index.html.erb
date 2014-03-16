@@ -1,0 +1,81 @@
+
+<div> <img src="/images2/bonus_top.gif"/> </div>
+
+                <div class="bonus_nav">
+
+                 
+
+                  <div class="bonus_menu">
+
+                  <a href="/bonus2" class="act" >каталог бонусов</a>
+                  <% if login?  and !@user.bonus%>
+                  <a href="/bonus2/editcart">корзина с подарками</a>
+                 <%end%>
+                 <a href="/bonus2/rule">как получить бонусы</a>
+                 
+                   <%#= link_to 'личный кабинет',:controller=>'cabinet',:action=>  'reg_data' %>
+
+                    </div>
+    <div style="width:auto; text-align:right;float:right; ">
+
+ <%#= will_paginate @bonus  %>
+
+    </div>
+               </div>
+
+              <% if login? and !@user.bonus%>
+<div style="color:#F1222A;; font-weight: bold; margin-bottom: 20px; margin-top: 20px;">Ваш бонусный счет:&nbsp;<%=@limit%>&nbsp;&nbsp;Можно выбрать <%=@count%> подарка
+  <h2> <%= 'Не заведена карточка на сайте. Свяжитесь с менеджером.' unless @client %>  </h2>
+</div>
+             <%end%>
+
+
+<table class="bonus" border="0" cellpadding="0" cellspacing="0" style="margin-top: 20px";>
+<tr>
+    <% flag=0 %>
+    <% flag1=0 %>
+  <% @bonus.each do  |bonus2|   %>
+
+     <% flag +=1 %>
+     <% flag1 +=1 %>
+     <td>
+     
+      <div class="bonus_item">
+     
+         <div id="b_photo<%=bonus2.id%>" class="b_photo" style="display:none;" onmouseout="zp('<%="b_photo"+bonus2.id.to_s%>')">  
+           <img src="/images/bonus/thumbs/<%=bonus2.pic1%>"  />
+           <div style=""> <%= bonus2.fullname%> </div>
+         </div>
+      <% if bonus2.pic1 !='' %>
+      <!--  <img src="/images/bonus/<%#=bonus2.pic1%>.jpg" alt=""  style="height:130px;"/> -->
+         <img src="/images/bonus/thumbs/<%=bonus2.pic1%>" height="125px" onclick="show_id('<%="b_photo"+bonus2.id.to_s%>')" class="bimg" />
+    
+    <%else%>
+        <img src="/images/no_image_s.gif" height="125px" />
+   
+  <% end %>
+<% @b_price=Nprice1.find_by_k1c(bonus2.k1c) %>
+<div class="bonus_price">&nbsp;<%= @b_price.bonus if @b_price%>&nbsp;<span>бонусов</span></div>
+      <!--   <div class="bonus_ms"><span>MS</span>&nbsp;<%#= bonus2.number %></div>   -->
+        <div class="bonus_name" title="<%= bonus2.fullname%>">
+<%= if bonus2.name then bonus2.name else bonus2.fullname end %>
+        </div>
+  <% if login?  and !@user.bonus%>
+      <%if @count >0 and @b_price.bonus and @b_price.bonus < @limit %>
+        <%= link_to '' , {:controller=>'bonus2' , :action=>'create_bonus_cart' , :k1c=>bonus2.k1c}, :class=>'basket' if bonus2 %>
+
+       <%end%>
+  <%end%>
+
+  </div>
+     </td>
+      <% if (flag % 5)==0 %>
+    <% flag1=0 %>
+</tr>
+<tr >
+
+    <% end %>
+  <%end%>
+
+</tr>
+</table>

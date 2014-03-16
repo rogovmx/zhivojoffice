@@ -1,0 +1,139 @@
+<div style="display: none; position: absolute;  padding: 0pt; z-index: 1111; border: 1px solid #999999;"  id="<%='pic'+@cat.id.to_s%>">
+  <% if @cat.pic1 %>
+  <img src="<%='/img/'+@cat.pic1+'.jpg'%>" width="200px" border="0"/>
+  <% end %>
+</div>
+
+<table width="100%" border="0" style="border-bottom:dashed 1px #808285; margin-bottom: 5px;">
+   
+     <tr>
+       <td width="65px" align="left" valign="center" style=" height:50px;">
+       
+
+
+  <%= link_to (image_tag(img_cat(@cat.pic1) ,:style=>"width:50px" , :alt=>@cat.fullname  , :title=>@cat.fullname)), {:controller=>'kt3',:action=> (@cat.raspr == 3 ? 'set' : 'tov'),:id=>@cat.id} , :onmouseover=>"build('#{"pic"+@cat.id.to_s}')" , :onmouseout=>"hide2('#{"pic"+@cat.id.to_s}')" %>
+
+
+       </td>
+       <td valign="center" align="cener" style="width: 50px;">
+         <span style="font-family: Arial; font-size: 10px; color: #808385;">
+    <%=@cat.kpk%>
+    </span>
+        
+    
+ <% if @cat.raspr == 1 %>
+         <div style="position: relative;">
+             <div style="position: absolute; top: -7px; left: -29px;">
+               <img src="/images2/super.gif" alt="" width="30px" />
+             </div>
+            </div>
+ <% elsif @cat.raspr == 2 %>
+         <div style="position: relative;">
+             <div style="position: absolute; top: 4px; left: -29px;">
+               <img src="/images2/sale_02.png" alt="" />
+             </div>
+            </div>
+ <% end %>
+
+       </td>
+
+       <td valign="center" align="left"  style="padding-top:10px;  ">
+      <%           if @cat.name and @cat.name != ''
+          @name = @cat.name
+          else
+          @name = @cat.fullname
+          end
+       %>
+      <b>    <%=link_to @name,{:controller=>'kt3',:action=>(@cat.raspr == 3 ? 'set' : 'tov'),:id=>@cat.id}, :class=>'tit_tov' %></b>
+      <table border="0" >
+        <tr>
+
+<td class="favorite" style="height:0px; width: 200px; " align="left" valign="bottom" >
+  <%unless login?%>
+
+<%else%>
+  <% @it=It.find(:first,:conditions=>['user_id=? and k1c=? ',@user.id,@cat.k1c])%>
+<% if @it %>
+  <%= render(:partial=> '/kt1/it') %>  <br/>
+<%else%>
+  <%@tov3=Tov3.find(@cat.tov3_id)%>
+<% if @tov3.tov2_id != '174' %>
+  <% @f1=Tov2.find(@tov3.tov2_id) %>
+  <% @kod_f1=First1.find(@f1.first1_id) %>
+<% end %>
+<div id=it_<%=@cat.id%>>
+  <%  update='it_'+@cat.id.to_s %>
+<% remote_form_for :it  , :url=>{:controller=>'kt1',:action=> :create_it},:update=>update do |f| %>
+   <%= f.hidden_field :user_id ,:value=>@user.id  %>
+   <%= f.hidden_field :k1c ,:value=>@cat.k1c %>
+   <%= f.hidden_field :tg3 ,:value=>@tov3.id %>
+   <%= f.hidden_field :tg2 ,:value=>@tov3.tov2_id %>
+   <%= f.hidden_field :tg1 ,:value=>@f1.first1_id %>
+   <%= f.hidden_field :kod_f1 ,:value=>@kod_f1.kod %>
+   <%= f.hidden_field :brend ,:value=>@cat.brend %>
+ <!-- <input type="image"  src="/images/btn_fav.gif" border=0 align="center" style="position:relative;top:-10px;"> -->
+   <%=f.submit 'В избранные',:class=>'it_submit'%>
+  <%end%>
+</div>
+<%end%>
+<%end%>
+
+
+   </td>
+   <td align="right" valign="bottom">
+
+</td>
+</tr></table>
+     
+
+
+
+            </td>
+            <td  align="center" valign="center" style="width: 90px;">
+    <%= render  :partial =>'/kt3/uprice',:user=>@user, :cat=>@cat %>
+       </td>
+       <td align="right" valign="center" style="width: 80px;">
+          <% @cat1=@cat %>
+ <% if @price %>
+           <% @tvc=Cart.find :first,:conditions=>['Sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+    <%#= @tvc.k1s %>
+    <% if @tvc || (login? && @user.only_specs) %>
+      <%= render(:partial=> '/kt3/tvc') %>
+    <%  else  %>
+<%#= @tvc.k1s %>
+        <%# @uprice=uprice %>
+<%= render(:partial=> '/kt3/zakaz', :object=>@cat1,:object=>@user,:object=>@uprice) %>
+ <% end %>
+<%else%>
+      <%end%>
+       </td>
+       </tr>
+       
+
+     
+          
+      <% if login? %>
+            <% if (@user.role !='redaktor' and @user.role !='sredaktor')%>
+
+                         <%else%>
+     <tr>
+       <td align="center" colspan="5">
+
+        
+                           <%= link_to_remote "редактировать" ,{:url=>{:controller=>'kt1',:action=>'edit_tov',:id=>@cat.id},:update=>'rl'},:href => url_for(:controller=>'login',:action => "login")%>
+                    &nbsp;&nbsp;       <%= link_to "Удалить" ,:action=>'del_tov', :id=>@cat.id %>
+<% if @cat.collection_id %>
+                 <span class="sha" style="padding: 3px; border: 1px solid white; background-color: green; color: white; position: relative; top: -15px; "> <%=  link_to 'В коллекции >>' , {:controller=>'collections' , :action=>'one_coll', :id=>@cat.collection_id} , :style=>'color:white' %> </span> <% end %>
+
+
+                             <%if @cat.vis != true%>
+                          &nbsp;&nbsp;  <span style="color:red;"> <b>Не отображается</b></span>
+                               </td>
+     </tr>
+                             <%end%>
+                         <%end%>
+       
+        <%else%>
+        <%end%>
+       
+   </table>

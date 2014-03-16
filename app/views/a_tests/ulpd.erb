@@ -1,0 +1,11 @@
+<% form_for(:cat1img , :url=>{:controller=>'a_tests', :action=>'ulpd' },:html=>{:multipart => true} ) do |form| %>
+
+<p>
+    <%= form.file_field :pic %>
+
+  </p>
+
+  <p>
+    <%= form.submit "Сохранить" %>
+  </p>
+<% end %>

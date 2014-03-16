@@ -1,0 +1,53 @@
+
+<%= render(:partial => 'podarok/find') %>
+
+     <div id="tovar">
+       <br/>
+    <div style="width:720px;vertical-align: bottom;">
+      <span id="sel2" style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;display:inline;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 10px;" onchange=perp($F('br11')); >
+   <%= options_for_select([12,16,20], selected=@per_page.to_i) %>
+    </select></span>&nbsp;&nbsp;
+    <span  style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;">
+<%#= link_to  'Показывать списком',:controller=>'kt2',:action=>'tg_n',:id=>@tov3.id %></span>
+<!--
+    <span style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;">
+<%#= will_paginate @tg , :style=>'font-size:10px;text-align:right;width: 260px;float:right;vertical-align: bottom;'%></span> -->
+    </div>
+
+<%ff=0%>
+       <div id="<%#=@cat.tg%>" style="width:720px; ">
+         <table border="0"  ><tr>
+       <% for tg in @tg do %>
+
+       <%ff+=1%>
+    <% @cat=Cat1.find(tg.id)  %>
+          
+
+
+
+  <!-- <%#= render(:partial =>'cat1',:object=>@cat) %> -->
+  <td valign="top" style="padding:0px;margin:0px;border-bottom:1px dashed #F88120; ">
+    <div style="margin:0px;padding:0px;display:block;">
+   <!-- <div class="grn11" id="<%#=@cat.id%>" style="padding-bottom:2px;"> -->
+
+<%= render(:partial => 'podarok/cat22v',:object =>@cat) %>
+    </div>
+<!--
+ </div> -->
+  </td>
+
+<% if (ff%4)==0 %>
+              </tr><tr >
+      
+  <%end%>
+
+
+    <% end %>
+               </tr></table>
+          </div>
+<br/>
+<%= will_paginate @tg ,:style=>'font-size:11px;text-align:left;width: 260px;float:left;vertical-align: bottom;'%>
+     </div>
+
+

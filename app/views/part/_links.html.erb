@@ -1,0 +1,34 @@
+
+<style type="text/css">
+  .links {margin-top: 20px; margin-bottom: 20px;}
+  .links img {border: none;}
+</style>
+<div class="links">
+
+  <a title="Facebook" target="_blank" href="http://www.facebook.com/share.php?u=http://www.zhivojoffice.ru/<%=@links %>">
+    <img src="/images/links/new_facebook.png" />
+  </a>
+
+  <a title="В контакте" target="_blank" href="http://vkontakte.ru/share.php?url=http://www.zhivojoffice.ru/<%=@links %>">
+    <img src="/images/links/new_vk.png" />
+  </a>
+
+ <a title="Мой мир" href="http://connect.mail.ru/share?share_url=http://www.zhivojoffice.ru/<%=@links %>" >
+   <script charset="UTF-8" type="text/javascript" src="http://cdn.connect.mail.ru/js/share/2/share.js"></script>
+     <img src="/images/links/button_micro.gif" width="20px" />
+  </a>
+
+ <a title="Добавить в избранное" href="#" onClick="window.external.addFavorite('http://www.zhivojoffice.ru/', 'Доставка товаров в офис. Канцтовары, бумага, папки, архивы, хозяйственные товары для офиса, расходные материалы для оргтехники, офисная мебель'); return false;">
+     <img src="/images/links/new_favorite.png" />
+  </a>
+
+  <a title="Отправить по почте" href="mailto: ?subject=<%=@subj%> &amp;body=http://www.zhivojoffice.ru/<%=@links %>" >
+    <img src="/images/links/new_mail3.png" />
+  </a>
+<a title="Яндекс.Закладки" target="_blank" href="http://zakladki.yandex.ru/userarea/links/addfromfav.asp?bAddLink_x=1&lurl=http%3A%2F%2Fwww.zhivojoffice.ru%2F<%=@links%>%2F&lname=<%=@subj%>">
+  <img src="/images/links/blog_ya1c.gif" alt="Яндекс.Закладки" width="26px"/>
+</a>
+
+
+
+</div>

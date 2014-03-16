@@ -1,0 +1,65 @@
+<% content_for(:cont) do %>
+<%= calendar_date_select_includes %>
+<div style=" margin-left: 50px;">
+  <style type="text/css">
+    .btn {border: none; background: transparent; background-image: url(/images/find.jpg); width: 81px; height: 26px; }
+
+  </style>
+  <h2 style=" margin-bottom: 10px; margin-top: 20px;" >Статистика</h2>
+
+  <div>
+    <h3>Просьба с 10 до 17 часов не злоупотреблять большими интервалами!    </h3><br />
+                <h2  style="color: #00ae4d"> Cтатистика транзакций на сайте</h2>
+<form name="h_form" method="get" action="/an1/index1">
+
+
+                
+                <br/>
+                <p><b>Начало периода:</b><br/>
+
+                  <%= calendar_date_select_tag "nd", @today,    :embedded => false,  :year_range => 3.years.ago..0.years.ago %>
+
+                </p>
+                <p><b>Конец периода :</b><br/>
+                     <%= calendar_date_select_tag "kd", @today,    :embedded => false,  :year_range => 3.years.ago..0.years.ago %>
+                   </p>
+                   <p>
+
+                     <input type="submit" value="Показать" />
+                </p>
+
+            </form>
+    </div>
+
+
+
+
+
+  <br/>
+    <h2 style="color: #00ae4d"> Cтатистика по товарным группам</h2>
+  <br/>
+
+  <form name="h_form" method="get" action="/an1/tovgr" >
+
+                <p>Начало периода:<br/>
+
+
+                  <%= calendar_date_select_tag "ndb", @today,    :embedded => false,  :year_range => 3.years.ago..0.years.ago %>
+
+                </p>
+                <p>Конец периода :<br/>
+
+                    <!-- <input type="text" id="ser" name="kd" />-->
+                     <%= calendar_date_select_tag "kdb", @today,    :embedded => false,  :year_range => 3.years.ago..0.years.ago %>
+                   </p>
+                   <p>
+
+                     <input type="submit" value="Показать" />
+                </p>
+
+            </form>
+</div>
+<% end %>
+
+
+

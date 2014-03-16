@@ -1,0 +1,161 @@
+
+
+
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b5-ddheader" onmouseover="ddMenu('b5',1)" onmouseout="ddMenu('b5',-1)">
+   <%= link_to 'О компании', {:controller=>'about'}  %>
+  </div>
+  <div class="ddcontent2" id="b5-ddcontent" onmouseover="cancelHide('b5')" onmouseout="ddMenu('b5',-1)">
+    <div class="ddinner2">
+      <ul>
+        <li>11111111 </li>
+         <li>11111111 </li>
+          <li>11111111 </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<span class="div_menu"></span>
+ <div class="floatleft">
+  <%= link_to 'Акции', {:controller=>'act'}  %>
+ </div>
+<span class="div_menu"> </span>
+
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b6-ddheader" onmouseover="ddMenu('b6',1)" onmouseout="ddMenu('b6',-1)">
+     <%= link_to 'Бонусная программа', {:controller=>'bonus2', :action => 'rule'}  %>
+  </div>
+  <div class="ddcontent2" id="b6-ddcontent" onmouseover="cancelHide('b6')" onmouseout="ddMenu('b6',-1)">
+    <div class="ddinner2">
+         <ul>
+        <li>11111111 </li>
+         <li>11111111 </li>
+          <li>11111111 </li>
+      </ul
+    </div>
+  </div>
+</div>
+
+<span class="div_menu"></span>
+
+
+
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b2-ddheader" onmouseover="ddMenu('b2',1)" onmouseout="ddMenu('b2',-1)">
+    <span> Клиентам </span>
+  </div>
+  <div class="ddcontent2" id="b2-ddcontent" onmouseover="cancelHide('b2')" onmouseout="ddMenu('b2',-1)">
+    <div class="ddinner2">
+        <ul>
+        <li>11111111 </li>
+         <li>11111111 </li>
+          <li>11111111 </li>
+      </ul
+    </div>
+  </div>
+</div>
+
+
+
+<span class="div_menu"></span>
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b7-ddheader" onmouseover="ddMenu('b7',1)" onmouseout="ddMenu('b7',-1)">
+    <%= link_to 'Контакты', {:controller=>'contacts'}  %>
+  </div>
+  <div class="ddcontent2" id="b7-ddcontent" onmouseover="cancelHide('b7')" onmouseout="ddMenu('b7',-1)">
+        <ul>
+        <li>11111111 </li>
+         <li>11111111 </li>
+          <li>11111111 </li>
+      </ul
+    </div>
+  </div>
+</div>
+
+
+<span class="div_menu"></span>
+
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b8-ddheader" onmouseover="ddMenu('b8',1)" onmouseout="ddMenu('b8',-1)">
+    <%= link_to 'Проекты', {:controller=>'routine'}  %>
+  </div>
+  <div class="ddcontent2" id="b8-ddcontent" onmouseover="cancelHide('b8')" onmouseout="ddMenu('b8',-1)">
+    <div class="ddinner2">
+       <ul>
+        <li>11111111 </li>
+         <li>11111111 </li>
+          <li>11111111 </li>
+      </ul
+    </div>
+  </div>
+</div>
+
+
+
+
+<% if login? %>
+<span class="div_menu"> </span>
+
+<div class="floatleft" style="top: -37px; right: -121px;">
+  <div class="ddheader2" id="b3-ddheader" onmouseover="ddMenu('b3',1)" onmouseout="ddMenu('b3',-1)" style="">
+    <% if @user.role3 == 'stat' %>
+        <span style=" font-weight:bold; position: relative; right: -100px;"> Статистика </span>
+    <% elsif @user.role == 'user' or @user.role == 'poduser'%>
+          <%= link_to image_tag('/images2/cabinet.png') , {:controller=>'cabinet' , :action => 'reg_data'}  , :style=>'color:#F47920; position: relative; right: -100px; font-size: 1'%>
+    <% elsif @user.role == 'redaktor' %>
+        <span style=" font-weight:bold; position: relative; right: -100px;"> Кабинет редактора</span>
+    <% elsif @user.role == 'manager' %>
+        <span style=" font-weight:bold; position: relative; right: -100px;"> Кабинет менеджера</span>
+    <% elsif @user.role == 'callcentr' %>
+        <span style=" font-weight:bold; position: relative; right: -100px;"> Новые клиенты</span>
+   <% else %>
+        <span style=" font-weight:bold; position: relative; right: -100px;">Администрирование</span>
+   <% end %>
+
+  </div>
+  <div class="ddcontent2" id="b3-ddcontent" onmouseover="cancelHide('b3')" onmouseout="ddMenu('b3',-1)">
+    <div class="ddinner2">
+    <% if @user.role3 == 'stat' %>
+        <%= render :partial=>'/part2/stat_menu' %>
+    <% elsif @user.role == 'user'%>
+       <%= render :partial=>'/part2/cab_menu' %>
+    <% elsif @user.role == 'poduser'%>
+       <%= render :partial=>'/part2/poduser_menu' %>
+    <% elsif @user.role == 'redaktor' %>
+      <%= render :partial=>'/part2/redaktor_menu' %>
+    <% elsif @user.role == 'manager' %>
+      <%= render :partial=>'/part2/manager_menu' %>
+    <% elsif @user.role == 'callcentr' %>
+       <%= render :partial=>'/part2/call_menu' %>
+   <% else %>
+       <%= render :partial=>'/part2/cab_menu' %>
+   <% end %>
+
+    </div>
+  </div>
+</div>
+
+  <%end%>
+
+
+
+
+  <span style="position:absolute; right: 5px; top: 0px;"  title="(812)324-80-50, доб. 1290">
+
+    <script type="text/javascript">
+<!-- Begin
+user = "support";
+site = "zhivojoffice.ru";
+document.write('<a style="text-decoration:none; color: #808285;" href="mailto:' + user + '@' + site + '\">');
+document.write('поддержка сайта' + '</a>');
+// End -->
+</script>
+  </span>
+

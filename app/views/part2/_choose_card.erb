@@ -1,0 +1,22 @@
+
+  <div  class="catcod_box2" id="catcod_box" >
+
+    <p style="margin-bottom: 5px;"> Код: <%=@ecod.kod %>  </p>
+
+    <% remote_form_for :cod , :url=>{:controller=>'kt1' , :action=>'choosecard'} , :update=>'catcod_box'  do |f| %>
+    <%= f.label 'выберите карту:' %> <br/> 
+    <div style=" margin: 5px; color: #808285;">
+    <%= f.radio_button(:card, '1', :checked=>'checked')  %>
+    <%= f.label(:card_1, "Рив Гош") %>
+    <%= f.radio_button(:card, '2') %>
+    <%= f.label(:card_2, "Л'Этуаль") %> <br/>
+    </div>
+    <%= f.submit 'ЗАКАЗАТЬ КАРТУ' , :class=>'but_zak_cat2' %>
+
+    <% end %>
+    <p style="margin-top: 10px;">номинал карты - 300 рублей.</p>
+  </div>
+
+
+ 
+

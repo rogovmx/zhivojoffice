@@ -1,0 +1,206 @@
+<div>
+<script type="text/javascript">
+var jq=jQuery.noConflict();
+jq(document).ready(function(){
+
+	jq(".jq_cvet a").hover(function() {
+		jq(this).next("div").animate({opacity: "show", top: "-1"}, "slow");
+	}, function() {
+		jq(this).next("div").animate({opacity: "hide", top: "-1"}, "fast");
+	});
+
+
+});
+</script>
+<style>
+  .jq_cvet img
+  {
+    z-index:-1;
+  }
+</style>
+
+
+
+
+ <% @user=User.find_by_id(session[:user_id])%>
+
+
+<div style="text-align:right;position:relative;top:41px;left:-25px;z-index:10000">
+
+<%= link_to_remote (image_tag('/images/num1.jpg')),:url=>{:controller=>'fool12',:id=>1},:update=>'podvall' %>&nbsp;<%= link_to_remote (image_tag('/images/num2.jpg')),:url=>{:controller=>'fool12',:id=>2},:update=>'podvall' %>
+&nbsp;<%= link_to_remote (image_tag('/images/num3a.jpg')),:url=>{:controller=>'fool12',:id=>3},:update=>'podvall' %>&nbsp;<%= link_to_remote (image_tag('/images/num4.jpg')),:url=>{:controller=>'fool12',:id=>4},:update=>'podvall' %>
+</div>
+
+<div class="divider1"></div>
+
+  <div class="content" align="center" id="cvet">
+
+  <table class="jq_cvet" id="cvet1" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td valign="bottom" align="left">
+        <div style="position:relative; z-index:5;">
+ <% @cat1=Cat1.find :first, :conditions=> ['id=?','3709'] %>
+
+<%= link_to image_tag('/img/'+@cat1.pic1+'.jpg', :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat1.id%>
+
+          <div  style="position:absolute;left:75px;padding:15px 10px 15px 10px; top:-55px;z-index:30;
+background-color:#ffffff;border:2px #9bd029 solid;width:180px; font-size:10px;display: none;"><b>Фикус</b><br>
+            <br/>
+Эффективно очищает воздух от пыли и обогащает кислородом          </div>
+        </div>      </td>
+      <td valign="bottom" align="left">
+         <div style="position:relative; z-index:4;">
+          <% @cat1=Cat1.find :first, :conditions=> ['id=?','5389'] %>
+
+          <%= link_to image_tag('/img/'+@cat1.pic1+'.jpg', :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat1.id%>
+            
+           <div  style="position:absolute;left:75px;padding:15px 10px 15px 10px; top:-55px;z-index:30;
+background-color:#ffffff;border:2px #9bd029 solid;width:180px; font-size:10px;display: none;"><b>Алоказия </b><br>
+
+            <br>
+Растение-барометр.
+Перед дождем на листьях выступают капельки воды          </div>
+        </div>      </td>
+      <td valign="bottom" align="left">
+        <div style="position:relative;z-index:3;">
+           <% @cat1=Cat1.find :first, :conditions=> ['id=?','5397'] %>
+
+            <%= link_to image_tag('/img/'+@cat1.pic1+'.jpg', :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat1.id%>
+
+
+
+           <div  style="position:absolute;left:75px;padding:15px 10px 15px 10px; top:-55px;z-index:30;
+background-color:#ffffff;border:2px #9bd029 solid;width:180px; font-size:10px;display:none;"><b>Диффенбахия Камилла</b><br>
+
+            <br>
+
+очищает воздух от токсинов. Если рядом с вашим офисом  есть крупная автострада, завод или фабрика — то это ваш выбор!
+
+
+
+<br><br>
+Высота: 25 см          </div>
+        </div>      </td>
+      <td valign="bottom" align="left">
+         <div style="position:relative; z-index:2;">
+   <% @cat1=Cat1.find :first, :conditions=> ['id=?','3699'] %>
+
+<%= link_to image_tag('/img/'+@cat1.pic1+'.jpg', :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat1.id%>
+
+            <div  style="position:absolute;left:75px;padding:15px 10px 15px 10px; top:-55px;z-index:30;
+background-color:#ffffff;border:2px #9bd029 solid;width:180px; font-size:10px;display: none;"><b>Красула микс</b><br/>
+            <br>
+«Денежное дерево».  Приносит удачу в финансовых делах и обладает антивирусной активностью
+<br><br>
+Высота: 25 см          </div>
+        </div>      </td>
+      <td valign="bottom" align="left">
+         <div style="position:relative;z-index:1;">
+           <% @cat1=Cat1.find :first, :conditions=> ['id=?','3707'] %>
+
+<%= link_to image_tag('/img/'+@cat1.pic1+'.jpg', :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat1.id%>
+
+          
+      <div  style="position:absolute;left:75px;padding:15px 10px 15px 10px; top:-55px;z-index:30; background-color:#ffffff;border:2px
+#9bd029 solid;width:180px; font-size:10px;display: none;"><b>Спатифиллум</b><br>
+            <br>
+
+Очищает от воздух от токсинов. Приживается в любом помещении.  Цветёт круглый год.
+Приводит в норму экстремальные энергетические колебания
+<br><br>
+Высота: 30 см          </div>
+          </div>      </td>
+    </tr>
+    <tr>
+
+      <td class="cvet_name" align="center">
+        <b>
+          <% @cat1=Cat1.find :first, :conditions=> ['id=?','3709'] %>
+  <%= link_to 'Фикус ',:controller=>'kt3',:action=>'tov',:id=>@cat1.id %></b><br/>
+  <br/>  <span>
+  
+
+    
+    <% @cat=@cat1 %>
+<%= render  :partial =>'/kt3/uprice',:object=>@user, :object=>@cat %>
+
+  </span> <br />
+
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat1 %>
+             </div>
+ </td>
+      <td  class="cvet_name"  align="center"><b>
+           <% @cat1=Cat1.find :first, :conditions=> ['id=?','5389'] %>
+   <%= link_to 'Алоказия  ',:controller=>'kt3',:action=>'tov',:id=>@cat1.id %></b>
+
+        <br/>  <br/><span>
+        
+    <% @cat=@cat1 %>
+<%= render  :partial =>'/kt3/uprice',:object=>@user, :object=>@cat %>
+        </span>  <br />
+
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat1 %>
+             </div>
+      </td>
+      <td  class="cvet_name" align="center"><b>
+           <% @cat1=Cat1.find :first, :conditions=> ['id=?','5397'] %>
+   <%= link_to 'Диффенбахия',:controller=>'kt3',:action=>'tov',:id=>@cat1.id%></b> <br/><br/>
+  <span>
+  
+    <% @cat=@cat1 %>
+<%= render  :partial =>'/kt3/uprice',:object=>@user, :object=>@cat %>
+  </span>  <br />
+
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat1 %>
+             </div>
+      </td>
+      <td  class="cvet_name" align="center"><b>
+          <% @cat1=Cat1.find :first, :conditions=> ['id=?','3699'] %>
+  <%= link_to 'Крассула микс',:controller=>'kt3',:action=>'tov',:id=>@cat1.id %>
+</b>  <br><br>
+  <span>
+     
+    <% @cat=@cat1 %>
+<%= render  :partial =>'/kt3/uprice',:object=>@user, :object=>@cat %>
+
+  </span> <br />
+  
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat1 %>
+             </div>
+
+      </td>
+
+      <td  class="cvet_name" align="center"><b>
+          <% @cat1=Cat1.find :first, :conditions=> ['id=?','3707'] %>
+   <%= link_to 'Спатифиллум',:controller=>'kt3',:action=>'tov',:id=>@cat1.id %></b>  <br>
+
+  <br> <span>
+     
+    <% @cat=@cat1 %>
+<%= render  :partial =>'/kt3/uprice',:object=>@user, :object=>@cat %>
+  </span> <br />
+  
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat1 %>
+             </div>
+      </td>
+    </tr>
+    <tr>
+
+
+      <td colspan="3"></td>
+      <td colspan="2" align="right" valign="center">
+        <span style="color:#F88120;position:relative; top:-9px;font-weight:bolder">   В ОРАНЖЕРЕЮ</span>&nbsp;&nbsp;&nbsp;
+<%= link_to (image_tag("/images/link_cvet.jpg" )),:controller=>'kt3',:action=>'tg_n',:id=>1170 %>     </td>
+    </tr>
+  </table>
+<div class="divider">
+  
+</div>
+  </div>
+
+</div>

@@ -1,0 +1,9 @@
+
+<div style=" text-align:center; width:200px;border:solid 1px #dcdcdc;position:fixed;top:0px;right:100px; height:360px; background-color:#ffffff;z-index:110000;">
+<h1>Загрузить файл  77777</h1>
+<% form_for(:upload, :url=> {:action => 'uploadfile'},:html=>{:multipart => true}) do |f| %>
+<p><label for="upload_file">Выбрать файл</label> :
+<%= f.file_field ('datafile') %></p>
+<%= submit_tag "Загрузить" %>
+<% end %>
+</div>

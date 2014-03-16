@@ -1,0 +1,53 @@
+<% content_for(:cont) do %>
+
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="cabord_title">
+ Заказы: <%= @order.size %>
+</div>
+<%=link_to 'Отчеты' , {:action=>'reports'} , :style=>'float: left; ' if @order.any? %>
+<%=link_to 'Номенклатура заказов' , {:action=>'allorders'} , :style=>'float: left; margin-left: 20px;' unless @order.empty? %>
+
+<div style=" width: 695px; text-align: right; margin-bottom: 25px;">    <%= will_paginate @order%>   </div>
+ <table class="cab_zakaz" cellspacing="0" cellpadding="0" border="0" width="695px">
+<tr style="color:white;background-color:#808285; height: 25px;">
+  <th>№ заказа </th>
+  <th> Дата  </th>
+  <th>Отдел </th>
+  <th>Сумма </th>
+  <th>Детали заказа </th>
+</tr>
+   <% @order.each do |order| %>
+      <tr style="<%= cycle('background-color:white;', 'background-color: #f0f2f5;')%>">
+        <td>      <%= order.id %> </td>
+    <td> <%=h order.created_at.strftime("%d")%> <%=@months[order.created_at.strftime("%m").to_i]%> <%=order.created_at.strftime("%Y")%>
+</td>
+<td>
+<% @sotr =  User.find_by_id(order.user1_id)
+if @sotr and @sotr.otdel
+  otdel =  @sotr.otdel
+else
+  buyer = User.find_by_id(order.user_id)
+  otdel = []
+  otdel << buyer.scr_name << buyer.patronymic << buyer.surname if buyer
+  otdel = otdel.compact.join(' ')
+end
+%>
+  <span style="<%= 'color: green;' unless @sotr and @sotr.otdel %>">
+<%=  otdel %>
+  </span>
+    <%= @sotr.scr_name + ' ' + @sotr.surname if @sotr%>
+</td>
+<td> <%=order.summa %>  </td>
+
+    <td>  <%= link_to_remote 'Посмотреть заказ', :url=>{:action=>'order_details',:id=>order.id},:update=>'details',:success=>"new Effect.Highlight('details')" ,:href =>'/'%>   </td>
+      </tr>
+ <%end%>
+      <tr style="color:white;background-color:#808285; height: 25px;"> <td colspan="5"> </td> </tr>
+ </table>
+<div style="float: left; margin-bottom: 25px; clear: both;"> <%= will_paginate @order%>   </div>
+   <div id="details">
+     </div>
+  <%end%>

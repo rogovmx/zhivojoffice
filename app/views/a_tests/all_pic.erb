@@ -1,0 +1,15 @@
+
+<table>
+
+<% for cat in @cat do %>
+  <% if FileTest::exist?("public/img/#{cat.k1c}.jpg")  %>
+  <tr>
+    <td> '<%= cat.k1c  %>  </td>
+    <td> <%= cat.pic1  %>.jpg </td>
+
+  </tr>
+<% end %>
+
+<% end %>
+
+</table>

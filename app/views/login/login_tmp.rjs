@@ -1,0 +1,2 @@
+page.replace_html  'll', render(:partial => 'part/welcome')
+page.replace_html  'lk1',render(:partial => 'part/lk')

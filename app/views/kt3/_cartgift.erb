@@ -1,0 +1,23 @@
+<% @cartgift = Cartgift.find :all , :conditions=>['user_id = ?' , @user.id] %>
+<% if @cartgift.size > 0 %>
+<div style="color: #FF0088;">
+<h3 style="color:#FF0088;">Ваши подарки. </h3>
+
+
+<table class="bas1" cellspacing="0" cellpadding="2">
+  <tr>
+    <th  style="background-color: #FF0088;">Наименование </th> <th style="background-color: #FF0088;"> Количество </th> <th style="background-color: #FF0088;"> Удалить </th>
+  </tr>
+<% for gift in @cartgift do %>
+  <tr>
+    <td><%= Cat1.find_by_k1c(gift.k1c).name %></td> <td> <%= gift.quantity %> </td> 
+    <td> <%= link_to 'удалить' , {:controller=>'bas1' , :action=>'delcartgiftitem' , :id=>gift.id}, :class=>"hk" , :style=>"color:red;" %> </td>
+</tr>
+<% end %>
+</table>
+
+
+</div>
+
+
+<%end%>

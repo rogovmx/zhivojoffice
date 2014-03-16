@@ -1,0 +1,25 @@
+<% content_for(:cont) do %>
+<p>
+  <b>Код:</b>
+  <%=h @first1.kod %>
+</p>
+
+<p>
+  <b>Название группы:</b>
+  <%=h @first1.name %>
+</p>
+
+<p>
+  <b>Текст на странице:</b>
+  <%=h @first1.name1 %>
+</p>
+
+<p>
+  <b>Текст ссылки:</b>
+  <%=h @first1.link %>
+</p>
+
+
+<%= link_to 'Редактировать', edit_first1_path(@first1) %> |
+<%= link_to 'Вернуться', first1s_path %>
+<%end%>

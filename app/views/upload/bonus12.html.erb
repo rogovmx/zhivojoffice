@@ -1,0 +1,17 @@
+<div  id="zp" style=" text-align:center; width:500px;border:solid 1px #dcdcdc;position:fixed;top:150px;right:600px; height:260px; background-color:#ffffff;z-index:110000;">
+<% if flash[:notice] -%>
+  <div id="notice"><%= flach[:notice] -%></div>
+<% end -%>
+<h1>Загрузить файл</h1>
+<% form_for(:upload, :url=> {:action => 'upload_bonus12'},:html=>{:multipart => true}) do |f| %>
+<p><label for="upload_file">Выбрать файл</label> :
+<%=f.file_field('datafile') %></p>
+<br>
+<p>
+<%= submit_tag "Загрузить" %>
+</p>
+
+<% end %>
+<br>
+  <a href="#" onclick=zp('zp');>Закрыть</a>
+</div>

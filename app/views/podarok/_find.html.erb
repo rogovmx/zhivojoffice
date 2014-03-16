@@ -1,0 +1,153 @@
+<div id="p_menu" style="width: 200px; background-image: url(/images/podarki/f_up.jpg);
+     background-repeat: no-repeat; background-position: 0 0; float: right;
+     margin-right: 13px; margin-top: 20px; ">
+  <div style="width: 200px; background-image: url(/images/podarki/f_mid.jpg);
+     background-repeat: repeat-y; background-position:0 0;  margin-top: 40px; ">
+    <div style="width: 200px; background-image: url(/images/podarki/f_bottom.jpg);
+     background-repeat: no-repeat; background-position:bottom left; padding-left: 20px; padding-bottom: 20px;">
+
+ <%= link_to 'ВСЕ ПОДАРКИ' , { :action =>'index' , :clear=>'1'} , :style=>'margin-left: 15px; text-decoration: none; font-weight: bold; padding-bottom: 10px; ' %>
+      <br/><br/>
+<% form_tag(:action=>'index') do %>
+  
+  <% for sign in @sign %>
+  
+     <% if sign.sign == params[:sign] or sign.sign == session[:sign]  %>
+     <%= radio_button_tag(:sign, sign.sign , :checked=>'on') %>
+     <%= label_tag('sign_'+sign.sign, sign.sign) %> 
+   
+
+     <% else %>
+     <%= radio_button_tag(:sign, sign.sign) %>
+     <%= label_tag('sign_'+sign.sign, sign.sign) %> 
+     <%end%>
+    <% end %>
+      <br/><span style="font-size: 14px; font-weight: bold; color: #b25ca5; margin-left: 18px;"> ПО ЦЕНЕ: </span><br/><br/>
+     <%if params[:price] == '1' or session[:price] == '1' %>
+
+     <%= radio_button_tag(:price, 0 ) %>
+     <%= label_tag('price_0', 'до 500 руб.') %>
+      <%= radio_button_tag(:price, 1 , :checked=>'on') %>
+    
+    <%= label_tag('price_1', 'от 500 до 1000 руб.') %> 
+  
+     <%= radio_button_tag(:price, 2 ) %>
+     <%= label_tag('price_2', 'от 1000 до 2000 руб.') %> 
+       <%= radio_button_tag(:price, 3 ) %>
+     <%= label_tag('price_3', 'от 2000 до 4000 руб.') %> 
+     <%= radio_button_tag(:price, 4 ) %>
+     <%= label_tag('price_4', 'от 4000 руб.') %> 
+      <%= radio_button_tag(:price, 5 ) %>
+     <%= label_tag('price_5', 'любая цена') %> 
+   
+
+  <% elsif params[:price] == '0' or session[:price] == '0' %>
+
+     <%= radio_button_tag(:price, 0, :checked=>'on' ) %>
+     <%= label_tag('price_0', 'до 500 руб.') %>
+
+      <%= radio_button_tag(:price, 1 ) %>
+     <%= label_tag('price_1', 'от 500 до 1000 руб.') %>
+       <%= radio_button_tag(:price, 2 ) %>
+     <%= label_tag('price_2', 'от 1000 до 2000 руб.') %>
+       <%= radio_button_tag(:price, 3 ) %>
+     <%= label_tag('price_3', 'от 2000 до 4000 руб.') %>
+     <%= radio_button_tag(:price, 4 ) %>
+     <%= label_tag('price_4', 'от 4000 руб.') %>
+       <%= radio_button_tag(:price, 5 ) %>
+     <%= label_tag('price_5', 'любая цена') %>
+  
+
+
+  <% elsif params[:price] == '2' or session[:price] == '2' %>
+
+     <%= radio_button_tag(:price, 0 ) %>
+     <%= label_tag('price_0', 'до 500 руб.') %>
+
+      <%= radio_button_tag(:price, 1 ) %>
+     <%= label_tag('price_1', 'от 500 до 1000 руб.') %> 
+       <%= radio_button_tag(:price, 2, :checked=>'on' ) %>
+     <%= label_tag('price_2', 'от 1000 до 2000 руб.') %> 
+       <%= radio_button_tag(:price, 3 ) %>
+     <%= label_tag('price_3', 'от 2000 до 4000 руб.') %> 
+     <%= radio_button_tag(:price, 4 ) %>
+     <%= label_tag('price_4', 'от 4000 руб.') %> 
+       <%= radio_button_tag(:price, 5 ) %>
+     <%= label_tag('price_5', 'любая цена') %> 
+     
+
+  <% elsif params[:price] == '3' or session[:price] == '3' %>
+
+     <%= radio_button_tag(:price, 0 ) %>
+     <%= label_tag('price_0', 'до 500 руб.') %>
+       <%= radio_button_tag(:price, 1 ) %>
+     <%= label_tag('price_1', 'от 500 до 1000 руб.') %> 
+       <%= radio_button_tag(:price, 2 ) %>
+     <%= label_tag('price_2', 'от 1000 до 2000 руб.') %> 
+       <%= radio_button_tag(:price, 3, :checked=>'on' ) %>
+     <%= label_tag('price_3', 'от 2000 до 4000 руб.') %> 
+     <%= radio_button_tag(:price, 4 ) %>
+     <%= label_tag('price_4', 'от 4000 руб.') %> 
+     <%= radio_button_tag(:price, 5 ) %>
+     <%= label_tag('price_5', 'любая цена') %> 
+   
+
+  <% elsif params[:price] == '4' or session[:price] == '4' %>
+
+     <%= radio_button_tag(:price, 0 ) %>
+     <%= label_tag('price_0', 'до 500 руб.') %>
+
+      <%= radio_button_tag(:price, 1 ) %>
+     <%= label_tag('price_1', 'от 500 до 1000 руб.') %> 
+       <%= radio_button_tag(:price, 2 ) %>
+     <%= label_tag('price_2', 'от 1000 до 2000 руб.') %> 
+       <%= radio_button_tag(:price, 3 ) %>
+     <%= label_tag('price_3', 'от 2000 до 4000 руб.') %> 
+     <%= radio_button_tag(:price, 4, :checked=>'on' ) %>
+     <%= label_tag('price_4', 'от 4000 руб.') %> 
+     <%= radio_button_tag(:price, 5 ) %>
+     <%= label_tag('price_5', 'любая цена') %> 
+    
+
+  <% elsif params[:price] == '5' or session[:price] == '5'%>
+
+     <%= radio_button_tag(:price, 0 ) %>
+     <%= label_tag('price_0', 'до 500 руб.') %>
+
+      <%= radio_button_tag(:price, 1 ) %>
+     <%= label_tag('price_1', 'от 500 до 1000 руб.') %> 
+       <%= radio_button_tag(:price, 2 ) %>
+     <%= label_tag('price_2', 'от 1000 до 2000 руб.') %> 
+       <%= radio_button_tag(:price, 3 ) %>
+     <%= label_tag('price_3', 'от 2000 до 4000 руб.') %> 
+     <%= radio_button_tag(:price, 4 ) %>
+     <%= label_tag('price_4', 'от 4000 руб.') %> 
+     <%= radio_button_tag(:price, 5, :checked=>'on' ) %>
+     <%= label_tag('price_5', 'любая цена') %> 
+  
+
+     <% else %>
+
+     <%= radio_button_tag(:price, 0 ) %>
+     <%= label_tag('price_0', 'до 500 руб.') %>
+
+       <%= radio_button_tag(:price, 1 ) %>
+     <%= label_tag('price_1', 'от 500 до 1000 руб.') %> 
+       <%= radio_button_tag(:price, 2 ) %>
+     <%= label_tag('price_2', 'от 1000 до 2000 руб.') %> 
+       <%= radio_button_tag(:price, 3 ) %>
+     <%= label_tag('price_3', 'от 2000 до 4000 руб.') %> 
+     <%= radio_button_tag(:price, 4 ) %>
+     <%= label_tag('price_4', 'от 4000 руб.') %> 
+     <%= radio_button_tag(:price, 5, :checked=>'on' ) %>
+     <%= label_tag('price_5', 'любая цена') %> 
+     <% end %>
+<br/>
+  <%= submit_tag '' , :id=>'f_sub' %>
+
+<% end %>
+
+
+    </div>
+    </div>
+</div>

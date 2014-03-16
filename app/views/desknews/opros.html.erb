@@ -1,0 +1,19 @@
+<% content_for(:cont) do %>
+<div style="margin-left: 50px;">
+<p style=" font-weight: bold; color: red"> Вопрос:&nbsp; <%= @questions.qestion %>   </p>
+<p style=" font-weight: bold;" > Всего участвовало в опросе:&nbsp; <%= @q_answ_all %>   </p>
+<p> ответов&nbsp  </p>
+<p>  <%= @questions.answ1 %>&nbsp; <span style=" font-weight: bold;">  <%= @a1 %>  </span> </p>
+<p>  <%= @questions.answ2 %>&nbsp;  <span style=" font-weight: bold;"> <%= @a2 %> </span>  </p>
+<p>  <%= @questions.answ3 %>&nbsp;  <span style=" font-weight: bold;"> <%= @a3 %>  </span> </p>
+<p>  <%= @questions.answ4 %>&nbsp;  <span style=" font-weight: bold;"> <%= @a4 %>  </span> </p>
+<br/>
+
+<p style=" font-weight: bold;"> Зарегистрированых пользователей участвовало в опросе:&nbsp; <%= @q_answ_reg %>   </p>
+<p>  из них ответов&nbsp;  </p>
+<p>   <%= @questions.answ1 %>&nbsp; <span style=" font-weight: bold;"> <%= @ar1 %>  </span> </p>
+<p>   <%= @questions.answ2 %>&nbsp;  <span style=" font-weight: bold;"> <%= @ar2 %> </span>  </p>
+<p>   <%= @questions.answ3 %>&nbsp;  <span style=" font-weight: bold;"> <%= @ar3 %>  </span> </p>
+<p>   <%= @questions.answ4 %>&nbsp;  <span style=" font-weight: bold;"> <%= @ar4 %>  </span> </p>
+</div>
+<% end %>

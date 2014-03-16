@@ -1,0 +1,156 @@
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+
+/* слайдер цен */
+
+jQuery("#slider").slider({
+	min: 0,
+	max: <%=@max%>,
+	values: [0,<%=@max%>],
+	range: true,
+	stop: function(event, ui) {
+		jQuery("input#minCost").val(jQuery("#slider").slider("values",0));
+		jQuery("input#maxCost").val(jQuery("#slider").slider("values",1));
+
+    },
+    slide: function(event, ui){
+		jQuery("input#minCost").val(jQuery("#slider").slider("values",0));
+		jQuery("input#maxCost").val(jQuery("#slider").slider("values",1));
+    }
+});
+
+jQuery("input#minCost").change(function(){
+
+	var value1=jQuery("input#minCost").val();
+	var value2=jQuery("input#maxCost").val();
+
+    if(parseInt(value1) > parseInt(value2)){
+		value1 = value2;
+		jQuery("input#minCost").val(value1);
+	}
+	jQuery("#slider").slider("values",0,value1);
+});
+
+
+jQuery("input#maxCost").change(function(){
+
+	var value1=jQuery("input#minCost").val();
+	var value2=jQuery("input#maxCost").val();
+
+	if (value2 > 1000) { value2 = 1000; jQuery("input#maxCost").val(1000)}
+
+	if(parseInt(value1) > parseInt(value2)){
+		value2 = value1;
+		jQuery("input#maxCost").val(value2);
+	}
+	jQuery("#slider").slider("values",1,value2);
+});
+
+
+
+// фильтрация ввода в поля
+//	jQuery('input').keypress(function(event){
+//		var key, keyChar;
+//		if(!event) var event = window.event;
+
+//		if (event.keyCode) key = event.keyCode;
+//		else if(event.which) key = event.which;
+
+//		if(key==null || key==0 || key==8 || key==13 || key==9 || key==46 || key==37 || key==39 ) return true;
+//		keyChar=String.fromCharCode(key);
+//
+//		if(!/\d/.test(keyChar))	return false;
+
+//	});
+
+
+});
+
+</script>
+
+
+
+
+    <!-- сортировка -->
+    <div class="sort_title">
+      сортировать по
+    </div>
+
+  <div class="sortirovka" >
+
+
+
+<div class="sort_col">
+    <div class="sort_subtitle">
+      цене:
+    </div>
+
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='pa' or params[:order]== nil %>">
+
+<%= link_to 'по возрастанию',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'pa',:filtr=>params[:filtr] } , :rel=>'nofollow' %>
+    </li>
+<li class="<%='sort_act' if params[:order]=='pd'%>">
+<%= link_to 'по уменьшению',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'pd',:filtr=>params[:filtr]} , :rel=>'nofollow'%>
+    </li>
+  </ul>
+	<div class="main">
+		<form action="/kt3/tg_v2/<%=params[:id]%>" method="get" class="slide">
+                  <div class="formCost">
+		    <label for="minCost">Цена: от</label> <input id="minCost"  type="text" readonly="readonly" name="min" value="<%= if params[:min] then params[:min] else '0' end  %>"/>
+		    <label for="maxCost">Цена: до</label> <input id="maxCost"  type="text" readonly="readonly" name="max" value="<%= if params[:max] then params[:max] else @max.to_s end  %>"/>
+		  </div>
+			<div class="sliderCont">
+					<div id="slider" onclick="showsub('slider_sub')">
+
+					</div>
+			</div>
+                  <input id="slider_sub" type="submit" value="выбрать" style="display: none;" />
+		</form>
+	</div>
+
+ <%=link_to 'Отменить фильтр цен' , {:controller=>'kt3' , :action => 'tg_v2' , :id => params[:id]} , :style=>'margin-left: 20px' if params[:min] and params[:max]%>
+
+</div>
+
+
+
+<div class="sort_col">
+    <div class="sort_subtitle">
+      брендам:
+    </div>
+<% 
+@tg3=Tov3.find :all , :conditions=>['vis=? and tov2_id=?',1,params[:id]] , :select=>'id' 
+@cat1s=[]
+for tg3 in @tg3 do
+@tmp=Cat1.find :all , :conditions=>['vis=? and tov3_id=?',1,tg3.id], :select=>'brend'
+@cat1s+=@tmp if @tmp
+end
+ @brend1=@cat1s.map{|u| [u.brend ,u.brend] if u.brend != ''}.compact.uniq
+%>
+
+  <select id="br1" onchange="filtr1_n2($F('br1'),<%=params[:id]%>,'<%=params[:order]%>');">
+       <option value="1" >Все бренды&nbsp;</option>
+     <%= options_for_select(@brend1,params[:filtr]) %>
+     </select>
+
+
+    <div class="sort_subtitle">
+      наименованию:
+    </div>
+
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='na'%>">
+    <%= link_to 'по алфавиту',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'na',:filtr=>params[:filtr] } , :rel=>'nofollow'%>
+       </li>
+    <li class="<%='sort_act' if params[:order]=='nd'%>">
+  <%= link_to 'в обратном порядке',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'nd' ,:filtr=>params[:filtr]} , :rel=>'nofollow'%>
+    </li>
+  </ul>
+
+</div>
+ <div class="clear"> </div>
+
+</div>

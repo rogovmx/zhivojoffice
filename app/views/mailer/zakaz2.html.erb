@@ -1,0 +1,77 @@
+<% @legals=Client.find(@order.legal_id) %>
+<%@user=User.find(@order.user_id)%>
+<% if @legals and  @legals.id != 1%>
+<% @manager=Kontragent.find :first , :conditions=>['k1c=?',@legals.k1c] %>
+<% @ord=Order.find :all , :conditions=>['user_id=? or legal_id=?',@user.id,@legals.id] %>
+<% else %>
+<% @ord=Order.find :all , :conditions=>['user_id=?',@user.id] %>
+<% end %>
+Отдел:&nbsp;<span style="color: red;"> <%  @uu=User.find(@order.user1_id) %>  <%= @uu.otdel %></span>
+<br/>
+Номер заказа: <%=@order.id%><br>
+Сумма заказа: <%=@order.summa%><br>
+<% @legals=Client.find(@order.legal_id) %>
+<%@user=User.find(@order.user_id)%>
+<% @cartgift = Cartgift.find :all , :conditions=>['user_id = ?' , @user.id] %>
+
+<% if @legals.id==1 %>
+
+User:&nbsp;<%=@user.name%>
+<br />Компания:&nbsp;<%=@user.company_ind%> <br />
+<br />Отдел:&nbsp; <%  @uu=User.find(@order.user1_id) %>
+      <%= @uu.otdel %>, <%= @uu.name %> , <%= @uu.scr_name %>  <%= @uu.surname %> <br />
+ФИО:&nbsp;<%=@user.surname%> <%=@user.scr_name%> <%=@user.patronymic %> <br />
+Телефон:&nbsp;<%=@user.phone%><br />
+ИНН:&nbsp;<%=@user.inn%><br />
+<%else%>
+Юр.лицо:<%= @legals.name %><br/>
+Код 1С: <%= @legals.k1c %> <br/>
+<%end%>
+Login:&nbsp;<%=@user.name%><br />
+E-mail:&nbsp;<%=@user.mail%><br />
+Адрес доставки:<%= @user.city  %><br/>
+Детали заказа: <%=@ord.size %> <span style="color: green; font-weight: bold;"> <%= 'Первый заказ' if @ord.size==1  %> </span>. Менеджер: <%= @manager.manager if @manager %>  <br />
+Дополнительно: <%=  @order.dop %> <br/>
+
+
+
+
+
+<table border="1" cellpadding="2" cellspacing="2">
+  <tr>
+    <th>Код 1С</th>
+    <th>Название</th>
+    <th>Цена</th>
+    <th> Количество </th>
+   
+
+  </tr>
+<% @order.lineitem.each do |cart| %>
+ <% @cat=Cat1.find_by_k1c(cart.k1c) %>
+  <tr>
+    <td style="padding: 2px;">
+<%= cart.k1c %>
+    </td>
+    <td style="padding: 2px;">
+<%=@cat.fullname %>
+      <!--
+      <%#  if cart.k1c == '7774973992' and cart.quantity > 300%>
+        <%#  @m300 =   cart.quantity - 300 %>
+          <br/><span style="color: black;"> 300 п. по цене - 113р. <br/>
+           <%#=@m300 %> п. по цене - <%#=cart.price%>р.
+          </span>
+ <%# end %>
+      -->
+    </td>
+    <td style="padding: 2px;">
+<%= cart.price %>
+    </td>
+    <td style="padding: 2px;">
+<%= cart.quantity %>
+    </td>
+  </tr>
+<%end%>
+</table>
+
+<h1>Просьба обратить внимание на отдел!!!</h1>
+

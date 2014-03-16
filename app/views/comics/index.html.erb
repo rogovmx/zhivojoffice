@@ -1,0 +1,20 @@
+<% content_for(:cont) do %>
+
+<h1 style ="color: #00ae4d; margin-bottom: 20px; "> Комикс-сериал. Карьера, скрепки и любовь. </h1>
+<%= render(:partial=> 'comics_menu') %>
+
+<div>
+ <% params[:id]='0' if params[:id]== nil %>
+ <%= link_to image_tag('/images/comics/'+@pic) , {:action=>'index' , :id=>(params[:id].to_i+1) , :com => $comix} , :title=>'Дальше' %>
+</div>
+
+
+<%= render(:partial=> 'comics_menu') %>
+
+
+<%#@links = 'comics'%> <%@subj = 'Комикс на сайте Живой офис'%>
+<%#= render(:partial=> 'part/links' , :object=>@links , :object=>@subj ) %>
+
+
+<%end%>
+

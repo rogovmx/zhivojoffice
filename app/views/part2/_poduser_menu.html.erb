@@ -1,0 +1,7 @@
+<ul>
+  <li> <a href="/cabinet/tov_spec" target="_self">Договора и спецификации</a> </li>
+ <li>  <a href="/cabinet/favorits" target="_self">Избранные товары </a> </li>
+<li>    <%= link_to 'Заказы' , :controller=>'cabinet' , :action=>'order' %> </li>
+   <li>       <%= link_to 'Обратная связь' , :controller=>'cabinet' , :action=>'feedback' %> </li>
+ <li style="text-align: right;">       <%= link_to 'Выход' , {:controller=>'login' , :action=>'logout'} , :style=>'color: red' %> </li>
+</ul>

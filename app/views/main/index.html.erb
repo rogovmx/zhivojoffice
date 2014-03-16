@@ -1,0 +1,58 @@
+
+
+<% content_for(:cont) do %>
+
+      <table cellpadding="0" cellspacing="0" style="width: 100%;">
+        <tr>
+          <td valign="top">
+      <div class="index_goods">
+        <% @goods = @b_goods
+           @title = 'Товары продающиеся с бонусами'
+        %>
+        <%= render :partial => '/part_main/index_goods' , :goods => @goods , @title => @title %>
+        <% @goods = @n_goods
+        @title = 'Новинки' %>
+        <%= render :partial => '/part_main/index_goods' , :goods => @goods , @title => @title %>
+        <% @goods = @l_goods
+        @title = 'Лучшее среди товаров' %>
+        <%= render :partial => '/part_main/index_goods' , :goods => @goods , @title => @title %>
+
+      </div>
+            <div class="categoties">
+              <% for group in @groups do %>
+                <% #@photo = group.tov2[0].tov3[0].cat1[0].pic1
+              @tov2 = group.tov2[0]
+              @tov3 = @tov2.tov3.find_all{|f| f.vis}[0]
+              @photo = @tov3.cat1.find_all{|f| f.vis}[0].pic1 if @tov3
+           
+              %>
+             
+              
+              <div class="group_box <%#='gr'+ group.kod.to_s[0...1]%> ">
+         
+                <img src="/img/<%=@photo%>.jpg" style="width: 100px;" title="<%= group.name   %>" />  
+                <div class="c_name">
+                <a href="#"><%=h group.name -%> </a>
+                </div>
+              </div>
+              <% end %>
+            </div>
+
+
+          </td>
+          <td  valign="top" style="width: 200px;">
+      <div class="index_right">
+
+<%= render :partial => '/part_main/newsbox' %>
+
+<%= render :partial => '/part_main/commentbox' %>
+
+<%= render :partial => '/part_main/banerbox' %>
+
+      </div>
+          </td>
+        </tr>
+      </table>
+
+
+<% end %>

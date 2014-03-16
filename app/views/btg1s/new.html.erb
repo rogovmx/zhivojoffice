@@ -1,0 +1,95 @@
+<% content_for(:cont) do %>
+<div class="bcat1">
+<h1>Новая подкатегория</h1>
+
+
+
+<% form_for(@btg1) do |f| %>
+  <%= f.error_messages %>
+
+
+ <!--<tr> <td> </td> <td> </td> </tr>
+    <%#= f.label :tg %>
+    <%#= f.text_field :tg %>
+   -->
+ <table>
+
+
+ <!--  <tr> <td> <%= f.label 'Название <br/> подкатегории' %> </td> <td> <%= f.text_field :name %></td> </tr>  -->
+
+   <tr> <td> <%= f.label 'Выберите <br/> подкатегорию' %> </td> <td> <%= f.collection_select(:tg, @tov3, :id, :name) %></td> </tr>
+
+   <tr><td> <%= f.label 'Код 1с' %></td> <td> <%= f.text_field :s1 , :value=>'Код 1с',:readonly=>'readonly' %>   </td> </tr>
+
+
+ <tr> <td> <%= f.label :s2 %> </td> <td> <%= f.text_field :s2, :value=>'Наименование',:readonly=>'readonly' %>  </td> </tr>
+
+ <tr> <td>   <%= f.label :s3 %> </td> <td><%= f.text_field :s3 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>3} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s4 %></td> <td> <%= f.text_field :s4 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>4} %> </td> </tr>
+
+ <tr> <td>  <%= f.label :s5 %></td> <td>    <%= f.text_field :s5 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>5} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s6 %> </td> <td> <%= f.text_field :s6 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>6} %>  </td> </tr>
+
+ <tr> <td>  <%= f.label :s7 %> </td> <td>  <%= f.text_field :s7 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>7} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s8 %> </td> <td><%= f.text_field :s8 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>8} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s9 %> </td> <td><%= f.text_field :s9 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>9} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s10 %> </td> <td><%= f.text_field :s10 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>10} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s11 %> </td> <td> <%= f.text_field :s11 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>11} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s12 %> </td> <td>   <%= f.text_field :s12 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>12} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s13 %> </td> <td><%= f.text_field :s13 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>13} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s14 %> </td> <td> <%= f.text_field :s14 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>14} %>  </td> </tr>
+
+ <tr> <td>   <%= f.label :s15 %></td> <td> <%= f.text_field :s15 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>15} %> </td> </tr>
+
+ <tr> <td><%= f.label :s16 %> </td> <td><%= f.text_field :s16 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>16} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s17 %> </td> <td> <%= f.text_field :s17 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>17} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s18 %> </td> <td><%= f.text_field :s18 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>18} %>  </td> </tr>
+
+ <tr> <td>     <%= f.label :s19 %></td> <td>    <%= f.text_field :s19 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>19} %>  </td> </tr>
+ <tr> <td><%= f.label :s20 %> </td> <td> <%= f.text_field :s20 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>20} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s21 %> </td> <td> <%= f.text_field :s21 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>21} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s22 %> </td> <td><%= f.text_field :s22 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>22} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s23 %> </td> <td><%= f.text_field :s23 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>23} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s24 %> </td> <td>  <%= f.text_field :s24 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>24} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s25 %> </td> <td><%= f.text_field :s25 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>25} %>  </td> </tr>
+
+ <tr> <td>    <%= f.label :s26 %> </td> <td>    <%= f.text_field :s26 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>26} %>  </td> </tr>
+
+ <tr> <td> <%= f.label :s27 %> </td> <td><%= f.text_field :s27 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>27} %>  </td> </tr>
+
+ <tr> <td>   <%= f.label :s28 %></td> <td> <%= f.text_field :s28 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>28} %>  </td> </tr>
+
+ <tr> <td><%= f.label :s29 %> </td> <td> <%= f.text_field :s29 %> <%#=link_to 'Редактировать список' , {:controller=>'btg1hars' , :acton=>'index' , :id=>@btg1.id , :s=>29} %> </td> </tr>
+
+ <tr> <td><%= f.label :s30 %> </td> <td> <%= f.text_field :s30 ,:value=>'Дополнительно',:readonly=>'readonly' %>  </td> </tr>
+
+ <tr> <td><%= link_to 'Вернуться', btg1s_path %> </td> <td><%= f.submit 'Сохранить' %> </td> </tr>
+
+
+<% end %>
+
+
+
+</table>
+
+</div>
+
+<% end %>
+
+

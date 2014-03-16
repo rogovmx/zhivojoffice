@@ -1,0 +1,22 @@
+<h1 style="font-size: 14px; font-weight: bold; margin-bottom: 20px;">Через сайт была отправлена новая заявка на приобретение акций.</h1><br/>
+
+<p>от пользователя:</p><br/>
+
+<table cellpading="0" cellspacing="0" style="border: 1px solid black; border-collapse: collapse;">
+  <tr>
+    <td style="border: black solid 1px; font-weight: bold;">Имя:</td>
+    <td style="border: black solid 1px;"><%= @name %></td>
+  </tr>
+  <tr>
+    <td style="border: black solid 1px; font-weight: bold;">Email:</td>
+    <td style="border: black solid 1px;"><%= link_to "#{@email}", "mailto:#{@email}" %></td>
+  </tr>
+  <tr>
+    <td style="border: black solid 1px; font-weight: bold;">Телефон:</td>
+    <td style="border: black solid 1px;"><%= @phone %></td>
+  </tr>
+  <tr>
+    <td style="border: black solid 1px; font-weight: bold;">Количество акций</td>
+    <td style="border: black solid 1px;"><%= @actions_number %></td>
+  </tr>
+</table>

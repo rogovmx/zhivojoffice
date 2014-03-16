@@ -1,0 +1,85 @@
+<div id="menu1">
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b5-ddheader" onmouseover="ddMenu('b5',1)" onmouseout="ddMenu('b5',-1)">
+   <%= link_to 'О компании', {:controller=>'about'}  %>
+  </div>
+  <div class="ddcontent2" id="b5-ddcontent" onmouseover="cancelHide('b5')" onmouseout="ddMenu('b5',-1)">
+    <div class="ddinner2">
+    <%= render :partial => '/part2/about_menu' %>
+    </div>
+  </div>
+</div>
+
+
+<span class="div_menu"></span>
+ <div class="floatleft">
+  <%= link_to 'Акции', {:controller=>'act'}  %>
+ </div>
+<span class="div_menu"> </span>
+
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b6-ddheader" onmouseover="ddMenu('b6',1)" onmouseout="ddMenu('b6',-1)">
+     <%= link_to 'Бонусная программа', {:controller=>'bonus2', :action => 'rule'}  %>
+  </div>
+  <div class="ddcontent2" id="b6-ddcontent" onmouseover="cancelHide('b6')" onmouseout="ddMenu('b6',-1)">
+    <div class="ddinner2">
+    <%= render :partial => '/part2/bonus_menu' %>
+    </div>
+  </div>
+</div>
+
+<span class="div_menu"></span>
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b2-ddheader" onmouseover="ddMenu('b2',1)" onmouseout="ddMenu('b2',-1)">
+    <span> Клиентам </span>
+  </div>
+  <div class="ddcontent2" id="b2-ddcontent" onmouseover="cancelHide('b2')" onmouseout="ddMenu('b2',-1)">
+    <div class="ddinner2">
+    <%= render :partial=>'/part2/info' %>
+    </div>
+  </div>
+</div>
+
+<span class="div_menu"></span>
+
+   <div class="floatleft">
+  <div class="ddheader2" id="b7-ddheader" onmouseover="ddMenu('b7',1)" onmouseout="ddMenu('b7',-1)">
+    <% if session[:city] == 'smo' %>
+    <%= link_to 'Контакты', {:controller=>'contacts', :action =>'sml'}  %>
+    <% elsif session[:city] == 'msk' %>
+    <%= link_to 'Контакты', {:controller=>'contacts', :action =>'msk'}  %>
+    <% else %>
+    <%= link_to 'Контакты', {:controller=>'contacts'}  %>
+    <% end %>
+  </div>
+  <div class="ddcontent2" id="b7-ddcontent" onmouseover="cancelHide('b7')" onmouseout="ddMenu('b7',-1)">
+    <div class="ddinner2">
+    <%= render :partial => '/part2/contacts_menu' %>
+    </div>
+  </div>
+</div>
+
+<span class="div_menu"></span>
+
+  <div class="floatleft">
+    <div class="ddheader2" id="b8-ddheader" onmouseover="ddMenu('b8',1)" onmouseout="ddMenu('b8',-1)">
+      <%= link_to 'Проекты', {:controller=>'routine'}  %>
+    </div>
+    <div class="ddcontent2" id="b8-ddcontent" onmouseover="cancelHide('b8')" onmouseout="ddMenu('b8',-1)">
+      <div class="ddinner2">
+      <%= render :partial => '/part2/projects_menu' %>
+      </div>
+    </div>
+  </div>
+
+  <span class="div_menu"></span>
+  <div class="floatleft">
+    <div class="ddheader2">
+      <%= link_to 'Акционерам и инвесторам', 'http://corporate.zhivojoffice.ru/' , :popup=>true, :style=>'color: red;'  %>
+    </div>
+  </div>
+
+</div>

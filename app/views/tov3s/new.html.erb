@@ -1,0 +1,32 @@
+<% content_for(:cont) do %>
+
+<% form_for(@tov3) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    Привязать к подгруппе 2 уровня:<br />
+    <%= f.collection_select :tov2_id, Tov2.all, :id, :name, {}, :selected => params[:tov2_id] %>
+  </p>
+  <p>
+   Название:<br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    Хлебные крошки:<br />
+    <%= f.text_field :hk %>
+  </p>
+  <p>
+    Резервное поле:<br />
+    <%= f.text_field :reserv %>
+  </p>
+  <p>
+    Номер по порядку:<br />
+    <%= f.text_field :ord %>
+  </p>
+  <p>
+    <%= f.submit "Создать" %>
+  </p>
+<% end %>
+<%= link_to 'Вернуться', tov3s_path %>
+
+<%end%>

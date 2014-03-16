@@ -1,0 +1,48 @@
+
+<% content_for (:cont) do %>
+
+
+<%ff=0%>
+<div style="margin-left: 10px;">
+  <span class="brown">
+    Мы любим праздники! А какой праздник без торта!? Мы уверены, <br/>
+    что торт должен быть красивым, креативным, вкусным и сделанным из натуральных продуктов...
+   </span> <br/>
+   <span class="magenta">
+     Закажите торт в офис!
+   </span>
+
+
+</div>
+       <div id="<%#=@cat.tg%>" >
+         <table border="0"  ><tr>
+      <% for cake1 in @cake1s %>
+
+       <%ff+=1%>
+   <% @cake=cake1 %>
+
+  <td valign="top" style="padding:0px;margin:0px;">
+    <div style="margin:0px;padding:0px;display:block;">
+
+ <%= render(:partial=> '/cake1s/cat_cake', :object=>@cake,:object=>@user,:object=>@filler ) %>
+      
+    </div>
+
+  </td>
+
+<% if (ff%3)==0 %>
+              </tr><tr>
+  <%end%>
+
+    <% end %>
+               </tr></table>
+          </div>
+
+
+
+<br />
+
+
+
+
+<% end %>

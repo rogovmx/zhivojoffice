@@ -1,0 +1,52 @@
+<%@user_client=User.find :first ,:conditions=>["client1_id=?",@client.id]%>
+
+
+Название:  <%= @client.name %> <br>
+<%if @user_client%>
+
+Контакт:   <%=@user_client.scr_name%>&nbsp;&nbsp;тел:<%=@user_client.phone%>
+<%else%>
+<span style="color:red;">Не зарегистрирован.</span>
+<%end%><br>
+<%  @bonus=Bonus1.find :first, :conditions=>["k1c=?",@client.k1c]%>
+<% if @bonus %>
+Бонусы:<%=@bonus.ost%>
+<%else%>
+Бонусов нет.
+<%end%>
+<br>
+<%if @user_client%>
+<% @price=User.find :first,:conditions=>["Client1_id=?",@client.id] %>
+<%#=@price.id %>
+<div id="up">Цены  : <%=@price.price1%> .</div><br>
+Изменить цену на  
+<%= link_to_remote  '1',:url=> {:action=>'update_price', :user_id=>@price.id ,:price=>'p1'},:update=>'up'%>
+<%= link_to_remote  '2',:url=> { :action=>'update_price', :user_id=>@price.id ,:price=>'p2'},:update=>'up'%>
+<%= link_to_remote  '3',:url=> { :action=>'update_price', :user_id=>@price.id ,:price=>'p3'},:update=>'up'%>
+<%= link_to_remote  '4',:url=> { :action=>'update_price', :user_id=>@price.id ,:price=>'p4'},:update=>'up'%>
+<%= link_to_remote  '5',:url=> { :action=>'update_price', :user_id=>@price.id ,:price=>'p5'},:update=>'up'%>
+<%= link_to_remote  '6',:url=> { :action=>'update_price', :user_id=>@price.id ,:price=>'p6'},:update=>'up'%>
+колонку.
+<%end%>
+<div id="tabs" style="width:550px;">
+
+ <!-- <a href="javascript:void loadTab('/manager/t1/<%#=@client.id %>')">Юридические лица&nbsp;</a> -->
+ <!-- <a href="javascript:void loadTab('/manager/t2/<%#=@client.id %>')">Адреса доставки&nbsp;</a> -->
+  <a href="javascript:void loadTab('/manager/t3/<%=@client.id %>')">Заказы&nbsp;</a>
+  <a href="javascript:void loadTab('/manager/t4/<%=@client.id %>')">Спецификация&nbsp;</a>
+  <a href="javascript:void loadTab('/manager/t5/<%=@client.id %>')">Избранные товары&nbsp;</a>
+ <!-- <a href="javascript:void loadTab('/manager/t6/<%#=@client.id %>')">Бонусы;</a> -->
+
+
+
+  <div id="content" style="padding:5px;border:0px solid black;">
+  </div>
+ <script>
+function loadTab( tab ) {
+	new Ajax.Updater( 'content', tab, { method: 'get' } );
+}
+loadTab( '/manager/t3/<%=@client.id %>' );
+
+            </script>
+
+      </div>

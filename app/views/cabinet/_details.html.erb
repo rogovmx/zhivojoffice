@@ -1,0 +1,79 @@
+<% @names=['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %>
+
+<div style="color:#00a1b0; margin-top: 10px; margin-bottom: 5px;">
+  <b> Заказ № <%=@order.id %></b> &nbsp;&nbsp; &nbsp; &nbsp;
+<%= @order.created_at.strftime("%d")%> <%=@names[@order.created_at.strftime("%m").to_i]%> <%=@order.created_at.strftime("%Y")%>
+</div>
+
+<table width="695px" border="0" class="det_zak" cellpadding="0" cellspacing="0" >
+<tr style="color:#ffffff;background-color:#F47920;">
+  <th>отдел  </th>
+  <th> код </th>
+  <th>
+<%= link_to_remote 'наименование', {:url=>{:action=>'order_details',:id=>@order.id , :sort =>'alf'},:update=>'details',:success=>"new Effect.Highlight('details')"}  , {:style => 'color: black'}%>
+  </th>
+  <th>ед.изм.  </th>
+  <th>цена р.  </th>
+  <th>кол-во  </th>
+   <th>сумма р.  </th>
+ 
+</tr>
+<% @line.each do |cart| %>
+<% @cat=Cat1.find_by_k1c(cart.k1c) %>
+<% if @cat %>
+
+     <tr>
+       <td style="width:30px" >
+               <% if  cart.user1_id %>
+               <%  @uu=User.find :first , :conditions=>['id=?',cart.user1_id] %>
+
+               <%= @uu.otdel if @uu%>
+               <% else %>
+               мой
+               <% end %>
+
+       </td>
+       <td width="30px"> <%=@cat.kpk %>     </td>
+       <td>   
+          <%=link_to @cat.name,{:controller=>'kt1',:action=>'tov',:id=>@cat.id},:class=> 'g2',:style=>"color:#786e6e;" %>
+
+            </td>
+      <td  width="30px"> <%= h @cat.ei %>       </td>
+        <td width="55px"> <%=cart.price%>        </td>
+
+       <td  width="40px"><%= cart.quantity %></td>
+       <td  width="65px" >
+         <% if cart.price %>
+<% ss=cart.price*cart.quantity %>
+         <%else%>
+         <% ss='Запрос цены' %>
+         <% end %>
+ <%=ss%>
+       </td>
+      </tr>
+
+ <% end %>
+     <%end%>
+      <tr> <td colspan="7" ><b> Дополнительно:</b> <%=@order.dop %>   </td> </tr>
+   </table>
+
+<div style="color: #808285; font-weight: bold; padding-left: 440px; margin-top: 10px;"> стоимость заказа: <span style="color: #F47920;"> <%=@order.summa %>  </span> </div>
+
+<div style="margin-top: 30px; width: 695px; text-align: right;">
+  <%= link_to 'Печатать' , {:controller=>'print' , :action=>'oldzakaz' , :id=>@order.id} , :style=>'background-color: #F47920; padding: 3px; padding-left: 10px;  padding-right: 10px; color: white; text-decoration: none; text-transform: uppercase;' %>
+<%= link_to 'Перенести в корзину' , {:controller=>'cabinet' , :action=>'to_cart' , :id=>@order.id} , :style=>'background-color: #F47920; padding: 3px; padding-left: 10px;  padding-right: 10px; color: white; text-decoration: none; text-transform: uppercase;' %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

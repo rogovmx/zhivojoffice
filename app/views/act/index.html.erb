@@ -1,0 +1,43 @@
+<% content_for(:tit) do %>
+Живой офис. Акции, проводимые на сайте.
+<%end%>
+
+<% content_for(:cont) do %>
+  <div style=" padding-left: 10px; margin-top: 30px; margin-bottom: 20px;">
+    <img src="/images2/actions.jpg" width="55px" />
+  </div>
+  <% @sale_actions.each do |sale_action| %>
+    <div class="info_txt" >
+      <table cellpadding="0" cellspacing="0" %>
+        <tbody>
+          <tr>
+            <% if sale_action.image %>
+              <td valign="top">
+                <% if sale_action.link and sale_action.link != '' %>
+                <%=link_to image_tag("sale_actions/#{sale_action.image}", :alt => "Живой офис: акция" ) , "#{sale_action.link}"%>
+                <% else %>
+                <%=image_tag("sale_actions/#{sale_action.image}", :alt => "Живой офис: акция" ) %>
+                <% end %>
+              </td>
+            <% end %>
+            <td valign="top" style="padding-left: 15px;">
+              <% if sale_action.header %>
+              <div style="margin-bottom: 5px; font-weight: bold; color: #F88120; font-size: 13px;">
+                <%= sale_action.header %>
+              </div>
+              <% end %>
+              <% if sale_action.body %>
+                <%= sale_action.body %>
+              <% end %>
+              <% if sale_action.note %>
+              <div style="margin-top: 5px; color:  #6C6D70;">
+                <%= sale_action.note %>
+              </div>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% end %>

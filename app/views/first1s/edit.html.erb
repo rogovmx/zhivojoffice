@@ -1,0 +1,40 @@
+
+<% content_for(:cont) do %>
+<h1>Редактирование группы "<%= @first1.name %>"</h1>
+
+<% form_for(@first1) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    Родительский раздел:<br/>
+    <%= f.collection_select :razdel1_id, Razdel1.all, :id, :name, {} %>
+  </p>
+  <br/>
+  <p>
+    Код (порядок кв разделе):<br />
+    <%= f.text_field :kod %>
+  </p>
+  <br/>
+  <p>
+    Имя группы:<br />
+    <%= f.text_field :name ,:size=>'80' %>
+  </p>
+  <br/>
+  <p>
+    Наименование в 1С:<br />
+    <%= f.text_field :name1,:size=>'80' %>
+  </p>
+  <br/>
+  <p>
+    Текст ссылки на заглавную страницу:<br />
+    <%= f.text_field :link,:size=>'80' %>
+  </p>
+  <br/>
+  <p>
+    <%= f.submit "Редактировать" %>
+  </p>
+<% end %>
+
+<br/>
+<%= link_to 'Вернуться', first1s_path(:razdel1_id => @first1.razdel1_id) %>
+
+<%end%>

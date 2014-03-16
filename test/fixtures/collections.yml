@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cat1_id: 1
+  k1c: MyString
+  collection: false
+
+two:
+  cat1_id: 1
+  k1c: MyString
+  collection: false

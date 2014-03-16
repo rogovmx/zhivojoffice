@@ -1,0 +1,44 @@
+
+
+
+   
+
+<% Razdel1.all.each do |r1| %>
+
+ <% if @id==r1.id %>
+        <div class="menu11" id="lm<%=r1.id.to_s%>"  >
+        
+
+           <%= r1.name %>
+        </div>
+     
+<%  else %>
+        <div class="menu1" id="lm1<%=r1.id.to_s%>"  o>
+
+      <%= link_to r1.name , "/#{r1.link}" , :class=>'a_cat'%>
+
+
+      
+        <% @r = r1.id %>
+          <div class="subin2"  style="top: <%=r1.top - 30 %>px;" >
+       <%= render :partial => '/part2/left_submenu2' , :object => @r %>
+          </div>
+      </div>
+ <% end %>
+
+<%  end %>
+
+
+        <div class="menu1" id="lm17" >
+
+      <%= link_to 'Подарки' , {:controller=>'kt3' , :action=>'gifts'}, :style=>'color: red;' , :class=>'a_cat' %>
+         </div>
+
+   <div class="menu1" id="lm16" style="background-color: #fdd4b6;" >
+
+      <%= link_to 'Убей рутину' , {:controller=>'routine' , :action=>'index'}, :style=>'color: red;' , :class=>'a_cat' %>
+         </div>
+
+
+
+

@@ -1,0 +1,79 @@
+<div style="position: relative; width:175px; <%= 'border:solid 1px red; background-color: lightpink;' if login? and @user.role=='redaktor' and !@cat.vis%>">
+
+<table width="175px;" height="100%" border="0" style="padding-top:0px; ">
+  <tr>
+
+    <td style="border:dashed 1px #808285; height:175px; " align="center" valign="center" colspan="2">
+    
+
+<% if @cat.pic1 and  @cat.pic1 != ''%>
+  <%= link_to (image_tag("/img/"+@cat.pic1+".jpg" ,:width=>"160" , :alt=>@cat.fullname  , :title=>@cat.fullname)),:controller=>'kt3',:action=>'tov',:id=>@cat.id %>
+<%else%>
+ <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=80px/>
+ <br/>
+ <%end%>
+
+
+    </td>
+
+  </tr>
+  <tr>
+    <td align="left" class="kpk" >
+
+
+  <% if @cat.kpk != nil and @cat.kpk != ''%>
+      Код каталога:<%=@cat.kpk%><br/>
+  <%else%>
+      <br/>
+      <%end%>
+
+    </td>
+  </tr>
+  <tr>
+
+    <td colspan="2" valign="top" style="height:58px;">
+
+          <%
+          if @cat.name and @cat.name != ''
+          @name = @cat.name
+          else
+          @name = @cat.fullname
+          end
+           %>
+
+       <b class="tit_tov">    <%= @name %></b>
+
+
+    </td>
+ 
+  </tr>
+  
+</table>
+
+      </div>
+
+<div style="margin-bottom:0px; ">
+<table style="padding-bottom:0px;clear:both;" border="0" width="175px"  height="100%">
+  
+<tr>
+    <td valign="center" >
+ <%#= render  :partial =>'/kt3/uprice',:user=>@user, :cat=>@cat %>
+    </td>
+     <% @cat1=@cat %>
+    <td valign="bottom" align="right" style="width:90px;">
+ <div id="dis" style="position: relative; top: -20px;">
+
+       <%= render(:partial=> '/kt3/zakaz_tg_bas', :cat1=>@cat1,:user=>@user ,:uprice=>@uprice) unless (login? && @user.only_specs)%>
+
+ </div>
+    </td>
+  </tr>
+
+</table>
+
+</div>
+
+
+
+
+

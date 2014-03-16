@@ -1,0 +1,36 @@
+
+
+
+        <div class="head_menu1">
+    
+        </div>
+
+<% Razdel1.all.each do |r1| %>
+
+ <% if params[:id]==r1.id.to_s %>
+        <div class="menu11" id="lm<%=r1.id.to_s%>"  >
+
+      <%#= link_to_remote r1.name , :url=>{:controller=>'kt3' , :action=>'show_menu1' , :kod=>params[:kod] } %>
+           <%= r1.name %>
+          <span class="kav">»</span>
+      </div>
+<%  else %>
+        <div class="menu1" id="lm1<%=r1.id.to_s%>"  >
+
+      <%= link_to r1.name , {:controller=>'kt1' , :action=>'index' , :id=>r1.id} %>
+      <%#= link_to r1.name , r1.link %>
+
+            <%#= link_to_remote r1.name , :url=>{:controller=>'kt3' , :action=>'show_menu1' , :kod=>r1.id }, :before=>visual_effect(:blind_up, 'left_submenu', :duration=> 0.1) %>
+      </div>
+ <% end %>
+
+<%  end %>
+
+        <div class="menu1" id="lm12"  >
+
+      <%= link_to 'подарки' , {:controller=>'kt3' , :action=>'gifts'}, :style=>'color: red;' %>
+         </div>
+       <div class="menu1" id="lm13" style="background-color: #fdd4b6;" >
+
+      <%= link_to 'наши новинки' , {:controller=>'kt3' , :action=>'novelty'}, :style=>'color: red;' %>
+         </div>

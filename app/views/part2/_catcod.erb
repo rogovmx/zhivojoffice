@@ -1,0 +1,60 @@
+<div id="ind_cod">
+<% if session[:city] == 'msk'  %>
+<div class="catcod" id="catcod" style="<%= "background-image: url('/images2/catcod_msk.jpg')" if session[:city] == 'msk' %>">
+
+
+  <% if @mess %>
+  <h2> <%=@mess %>  </h2>
+  <% end %>
+
+  <div  class="catcod_box" id="catcod_box"  >
+
+    <% remote_form_for :cod, :html => { :style => "margin-top: 10px;" } , :url=>{:controller=>'kt1' , :action=>'catcod'}  do |f| %>
+     <br/>
+    <%= f.text_field :entered_cod , :size=>'16'%>
+    <%= f.submit 'проверить' %>
+
+    <% end %>
+  </div>
+<% else %>
+<div class="catcod" id="catcod" style="<%= "background-image: url('/images2/catcod.jpg')" if session[:city] == 'msk' %>">
+  <% if @mess %>
+  <h2> <%=@mess %>  </h2>
+  <% end %>
+
+  <div  class="catcod_box" id="catcod_box"  >
+
+    <% remote_form_for :cod, :url=>{:controller=>'kt1' , :action=>'catcod'}  do |f| %>
+     <br/>
+    <%= f.text_field :entered_cod , :size=>'16'%>
+    <%= f.submit 'проверить' %>
+
+    <% end %>
+  </div>
+
+<% end %>
+
+
+
+</div>
+
+
+<div style="border: 1px dashed #03B1EE;">
+  <div style="text-align: right; clear: both; color: #03B1EE; text-decoration: underline; cursor: pointer; padding-right: 10px; " onclick="tog('catcod_details')"> *подробнее об акции </div>
+<div id="catcod_details" style="display: none;">
+  <img src="/images2/podrobnosti_01.jpg" style="float: left; margin-right: 15px;" />
+  <p style="color: #808285; left: 185px;  position: absolute;  top: 10px; z-index: 25"> Если вы получили наш новый каталог, <br/>
+    введите код, опубликованный на 65 странице, <br/>
+    в специальное поле, и карта добавится в корзину.
+    <br/><br/>
+Сделайте заказ на сумму от 1000 рублей,<br/>
+и мы доставим его бесплатно <br/>
+вместе с подарочной картой!
+<br/><br/>
+Акция действует<br/> для новых клиентов<br/> на первый заказ <br/>от 1000 рублей. </p>
+ <img src="/images2/podrobnosti_02.jpg" style="width: 170px; position: absolute; top: 100px; right: 0px; z-index: 20" />
+
+    <%= button_to 'ЗАКАЗАТЬ КАТАЛОГ' , {:controller=>'zakaz_catalogs' , :action=>'new'} , :class=>'but_zak_cat'  %>
+</div>
+</div>
+</div>

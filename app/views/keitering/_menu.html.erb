@@ -1,0 +1,18 @@
+<% if params[:menu] == nil  %>
+<% @m = '0'   %>
+<% else %>
+<% @m=params[:menu]  %>
+<% end %>
+<div class="water_menu">
+  <% @w =  %w{index about}%>
+  <% ff=0 %>
+  <% %w{меню подробнее&nbsp;об&nbsp;услуге&nbsp;«Мобильный&nbsp;фуршет»}.each do |action| -%>
+  <% if @m == ff.to_s %>
+<%= link_to action, {:controller=>'keitering' ,:action=>@w[ff].to_s, :menu=>ff} , :class=>'water_act'  %>
+  <% else  %>
+ <%= link_to action, {:controller=>'keitering' ,:action=>@w[ff].to_s, :menu=>ff} , :class=>'water_p'  %>
+ <% end %>
+<% ff+=1 %>
+  <% end %>
+  
+</div>

@@ -1,0 +1,123 @@
+<%#  @tov3=Tov3.find(params[:id]) %>
+<% content_for(:tit) do %>
+<%#=@tov3.name%>3m Post-it 
+<%end%>
+<% content_for(:cont) do %>
+  <%#= hk(params[:id]) %>
+   <br>
+
+
+    <span style="color: rgb(249, 124, 19); font-size: 12pt;">3m Post-it <%#= @tov3.name %>   </span>
+
+    <!-- сортировка -->
+
+  <div style="width:540px; height: 25px; font-size:12px;background:transparent url(/images/zel.jpg) no-repeat;color:#ffffff;background-color:#88cc60;line-height:18px;padding:2px 2px 2px;">
+
+
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+<span style="position:relative;top:-5px;"> Наименование</span>
+ <% if params[:filtr] %>
+  <%= link_to (image_tag("/images/vverh.png")),:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'nd' ,:filtr=>params[:filtr]%>
+<%#= link_to 'вверх',:controller=>'kt2',:action=>'tg_n',:id=>params[:id],:order=>'name desc' ,:filtr=>params[:filtr]%>
+<%= link_to (image_tag("/images/vniz.png")),:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'na',:filtr=>params[:filtr] %>
+<%#= link_to 'вниз',:controller=>'kt2',:action=>'tg_n',:id=>params[:id],:order=>'name asc',:filtr=>params[:filtr] %>
+<%  elsif params[:filtr] == nil %>
+<%= link_to (image_tag("/images/vverh.png")),{:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'nd'} %>
+<%#= link_to 'вверх',:controller=>'kt2',:action=>'tg_n',:id=>params[:id],:order=>'name desc' %>
+<%= link_to (image_tag("/images/vniz.png")),:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'na' %>
+<%#= link_to 'вниз',:controller=>'kt2',:action=>'tg_n',:id=>params[:id],:order=>'name asc' %>
+<%end%>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
+<%#= select("brend","", Cat1.find_by_sql(['select distinct brend from cat1s where tov3_id =? order by ? ',params[:id],params[:order]] ).collect {|p| [ p.brend, p.brend ] } ,{:prompt => 'Выберите название бренда'}) %>
+
+
+ 
+
+
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+
+<%#= link_to   'Цена',:controller=>'kt1',:action=>'tg_n',:id=>params[:id],:order=>'price' %><span style="position:relative;top:-5px;">Цена</span>
+
+<%#=  link_to_remote  'вниз' ,{:url=>{:controller=>'kt1',:action=>'tg_n',:id=>params[:id],:order=>'price desc'},:update=>'tovar'},:href => url_for(:controller=>'kt1',:action => "tg2", :id => params[:id],:order=>'price') %>
+
+
+<%#=  link_to_remote  'вверх' ,{:url=>{:controller=>'kt1',:action=>'tg_n',:id=>params[:id],:order=>'price asc'},:update=>'tovar'},:href => url_for(:controller=>'kt1',:action => "tg2", :id => params[:id],:order=>'price') %>
+<% if params[:filtr] %>
+
+<%= link_to (image_tag("/images/vverh.png")),:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'pd',:filtr=>params[:filtr] %>
+<%= link_to (image_tag("/images/vniz.png")),:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'pa',:filtr=>params[:filtr] %>
+
+
+  <%  elsif params[:filtr] == nil %>
+<%= link_to (image_tag("/images/vverh.png")),:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'pd' %>
+<%= link_to (image_tag("/images/vniz.png")),:controller=>'kt3',:action=>'sale3m',:id=>params[:id],:order=>'pa' %>
+
+<%end%>
+</div>
+     <!-- сортировка конец -->
+
+     <div id="tovar">
+       <br>
+    <div style="width:540px;vertical-align: bottom;">
+      <span id="sel2" style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;display:inline;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 10px;"onchange=perp($F('br11')); >
+   <%= options_for_select([12,15,18,21],selected=@per_page.to_i) %>
+
+
+    </select></span>&nbsp;&nbsp;<span  style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;">
+<%#= link_to  'Показывать списком',:controller=>'kt2',:action=>'tg_n',:id=>@tov3.id %></span>
+    <span style="font-family: Arial; font-size: 10px;font-weight:bold;position:relative;top:-5px;">
+<%= will_paginate @tg  ,:style=>'font-size:9px;text-align:right;width: 250px;float:right;vertical-align: bottom;'%></span>  </div>
+<%ff=0%>
+
+
+       <% if login? and @user.role == 'redaktor' %>
+         <div>
+           <%= link_to_remote "Добавить товар" ,{:url=>{:controller=>'kt1',:action=>'add_tov',:id=>params[:id]},:update=>'new_tov'},:href => url_for(:controller=>'login',:action => "login")%>
+          </div>
+       <div id="new_tov">  </div>
+       <% end %>
+
+
+
+       <div id="<%#=@cat.tg%>" style="width:540px; ">
+         <table border="0"  ><tr>
+       <% for tg in @tg do %>
+
+       <%ff+=1%>
+    <% @cat=Cat1.find(tg.id)  %>
+   
+
+
+
+  <!-- <%#= render(:partial =>'cat1',:object=>@cat) %> -->
+  <td valign="top" style="padding:0px;margin:0px;border-bottom:1px dashed #000000; ">
+    <div style="margin:0px;padding:0px;display:block;">
+   <!-- <div class="grn11" id="<%#=@cat.id%>" style="padding-bottom:2px;"> -->
+
+<%= render(:partial => 'kt3/cat22v',:object =>@cat,:object=>@tov3) %>
+    </div>
+<!--
+ </div> -->
+  </td>
+
+<% if (ff%3)==0 %>
+              </tr><tr>
+  <%end%>
+
+
+
+
+
+
+    <% end %>
+               </tr></table>
+          </div>
+<%= will_paginate @tg ,:style=>'font-size:9px;text-align:left;width: 250px;float:left;vertical-align: bottom;'%>
+     </div>
+<%  end %>
+
+
+
+
+

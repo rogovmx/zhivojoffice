@@ -1,0 +1,26 @@
+<div class="hk">
+  <span style="color:#808285;">
+    <%= link_to 'Главная' ,{:controller=>'kt1',:action=>'index'},:class=>'hk',:style=>'color:#808285;text-transform: lowercase;' %>
+  </span>
+  »
+
+  <form>
+     <select onChange="redir(this)" style="color:#808285; display: inline; border:  none; background-color: #eeeeee; text-transform: lowercase; max-width: 250px; width: 250px; cursor: pointer; ">
+     <% for first in @first_all %>
+        <option value="<%='/kt3/kanc1/'+first.kod.to_s %>" <%= 'selected="selected"' if (@first and (first.id == @first.id))%> ><%=first.name%></option>
+     <% end %>
+     </select>
+  </form>
+  »
+
+  <form>
+     <select onChange="redir(this)" style="color:#03b1ee; display: inline; border:  none; background-color: #eeeeee; max-width: 230px; width: 230px; cursor: pointer; ">
+     <% for t3all in @tov3all %>
+         <option value="<%="/kt3/#{controller.action_name[0..-2]}/#{t3all.id.to_s}" %>"  ><%=t3all.name %></option>
+     <% end %>
+
+         <option value="<%="/kt3/#{controller.action_name}/#{@tov2.id.to_s}"  if @tov2%>" <%= 'selected="selected"'%>> <%=@tov2.all if @tov2%> </option>
+     </select>
+  </form>
+
+</div>

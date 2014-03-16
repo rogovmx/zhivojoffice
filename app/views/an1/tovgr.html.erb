@@ -1,0 +1,71 @@
+<% content_for(:cont) do %>
+
+<br/><br/>
+
+<a href="/an1"> Вернуться к выбору даты </a>
+<br/><br/>
+  Всего заказов :<%=@count3%>
+  <br>
+  <table border="1" cellpadding="3" cellspacing="3" >
+    <tr>
+      <th>Товарная группа</th>
+      <th>Кол-во <br/> наименований</th>
+      <th>Кол-во <br/> едениц</th>
+      <th width="70px;">Сумма</th>
+      <th> Кол-во <br/> чеков</th>
+    </tr>
+
+<% @tg.each do |tg| %>
+    <tr style="background-color:<%= cycle('white','papayawhip')  %>  ">
+<%sss=[]%>
+<% kol=0 %>
+<% sum=0 %>
+<% chek=0 %>
+<%@zakaz.each do |zakaz|%>
+<% flag=0 %>
+  <%@li=Lineitem.find :all ,:conditions=>["order_id=?",zakaz.id]%>
+   <%@li.each do |li|%>
+     <% cat=Cat1.find:first ,:conditions=>["k1c=?",li.k1c] %>
+     <% tov3=Tov3.find(cat.tov3_id) if cat and  cat.tov3_id != 0%>
+     <%tov2=Tov2.find(tov3.tov2_id)  if tov3%>
+     <%f1=First1.find(tov2.first1_id) if tov2%>
+       <% if f1 %>
+     <% if f1.id == tg.id %>
+      <% sum1=li.quantity * li.price %>
+     <% sum +=sum1 %>
+     <% kol+=li.quantity %>
+     <% sss << li.k1c %>
+     <% if flag ==0 %>
+        <%chek +=1%>
+        <%flag+=1%>
+      <%end%>
+     <%end%>
+       <%end%>
+   <%end%>
+<%end%>
+<% sss1=sss.uniq %>
+      <td align="left">
+    <%= tg.name %>
+      </td>
+      <td align="left">
+<%=sss1.length%>
+      </td>
+      <td>
+
+
+<%=kol%>
+      </td>
+      <td align="left">
+<%=sum %></td>
+<td align="left">
+<%=chek%></td>
+    </tr>
+<%end%>
+
+  </table>
+
+<br></br>
+
+<a href="/an1"> Вернуться к выбору даты </a>
+
+ <%end%>

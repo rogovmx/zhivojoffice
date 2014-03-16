@@ -1,0 +1,16 @@
+<h1>Редактирование лемента списка выбора для <%= @btg1.name  %> </h1>
+
+<% form_for(@btg1har) do |f| %>
+  <%= f.error_messages %>
+
+
+  <p>
+    <%= f.label 'элемент списка выбора' %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Добавить' %>
+  </p>
+<% end %>
+
+<%= link_to 'Вернуться',{:action=>'index', :id=>@btg1har.btg1_id, :s=>@btg1har.s} %>

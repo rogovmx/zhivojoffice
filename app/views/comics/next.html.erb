@@ -1,0 +1,50 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+
+  .orange {color: #F88120}
+.need_button input {float: right; text-align: right; margin-top: 20px; width: 122px; height: 30px; background: url(/images/comics/send.jpg); border: none}
+</style>
+<div style="float: left;">
+  <img src="/images/comics/c_end.jpg" /> 
+</div>
+<div style="float: left; width: 500px; padding: 10px;">
+  <p>В сказках соединение двух любящих сердец - это «конец, а кто слушал молодец». <br/>
+А вот в жизни все самое интересное только начинается. <br/>
+ 
+    Предложите свой вариант развития сюжета! </p>
+<br/>
+  <p class="orange">
+Самых талантливых ждут подарки от “Живого офиса”!</p>
+  <br/>
+  <div>
+    <%=error_messages_for 'comics1'%>
+    
+<% form_for :comics1, :url=>{:controller =>"comics" , :action => "save_mess" } do |f| %>
+ <%= f.error_messages %>
+
+  <div class="need_form_item1">
+    <%= f.label 'Написать' %> <br />
+    <%= f.text_area :message , :cols=>60 , :rows=> 15 %><br /><br /><br />
+    <%= f.label 'Ваша контактная информация*' %> <br />
+    <%= f.text_area :contacts, :cols=>60 , :rows=> 3 %>
+    <%unless login?%>
+  
+    <%= f.hidden_field :user_id ,:value=>0  %>
+    <%else%>
+    <%= f.hidden_field :user_id ,:value=>@user.id  %>
+    <% end %>
+  </div>
+    <span style="font-size: 10px; float: left; " >* - обязательное для заполнения поле </span>
+<div class="need_button">
+    <%= f.submit "" %>
+  </div>
+  <%end%>
+  </div >
+
+  <div style="margin-top: 40px;" >
+    <img src="/images/comics/c_cat.jpg" /></div>
+ </div>
+
+<%= render :partial=>'comics_menu' %>
+
+<%end%>

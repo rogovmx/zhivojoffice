@@ -1,0 +1,67 @@
+
+<% content_for(:cont) do %>
+  <table style="width: 100%; margin-top: 40px;">
+      <tr>
+      <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+        <%= link_to "Редактирование разделов", razdel1s_path  %>
+        |
+        <%= link_to "Редактирование подгрупп 1 уровня", first1s_path, :style => "color: red;" %>
+        |
+        <%= link_to "Редактирование подгрупп 2 уровня", tov2s_path %>
+        |
+        <%= link_to "Редактирование подгрупп 3 уровня", tov3s_path %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+        <h2>Выбрать раздел для просмотра подгрупп 1 уровня:</h2>
+        <% for razdel in @razdel1s %>
+          <% if razdel.id == params[:id].to_i %>
+            <%= link_to "#{razdel.name}" , first1s_path(:razdel1_id => razdel.id), :style => "color: forestgreen;" %> |
+          <% else %>
+            <%= link_to "#{razdel.name}" , first1s_path(:razdel1_id => razdel.id), :style => "color: forestgreen;" %> |
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 5px;">
+        <% if params[:razdel1_id] %>
+           <h2 style="color: red;">Группы раздела "<%= @razdel1[0].name %>"</h2>
+         <% else %>
+           <h2 style="color: red;">Все подгруппы 1 уровня</h2>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+<table>
+  <tr style="background-color:#e8e8e8; line-height: 30px;">
+
+    <th>Порядок</th>
+    <th colspan="3">Название группы</th>
+
+  </tr>
+<% for razdel in @razdel1 do %>
+  <tr style="line-height: 23px; background-color: #88cc60; color: white; font-weight: bold;"> <td colspan="5" style="padding-left: 30px;"><%= razdel.name %> </td> </tr>
+<% for first1 in razdel.first1s %>
+  <tr style="background-color:<%=cycle('white', '#e8e8e8')%>">
+<td><%= first1.kod %></td> 
+  <td><%= first1.name %></td>
+   <!--  <td><%#=h first1.name1 %></td>
+    <td><%#=h first1.link %></td>
+    <td><%#= link_to 'Показать', first1 %></td> -->
+    <td><%= link_to 'Редактировать', edit_first1_path(first1) %> |</td>
+    <% if @user.role =='sredaktor' %>
+    <td><%= link_to 'Удалить', first1, :confirm => 'Точно удалить?', :method => :delete %> |</td>
+    <% end %>
+    <td> <%= link_to 'Подгруппы', :controller=>'tov2s',:first1_id=>first1.id %>  </td>
+  </tr>
+<% end %>
+<% end %>
+</table>
+
+<br />
+<%= link_to "Вернуться к редактированию разделов", razdel1s_path %>
+|
+<%= link_to 'Новая подгруппа первого уровня', new_first1_path(:razdel1_id => params[:razdel1_id]) %>
+<%end%>

@@ -1,0 +1,64 @@
+
+  <div id="left_submenu_title" style=" background-image: url('/images2/title_back<%=@id%>.jpg');" >
+    <span style=" font-size: 20px;"> <%= @name %> </span>
+    <%= link_to 'x' , '/' , :style=>'position: absolute; top: 10px; right: 10px; color: white; text-decoration: none; font-weight: bold;' %>
+
+  </div>
+
+<div id="ls_col_box" >
+  <div class="ls_col">
+    <% ff=0 %>
+<% for k in @k do %>
+    <% ff+=1%>
+  <div class="lsmenu_box">
+    <div class="kategory_title">
+      <%= k.name %> <br/>
+      <%#= link_to 'Суперпредложение!' , {:controller => 'kt3' , :action => 'superprice' , :id => k.id} , :style=>'color: yellow; font-size: 12px; ' if inraspr?(k.id) %>
+    </div>
+    
+<%  @gr2=Tov2.find(:all,:conditions=> ["first1_id=?",k.id],:order=>'ord') %>
+
+  <% for gr in @gr2 do %>
+
+ <% @gr3=Tov3.find(:all,:conditions=> ["tov2_id=? and vis=?",gr.id , 1],:order=>'ord') %>
+    
+   <% if @gr3.size != 0 %>
+  <div class="smenu_box_ind">
+ <div id="ppk<%=gr.id%>" class="smenu" onclick="tog2('<%="pk"+ gr.id.to_s%>')"><span><%= gr.name %></span> </div>
+
+ <div id="pk<%=gr.id%>" class="smenu_list" style="<%= 'display:none;' if @k.size > 1 %>">
+       
+        <ul>
+
+        <% for gr3 in @gr3 do %>
+          <% unless gr3.id == 494 and session[:city] == 'msk'%>
+            <li style="color:#B53500; border-bottom:1px dashed #000;">
+           
+              <% if k.id != 38 %>
+                <%= link_to gr3.name ,{:controller=>'kt3',:action=>'tg_v',:id=>gr3.id} %>
+              <% else %>
+                <%= link_to gr3.name ,{:controller=>'kt3',:action=>'tg_n',:id=>gr3.id}%>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+        <li><%= link_to gr.all ,{:controller=>'kt3',:action=>'tg_v2',:id=>gr.id}, :class=> 'g2'%> </li>
+       </ul>
+ </div>
+  </div>
+   <% end if gr.tov3.size > 0%>
+
+ 
+    <% end %>
+
+  </div>
+
+    <% if ff==(@k.size.div 2) %>
+  </div> <div class="ls_col">
+    <% end %>
+
+<% end %>
+</div>
+  <div style="clear: both; float: none;"> </div>
+
+</div>

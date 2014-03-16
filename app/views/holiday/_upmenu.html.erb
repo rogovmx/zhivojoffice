@@ -1,0 +1,37 @@
+
+
+
+<% for n in 1..12 do  %>
+<% if n == 1
+  name='январь'
+  elsif n == 2
+  name='февраль'
+  elsif n == 3
+  name='март'
+  elsif n == 4
+  name='апрель'
+  elsif n == 5
+  name='май'
+  elsif n == 6
+  name='июнь'
+  elsif n == 7
+  name='июль'
+  elsif n == 8
+  name='август'
+  elsif n == 9
+  name='сентябрь'
+  elsif n == 10
+  name='октябрь'
+  elsif n == 11
+  name='ноябрь'
+  elsif n == 12
+  name='декабрь'
+end
+%>
+
+<% if n == Time.now.month %>
+<%=name%>
+<%else%>
+<%=link_to_remote name, :url=>{:action => 'days', :id=>n}, :update=>'holy'  %>
+<%end%>
+<% end %>

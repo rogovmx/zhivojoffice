@@ -1,0 +1,76 @@
+<%  @tov2=Tov2.find(params[:id])
+ 
+%>
+<% content_for(:tit) do %>
+ <%=@tov2.name%>
+<%end%>
+
+
+<% content_for(:sort) do %>
+
+<%= render :partial=>'/part2/sort_v2' %>
+     <!--  сортировка конец  -->
+<% end %>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+<% content_for(:cont) do %>
+
+
+  <%= hk2(params[:id]) %>
+
+     <div id="tovar">
+
+    <div style="width:550px; vertical-align: bottom;">
+      <span id="sel2" style="font-family: Arial; font-size: 11px;position:relative;top:-3px;display:inline; color:#808285; font-weight: bold;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 11px;"onchange=perp($F('br11')); >
+   <%= options_for_select([12, 15,18], @per_page.to_i) %>
+ </select></span>&nbsp;&nbsp;
+
+ <span  style="font-family: Arial; font-size: 11px;position:relative;top:-3px; color:#808285; font-weight: bold;">
+<%= link_to  'Показывать списком',{:controller=>'kt3',:action=>'tg_n2',:id=>@tov2.id} , :style=>'color:#808285; font-weight: bold;' %></span>
+
+
+<%= will_paginate @tg  %>
+
+
+<%ff=0%>
+
+
+
+       <div >
+         <table border="0"  ><tr>
+       <% for tg in @tg do %>
+       <%ff+=1%>
+    <%# @cat=Cat1.find(tg.id)  %>
+ <% @cat = tg %>
+
+  <td valign="top" style="padding-right:12px; padding-top: 3px; <%= 'padding-right:0px;' if (ff%3)==0%> margin:0px;border-bottom:1px dashed #808285; ">
+    <div style="margin:0px;padding:0px;display:block; width: 175px;">
+
+
+<%= render(:partial => 'kt3/cat22v',:cat =>tg,:object=>@tov3) %>
+    </div>
+
+  </td>
+
+<% if (ff%3)==0 %>
+  </tr><tr>
+  <%end%>
+
+    <% end %>
+  </tr></table>
+          </div>
+<%= will_paginate @tg %>
+     </div>
+
+
+ </div>
+
+<%  end %>
+
+
+
+
+

@@ -1,0 +1,319 @@
+
+<% @btg=Btg1.find :first , :conditions=>['tg=?', params[:id]] %>
+
+  <div class="sortirovka" >
+
+
+ <% if @btg.s4 != 'no' %>  
+   <% if cat1har?(@btg.id,4)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h4')"> <%= @btg.s4 %> </div>
+      <ul style="display:none;" id="h4" >
+      <% for btg in @btg1har do %>    <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'4'%>  </li>    <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s5 != 'no' %>  
+     <% if cat1har?(@btg.id,5)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h5')"> <%= @btg.s5 %> </div>
+      <ul style="display:none;" id="h5" >
+      <% for btg in @btg1har do %>    <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'5'%>  </li>   <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s6 != 'no' %>  
+     <% if cat1har?(@btg.id,6)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h6')"> <%= @btg.s6 %> </div>
+      <ul style="display:none;" id="h6" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'6'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s7 != 'no' %>  
+     <% if cat1har?(@btg.id,7)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h7')"> <%= @btg.s7 %> </div>
+      <ul style="display:none;" id="h7" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'7'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s8 != 'no' %>  
+     <% if cat1har?(@btg.id,8)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h8')"> <%= @btg.s8 %> </div>
+      <ul style="display:none;" id="h8" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'8'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s9 != 'no' %>
+    <% if cat1har?(@btg.id,9)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h9')"> <%= @btg.s9 %> </div>
+      <ul style="display:none;" id="h9" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'9'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s10 != 'no' %>  
+   <% if cat1har?(@btg.id,10)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h10')"> <%= @btg.s10 %> </div>
+      <ul style="display:none;" id="h10" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'10'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s11 != 'no' %>  
+     <% if cat1har?(@btg.id,11)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h11')"> <%= @btg.s11 %> </div>
+      <ul style="display:none;" id="h11" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'11'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s12 != 'no' %>  
+     <% if cat1har?(@btg.id,12)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h12')"> <%= @btg.s12 %> </div>
+      <ul style="display:none;" id="h12" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'12'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s13 != 'no' %> 
+     <% if cat1har?(@btg.id,33)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h13')"> <%= @btg.s13 %> </div>
+      <ul style="display:none;" id="h13" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'13'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s14 != 'no' %>  
+     <% if cat1har?(@btg.id,14)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h14')"> <%= @btg.s14 %> </div>
+      <ul style="display:none;" id="h14" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'14'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+<% end %>
+
+ <% if @btg.s15 != 'no' %>  
+     <% if cat1har?(@btg.id,15)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h15')"> <%= @btg.s15 %> </div>
+      <ul style="display:none;" id="h15" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'15'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s16 != 'no' %>  
+     <% if cat1har?(@btg.id,16)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h16')"> <%= @btg.s16 %> </div>
+      <ul style="display:none;" id="h16" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'16'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s17 != 'no' %> 
+     <% if cat1har?(@btg.id,17)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h17')"> <%= @btg.s17 %> </div>
+      <ul style="display:none;" id="h17" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'17'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s18 != 'no' %>  
+     <% if cat1har?(@btg.id,18)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h18')"> <%= @btg.s18 %> </div>
+      <ul style="display:none;" id="h18" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'18'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s19 != 'no' %> 
+     <% if cat1har?(@btg.id,19)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h19')"> <%= @btg.s19 %> </div>
+      <ul style="display:none;" id="h19" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'19'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s20 != 'no' %> 
+     <% if cat1har?(@btg.id,20)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h20')"> <%= @btg.s20 %> </div>
+      <ul style="display:none;" id="h20" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'20'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s21 != 'no' %> 
+     <% if cat1har?(@btg.id,21)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h21')"> <%= @btg.s21 %> </div>
+      <ul style="display:none;" id="h21" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'21'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+ <% if @btg.s22 != 'no' %> 
+     <% if cat1har?(@btg.id,22)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h22')"> <%= @btg.s22 %> </div>
+      <ul style="display:none;" id="h22" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'22'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+<% if @btg.s23 != 'no' %> 
+     <% if cat1har?(@btg.id,23)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h23')"> <%= @btg.s23 %> </div>
+      <ul style="display:none;" id="h23" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'23'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+<% if @btg.s24 != 'no' %> 
+     <% if cat1har?(@btg.id,24)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h24')"> <%= @btg.s24 %> </div>
+      <ul style="display:none;" id="h24" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'24'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+<% if @btg.s25 != 'no' %>
+     <% if cat1har?(@btg.id,25)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h25')"> <%= @btg.s25 %> </div>
+      <ul style="display:none;" id="h25" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'25'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+<% end %>
+
+<% if @btg.s26 != 'no' %>
+     <% if cat1har?(@btg.id,26)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h26')"> <%= @btg.s26 %> </div>
+      <ul style="display:none;" id="h26" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'26'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+<% if @btg.s27 != 'no' %> 
+     <% if cat1har?(@btg.id,27)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h27')"> <%= @btg.s27 %> </div>
+      <ul style="display:none;" id="h27" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'27'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+<% if @btg.s28 != 'no' %> 
+     <% if cat1har?(@btg.id,28)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h28')"> <%= @btg.s28 %> </div>
+      <ul style="display:none;" id="h28" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'28'%>  </li>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+
+<% if @btg.s29 != 'no' %> 
+     <% if cat1har?(@btg.id,29)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog('h29')"> <%= @btg.s29 %> </div>
+      <ul style="display:none;" id="h29" >
+      <% for btg in @btg1har do %>
+        <li> <%=link_to btg ,{:controller=>'kt3' , :action=>'tg_v' , :btg=>@btg.id , :har=>btg , :s=>'29' } %>  </li>
+      <% end %>
+     </ul>
+    </div> <% end %>
+    <% end %>
+
+
+
+
+    <div class="clear"> </div>
+</div>

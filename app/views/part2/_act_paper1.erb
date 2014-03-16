@@ -1,0 +1,18 @@
+<div>
+  <%# if @show == 1 %>
+  <%#=link_to image_tag('/images2/bum_perepoloh_01.gif') ,:controller=>'act'  %>
+  <%# else %>
+  <%=link_to image_tag('http://zhivojoffice.ru/images2/bum80.gif') ,:controller=>'act'  %>
+  <%# end %>
+
+</div>
+<div class="act_bott_links">
+  <%#= image_tag('/images2/bumazhnij-perepoloh.gif')  %>
+  <%# if @show == 1 %>
+  <%#= link_to_remote image_tag('/images2/a.gif',:class=>"act_btn_lnk1") , :url=>{:controller=>'kt1' , :action=>'act_paper' , :show=>1}     %>
+   <%#= link_to_remote image_tag('/images2/n.gif' , :class=>'act_btn_lnk2') , :url=>{:controller=>'kt1' , :action=>'act_paper' , :show=>2} %>
+  <%# else %>
+  <%#= link_to_remote image_tag('/images2/n.gif', :class=>'act_btn_lnk1') , :url=>{:controller=>'kt1' , :action=>'act_paper' , :show=>1}  %>
+   <%#= link_to_remote image_tag('/images2/a.gif', :class=>'act_btn_lnk2') , :url=>{:controller=>'kt1' , :action=>'act_paper' , :show=>2}  %>
+  <%# end %>
+</div>

@@ -1,0 +1,86 @@
+
+<% content_for (:cont) do %>
+
+<style type="text/css">
+
+    #pic img {border: 1px solid #b25ca5;}
+    #pic {position: absolute; bottom: 3px; right: 5px;}
+  </style>
+<div style="clear: both; min-height: 600px;">
+
+<table style=" margin-left: 10px;">
+  <tr><td width="300px;" valign="top">
+      <div style="position:  relative; width: 300px;">
+
+      <div id="picture2" class="goodpicture2">
+      <img src="/images/cake/big/<%= @cake.img %>.jpg" width="300px;" />
+
+      </div>
+  <% if @cake.img2 and @cake.img2 != ''%>
+        <div id="pic">
+      <%@p1 = "/images/cake/big/"+@cake.img+".jpg"%>
+      <%@p2 = "/images/cake/big/"+@cake.img2+".jpg"%>
+      <%= link_to_remote image_tag(@p1, :width => "30px"), :url => {:controller => 'cake1s',:action => 'pic1', :id => @cake.id}, :update => 'picture2'  %>
+      <%= link_to_remote image_tag(@p2, :width => "30px"), :url => {:controller => 'cake1s', :action => 'pic2', :id => @cake.id}, :update => 'picture2'  %>
+         </div>
+<% else %>
+    <%end%>
+
+    </div>
+  </td>
+  <td style="padding-left: 15px;">
+    <table cellspacing="0" cellpadding="0" border="0" width="600px;"  >
+<tbody>
+<tr>
+<td  style="height:80px;" valign="top" align="left">
+  <p class="tit_tov"><%=h @cake.name %></p> <br/>
+  <p class="cake_price">цена за 1 кг &nbsp;<%=h @cake.price %> р</p>
+
+</td>
+</tr>
+<tr>
+  <td style="height:80px;" align="left">
+
+
+
+
+
+
+ <%# @tvc=Cakecart.find :first,:conditions=>['session_id=? and cake1_id=?',request.session_options[:id], @cake.id] %>
+
+    <%# if @tvc  %>
+      <%#= render(:partial=> 'tvc') %>
+    <%#  else  %>
+
+<%= render(:partial=> '/cake1s/zakaz_cake', :object=>@cake,:object=>@user,:object=>@filler ) %>
+    <div id="bar12">
+  <%= oc_cake %>
+    </div>
+ <%#end%>
+    <div class="zak">
+      <span>
+      <a href="/cake1s/order2">
+        <img src="/images/cake/zakaz1.jpg" border=0 align="center" />&nbsp; ЗАКАЗАТЬ
+      </a>
+      </span>
+      <span style="float:right;">
+        <a href="/cake1s/"> ВЕРНУТЬСЯ&nbsp; 
+ <img src="/images/cake/back.jpg" border=0 align="center" />
+      </a>
+      </span>
+
+    </div>
+  </td>
+</tr>
+
+</tbody>
+</table>
+
+  </td>
+  </tr>
+</table>
+
+
+  </div>
+
+<% end %>

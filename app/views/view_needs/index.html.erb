@@ -1,0 +1,65 @@
+<% content_for(:cont) do %>
+ <%unless login?%>
+              
+                  <%else%>
+<% if @user.id == 2133 %>
+
+<style type="text/css">
+  td {padding: 5px; border-left: 1px solid #76b3de; border-right: 1px solid #76b3de; }
+  .l1{background: #b3d9f3}
+  .l2{ background: white}
+</style>
+
+
+  <h1>Заказы того, что нет в каталоге</h1>
+  <br />  <br />
+  
+  
+  <div style="margin: 0 auto">
+    <table  border="0"  cellspacing="0" cellpadding="0" width="920px"  >
+    <tr style="color:white; background: #085285">
+      <td>Название товара</td>
+      <td> Бренд / производитель</td>
+      <td>Количество</td>
+      <td> Ссылка</td>
+      <td>Описание</td>
+      <td>Имя</td>
+      <td>Фамилия</td>
+      <td>Компания</td>
+      <td>Телефон</td>
+      <td>E-mail</td>
+
+    </tr>
+<% for need in @needs %>
+    
+    <tr class="<%= cycle('l1', 'l2')%>">
+      <td><%=need.title%></td>
+      <td> <%=need.brend%></td>
+      <td><%=need.quantity%></td>
+      <td><%=need.link%></td>
+      <td><%=need.description%></td>
+      <td><%=need.name%></td>
+      <td><%=need.user_f%></td>
+      <td><%=need.company_ind%></td>
+      <td><%=need.phone%></td>
+      <td><%=need.email%></td>
+      <% @need_id = need.id %>
+  </tr>
+
+<% end %>
+
+  </table>
+   <% if @need_id %>
+<% else %>
+    <br />  <br /> 
+  <h1 style="color:red">  Заказов нет </h1> 
+  <% end %> 
+      <br />  <br />  <br />  <br />
+</div>
+ <% else %>
+  <% end %>
+    
+    <%end%>
+
+
+  <% end %>

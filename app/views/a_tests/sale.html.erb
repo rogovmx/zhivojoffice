@@ -1,0 +1,26 @@
+<% @tmp = Saletmp.find(:all) %>
+<% ff = 0 %>
+<% for tmp in @tmp %>
+
+<%@cat1 = Cat1.find_by_k1c(tmp.k1c)%>
+<% if @cat1 %>
+<% ff+=1 %>
+  <%@t3= Tov3.find_by_id(@cat1.tov3_id)%>
+  <% @t2 = Tov2.find_by_id(@t3.tov2_id) %>
+  <% @sale=Sale.new %>
+  <%@sale.name = @cat1.name%>
+ <%@sale.opis = @cat1.opis%>
+<%@sale.pic1 = @cat1.pic1%>
+<%@sale.comp = @cat1.comp%>
+  <%@sale.k1c = tmp.k1c%>
+ <%@sale.tov3 = @t3.name%>
+<%@sale.tov2 = @t2.name%>
+<%@sale.price = tmp.price%>
+<% @sale.save %>
+<p>№<%=ff%> &nbsp; ;<%= @sale.name %> , &nbsp; k1c: <%= tmp.k1c %></p>
+<% else %>
+<p class="color:red;">
+  товар: <%= tmp.name %> , &nbsp; k1c: <%= tmp.k1c %> &nbsp; не найден </p>
+<% end %>
+
+<% end %>

@@ -1,0 +1,12 @@
+<% @cats_first = ChildrenContest.find(:all) %>
+<% @cats_first.each_slice(4) do |slice| %>
+<ul class="gallery">
+<% slice.each do |cat| %>
+  <li>
+  <%= image_tag("cat_images/#{cat.image}", :width => "174px", :height => "174px") %>
+  <%= cat.description %>
+  </li>
+<% end %>
+</ul>
+<div style="clear:both;"></div>
+<% end %>

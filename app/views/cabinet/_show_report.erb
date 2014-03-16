@@ -1,0 +1,37 @@
+   <div style="color:#00a1b0; margin-top: 10px; margin-bottom: 5px;">
+
+   <% if params[:sotr] != "all" %>
+   <% @s_name = User.find_by_id(params[:sotr].to_i) %>
+ заказы отдела: 
+<% else %>
+
+ все заказы:
+<% end %>
+ <% if @s_name%>
+ <b>
+<%= @s_name.otdel + '.' if @s_name.otdel %> <%= if @s_name.otdel then @s_name.scr_name + ' ' + @s_name.surname else 'мой' end%>. </b>
+<% end %> <br/>
+c: <%= params[:nd] %>  по: <%= params[:kd] %>
+
+
+</div>
+
+<table width="923px" border="0" class="det_zak" cellpadding="0" cellspacing="0" >
+  <tr style="color:#ffffff;background-color:#F47920;">
+  <th>наименование  </th>
+  <th>кол-во  </th>
+  <th>цена р.  </th>
+   <th>сумма р.  </th>
+
+</tr>
+     <% for line in @line do %>
+<% @price_spec=TovSpec.find(:first,:conditions=>['legal_id=? and k1c=?',@user.client_id,line.k1c]) %>
+  <tr>
+ <td style="<%='color: green' if @price_spec%>"> <%= Cat1.find_by_k1c(line.k1c).fullname %> </td>
+ <td style="<%='color: green' if @price_spec%>">  <%= line.quantity %> </td> <td> <%= line.price %>  </td>
+ <td style="<%='color: green' if @price_spec%>"> <%= line.price*line.quantity %> </td>
+
+</tr>
+   <% end %>
+<tr><td colspan="4" style="text-align: right; font-weight: bold; padding-right: 20px;"> <div>Общая сумма: <%= @summa %> </div>  </td> </tr>
+</table>

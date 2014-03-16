@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  qestion: MyText
+  answ1: MyText
+  answ2: MyText
+  answ3: MyText
+  answ4: MyText
+
+two:
+  qestion: MyText
+  answ1: MyText
+  answ2: MyText
+  answ3: MyText
+  answ4: MyText

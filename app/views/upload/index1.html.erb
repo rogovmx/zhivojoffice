@@ -1,0 +1,29 @@
+<div  id="zp" style=" text-align:center; width:500px;border:solid 1px #dcdcdc;position:fixed;top:150px;right:600px; height:260px; background-color:#ffffff;z-index:110000;">
+<% if flash[:notice] -%>
+  <div id="notice"><%= flach[:notice] -%></div>
+<% end -%>
+<h1>Загрузить файл</h1>
+<% form_for(:upload, :url=> {:action => 'upload_price'},:html=>{:multipart => true}) do |f| %>
+<p><label for="upload_file">Выбрать файл</label> :
+<%=f.file_field('datafile') %></p>
+<br>
+<p>
+<%= submit_tag "Загрузить" %>
+</p>
+
+<% end %>
+<br>
+<h3>Внимание.</h3>
+
+<p>
+  Файл должен состоять из трех столбцов:Код 1С ; Название ; Значение<br>
+  Разделитель рублей и копеек  точка.
+  Товар с этим кодом 1С уже должен быть в системе.<br>
+  В первой строчке файла третье поле это название свойства которое хотим менять.<br>
+  Таблица соответствий  <a href="/u_z.html" target="_blank">здесь</a><br>
+  Если хотя бы у одного товара код 1С не найден <br>автоматически откроется окно там код 1С - название .
+</p>
+
+<a href="#" onclick=zp('zp');>Закрыть</a>
+
+</div>

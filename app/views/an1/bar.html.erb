@@ -1,0 +1,42 @@
+<% content_for(:cont) do %>
+<% z1=[] %>
+<%z2=[]%>
+<% z3=[] %>
+<%ddd=0%>
+<%@zakaz.each do |zakaz|%>
+<% ddd+=1 %>
+<% if zakaz.client_id !=1 %>
+<% cl=Client.find(zakaz.client_id) %>
+<% @m=Clm.find :all, :conditions=>["k1c=?",cl.k1c] %>
+<% if @m %>
+<% @m.each do |m| %>
+<% z1<< m.manager1_id %>
+<!--  <%#= zakaz.client_id %> ::<%#= m.manager1_id %> <br> -->
+<%end%>
+<%else%>
+<%=zakaz.id%>
+<%end%>
+
+
+
+<%else%>
+<% z2<<zakaz.id %>
+ <!--нет менеджера ::<%#= zakaz.id %><br> -->
+<%end%>
+
+
+<% end %>
+ <br>
+Количество заказов :   <b><%= ddd %></b><br>
+Менеджер не определен : <b><%= z2.length %> </b><br><br>
+<% z1.sort! %>
+<% z5=z1.uniq %>
+<% z5.each do |zz| %>
+  
+<% if zz!=0 %>
+<% @manager=Manager1.find(zz) %>
+<%  zm=z1.find_all{ |elem| elem == zz  }%>
+<%= @manager.fio   %> ::<%= zm.length %><br>
+<%end%>
+<% end %>
+<%end%>

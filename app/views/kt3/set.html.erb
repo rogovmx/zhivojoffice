@@ -1,0 +1,118 @@
+
+<% content_for(:tit) do%>
+
+<% if @cat.tov3_id == 0 %>
+  <%=h truncate(@cat.name, 50) %>
+<% else %>
+  <%=h @cat.name %>
+<% end %>
+
+<%  end %>
+
+<% content_for(:cont) do %>
+<%#= hk(params[:id]) %>
+<%#= hk_tov(params[:id]) if @cat.tov3_id != 0 %>
+
+<!-- -----  -->
+
+<table id="tovar_max">
+  <tr><td valign="top" style="width: 546px; height: 550px;">
+     
+      <%= image_tag("/img/#{@pict}.jpg" ) %>
+
+  </td>
+  </tr>
+  <tr>
+
+  <td valign="top" >
+    
+    <div style="position: relative">
+      <div style="color: red; font-weight: bold;  left: 95px;  position: absolute; top: -54px;">
+      <%= findprice(@cat.k1c) %>
+
+      </div>
+
+
+
+<table cellspacing="0" cellpadding="0" style=" position: absolute; top: -50px; right: 0px; " >
+<tbody>
+<tr>
+  <td  align="left" valign="center" >
+     <%= render  :partial =>'uprice_t',:user=>@user, :cat=>@cat %>
+  </td>
+  <td valign="bottom">
+
+<%@cat1=@cat%>
+ <% @tvc=Cart.find :first,:conditions=>['sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+
+    <% if @tvc || (login? && @user.only_specs) %>
+      <%= render(:partial=> 'tvc') %>
+    <%  else  %>
+<% if @uprice %>
+<%= render :partial=> 'zakaz', :object=>@cat1,:object=>@user ,:object=>@uprice %>
+  <%end%>
+ <%end%>
+</td>
+</tr>
+<tr>
+
+<td>
+
+<% if login? %>
+    <% if (@user.role =='redaktor' or @user.role =='sredaktor')%>
+        <%= link_to_remote "редактировать" ,{:url=>{:controller=>'kt1',:action=>'edit_tov',:id=>@cat.id},:update=>'edit_tov'},:href => url_for(:controller=>'login',:action => "login")%>
+        <%= link_to_remote "редактировать фото" ,{:url=>{:controller=>'kt1',:action=>'edit_tov_pics',:id=>@cat.id},:update=>'edit_tov'},:href => url_for(:controller=>'login',:action => "login")%>
+      
+        <%unless @cat.vis %>
+          &nbsp;&nbsp;  <span style="color:red;"> <b>Не отображается</b></span>
+        <%end%>
+    <%end%>
+<%end%>
+
+<div id="edit_tov"> </div>
+
+</td>
+</tr>
+</tbody>
+</table>
+    </div>
+      
+         
+
+  </td>
+  </tr>
+</table>
+
+
+<h2 style="color: black;">
+  В наборе
+</h2>
+<table>
+  <tr style="background-color: #e8e8e8; line-height: 30px;"> <th>Наимнование </th> <th>Кол-во </th>  <th>Цена </th>
+  </tr>
+  <% sum = 0 %>
+<% for item in @cat_set do %>
+<% @item = Cat1.find_by_k1c(item.k1c) %>
+
+  <tr style="background-color: <%= cycle('white;' , '#e8e8e8')  %> ">
+    <td>  <%=link_to @item.name , :action=>'tov' , :id=>@item.id %> </td>
+    <td align="center">  <%= item.quantity %> </td>
+    <td align="center">  <%= findprice(item.k1c) %> </td>
+  </tr>
+<% sum += findprice(item.k1c)*item.quantity %>
+<% end %>
+<% percent =  (findprice(@cat.k1c)/(sum/100)) - 100 %>
+<% if percent < 0 %>
+  <tr style="font-weight: bold; line-height: 30px;"> <td colspan="2" style="text-align: right; padding-right: 45px;"> Итого: </td> <td> <%= sum %>p. </td> </tr>
+  <tr style="font-weight: bold; background-color: #e8e8e8; line-height: 30px;"> <td colspan="2" style="text-align: right; padding-right: 45px;"><%= percent.to_i  %> % </td>
+    <td> <%= findprice(@cat.k1c) %>p. </td> </tr>
+<% elsif percent == 9 %>
+  <% percent = 10 %>
+<% end %>
+</table>
+ 
+<% end %>
+
+
+
+<!-- ========================= -->

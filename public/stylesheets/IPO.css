@@ -1,0 +1,354 @@
+root {
+  display: block;
+}
+
+* {margin: 0; padding: 0;}
+html, body {height: 100%;}
+body {
+  margin: 0;
+  padding: 0;
+  direction: ltr;
+  text-align: center;
+  background-color: #6DDCF2;
+  font-family: "Trebuchet MS", Arial , Tahoma,Helvetica , sans-serif;
+}
+
+#container {
+  position: relative;
+  width: 920px;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0px auto 20px auto;
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  background-color: white;
+  border-left: 1px solid #c1c2c3;
+  border-right: 1px solid #c1c2c3;
+  border-bottom: 1px solid #c1c2c3;
+  z-index: 1;
+  color: #6C6D70;
+}
+
+#header {
+  clear: both;
+  float: none;
+  height: 192px;
+  width: 853px;
+  position: relative;
+  background: url(/images/ipo/header_ipo.png) 0px 0px no-repeat;
+  z-index: 200;
+  margin: 0 0 35px 70px;
+  text-align: center;
+}
+
+#header .title {
+  color: #A5A7AA;
+  font-size: 30px;
+  font-family: "Trebuchet MS", Arial , Tahoma,Helvetica , sans-serif;
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+  width: 790px;
+  padding-top: 10px !important;
+  bottom: 0px;
+}
+
+#header .share {
+  float: right;
+  margin-top: 40px;
+  margin-right: 70px;
+  text-align: right;
+  font-style: italic;
+  font-size: 12px;
+  font-family: "Trebuchet MS", Arial , Tahoma,Helvetica , sans-serif;
+  font-weight: bold;
+  position: relative;
+}
+
+#links {
+  margin-top: 125px;
+  position: absolute;
+  text-align: right;
+  width: 780px;
+  display: block;
+  font-family: "Trebuchet MS", Arial , Tahoma,Helvetica , sans-serif;
+  font-size: 11px;
+  color: #0BB4FC;
+}
+
+#links a:visited {
+  color: #0BB4FC;
+}
+
+
+#footer {
+  height: 180px;
+  width: 920px;
+  background-color: #F5F5F5;
+  bottom: 0;
+  z-index: 200;
+  margin-right: auto;
+  margin-left: auto;
+  clear: both;
+  float: none;
+  padding-top: 20px;
+}
+
+#container p {
+  margin: 15px 70px 0px 70px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+#container ul {
+  margin-left: 70px;
+  padding-left: 20px;
+}
+
+#container ul li {
+  padding-bottom: 5px;
+  color: #0BB4FC;
+}
+
+#container ul li span {
+  color: #6C6D70;
+}
+
+#container h1 {
+  color: #FFFFFF;
+  background-color: #36C3F1;
+  float: left;
+  padding: 2px 5px 2px 5px;
+  font-weight: normal;
+  font-size: 16px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  margin-left: 70px;
+}
+
+#left_content {
+  margin: 20px 0px 30px 70px;
+  width: 50%;
+  float: left;
+  color: #6C6D70;
+  background-color: #FFF9CB;
+  padding: 20px;
+  font-size: 12px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+#left_content a {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: #0BB3FC;
+}
+
+#left_content ul {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#right_content {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 35%;
+  float: right;
+}
+
+#right_content h3 {
+  font-size: 13px;
+  font-weight: bold;
+  font-style: italic;
+  color: #6C6D70;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+#right_content p {
+  font-size: 12px;
+  font-style: italic;
+  color: #0BB4FC;
+  margin: 0 70px 0 0;
+  line-height: 14px;
+}
+
+ul {
+  margin: 20px 70px 0 70px;
+}
+
+table {
+  margin-top: 20px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 20px;
+  width:85%;
+  border-bottom: #36C3F1 solid 1px;
+}
+
+table th, td {
+  padding: 5px;
+  border-top: #36C3F1 solid 1px;
+  font-weight: normal;
+}
+
+table th {
+  background-color: #FFF9CB;
+}
+
+.links_left {
+  clear: both;
+  width: 50%;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.links_right {
+  width: 50%;
+  float: right;
+  margin-bottom: 20px;
+}
+
+.links_left a, .links_right a {
+  margin: 10px 0px 10px 70px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: bold;
+  color: #6C6D70;
+  display: block;
+}
+
+.links_left a:hover, .links_right a:hover {
+  color: #0BB4FC;
+}
+
+#footer div {
+  display: inline-block;
+  width: 25%;
+  padding: 10px;
+  vertical-align: top;
+}
+
+#footer .top {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#footer a {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  color: #36C3F1;
+  font-size: 12px;
+}
+
+#footer .name {
+  font-size: 12px;
+  font-style: italic;
+}
+
+#footer .info {
+  font-style: normal;
+  font-size: 12px;
+  color: #919396;
+}
+
+
+.vk {
+  height: 22px;
+  width: 22px;
+  background-image: url('/images/share/vk.png');
+  display: inline-block;
+  margin: 8px 5px;
+  background-repeat: no-repeat;
+}
+
+.vk:hover {
+  background-image: url('/images/share/vk_color.png');
+}
+
+.fb {
+  height: 22px;
+  width: 22px;
+  background-image: url('/images/share/facebook.png');
+  display: inline-block;
+  margin: 8px 5px;
+}
+
+.fb:hover {
+  background-image: url('/images/share/facebook_color.png');
+}
+
+.tw {
+  height: 22px;
+  width: 22px;
+  background-image: url('/images/share/twitter.png');
+  display: inline-block;
+  margin: 8px 5px;
+}
+
+.tw:hover {
+  background-image: url('/images/share/twitter_color.png');
+}
+
+.bs {
+  height: 22px;
+  width: 22px;
+  background-image: url('/images/share/blogspt.png');
+  display: inline-block;
+  margin: 8px 5px;
+}
+
+.bs:hover {
+  background-image: url('/images/share/blogspot_color.png');
+}
+
+.vk, .fb, .tw, .bs {
+  background-repeat: no-repeat;
+}
+
+#booking_form {
+  margin: 20px 0px 30px 70px;
+  float: left;
+  width: 300px;
+  vertical-align: top;
+  display: block;
+  background-color: #E0FFFF;
+  padding: 20px;
+}
+
+#consultation_form {
+  margin: 20px 0px 30px 0px;
+  float: right;
+  width: 300px;
+  display: block;
+  vertical-align: top;
+  background-color: #E0FFFF;
+  padding: 20px;
+  margin-right: 70px;
+}
+
+#booking_form h2, #consultation_form h2 {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  color: #919396;
+  font-size: 13px;
+}
+
+#booking_form p, #consultation_form p {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: #919396;
+  font-size: 10px;
+  margin-left: 0px;
+}
+
+#booking_form label, #consultation_form label {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: #919396;
+  font-size: 12px;
+  margin-left: 0px;
+}

@@ -1,0 +1,69 @@
+    <!-- сортировка -->
+    <div class="sort_title">
+      <span> сортировать по </span>
+      <%= link_to 'показать все' , {:action=>'tg_n' , :id=>params[:id]} , :style=>'position: absolute;  right: 10px; top: 0px; color: white;'  if params[:btg]%>
+    </div>
+
+  <div class="sortirovka" >
+<div class="sort_col">
+    <div class="sort_subtitle">   цене: </div>
+
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='pa' or params[:order]== nil %>">
+<%= link_to 'по возрастанию',{:controller=>'kt3',:action=>'tg_n',:id=>params[:id],:order=>'pa',:filtr=>params[:filtr]  , :btg=>params[:btg] , :s=>params[:s] , :har=>params[:har]}  , :rel=>'nofollow' %>
+    </li>
+<li class="<%='sort_act' if params[:order]=='pd'%>">
+<%= link_to 'по уменьшению',{:controller=>'kt3',:action=>'tg_n',:id=>params[:id],:order=>'pd',:filtr=>params[:filtr]  , :btg=>params[:btg] , :s=>params[:s] , :har=>params[:har]}  , :rel=>'nofollow'%>
+    </li>
+  </ul>
+<!--
+    <div class="sort_subtitle">   наименованию:   </div>
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='na'%>">
+    <%= link_to 'по алфавиту',{:controller=>'kt3',:action=>'tg_n',:id=>params[:id],:order=>'na',:filtr=>params[:filtr] , :btg=>params[:btg] , :s=>params[:s] , :har=>params[:har]}  , :rel=>'nofollow' %>
+       </li>
+    <li class="<%='sort_act' if params[:order]=='nd'%>">
+  <%= link_to 'в обратном порядке',{:controller=>'kt3',:action=>'tg_n',:id=>params[:id],:order=>'nd' ,:filtr=>params[:filtr]  , :btg=>params[:btg] , :s=>params[:s] , :har=>params[:har]}  , :rel=>'nofollow'%>
+    </li>
+  </ul>
+  -->
+</div>
+
+<!--
+<div class="sort_col">
+    <div class="sort_subtitle">
+      брендам:
+    </div>
+    <%#= select("brend","", Cat1.find_by_sql(['select distinct brend from cat1s where tov3_id =? order by ? ',params[:id],params[:order]] ).collect {|p| [ p.brend, p.brend ] } ,{:prompt => 'Выберите название бренда'}) %>
+  <% @brend1=Cat1.find_by_sql(["select distinct brend from cat1s where tov3_id =? and vis=? and not( brend like '% %')",params[:id],1 ]).map{|u| [u.brend ,u.brend] if u.brend != ''}.compact %>
+       <select id="br1" onchange="filtr1_v($F('br1'),<%=params[:id]%>,'<%=params[:order]%>');">
+       <option value="1" >Все бренды&nbsp;</option>
+     <%= options_for_select(@brend1,params[:filtr]) %>
+     </select>
+</div>
+-->
+
+<% for i in 4..29 do %>
+ <% if @btg.send('s'+i.to_s)!= 'no' %>
+   <% if cat1har?(@btg.id,i.to_s)%>
+    <div class="sort_col2">
+      <div class="sort_subtitle2" onclick="tog2sort('h<%=i.to_s%>')"> <%= @btg.send('s'+i.to_s) %>
+         <img class="sort_arr" style="<%=if session[:filtr].key?(i.to_s) then 'display: none;' else 'display: inline;'end %>" id="h<%=i.to_s%>d" src="/images2/sort_d.gif" />
+        <img class="sort_arr" style="<%=if session[:filtr].key?(i.to_s) then 'display: inline;' else 'display: none;'end %>" id="h<%=i.to_s%>a" src="/images2/sort_a.gif" />
+      </div>
+      <ul style="display: none;<%= 'display:block;' if session[:filtr].key?(i.to_s) %>" id="h<%=i.to_s%>" >
+      <% for btg in @btg1har do %>
+        <% if (session[:filtr].key?(i.to_s) and session[:filtr][i.to_s] == btg ) %>
+        <li class="sort_act"> <%=link_to btg ,{:controller=>'kt3' , :action=>'tg_n' , :btg=>@btg.id , :har=>btg , :s=>i , :del=>'true'} , :rel=>'nofollow'%>  </li>
+        <% else %>
+        <li> <%=link_to btg ,{:controller=>'kt3' , :action=>'tg_n' , :btg=>@btg.id , :har=>btg , :s=>i} , :onclick=>'sort_act(this)' , :rel=>'nofollow'%>  </li>
+        <% end %>
+      <% end %>
+      </ul>
+    </div> <% end %>
+    <% end %>
+<% end %>
+
+    <div class="clear"> </div>
+</div>
+

@@ -1,0 +1,411 @@
+<% content_for(:tit) do %>
+Живой офис. Наши новости.
+<% end %>
+
+
+<% content_for(:cont) do %>
+  <script type="text/javascript" src="/jq/jquery-1.2.3.js"></script>
+
+<style type="text/css">
+ #q_answ_submit {background: transparent ; border: none; color: red; cursor: pointer;  }
+  #opros label {font-weight: normal;}
+.tp {position:relative;text-indent:0;}
+.tp strong {color: red;}
+.tp b {
+   color:#000;
+   cursor:help;
+   font-weight:normal;
+}
+.tp b span {display:none;}
+/*-- для FF, OPERA, IE7 --*/
+.tp b:hover {
+   
+}
+.tp b:hover span {
+   background: #fdd4b6;
+   color:#000;
+   display:block;
+   padding:7px;
+   position:absolute;
+   top:2px;
+   left:5px;
+   z-index:10;
+   text-align:left;
+   width:250px;
+
+}
+.tp img  {width: 70px;   border: 1px solid #b1b3b6;}
+.tp i img  {width: 70px;   border: none;}
+.tp i  { border: 1px solid #b1b3b6; display:block; width: 70px; height: 70px; overflow: hidden;}
+button {background: none; font-size: 12px;  border: none; color: green; position: relative; left: -30px;}
+.comments a {color: red;}
+</style>
+
+<!--[if IE 6]>
+<style type="text/css">
+.tp b {behavior:url(hover.htc);}
+.tp .hover {
+   
+}
+.tp .hover span {
+   background:#fdd4b6;
+   color:#000;
+   display:block;
+   padding:7px;
+   position:absolute;
+   top:2px;
+   left:5px;
+   z-index:10;
+   text-align:left;
+   width:250px;
+}
+</style>
+<![endif]-->
+
+
+<div style="margin-left: 100px;">
+  
+
+
+  
+
+  <div style="margin-left: 100px; margin-bottom: 10px; font-size: 11px; color: #85c441;">
+    В меню "мой профиль" Вы сможете выбрать аватарку и внести дополнительную информацию о себе
+  </div> <br/>
+
+  <%if login?%>
+  <div><input type="button" onclick="tog('newsubj')" value="Новое сообщение"/></div> <br/>
+  <div id="newsubj" style="display:none; position: absolute; z-index: 1000; background-color: white; border: 1px dashed gray; padding: 20px;" class="sha">
+   <%= render :partial=>'new_subj2' %>
+  </div>
+<% end %>
+
+  <%= will_paginate @desk_subjs  %>
+  
+<% for desk_subj in @desk_subjs %>
+  <% @a = User.find_by_id(desk_subj.user_id) %>
+  <% if ((desk_subj.user_id == 4198) and (@user == nil or (@user and  @user.id != 4198))) or @a==nil %>
+
+  <% else  %>
+<table class="subj" cellspacing="0" cellpadding="0" >
+   <tr>
+    <td style="width: 70px; padding: 0px;" valign="top" >
+
+       <%@name = User.find :first ,:conditions =>['id=?',desk_subj.user_id]%>
+      <%@prof = Deskprof.find :first, :conditions =>['user_id=?',desk_subj.user_id]%>
+        
+      <p class="tp" style="z-index:6;">
+<b>
+  
+        <% if @name.role == 'redaktor' and @name.id == 3526 %>
+        <img src="/images/ava/ava10.jpg" width="70px" />
+        <%elsif @name.role == 'redaktor' and @name.id == 2019%>
+        <img src="/images/ava/lisa.jpg" width="70px" />
+        <%elsif @name.role == 'redaktor' and @name.id == 3729%>
+        <img src="/images/ava/mb.jpg" width="70px" />
+        <%elsif @name.role == 'redaktor' and @name.id == 3814%>
+        <img src="/images/ava/parfenov.jpg" width="70px" />
+        <%else%>
+        <% if @prof %>
+        <i>
+        <img src="<%= url_for(:action =>'picture' , :id => @prof.picture_id) %>"  />
+        </i>
+        <% else %>
+        <img src="/images/ava/qq.jpg" width="70px" />
+        <%end%>
+        <%end%>
+
+   
+  <span style="left:80px">
+<% if @name.role == 'user' and @prof %>
+        <strong>Имя:&nbsp; </strong> <%=h @name.scr_name %> <br/>
+        <strong>Компания:&nbsp;</strong> <%=h @name.company_ind %> <br/>
+        <strong>Должность:&nbsp;</strong> <%=h @prof.job %>
+<% elsif @name.role == 'redaktor' %>
+        <strong>Компания:</strong>  Живой офис <br/>
+        Права модератора
+<% elsif @name.role == 'user' and !@prof %>
+        <strong>Имя:&nbsp; </strong> <%=h @name.scr_name %> <br/>
+        <strong>Компания:&nbsp;</strong> <%=h @name.company_ind %>
+<% end %>
+   </span></b></p>
+    </td>
+    <td style="width:700px;" valign="top"  >
+      
+      
+    <div class="ndt"  >
+    <% if @name.role == 'redaktor' %>
+       <% if @name.id == 3526 %>
+            <span class="name">
+            <% if @prof.nic != '' %>
+            <%=h @prof.nic %>:
+            <%else%>
+            <%=h @name.scr_name %>:
+            <%end%>
+            </span>
+       <%elsif @name.id == 2019%>
+        <span class="name"> Лиза Галкина. Менеджер проекта. </span>
+        <%elsif @name.id == 3814%>
+        <span class="name"> Валерий Парфенов. Генеральный директор. </span>
+        <%elsif @name.id == 3900%>
+        <span class="name"> Эльвира Пикалёва. Директор по маркетингу. </span>
+        <%elsif @name.id == 3768%>
+        <span class="name"> Оптимизатор </span>
+        <%else%>
+        <span class="name">
+        <% if @prof and @prof.nic != '' %>
+        <%=h @prof.nic %>:
+        <%else%>
+        <%=h @name.scr_name %>:
+        <%end%>
+        </span>
+       <%end%>
+    <%else%>
+        <span class="name">
+        <% if @prof and @prof.nic != '' %>
+        <%=h @prof.nic %>:
+        <%else%>
+        <%=h @name.scr_name %>:
+        <%end%>
+        </span>
+    <%end%>
+      <span class="date"> 
+      <%=h desk_subj.created_at.strftime("%d")+'.'+ desk_subj.created_at.strftime("%m")+'.'+ desk_subj.created_at.strftime("%Y")%>.
+     
+      </span>
+      <div class="title"> <%=h desk_subj.subj %> &nbsp; </div>
+      </div>
+      <% if @name.role == 'redaktor' %>
+        <div class="text"><%= desk_subj.s_text %> </div>
+        <%else%>
+        <div class="text"><%=h desk_subj.s_text %> </div>
+        <%end%>
+      
+     </td>
+     
+    <td  valign="top"  >
+    <%if login?%>
+      <% if @user.role == 'redaktor' %>
+    <%= link_to 'Изменить', :controller=>'desk_subjs' , :action=>'edit' , :id=>desk_subj.id %>
+    <%= link_to 'Удалить', desk_subj, :confirm => 'Are you sure?', :method => :delete %>
+      <%else %>
+      <%end%>
+      <%end%>
+    </td>
+  </tr>
+  <% if @name.role == 'redaktor' %>
+  <tr>
+    <td colspan="3" align="center">
+
+     <%  @num=desk_subj.id %>
+     <% if @num == 1 %>
+     <%= render :partial=>'/desk_subjs/n1', :object=> @num %>
+      <% elsif @num == 75 %>
+     <%= render :partial=>'/desk_subjs/n1', :object=> @num %>
+      <% elsif @num == 87 %>
+     <%= render :partial=>'/desk_subjs/n1', :object=> @num %>
+     <%elsif @num == 18 %>
+       <%= render :partial=>'/desk_subjs/n2' %>
+     <%elsif @num == 28 %>
+       <%= render :partial=>'/desk_subjs/n3' %>
+       <%elsif @num == 37 %>
+       <%= render :partial=>'/desk_subjs/n4' %>
+      <%elsif @num == 40 %>
+       <%= render :partial=>'/desk_subjs/n5' %>
+      <%elsif @num == 41 %>
+       <%= render :partial=>'/desk_subjs/n6' %>
+      <%elsif @num == 65 %>
+       <%= render :partial=>'/desk_subjs/n7' %>
+      <%elsif @num == 84 %>
+       <%= render :partial=>'/desk_subjs/n1', :object=> @num  %>
+     <%elsif @num == 131 %>
+       <%= render :partial=>'/desk_subjs/n1', :object=> @num  %>
+     <% end %>
+    </td>
+  </tr>
+  <%else%>
+  <% end %>
+  <tr>
+    <td> </td>
+    <td style="width:100%" >
+      
+        
+      <!--
+      <i  id="<%='desk_a_' + desk_subj.id.to_s%>" onclick="show_hide_id('<%='desk_answ_' + desk_subj.id.to_s%>','<%='desk_a_' + desk_subj.id.to_s%>')" style="display: none; position: relative; left: 10px; font-style: normal;"> Посмотреть ответы </i><br/>
+      -->
+
+
+
+      <div id="<%='desk_answ_' + desk_subj.id.to_s%>" >
+   <script type="text/javascript">
+     jq=jQuery.noConflict();
+  jq(document).ready(function(){
+    
+    jq("#<%='d_' + desk_subj.id.to_s%>").click(function () {
+      jq("#<%='desk_answ_' + desk_subj.id.to_s%>").slideToggle("slow");
+    });
+
+  });
+  </script>
+    <% da=0 %>
+     <table  class="answ" style="display: inherit;"  cellspacing="0" cellpadding="0" >
+    <% desk_subj.desk_answ.each do |t| %>
+       <% da +=1 %>
+
+       
+          <tr style="display: inherit;">
+            <%@prof = Deskprof.find :first, :conditions =>['user_id=?',t.user_id]%>
+             <%@name = User.find :first ,:conditions =>['id=?',t.user_id]%>
+            <td style="width: 70px; padding: 0px; display: inherit;" valign="top"  >
+              <p class="tp" style="z-index:6;">
+<b>
+ 
+     <% if @name and @name.role == 'redaktor' %>
+        <% if @name.id == 2019 %>
+        <img src="/images/ava/lisa.jpg" width="70px" style="display: inherit;" />
+        <% elsif @name.id == 3729 %>
+         <img src="/images/ava/mb.jpg" width="70px" style="display: inherit;" />
+         <%elsif @name.id == 3814%>
+        <img src="/images/ava/parfenov.jpg" width="70px" />
+        <%elsif @name.id == 3526%>
+        <img src="/images/ava/ava10.jpg" width="70px" />
+        <% else %>
+        
+        <% if @prof and @img  %>
+        <i>   <img src="<%= url_for(:action =>'picture' , :id => @prof.picture_id) %>" width="70px;" /> </i>
+        <% else %>
+                     <img src="/images/ava/qq.jpg" width="70px" />
+        <%end%>
+        <% end %>
+     <%elsif @name and @name.role == 'user'%>
+         <% if @prof %>
+            <% @img = Picture.find :first, :conditions=> ['id=?',@prof.picture_id] %>
+        <% else %>
+         <% @img = nil %>
+        <% end %>
+        <% if @prof and @img  %>
+                     <i>     <img src="<%= url_for(:action =>'picture' , :id => @prof.picture_id) %>"  /> </i>
+        <% else %>
+                     <img src="/images/ava/qq.jpg" width="70px" />
+        <%end%>
+    <%end%>
+
+     <span style="left:80px;">
+<% if @name.role == 'user' and @prof %>
+        <strong>Имя:&nbsp; </strong> <%=h @name.scr_name %> <br/>
+        <strong>Компания:&nbsp;</strong> <%=h @name.company_ind %> <br/>
+        <strong>Должность:&nbsp;</strong> <%=h @prof.job %>
+ <% elsif @name.role == 'redaktor' %>
+        <strong>Компания:</strong>  Живой офис <br/>
+        Права модератора
+<% else %>
+        <strong>Имя:&nbsp; </strong> <%=h @name.scr_name %> <br/>
+        <strong>Компания:&nbsp;</strong> <%=h @name.company_ind %>
+<% end %></span></b></p>
+  
+ 
+         
+            </td>
+            <td style="width:500px;" >
+              <div class="ndt" >
+             <% if @name.role == 'redaktor' %>
+       <% if @name.id == 3526 %>
+            <span class="name">
+            <% if @prof.nic != '' %>
+            <%=h @prof.nic %>:
+            <%else%>
+            <%=h @name.scr_name %>:
+            <%end%>
+            </span>
+       <%elsif @name.id == 2019%>
+        <span class="name"> Лиза Галкина. Менеджер проекта. </span>
+        <%elsif @name.id == 3814%>
+        <span class="name"> Валерий Парфенов. Генеральный директор. </span>
+        <%elsif @name.id == 3900%>
+        <span class="name"> Эльвира Пикалёва. Директор по маркетингу. </span>
+        <%elsif @name.id == 3768%>
+        <span class="name"> Оптимизатор </span>
+        <%else%>
+        <span class="name">
+        <% if @prof.nic != '' %>
+        <%=h @prof.nic %>:
+        <%else%>
+        <%=h @name.scr_name %>:
+        <%end%>
+        </span>
+       <%end%>
+    <%else%>
+        <span class="name">
+        <% if @prof and @prof.nic != '' %>
+        <%=h @prof.nic %>:
+        <%else%>
+        <%=h @name.scr_name %>:
+        <%end%>
+        </span>
+    <%end%>
+              <span class="date" >
+
+              <%=h t.created_at.strftime("%d")+'.'+t.created_at.strftime("%m")+'.'+t.created_at.strftime("%Y") %>
+        
+              </span>
+              </div>
+              <div class="text" >
+              <% if @name.role == 'redaktor' %>
+                 <%= t.a_text%> 
+                <%else%>
+      <%= h t.a_text%>
+              <%end%>
+              </div>
+             </td>
+             <td style="display: inherit;">
+               
+             </td>
+         <%end%>
+          </tr>
+          
+        </table>  
+
+      </div>   
+        <% if da==0 %>
+        <%else%>
+       
+        <button id="<%='d_' + desk_subj.id.to_s%>">свернуть/развернуть ответы</button> <br/>
+        <!--
+        <i style="position: relative; left: -50px;"  onclick="hide_show_id('<%='desk_answ_' + desk_subj.id.to_s%>','<%='desk_a_' + desk_subj.id.to_s%>')"> Свернуть ответы <br/><br/> </i>
+        -->
+    <%end%>
+    
+    <%unless login? %>
+      <span class="date" style=" font-size: 12px; margin-bottom: 10px;">
+        Для добавления комментария необходимо <a href ="/login/add_user"> зарегистрироваться </a> или <a href ="/login/login">авторизоваться</a>
+      </span>
+     <%else%>
+        <span class="comments" style="float:right; ">
+        
+    <%=button_to_remote 'Добавить комментарий', :url=>{:action => 'new_answ', :id=>desk_subj.id}, :update=>('new_answ'+ desk_subj.id.to_s)  %>
+      </span> <br/>
+      <div id="<%='new_answ'+ desk_subj.id.to_s%>" ><br/> </div>
+       
+      <% end %>
+
+    </td>
+    
+    <td> </td>
+  </tr>
+  </table>
+  <% end %>
+<% end %>
+
+
+<br />
+
+  <%= will_paginate @desk_subjs  %>
+
+<br/>
+
+<%= render :partial=>'new_subj' %>
+
+
+
+</div>
+<%end%>

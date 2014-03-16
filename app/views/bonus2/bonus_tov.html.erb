@@ -1,0 +1,76 @@
+
+<!--[if lt IE 7]>
+<![if gte IE 5.5]>
+<script type="text/javascript" src="/fixpng.js"></script>
+<style type="text/css">
+.iePNG, IMG { filter:expression(fixPNG(this)); }
+.iePNG A { position: relative; }
+</style>
+<![endif]>
+<![endif]-->
+
+<div class="gadget blocks" id="block_nav">
+                <div class="content">
+
+                <div class="bonus_nav"><div class="bonus_menu"><a href="/bonus2">Каталог бонусов</a>
+
+                  <% if login?  %>
+
+                    <a href="/bonus2/editcart" class="act" >Корзина с подарками</a>
+                 <%end%>
+                 <a href="/bonus2/rule">как получить бонусы</a>
+               
+                  </div>
+                   &nbsp;&nbsp;&nbsp;
+             <% if login?  %>
+
+             Ваш бонусный счет:<%=@limit%>&nbsp;&nbsp;Осталось <%=@count%> ед. &nbsp;&nbsp;
+             <%end%>
+
+               </div>
+
+               </div>
+              </div>
+             
+<table  border="0" cellpadding="0" cellspacing="10">
+<tr><td style="width:360px;">
+  <div class="bonus_tov">
+
+
+
+<br><br><br>
+  
+    <% if @bonus.photo!='' %>
+<%=image_tag("/images/bonus/thumbs/"+@bonus.photo)%>
+<%else%>
+    <%= image_tag("/images/no_image_s.gif") %>
+  <% end %>
+<div class="bonus_price1 iePNG" >&nbsp;<%= @bonus.price %>&nbsp;<span>бонусов</span></div>
+ <% unless login?  %>
+ 
+  <%else%>
+    <%if @count >0 and @bonus.price < @limit %>
+<!--  <a href=/bonus2/create_bonus_cart?k1c=<%#=@bonus.k1c %>&price=<%#=@bonus.bonus_price %> class="basket1" ></a>-->
+ <%end%>
+ <%end%>
+  </div>
+  </td>
+  <td style="width: 300px;" valign="bottom">
+    <div class="bonus_name1"><%= @bonus.name %></div>
+    <br/> 
+   <div style="color:#030303;font-size:9pt;font-weight:bold;"> <%= @bonus.description %>
+     <br/> 
+     <span style="color: #b1b3b6;"> <br/>Код: MS &nbsp;<%= @bonus.number%> </span>
+   </div>
+     <% unless login?  %>
+
+  <%else%>
+      <%if @count >0 and @bonus.price < @limit %>
+       <a href="/bonus2/create_bonus_cart?k1c=<%=@bonus.id %>&price=<%=@bonus.price %>" class="basket2" ></a>
+       <%end%>
+  <%end%>
+       <span class="back_red"><a href="/bonus2/"><img  src="/images/back_red.jpg" />&nbsp; ВЕРНУТЬСЯ</a></span>
+  </td>
+</tr>
+</table>
+<div style="margin: 0 auto;"> <img src="/images/divider_red.jpg"/> </div>

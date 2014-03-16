@@ -1,0 +1,31 @@
+<% content_for(:cont) do %>
+
+
+<h2 style="margin-bottom: 30px;">Редактирование страницы <%=@statp.title %></h2>
+
+<% form_for(@statp) do |f| %>
+  <%= f.error_messages %>
+
+  <p  style="margin-bottom: 30px;">
+    <b>  <%= f.label 'Заголовок' %> </b>
+    <%= f.text_field :title , :style=>'width: 300px;'%>
+
+    <b style=" margin-left: 30px;">  <%= f.label 'Название'%> </b>
+    <%= f.text_field :name  , :style=>'width: 300px;'%>
+  </p>
+  <p>
+    <b>  <%= f.label 'Контент' %> </b> <br/>
+    <%= f.cktext_area :content , :toolbar=>'Full'  , :style=>'height: 500px;'  %>
+  </p>
+  <p>
+    <%#= f.label :rezerv %><br />
+    <%#= f.text_field :rezerv %>
+  </p>
+  <p>
+    <%= f.submit "Обновить" %>
+  </p>
+<% end %>
+<br/>
+
+<%= link_to 'Вернуться', statps_path %>
+<%end%>

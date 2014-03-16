@@ -1,0 +1,24 @@
+<% content_for(:tit) do %>
+ Живой офис
+<%end%>
+<% content_for(:cont) do %>
+<div style="margin-left: 30px;">
+<h2 style="color: red"> Правила:</h2>
+<br/>
+<ol style=" list-style-position: inside; color: #808285">
+  <li>
+    Порекомендуй <span style="color: red">Живой офис</span> друзьям и отправь ссылку.
+  </li>
+  <li>
+    Если твои друзья зарегистрировались на сайте и сделали заказ, мы начисляем тебе <span style="color: red">200 бонусов</span>
+  </li>
+
+
+</ol>
+<br/>
+<p style="font-weight: bold;color: #808285">Скопируй эту ссылку и отправь другу: </p>
+<p style="color: red; font-size: 18px;">http://zhivojoffice.ru/?ref=<%=@user.id%></p>
+</div>
+
+<%end%>
+

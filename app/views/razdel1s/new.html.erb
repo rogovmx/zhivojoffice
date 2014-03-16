@@ -1,0 +1,26 @@
+
+<% content_for(:cont) do %>
+<h1>Новая группа.</h1>
+
+<% form_for(@first1) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    Имя группы:<br />
+    <%= f.text_field :name ,:size=>'80' %>
+  </p>
+  <p>
+    Текст на странице группы:<br />
+    <%= f.text_field :top,:size=>'80' %>
+  </p>
+  <p>
+    Текст ссылки на заглавную страницу:<br />
+    <%= f.text_field :link,:size=>'80' %>
+  </p>
+  <p>
+    <%= f.submit "Создать" %>
+  </p>
+<% end %>
+
+<%= link_to 'Вернуться.', razdel1s_path %>
+<%end%>

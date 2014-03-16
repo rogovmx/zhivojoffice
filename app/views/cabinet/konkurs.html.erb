@@ -1,0 +1,42 @@
+<% content_for(:cont) do %>
+<% @names=['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %>
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="cabord_title">
+  Задания на конкурс
+</div>
+
+<table class="cab_sotr" cellspacing="0" cellpadding="0" border="0" width="695px;">
+<tr style="color:#ffffff;background-color:#808285;">
+ <th width="25px;"> №</th>
+  <th> Дата  </th>
+  <th>Детали  </th>
+
+</tr>
+   <% @order.each do |order| %>
+        <tr style="<%= cycle('background-color:white;', 'background-color: #f0f2f5;')%>">
+        <td> <%= order.id %> </td>
+
+    <td>
+      <%=h order.created_at.strftime("%d")%> <%=@names[order.created_at.strftime("%m").to_i]%> <%=order.created_at.strftime("%Y")%>
+
+</td>
+    <td>
+      <%= link_to_remote 'Детали (кратко)', :url=>{:action=>'konkursorder_details',:id=>order.id},:update=>'details',:success=>"new Effect.Highlight('details')"%>
+  |
+ 
+      <%= link_to 'Детали (полностью)', {:controller=>'bas1' ,:action=>'konkurs2',:id=>order.id} , :popup=>'true' %>
+|
+
+    <%= link_to 'Скачать задание на конкурс (doc)',:controller=>'export_cat' ,:action=>'bb', :id=>order.id  %>
+    </td>
+  
+   
+      </tr>
+ <%end%>
+ </table>
+
+   <div id="details">
+     </div>
+  <%end%>

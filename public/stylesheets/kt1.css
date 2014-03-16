@@ -1,0 +1,103 @@
+
+
+root { 
+    display: block;
+    margin:0;
+    padding:0px;
+}
+#shapka
+{
+    width:100%;
+    background-color:#dadada;
+    height:80px;
+      min-width:955px;
+}
+#d_menu
+{
+    width:100%;
+    background-color:#d1d1d1;
+    height:30px;
+      min-width:955px;
+}
+#content
+{
+    min-width:955px;
+}
+#katalog
+{
+    width:100%;
+   
+    border-collapse:collapse;
+}
+#katalog ul
+{
+   list-style-type:none;
+   margin-left:3px;
+   padding-left:3px;
+   margin-right:3px;
+   padding-right:3px;
+   padding-top:1px;
+}
+#katalog th
+{
+    border:1px solid #000;
+}
+#katalog td
+{
+    border:1px solid #000;
+    text-align:left;
+    vertical-align:top;
+}
+#divbanner
+{
+  
+    
+    height:100%;
+    border:1px solid #ddd;
+    margin-left:81%;
+    margin-top:0px;
+    padding-top:0px;
+    
+}
+#b1
+{
+    border:solid 1px #aaa;
+    height:300px;
+}
+#bs
+{
+     border:solid 1px #aaa;
+    
+}
+#sp
+{
+    margin-top:10px;
+    padding-top:10px;
+    clear:both;
+     border:solid 1px #aaa;
+    height:300px;
+    width:100%;
+    min-width:955px;
+}
+#left
+{
+    float:left;
+    width:80%;
+    margin-right:1.79em;
+   
+}
+#footer
+{
+    clear:both;
+    width:100%;
+    border:solid 1px #aaa;
+}
+#tbs
+{
+   border-collapse:collapse;
+}
+
+#tbs td
+{
+    border-bottom:solid 1px #000;
+}

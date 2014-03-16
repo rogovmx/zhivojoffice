@@ -1,0 +1,10 @@
+
+
+<% content_for(:tit) do %>
+Новый слайд: <%=Action.find(params[:action_id]).name %>
+<% end %>
+<% content_for(:cont) do %>
+<h1>Новый слайд: <%=Action.find(params[:action_id]).name %></h1>
+  <%= render :partial => "form"%>
+<%= link_to 'Назад', actionitems_path(:action_id => params[:action_id]) %>
+<% end %>

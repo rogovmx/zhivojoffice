@@ -1,0 +1,37 @@
+<ul>
+  <li><%= link_to 'Новость на главной странице' , :controller=>'indexnews'  %></li>
+  <li><%= link_to 'Редактирование викторины',{:controller=>'victorinaedit' }  %></li>
+  <li><%= link_to 'Редактирование подвалов', podvals_path  %></li>
+  <li><%= link_to 'Редактирование сми о нас', news_items_path  %></li>
+  <li><%= link_to 'Редактирование акций', sale_actions_path %></li>
+  <li><%= link_to 'Редактирование слайдеров на главной', actionitems_path %></li>
+  <li><%= link_to "Загрузка фотографий" ,:controller=>'nophoto',:action=>'index' %></li>
+  <li><%= link_to "Облако тэгов" ,:controller=>'tag_clouds',:action=>'index'%></li>
+  <li><%= link_to 'Вакансии' , :controller=>'vacancies'  %></li>
+  <li> <hr/>  </li>
+  <li><%= link_to 'Коллекции' , :controller=>'collections' , :action=>'coll'  %></li>
+  <li><%= link_to 'Сопутствующие товары' , :controller=>'collections' , :action=>'st' %></li>
+  <li><%= link_to 'Управление статическими страницами' , :controller=>'statps'  %></li>
+  <li> <hr/>  </li>
+  <li><%= link_to 'Статистика',{:controller=>'an1' }  %></li>
+  <li><%= link_to "Сервисы" ,:controller=>'service',:action=>'index'%></li>
+  <li><%= link_to "Загрузка бонусов (Смоленск)" ,:controller=>'service',:action=>'upload_smo_bonuses'%></li>
+  <li><%= link_to 'Редактирование разделов/подгрупп', razdel1s_path %></li>
+  <li><%= link_to 'Редактирование котиков', children_contests_path %></li>
+  
+  <%#= link_to 'Управление товаром' , :controller=>'first1s'  %>
+  <%#= link_to_remote "Загрузка файла" ,{:url=>{:controller=>'upload',:action=>'redaktor1'},:update=>'rl'}%>
+  
+  <%#= link_to "БестСеллерс" ,:controller=>'bestsellers',:action=>'index'%>
+  <%#= link_to "СпецПредложение" ,:controller=>'ists',:action=>'index'%>
+  <%#= link_to "Подвал" ,:controller=>'foo1s',:action=>'index'%>
+  
+  
+  <%#= link_to "Реферальная система" ,:controller=>'ref',:action=>'index'%>
+
+  <%#= link_to 'Секрет Живого офиса' , :controller=>'secrets'  %>
+  
+
+  <li style="text-align: right;"><%= link_to 'Выход' , {:controller=>'login' , :action=>'logout'} , :style=>'color: red' %></li>
+</ul>
+

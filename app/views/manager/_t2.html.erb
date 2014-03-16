@@ -1,0 +1,36 @@
+<style>
+  #cl1 td
+  {
+    border:solid 1px #dcdcdc;
+  }
+</style>
+<div id="legals"></div>
+<table id="cl1" style="border:solid 1px #dcdcdc; border-collapse:collapse;width:550px;">
+  <tr>
+    <th style="width:160px;">Улица</th>
+    <th style="width:50px;">Дом </th>
+    <th style="width:80px;">Кор </th>
+      <th style="width:80px;">Литера </th>
+    <th style="width:80px;">Кв</th>
+    <th style="width:50px;">Офис</th>
+    <th style="width:100px;">Примечания</th>
+    <th></th>
+  </tr>
+
+
+
+
+<%#@adr_dost=AdrDost.find :all, :conditions=>["client_id=?",@client.id]%>
+<%@adr_dost=AdrDost.find :all, :conditions=>["client_id=?",@client.id]%>
+<%@adr_dost.each do |ad_d|%>
+  <tr>
+  <td><%= ad_d.street_id %> </td>
+  <td><%= ad_d.dom %> </td>
+  <td><%= ad_d.korpus %> </td>
+   <td><%= ad_d.litera %> </td>
+  <td><%= ad_d.kv %> </td>
+  <td><%= ad_d.ofis %> </td>
+  <td><%= ad_d.prim %></td>
+  </tr>
+<%end%>
+</table>

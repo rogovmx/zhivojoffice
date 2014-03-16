@@ -1,0 +1,157 @@
+<% content_for(:tit) do %>
+Живой офис. Вы ищете: <%= session[:search]%>
+<% end %>
+<% content_for(:cont) do %>
+
+
+
+
+<%# @w=['','Везде','В названиях','В товарных группах','В брендах','В описаниях'] %>
+<%# @m=['','Строгое соответствие','Со всеми словами','С любым из слов'] %>
+
+<div id="advserch">
+  <%# form_tag do  %>
+  <form method="get" action="/search/index" >
+  <label for="search" >Вы ищете: </label>  <%= text_field_tag  :search  , params[:search] , :value=>@text%>
+  <label for="where" >Область поиска: </label>
+<%= select_tag(:where, options_for_select([['Везде',1],['В названиях',2],['В товарных группах',3],['В брендах',4],['В описаниях',5]],params[:where].to_i)) %>
+  <label for="method" >Метод поиска: </label>
+<%= select_tag(:method, options_for_select([['Строгое соответствие',1],['Со всеми словами',2],['С любым из слов',3]], params[:method].to_i)) %>
+
+<%= submit_tag 'Искать' %>
+  <%# end %>
+  </form>
+</div>
+
+
+   <div style="padding-left: 10px; margin-bottom: 10px; margin-top: -10px;" >
+      По запросу <b style="color: #16C2FB;"><%= @text  %></b> &nbsp;
+
+<%#= will_paginate @search ,:style=>'font-size:9px;text-align:right;width: 250px;float:right;vertical-align: bottom;'%>
+</div>
+
+  <div id="search_res" style="text-align:right; ">
+   <% brend=params[:brend] %>
+ <% search=params[:search] %>
+<%tg=params[:tg]%>
+   <table>
+     <tr>
+       <td valign="top" align="left" style="padding-right: 10px;" >
+         <div class="ls_title">
+           найдено: <%= @count %>
+        <% if params[:tg] != nil %>
+       <%= link_to "Отменить группы  ",{:controller=>'search',:search=>@text,:brend=>brend, :where=>params[:where] , :method=>params[:method]},:class=>'brend_serch1' %>
+       <%end%>
+       <% if params[:brend] != nil %>
+       <%= link_to "Отменить бренды",{:controller=>'search',:search=>@text,:tg=>tg , :where=>params[:where]  , :method=>params[:method]},:class=>'brend_serch1' %>
+<%end%>
+         </div>
+
+         <div class="ls_box">
+
+   <div class="ls_col2">
+     <div class="ls_subtitle">  Товарные группы:
+  
+     </div>
+         <ul>
+     
+          <%  @tg3.each do |tg3|%>
+          <% @tg=Tov3.find(tg3) %>
+          <% ss=@tg3all.find_all{|m| m == tg3}.size%>
+           <li>
+          <%= link_to @tg.name ,{:controller=>'search',:search=>@text,:tg=>tg3,:brend=>brend , :where=>params[:where] , :method=>params[:method]},:class=>'kategor' ,:title=>'Фильтр'%>&nbsp;
+          <%=link_to '('+ ss.to_s+')' ,{:controller=>'kt3', :action=>'tg_v' , :id=>tg3} ,:title=>'Перейти к группе' %>
+           </li>
+          <%end%>
+         </ul>
+</div>
+      <!--  +++++++++++++++++++++++++++++++++++++++++++++++   -->
+
+          
+         
+    <div class="ls_col2">
+      <div class="ls_subtitle"> Бренды:
+
+      </div>
+         
+      <ul>
+
+
+   <% @brend.each do |brend| %>
+         <% ss=@brendall.find_all{|m| m == brend}.size%>
+         <% if brend %>
+         <% @br=brend %>
+         <% end %>
+        <% @br='Без бренда' if brend == '' %>
+        <li> <%= link_to @br ,{:controller=>'search',:search=>@text,:brend=>brend,:tg=>tg , :where=>params[:where] , :method=>params[:method]},:class=>'brend_serch'%> (<%= ss %>) </li>
+   
+  <%end%>
+
+
+      </ul>
+
+     </div>
+
+           <div class="clear"> </div>
+ </div>
+
+       </td>
+
+
+       
+
+       <td  style="width:540px;" valign="top">
+    <% if @search and @search.size != 0 %>
+         <div class="search_title">  Результаты поиска:
+       <% @tg_t=Tov3.find(params[:tg]) if params[:tg] %>
+           <span style="color: white;">
+<%='Бренд: <b>'+params[:brend] + '</b>' if params[:brend]!= nil %>&nbsp;
+<%= link_to 'Товарная группа: <b>' + @tg_t.name + '</b>' ,{:controller=>'kt3', :action=>'tg_v' , :id=>params[:tg]} , :style=>'color: white;' if params[:tg]!= nil%>
+     </span>
+</div>
+        
+         <div style="float: left;  color: #808285; font-family: Arial; font-size: 11px; margin-bottom: 3px;">
+   <span id="sel2" style="font-weight:bold;">Показывать по:
+ <select id="br11" style="font-size: 10px;"onchange=perp($F('br11')); >
+   <%= options_for_select([5,10,15,20,'все'],@per_page.to_i) %>
+     </select></span>
+ </div>
+         
+<%= will_paginate @search %>
+
+  <table border="0" width="100%" style="background-color:#a770af; color:white; text-align: center; font-size: 11px; padding: 5px; margin-top: 5px;">
+  <tbody><tr>
+    <td style="width:65px;">Вид </td>
+     <td style="width:70px;"> Код каталога </td>
+     <td> Наименование товара </td>
+       <td style="width:80px;"> Цена </td>
+        <td style="width:80px;"> Корзина</td>
+  </tr>
+</tbody></table>
+
+    
+<% @search.each do |search| %>
+   <% @cat=search %>
+
+      <div id="<%=@cat.tg%>" style="width:540px; clear: both;">
+
+        <div class="grn11" id="<%=@cat.id%>" >
+        <%= render(:partial => '/kt1/cat_search',:object =>@cat) %>
+        </div>
+     </div>
+  <%end%>
+         <%= will_paginate @search%>
+<% end %>
+
+        </td>
+     </tr>
+   </table>
+
+ </div>
+
+    <%end%>
+
+
+
+
+     

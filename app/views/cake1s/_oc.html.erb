@@ -1,0 +1,37 @@
+<div>
+   
+<% if @cart_sum >0 %>
+ 
+
+
+  <% @cart.each do |@cart| %>
+<% @cake=Cake1.find_by_id(@cart.cake1_id) %>
+<% @fill=Filler1.find_by_id(@cart.filler1_id) %>
+  <b>
+  <span class="brown">торт «<%=@cake.name %>»,  <br/>
+<%= @cart.weight  %>кг,  <%=@fill.name %>
+</span>
+ <br/>
+ <span class="magenta" style="font-size: 14px;">
+   -
+
+          <% if @cart.price and @cart.weight%>
+<% ss=@cart.price*@cart.weight %>
+          <% else %>
+         <%ss='Не выбран вес'%>
+         <%end%>
+ <%=number_to_currency(ss, :unit => '',:delimiter=>' ')%> р.
+ </span>
+</b>
+     <br/> <br/>
+    <%end%>
+
+
+
+<%end%>
+
+</div>
+
+
+
+

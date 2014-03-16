@@ -1,0 +1,21 @@
+<% content_for(:cont) do %>
+<h2>Список страниц</h2>
+
+<table style="min-width: 600px;">
+
+
+<% for statp in @statps %>
+  <tr style="background-color:<%= cycle('white',' #E7E8E8') %>">
+    <td  style="padding: 3px; font-weight:  bold;"><%=h statp.title %></td>
+   
+
+    <td  style="padding: 3px;"><%= link_to 'Редактировать', edit_statp_path(statp) %></td>
+    <td style="padding: 3px; padding-left: 30px;"><%= link_to 'Удалить', statp, :confirm => 'Are you sure?', :method => :delete , :style=>'color: red;'%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новая страница', new_statp_path %>
+<%end%>

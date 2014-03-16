@@ -1,0 +1,43 @@
+
+<% content_for(:cont) do %>
+  <table style="width: 100%; margin-top: 40px;">
+    <tr>
+      <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+        <%= link_to "Редактирование разделов", razdel1s_path, :style => "color: red;"  %>
+        |
+        <%= link_to "Редактирование подгрупп 1 уровня", first1s_path %>
+        |
+        <%= link_to "Редактирование подгрупп 2 уровня", tov2s_path %>
+        |
+        <%= link_to "Редактирование подгрупп 3 уровня", tov3s_path %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 5px;">
+         <h2 style="color: red;">Разделы</h2>
+      </td>
+    </tr>
+  </table>
+<table>
+  <tr style="background-color:#e8e8e8; line-height: 30px;">
+ <!--   <th>Код</th> -->
+    <th colspan="3">Название раздела</th>
+
+  </tr>
+
+<% for razdel1 in @razdel1s %>
+  <tr style="background-color:<%=cycle('white', '#e8e8e8')%>">
+    <td><%= razdel1.name %></td>
+    <td><%= link_to 'Редактировать', edit_razdel1_path(razdel1) %></td>
+    <% if @user.role =='sredaktor' %>
+    <td><%= link_to 'Удалить', razdel1, :confirm => 'Точно удалить?', :method => :delete %></td>
+    <% end %>
+    <td> <%= link_to 'Подгруппы', :controller=>'first1s',:razdel1_id=>razdel1.id %>  </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новый раздел', new_razdel1_path %>
+<%end%>

@@ -1,0 +1,69 @@
+
+<% content_for(:tit) do %>
+ Живой офис. Супер-предложения!
+<%end%>
+
+<% content_for(:sort) do %>
+
+    <!-- сортировка -->
+
+<%= render :partial=>'/part2/super_menu' , :first => @first %>
+     <!--  сортировка конец  -->
+<% end %>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+<% content_for(:cont) do %>
+
+
+
+   <script type="text/javascript" src="/javascripts/function.js"></script>
+
+   <div class="novelty_title" style="margin-bottom: 10px; font-weight: bold;">Супер-предложения! <%=@name.name if @name%> </div>
+
+
+     <div id="tovar">
+
+
+
+<%= will_paginate @tg  %>
+
+ <table width="100%" border="0" style="background-color:#a770af; color:white; text-align: center; font-size: 11px; line-height: 25px;">
+  <tr>
+    <td style="width:65px;">Вид </td>
+     <td style="width:70px;"> Код каталога </td>
+     <td> Наименование товара </td>
+       <td style="width:80px;"> Цена </td>
+        <td style="width:80px;"> Корзина</td>
+  </tr>
+</table>
+
+       <% for tg in @tg do %>
+
+ <% @cat=Cat1.find(tg.id)  %>
+
+
+ <div class="grn11" id="<%=@cat.id%>" >
+<%= render(:partial => 'kt1/cat22',:object =>@cat,:object=>@tov3) %>
+
+
+ </div>
+
+
+
+
+
+
+
+    <% end %>
+
+<%= will_paginate @tg %>
+     </div>
+
+
+<%  end %>
+
+
+
+

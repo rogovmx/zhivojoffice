@@ -1,0 +1,44 @@
+<%  @questions = Question.find_by_id(1) %>
+<div id="opros"  style="text-align: left; margin-left: 90px;">
+<%  question = @questions %>
+      <%= question.qestion %>
+ <br/> <br/>
+  <% form_for :q_answ, :url=>{:controller =>"desk_subjs" , :action => "q_answ" } do |f| %>
+
+    <%= f.radio_button(:user_answ, "1") %>
+    <%= f.label('user_answ_1' , question.answ1) %>
+    <br/>
+
+    <%= f.radio_button(:user_answ, "2") %>
+    <%= f.label('user_answ_2' , question.answ2) %>
+    <br/>
+
+    <%= f.radio_button(:user_answ, "3") %>
+    <%= f.label('user_answ_3' , question.answ3) %>
+    <br/>
+
+    <%= f.radio_button(:user_answ, "4") %>
+    <%= f.label('user_answ_4' , question.answ4) %>
+    <br/>
+     <br/>
+
+    <% unless login? %>
+    <%= f.hidden_field  :user_id,:value=>0 %>
+    <% else %>
+    <%= f.hidden_field  :user_id,:value=>@user.id %>
+    <%end%>
+    <%= f.hidden_field  :q_id,:value=>question.id %>
+    <%= f.submit("Ответить")   %>
+  <% end %>
+
+<% unless login? %>
+
+     <%else%>
+     <%if @user.id == 2019 %>
+     <%= link_to  'Результаты' ,{ :controller=>'desknews' , :action=>'opros' , :id=>'1'} %>
+     <% end %>
+     <% end %>
+
+
+
+</div>

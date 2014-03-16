@@ -1,0 +1,33 @@
+<% content_for(:cont) do %>
+ <script type="text/javascript" src="/javascripts/function.js"></script>
+ <h2> Просмотр коллекции </h2>
+<br /> <%= link_to 'Все коллекции' , :action=>'coll' %>   <br /> <br />
+
+
+ <div style="border: 1px solid green; margin-bottom: 10px; color: green; padding: 5px;">
+   <div style="padding: 3px; background-color: green; height: 25px;">
+<%= button_to 'Редактировать коллекцию' , {:action=>'edit_coll' , :id=>@coll.id} , :style=>'color: green; display: inline; float:left; ' %>
+<%= button_to 'Удалить коллекцию' , {:action=>'destroy_coll' , :id=>@coll.id} , :style=>'color: red; float:right;  display: inline;',  :confirm=>'Точно удалить?' %>  <br/>
+</div>
+<ul style="list-style-position: inside; ">
+<%for cat in @coll.cat1 do %>
+  <li><%= cat.k1c %> <%= link_to  cat.name , :controller=>'kt3' , :action=>'tov', :id=>cat.id %>  </li>
+
+<% end %>
+</ul>
+   <input type="button" onclick="tog('coll<%=@coll%>')" style="cursor: pointer; color:indigo;" value="Подробнее >>" />
+         <div id="coll<%=@coll%>" style="display: none;">
+     <%for @cat in @coll.cat1 do %>
+  <%= render(:partial => 'cat_col',:cat =>@cat ) %>
+
+<% end %>
+     </div>
+
+ </div>
+
+
+
+<br /> <%= link_to 'Все коллекции' , :action=>'coll' %>  <br /> <br />
+
+
+<% end %>

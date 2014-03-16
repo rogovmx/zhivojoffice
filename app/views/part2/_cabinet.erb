@@ -1,0 +1,44 @@
+<% if login? %>
+
+
+<div class="main_cabinet">
+<div class="floatleft" >
+  <div class="ddheader2" id="b3-ddheader" onmouseover="ddMenu('b3',1)" onmouseout="ddMenu('b3',-1)" style="">
+    <% if @user.role3 == 'stat' %>
+        <span style=" font-weight:bold;"> Статистика </span>
+    <% elsif @user.role == 'user' or @user.role == 'poduser'%>
+          <%= link_to image_tag('/images2/cabinet.png') , {:controller=>'cabinet' , :action => 'reg_data'}  %>
+    <% elsif @user.role == 'redaktor' %>
+        <span style=" font-weight:bold;"> Кабинет редактора</span>
+    <% elsif @user.role == 'manager' %>
+        <span style=" font-weight:bold;"> Кабинет менеджера</span>
+    <% elsif @user.role == 'callcentr' %>
+        <span style=" font-weight:bold; ">Регистрации, клиенты и пр.</span>
+   <% else %>
+        <span style=" font-weight:bold;">Администрирование</span>
+   <% end %>
+
+  </div>
+  <div class="ddcontent2" id="b3-ddcontent" onmouseover="cancelHide('b3')" onmouseout="ddMenu('b3',-1)" style="left: -118px;">
+    <div class="ddinner2">
+    <% if @user.role3 == 'stat' %>
+        <%= render :partial=>'/part2/stat_menu' %>
+    <% elsif @user.role == 'user'%>
+       <%= render :partial=>'/part2/cab_menu' %>
+    <% elsif @user.role == 'poduser'%>
+       <%= render :partial=>'/part2/poduser_menu' %>
+    <% elsif @user.role == 'redaktor' %>
+      <%= render :partial=>'/part2/redaktor_menu' %>
+    <% elsif @user.role == 'manager' %>
+      <%= render :partial=>'/part2/manager_menu' %>
+    <% elsif @user.role == 'callcentr' %>
+       <%= render :partial=>'/part2/call_menu' %>
+   <% else %>
+       <%= render :partial=>'/part2/cab_menu' %>
+   <% end %>
+
+    </div>
+  </div>
+</div>
+</div>
+  <%end%>

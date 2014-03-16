@@ -1,0 +1,53 @@
+<% content_for(:cont) do %>
+<h1>Редактирование пользователя</h1>
+<%=@ww%>
+<%= error_messages_for :user %>
+
+<% form_for(@user) do |f| %>
+  <p>
+    <b>Имя</b><br />
+    <%= f.text_field :scr_name %>
+  </p>
+
+  <p>
+    <b>Отчество</b><br />
+    <%= f.text_field :patronymic %>
+  </p>
+
+  <p>
+    <b>Фамилия</b><br />
+    <%= f.text_field :surname %>
+  </p>
+
+  <p>
+    <b>Телефон</b><br />
+    <%= f.text_field :phone %>
+  </p>
+
+  <p>
+    <b>Мобильный телефон</b><br />
+    <%= f.text_field :m_phone %>
+  </p>
+  <p>
+    <b>E-mail</b><br />
+    <%= f.text_field :mail %>
+  </p>
+
+  <p>
+    <b>ИНН</b><br />
+    <%= f.text_field :inn %>
+  </p>
+
+  <p>
+    <b>Название компании</b><br />
+    <%= f.text_field :company_ind %>
+  </p>
+
+  <p>
+    <%= f.submit "Обновить" %>
+  </p>
+<% end %>
+
+
+<%#= link_to 'Вернуться', :controller=>:cabinet  %>
+<%end%>

@@ -1,0 +1,7 @@
+<% form_for :podarok ,:url=>{:controller =>"podarok" , :action => "save_new_podarok" } do |f| %>
+         <%=  f.hidden_field :k1c, :value=>@cat1.k1c  %>
+         <%= f.label :sign , 'Тип подарка' %>
+         <%= f.text_field :sign %>
+         <br/>
+         <%= f.submit"Сохранить"%>   <span style=" color: red; font-weight: bold; cursor: pointer;" onclick="zp('edit_p2')"> Не сохранять </span>
+        <% end %>

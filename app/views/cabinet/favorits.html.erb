@@ -1,0 +1,57 @@
+<% content_for(:cont) do %>
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="it_title">
+  Избранные товары
+</div>
+
+    <div style="width:695px;vertical-align: bottom;">
+      <span id="sel2" style="font-family: Arial; font-size: 11px; color: #808285; font-weight:bold;position:relative;top:-3px;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 10px;"onchange=perp($F('br11')); >
+   <%= options_for_select([5,10,15,20], @per_page.to_i) %>
+    </select></span>
+       <%= will_paginate @it_tov  %>  </div>
+
+
+<table border="0" width="695px;" style="background-color:#A770AF; color:white; text-align: center; font-size: 11px; line-height: 25px;">
+  <tbody><tr>
+    <td style="width:65px;">Вид </td>
+     <td style="width:70px;"> Код </td>
+     <td> Наименование товара </td>
+       <td style="width:80px;"> Цена </td>
+        <td style="width:80px;"> Корзина</td>
+        <td style="width:60px;"> </td>
+  </tr>
+</tbody></table>
+
+    <table border="0">
+     <tr>
+ 
+    <td valign="top">
+      <% @it_tov.each do |it_tov| %>
+
+
+   <% @cat=Cat1.find_by_k1c(it_tov.k1c) %>
+
+      <div id="<%=@cat.tg%>">
+
+ <div class="grn11" id="<%=@cat.id%>" >
+<%= render(:partial => '/cabinet/cat_it',:object =>@cat) %>
+
+ </div>
+      </div>
+        <%end%>
+      
+    </td>
+ 
+      </tr>
+      </table>
+      <%= will_paginate @it_tov ,:style=>'font-size:9px;text-align:left;width: 250px;float:left;vertical-align: bottom;'%>
+<%end%>
+
+
+
+
+ 

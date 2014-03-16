@@ -1,0 +1,23 @@
+<div>
+  <% if @show == 1 and session[:city] == 'spb' %>
+  <%=link_to image_tag('/images2/kofevarka.gif') ,:controller=>'act'  %>
+  <% elsif @show == 2  and session[:city] == 'spb'%>
+  <%=link_to image_tag('/images2/spa_spb.gif') ,:controller=>'act'  %>
+  <% elsif @show == 1 and session[:city] == 'msk' %>
+  <%=link_to image_tag('/images2/kofevarka.gif') ,:controller=>'act'  %>
+  <% elsif @show == 2  and session[:city] == 'msk'%>
+  <%=link_to image_tag('/images2/spa_msk.gif') ,:controller=>'act'  %>
+  <% end %>
+
+</div>
+<div class="act_bott_links">
+  <%#= image_tag('/images2/vsegda-v-zhivom-office.gif')  %>
+  <div style="width: 530px; height: 23px; background-color:#efefef"></div>
+  <% if @show == 1 %>
+  <%= link_to_remote image_tag('/images2/a.gif',:class=>"act_btn_lnk1") , :url=>{:controller=>'kt1' , :action=>'act_mebel' , :show=>1}     %>
+   <%= link_to_remote image_tag('/images2/n.gif' , :class=>'act_btn_lnk2') , :url=>{:controller=>'kt1' , :action=>'act_mebel' , :show=>2} %>
+   <% elsif @show == 2 %>
+  <%= link_to_remote image_tag('/images2/n.gif',:class=>"act_btn_lnk1") , :url=>{:controller=>'kt1' , :action=>'act_mebel' , :show=>1}     %>
+   <%= link_to_remote image_tag('/images2/a.gif' , :class=>'act_btn_lnk2') , :url=>{:controller=>'kt1' , :action=>'act_mebel' , :show=>2} %>
+  <% end %>
+ </div>

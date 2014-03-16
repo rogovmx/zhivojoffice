@@ -1,0 +1,24 @@
+
+<h1>Новый элемент списка выбора для <%= @btg1har.name  %> </h1>
+
+<% form_for(@btg1har) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+   
+    <%= f.hidden_field :btg1_id , :value=>params[:id].to_i %>
+  </p>
+  <p>
+   
+    <%= f.hidden_field :s , :value=>params[:s].to_i %>
+  </p>
+  <p>
+    <%= f.label 'элемент списка выбора' %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Добавить' %>
+  </p>
+<% end %>
+
+<%= link_to 'Вернуться',{:controller=>'btg1s', :action=>'edit', :id=>params[:id]} %>

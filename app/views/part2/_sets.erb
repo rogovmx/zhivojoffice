@@ -1,0 +1,38 @@
+<% p1 =  findprice('7774973434')
+   p2 =  findprice('7774973435')
+   p3 =  findprice('7774973436')
+   p4 =  findprice('7774975558')
+
+   op1 =  get_old_price('7774973434')
+   op2 =  get_old_price('7774973435')
+   op3 =  get_old_price('7774973436')
+   op4 =  get_old_price('7774975558')
+
+   cat1 = Cat1.find_by_k1c('7774973434')
+   cat2 = Cat1.find_by_k1c('7774973435')
+   cat3 = Cat1.find_by_k1c('7774973436')
+   cat4 = Cat1.find_by_k1c('7774975558')
+
+%>
+
+
+
+<div style="margin-bottom: 10px; position: relative;">
+  <p style="position: absolute; top:155px; left: 2px;"><span style="font-size: 11px; text-decoration:  line-through;"><%= op1%> </span> <br/> <%=p1 %>   </p>
+  <p style="position: absolute; top:155px; left: 140px;"><span style="font-size: 11px; text-decoration:  line-through;"><%= op2%> </span> <br/> <%=p2 %>   </p>
+  <p style="position: absolute; top:155px; left: 280px;"><span style="font-size: 11px; text-decoration:  line-through;"><%= op3%> </span> <br/> <%=p3 %>   </p>
+  <p style="position: absolute; top:155px; left: 418px;"><span style="font-size: 11px; text-decoration:  line-through;"><%= op4%> </span> <br/> <%=p4 %>   </p>
+
+<img src="/images2/sets.jpg" usemap="#karta"/>
+<map name="karta">
+<% if cat1.vis %> <area shape="rect" coords="0,0,132,185" title="АКЦИЯ Набор Добро пожаловать (для нового сотрудника)" href="/kt3/set/35311" /> <% end %>
+
+ <% if cat2.vis %> <area shape="rect" coords="132,0,265,185" href="/kt3/set/35283" title="АКЦИЯ Набор Все в порядке (для уборки офиса)"/> <% end %>
+
+ <% if cat3.vis %> <area shape="rect" coords="265,0,398,185" href="/kt3/set/35284" title="АКЦИЯ Набор Чаепитие в офисе"/> <% end %>
+
+ <% if cat4.vis %> <area shape="rect" coords="398,0,530,185" href="/kt3/set/52855" title="АКЦИЯ Набор Печенье Бискотти Вишн.мармелад + Кофе Carte Noire, 2 г (25 шт/уп)+ сок в подарок"/><% end %>
+</map>
+
+
+</div>

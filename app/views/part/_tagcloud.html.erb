@@ -1,0 +1,6 @@
+
+<ul>
+  <% @tagc.each do |tagc| %>
+<li><span class="tag-cloud-<%=tagc.styleTag%>"><a href="<%=tagc.link%>" title="<%= tagc.name %>"><%= tagc.name %></a></span></li>
+<%end%>
+</ul>

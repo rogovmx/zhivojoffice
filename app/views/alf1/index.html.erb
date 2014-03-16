@@ -1,0 +1,60 @@
+<% content_for(:tit) do %>
+Живой ОФис. Алфавитный указатель.
+<% end %>
+
+<% content_for(:cont) do %>
+
+<%cache(:fragment=>'alf') do%>
+<div class="fiol_title">Алфавитный указатель</div>
+
+<%  flag=0 %>
+<% @ages.each do |ag| %> 
+  
+<div class="brend_serch" >
+<%converter1=Iconv.new('UTF-8','Windows-1251')%>
+    <%  ag1=converter1.iconv(ag) %>
+
+  <div class="litefiol_title" onclick="tog('<%='br'+flag.to_s %>')">
+<%= ag1 %>
+    <img src="/images2/arrow_d.png" width="10px" style="position: absolute; top: 10px; right: 10px;"/> </div>
+
+  <table border="0" style="width: 100%; <%='display: none;' if flag>3 %> " cellspacing="2" id="br<%=flag%>" ><tr>
+    <% @brend.each do |brend| %>
+
+    <% ff=brend.name %>
+   <%  converter=Iconv.new('Windows-1251','UTF-8') %>
+    <%  ff1=converter.iconv(ff) %>
+    <% if ff1[0,1]==ag %>
+        <% flag +=1 %>
+        <td width="174px" align="left" valign="top" style="border-bottom: 1px dashed #000000;">
+   
+      <% tov3=Tov3.find :first , :conditions=> ["name=?",brend.name] %>
+<%= link_to  brend.name ,:controller=>'kt3',:action=>'tg_v',:id=>tov3.id %>
+
+        </td>
+       
+    
+      <% if (flag % 4)==0 %>
+</tr><tr>
+        <%end%>
+      <%end%>
+
+    <%end%>
+  <% @d= flag%4 %>
+
+        <%if @d >0%>
+        <% (4-@d).times do %>
+        <td  style="border-bottom: 1px dashed #000000;"> </td>
+        <% end %>
+        <%end%>
+
+    </tr></table>
+
+</div>
+
+<%end%>
+
+
+<%end%>
+<%end%>
+

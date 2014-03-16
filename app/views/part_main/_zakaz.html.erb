@@ -1,0 +1,18 @@
+
+<table cellpadding="0" cellspacing="0" style="width: 100%;" >
+  <tr>
+    <td style="text-align: left;">
+      <span class="good_price"> <%= @good.price  %> р. </span>
+    </td>
+    <td style="text-align: right;">
+      <div id="zakaz_<%=@good.id%>" class="zakaz">
+      <%  remote_form_for :cart  , :url=>{:controller=>'main',:action=> "create_cart" ,:id=>@good.id}, :class=>"zakaz" do |f| %>
+        <%= f.text_field :quantity , :value =>'1' %>
+        <%= f.submit '' %>
+      </div>
+      <% end  %> 
+    </td>
+  </tr>
+
+
+</table>

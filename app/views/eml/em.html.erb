@@ -1,0 +1,42 @@
+
+<% content_for(:cont) do %>
+<div class="green_title">
+  Восстановление пароля
+</div>
+
+<div  style="font-weight: bold; margin-top: 30px;">
+  &nbsp; Пожалуйста введите E-mail на который Вы регистрировались:
+</div>
+<div id="pass1" style="width:100%; font-weight: bold; margin-top: 30px;">
+
+<form name="email" method="get" action="/eml/pass">
+
+
+  <input type="text" id="qq" name="email" style=" width: 400px; height: 23px;"/>
+  &nbsp; &nbsp;<input  type="submit" value="ОТПРАВИТЬ" style=" background-color: #f15a26; border: none; color: white; width: 120px; height: 27px; padding: 1px; cursor: pointer;"/>
+
+
+</form>
+</div>
+
+
+<div  style="font-weight: bold; margin-top: 30px; width: 500px;">
+  Если Вы не помните E-mail, обратитесь в  
+  
+  <span style="color: green;"  title="(812)324-80-50, доб. 1290">
+
+              <script language="JavaScript">
+<!-- Begin
+user = "support";
+site = "zhivojoffice.ru";
+document.write('<a style="text-decoration:none; color: green;" href="mailto:' + user + '@' + site + '\">');
+document.write('службу поддержки сайта' + '</a>');
+// End -->
+</script>
+  </span>, либо позвоните <span style="color:green;"> (812)324-80-50, доб. 1290. </span>
+
+
+</div>
+
+
+<%end%>

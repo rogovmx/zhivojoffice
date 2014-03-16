@@ -1,0 +1,24 @@
+<div>
+  <% if session[:city] == 'spb'
+    items = Action.find(3).actionitems.sort{|a , b| a.sort <=> b.sort}
+    item = items[@show - 1]
+    elsif session[:city] == 'msk'
+    items = Action.find(4).actionitems.sort{|a , b| a.sort <=> b.sort}
+    item = items[@show - 1]
+    end
+  %>
+
+  <%= link_to image_tag("/images2/#{item.pic}" ), "#{item.link}" , :title => item.title  if item%>
+</div>
+
+<div class="act_bott_links">
+  <% for n in items  do %>
+  <% if n.sort == @show  %>
+  <%= link_to_remote image_tag("/images2/act_butt/act_butt_a#{n.sort}.jpg") , :url=>{:controller=>'kt1' , :action=>'act_always' , :show=>n.sort}  %>
+  <% else %>
+  <%= link_to_remote image_tag("/images2/act_butt/act_butt_n#{n.sort}.jpg") , :url=>{:controller=>'kt1' , :action=>'act_always' , :show=>n.sort}  %>
+  <%end%>
+  <% end if items%>
+
+
+ </div>

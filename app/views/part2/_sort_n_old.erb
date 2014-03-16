@@ -1,0 +1,60 @@
+
+    <!-- сортировка -->
+    <div class="sort_title">
+      сортировать по
+    </div>
+
+  <div class="sortirovka" >
+
+
+
+<div class="sort_col">
+    <div class="sort_subtitle">
+      цене:
+    </div>
+
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='pa' or params[:order]== nil %>">
+
+<%= link_to 'по возрастанию',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'pa',:filtr=>params[:filtr]} , :rel=>'nofollow'  %>
+    </li>
+<li class="<%='sort_act' if params[:order]=='pd'%>">
+<%= link_to 'по уменьшению',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'pd',:filtr=>params[:filtr]}  , :rel=>'nofollow'%>
+    </li>
+  </ul>
+
+
+    <div class="sort_subtitle">
+      наименованию:
+    </div>
+
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='na'%>">
+    <%= link_to 'по алфавиту',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'na',:filtr=>params[:filtr]} , :rel=>'nofollow' %>
+       </li>
+    <li class="<%='sort_act' if params[:order]=='nd'%>">
+  <%= link_to 'в обратном порядке',{:controller=>'kt3',:action=>'tg_n2',:id=>params[:id],:order=>'nd' ,:filtr=>params[:filtr]} , :rel=>'nofollow'%>
+    </li>
+  </ul>
+</div>
+
+
+
+<div class="sort_col">
+    <div class="sort_subtitle">
+      брендам:
+    </div>
+
+
+    <%#= select("brend","", Cat1.find_by_sql(['select distinct brend from cat1s where tov3_id =? order by ? ',params[:id],params[:order]] ).collect {|p| [ p.brend, p.brend ] } ,{:prompt => 'Выберите название бренда'}) %>
+
+  <% @brend1=Cat1.find_by_sql(["select distinct brend from cat1s where tov3_id =? and vis=? and not( brend like '% %')",params[:id],1 ]).map{|u| [u.brend ,u.brend] if u.brend != ''}.compact %>
+       <select id="br1" onchange="filtr1_v($F('br1'),<%=params[:id]%>,'<%=params[:order]%>');">
+       <option value="1" >Все бренды&nbsp;</option>
+     <%= options_for_select(@brend1,params[:filtr]) %>
+     </select>
+
+</div>
+ <div class="clear"> </div>
+
+</div>

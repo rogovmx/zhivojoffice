@@ -1,0 +1,47 @@
+
+<div id=zakaz_<%= @cake.id %> >
+  <% update='zakaz_'+@cake.id.to_s %>
+
+<% remote_form_for :cakecart  , :url=>{:controller=>'cake1s', :action=>'create_cart'} do |f| %>
+<%# form_for :cakecart , :controller=>'cake1s', :action=>'create_cart' do |f| %>
+
+ <%= f.hidden_field :session_id ,:value=> request.session_options[:id] %>
+ <%if @user%>
+ <%= f.hidden_field :user_id ,:value=>@user.id  %>
+  <% else %>
+  <%= f.hidden_field :user_id ,:value=>''  %>
+ <%end%>
+ 
+ <%= f.hidden_field :price, :value=> @cake.price %>
+ <%= f.hidden_field :cake1_id, :value=> @cake.id %>
+<%= f.hidden_field :quantity ,:value=>1, :style=>'width: 20px' %>
+
+
+
+   <div class="weight">
+        вес:
+        <% %w{3 4 5 6 7 8 9 10}.each do |ff| %>
+     
+      <%if f=='3' %>
+        <%= f.radio_button(:weight , ff , :checked=>'on') %>
+        <%else%>
+         <%= f.radio_button(:weight , ff ) %>
+        <% end %>
+    <%= f.label(ff ,ff.to_s + 'кг') %>
+        <% end %>
+
+    
+      </div>
+    <br/>
+      <div class="fill" >
+       
+       выбрать наполнитель: <br/>
+<%= f.collection_select(:filler1_id, Filler1.all, :id, :name) %> <span style="float:right;"><%= f.submit '' %> </span>
+
+      </div>
+    
+    <% end %>
+
+
+ 
+</div>

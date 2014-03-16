@@ -1,0 +1,23 @@
+ <% @price=Nprice1.find :first ,:conditions=>["k1c=?",@cat.k1c] %>
+
+ <% if @price %>
+  
+     
+       <% if @price.z2  %>
+          <% uprice=@price.z2 %>
+          <%=number_to_currency(uprice, :unit => '',:delimiter=>' ')%>р.&nbsp;
+       <%else%>
+      <% uprice=@price.pp %>
+      <%=number_to_currency(uprice, :unit => '',:delimiter=>' ')%>р.&nbsp;
+      <%end%>
+        
+         
+       <%# Mailer.deliver_np(@cat.id,@cat.k1c,@cat.tov3_id) %>
+
+             
+       <% @uprice=uprice %>
+             
+
+<% else %>
+      
+<% end %>

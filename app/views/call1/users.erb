@@ -1,0 +1,92 @@
+<% content_for(:cont) do %>
+<div style=" margin-top: 30px;">
+  <div>
+<h3> Поиск пользователя </h3>
+
+<% form_tag do%>
+<%= text_field_tag :fuser , params[:fuser] , :style=>'width: 300px;' %>
+<%= submit_tag 'Искать' %>
+<span style="font-weight: bold;"> По ФИО, названию компании, телефону, почте, ИНН </span>
+<% end %>
+  </div>
+  
+<div>
+<h3 style="margin-top: 25px;"> Поиск клиента </h3>
+
+<% form_tag do%>
+<%= text_field_tag :client , params[:client] , :style=>'width: 300px;' %>
+<%= submit_tag 'Искать' %> <span style="font-weight: bold;"> По коду 1С, названию компании, ИНН, КПП </span>
+<% end %>
+</div>
+</div>
+
+<div style="min-height: 200px; padding: 3px; background-color:  oldlace; border: 1px solid #808285; margin-top: 15px;">
+<% if @find and @find.size == 0  %>
+
+<h2 style="color: red;">По вашему запросу ни чего не найдено. </h2>
+<% end %>
+
+<% if @fusers and @fusers.any? %>
+<h2 style="color:#9db029;"> По запросу «<%=@search %>» найдено записей: <%= @fusers.size %>   </h2>
+
+
+<table class="cab_sotr" cellspacing="0" cellpadding="0" border="0">
+  <tr style="color:white;background-color:#808285; height: 25px;">
+    <th>Компания </th>
+    <th>ИНН </th>
+    <th>ФИО </th>
+
+    <th>E-mail </th>
+    <th>Телефон </th>
+    <th>Город </th>
+    <th></th>
+
+  </tr>
+<% @fusers.each do |user| %>
+  <tr  style="background-color:<%= cycle('white;','#eeeeee;')%>">
+    <td> <%= user.company_ind %>  </td>
+    <td> <%= user.inn %>   </td>
+    <td> <%= user.surname %>  <%= user.scr_name %>   <%= user.patronymic %>   </td>
+
+    <td> <%= user.mail %>   </td>
+    <td> <%= user.phone %>   </td>
+    <td> <%= user.city %>   </td>
+    <td> <%= link_to 'Ред.', {:action =>'edit_user2' , :id=>user.id} , :style=>'color: green;' %>   </td>
+
+  </tr>
+<%end %>
+</table>
+<% end %>
+
+
+<% if @fclients and @fclients.any? %>
+<h2> По запросу <%=@search %> найдено записей: <%= @fclients.size %>   </h2>
+
+
+<table class="cab_sotr" cellspacing="0" cellpadding="0" border="0">
+  <tr style="color:white;background-color:#808285; height: 25px;">
+    <th>Компания </th>
+    <th>ИНН </th>
+    <th>КПП </th>
+    <th>Код 1С </th>
+
+    <th></th>
+
+  </tr>
+<% @fclients.each do |user| %>
+  <tr  style="background-color:<%= cycle('white;','#eeeeee;')%>">
+    <td> <%= user.name %>  </td>
+    <td> <%= user.inn %>   </td>
+    <td> <%= user.kpp %> </td>
+    <td> <%= user.k1c %>   </td>
+    <td> <%= link_to 'Ред.', {:action =>'edit_client' , :id=>user.id} , :style=>'color: green;'%>   </td>
+
+  </tr>
+<%end %>
+</table>
+<% end %>
+</div>
+
+
+
+<% end %>

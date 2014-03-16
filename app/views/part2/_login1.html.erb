@@ -1,0 +1,41 @@
+ <div id="up_login" class="sha" style="display: none;" >
+
+ <div>
+   
+    <% form_tag  :controller=>'login',:action=>'login' do %>
+      <p style="margin-bottom: 5px;"><b>
+        Логин или E-mail:<br/>
+        <%= text_field_tag :name, params[:name] ,:class=>'st1' , :onblur=>"delspace('name')"%>
+        </b>
+      </p>
+
+      <p style="margin-bottom: 5px;">
+        <b>
+        Пароль:<br/>
+        <%= password_field_tag :password, params[:password],:class=>'st1' %>
+        </b>
+      </p>
+
+        <p style="height: 16px;">
+        <b>
+        Запомнить меня на этом компьютере:
+        
+        <%= check_box_tag :save, params[:save] %>
+        </b>
+      </p>
+
+      <p style="margin-bottom: 5px; padding-top: 0px; margin-top: 0px;">
+<%= submit_tag "Войти" ,:class=>'st' , :style=>'margin-top: 5px;' %>
+      
+        <a style="margin-left: 65px;" href="#" onclick="zp('up_login');">Закрыть</a>
+      </p>
+      <p >
+
+<%= link_to "Забыли пароль?" ,{:controller=>'eml',:action=>'em'} , :style=>'font-size: 10px;' %>
+      </p>
+    <% end %>
+
+ </div>
+  
+</div>
+

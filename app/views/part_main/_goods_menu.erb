@@ -1,0 +1,35 @@
+<div id="pl" style="position: absolute; top: 51px; left: 0px; background-color: transparent; z-index: 10000; width: 142px; height: 40px; cursor: pointer;" onclick="zp('pl')" >
+
+</div>
+<ul id="nav">
+	<li class="top"> <%= image_tag('/images3/all_goods.jpg' , :style=>'margin-top: 3px;' , :onmouseout=>"show_id('pl')") %>
+          <ul class="sub">
+          <% for razdel in Razdel1.all do %>
+                  <li class="mid"> <%=link_to razdel.link ,"/#{razdel.link}" , :class=>'fly'%>
+                          <ul>
+                                <% for first in First1.find(:all , :conditions => ['kod > ? and kod < ?',razdel.id*100, (razdel.id+1)*100 ] , :order => 'kod') do %>
+                                <li><%=link_to first.name ,"/#{razdel.link}" , :class=>'fly'%>
+                                        <ul>
+                                          <% for tov2 in first.tov2 do%>
+
+                                            <li> <%=link_to tov2.name ,{:controller=>'kt3', :action=>'tg_v2' , :id=>tov2.id} , :class=>'fly'%>
+                                                  <ul>
+                                                    <% for tov3 in tov2.tov3.find_all{|x| x.vis} do%>
+                                                    <li><%=link_to tov3.name ,{:controller=>'kt3', :action=>'tg_v' , :id=>tov3.id} %> </li>
+                                                    <% end %>
+                                                  </ul>
+                                            </li>
+
+                                          <% end %>
+                                        </ul>
+                                </li>
+                                <% end %>
+                          </ul>
+                  </li>
+          <% end %>
+          </ul>
+
+
+	</li>
+</ul>
+

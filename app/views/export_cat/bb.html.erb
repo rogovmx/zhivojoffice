@@ -1,0 +1,161 @@
+<table border="1">
+  <tr>
+    <td>
+  <%#    converter=Iconv.new('UTF-8','Windows-1251')%>
+       <%   converter=Iconv.new('Windows-1251//IGNORE','UTF-8')%>
+ <% ss='Наименование' %>
+ <%=converter.iconv(ss) %>
+         <%#   converter1=Iconv.new('Windows-1252','Windows-1251')%>
+       <%# ss2=converter1.iconv(ss1) %>
+ 
+    </td>
+
+   <td>   <%=converter.iconv('Характеристики') %>   </td>
+
+    <td>
+
+       <% ss6='Количество'%>
+       <%=converter.iconv(ss6) %>
+     
+    </td>
+    <td>
+
+       <% ss8='Цена'%>
+       <%=converter.iconv(ss8) %>
+
+    </td>
+    <td>
+
+       <% ss10='Сумма'%>
+       <%=converter.iconv(ss10) %>
+
+    </td>
+  </tr>
+  <%@total=0%>
+<% @cat1.each do |cat11| %>
+  <% cat1=Cat1.find_by_k1c(cat11) %>
+
+  <tr>
+    <td>
+      <%= converter.iconv(cat1.fullname) %>
+    </td>
+    <td>
+       <% k1c=cat1.k1c %>
+  <% @bcat1=Bcat1.find_by_s1(k1c) %>
+  
+<% if @bcat1 %>
+<% @btg1=Btg1.find_by_id(@bcat1.btg1_id) %>
+<% if @btg1.s3 !='no' and @bcat1.s3!='no' and @bcat1.s3 !='' %>
+     <%= converter.iconv(@btg1.s3) %>: <%=converter.iconv(@bcat1.s3)%> <br />
+<% end %>
+<% if @btg1.s4 !='no' and @bcat1.s4!='no' and @bcat1.s4 !='' %>
+ <%= converter.iconv(@btg1.s4) %>:<%=converter.iconv(@bcat1.s4)%> <br />
+<% end %>
+<% if @btg1.s5 !='no' and @bcat1.s5!='no' and @bcat1.s5 !='' %>
+<%= converter.iconv(@btg1.s5) %>: <%=converter.iconv(@bcat1.s5)%> <br />
+<% end %>
+<% if @btg1.s6 !='no' and @bcat1.s6!='no' and @bcat1.s6 !='' %>
+<%= converter.iconv(@btg1.s6) %>: <%=converter.iconv(@bcat1.s6)%> <br />
+<% end %>
+<% if @btg1.s7 !='no' and @bcat1.s7!='no' and @bcat1.s7 !='' %>
+<%= converter.iconv(@btg1.s7) %>: <%=converter.iconv(@bcat1.s7)%> <br />
+<% end %>
+<% if @btg1.s8 !='no' and @bcat1.s8!='no' and @bcat1.s8 !=''%>
+<%= converter.iconv(@btg1.s8) %>: <%=converter.iconv(@bcat1.s8)%> <br />
+<% end %>
+<% if @btg1.s9 !='no' and @bcat1.s9!='no' and @bcat1.s9 !='' %>
+<%= converter.iconv(@btg1.s9) %>: <%=converter.iconv(@bcat1.s9)%> <br />
+<% end %>
+<% if @btg1.s10 !='no' and @bcat1.s10!='no' and @bcat1.s10 !='' %>
+<%= converter.iconv(@btg1.s10) %>: <%=converter.iconv(@bcat1.s10)%> <br />
+<% end %>
+<% if @btg1.s11 !='no' and @bcat1.s11!='no' and @bcat1.s11 !='' %>
+<%= converter.iconv(@btg1.s11) %>: <%=converter.iconv(@bcat1.s11)%> <br />
+<% end %>
+<% if @btg1.s12 !='no' and @bcat1.s12!='no' and @bcat1.s12 !='' %>
+<%= converter.iconv(@btg1.s12) %>: <%=converter.iconv(@bcat1.s12)%> <br />
+<% end %>
+<% if @btg1.s13 !='no' and @bcat1.s13!='no' and @bcat1.s13 !=''%>
+<%= converter.iconv(@btg1.s13) %>: <%=converter.iconv(@bcat1.s13)%> <br />
+<% end %>
+<% if @btg1.s14 !='no' and @bcat1.s14!='no' and @bcat1.s14 !='' %>
+<%= converter.iconv(@btg1.s14) %>: <%=converter.iconv(@bcat1.s14)%> <br />
+<% end %>
+<% if @btg1.s15 !='no' and @bcat1.s15!='no' and @bcat1.s15 !=''%>
+<%= converter.iconv(@btg1.s15) %>: <%=converter.iconv(@bcat1.s15)%> <br />
+<% end %>
+<% if @btg1.s16 !='no' and @bcat1.s16!='no' and @bcat1.s16 !=''%>
+<%= converter.iconv(@btg1.s16) %>: <%=converter.iconv(@bcat1.s16)%> <br />
+<% end %>
+<% if @btg1.s17 !='no' and @bcat1.s17!='no' and @bcat1.s17 !=''%>
+<%= converter.iconv(@btg1.s17) %>: <%=converter.iconv(@bcat1.s17)%> <br />
+<% end %>
+<% if @btg1.s18 !='no' and @bcat1.s18!='no' and @bcat1.s18 !=''%>
+<%= converter.iconv(@btg1.s18) %>: <%=converter.iconv(@bcat1.s18)%> <br />
+<% end %>
+<% if @btg1.s19 !='no' and @bcat1.s19!='no' and @bcat1.s19 !=''%>
+<%= converter.iconv(@btg1.s19) %>: <%=converter.iconv(@bcat1.s19)%> <br />
+<% end %>
+<% if @btg1.s20 !='no' and @bcat1.s20!='no' and @bcat1.s20 !=''%>
+<%= converter.iconv(@btg1.s20) %>: <%=converter.iconv(@bcat1.s20)%> <br />
+<% end %>
+<% if @btg1.s21 !='no' and @bcat1.s21!='no' and @bcat1.s21 !=''%>
+<%= converter.iconv(@btg1.s21) %>: <%=converter.iconv(@bcat1.s21)%> <br />
+<% end %>
+<% if @btg1.s22 !='no' and @bcat1.s22!='no' and @bcat1.s22 !=''%>
+<%= converter.iconv(@btg1.s22) %>: <%=converter.iconv(@bcat1.s22)%> <br />
+<% end %>
+<% if @btg1.s23 !='no' and @bcat1.s23!='no' and @bcat1.s23 !=''%>
+<%= converter.iconv(@btg1.s23) %>: <%=converter.iconv(@bcat1.s23)%> <br />
+<% end %>
+<% if @btg1.s24 !='no' and @bcat1.s24!='no' and @bcat1.s24 !=''%>
+<%= converter.iconv(@btg1.s24) %>: <%=converter.iconv(@bcat1.s24)%> <br />
+<% end %>
+<% if @btg1.s25 !='no' and @bcat1.s25!='no' and @bcat1.s25 !=''%>
+<%= converter.iconv(@btg1.s25) %>: <%=converter.iconv(@bcat1.s25)%> <br />
+<% end %>
+<% if @btg1.s26 !='no' and @bcat1.s26!='no' and @bcat1.s26 !='' %>
+<%= converter.iconv(@btg1.s26) %>: <%=converter.iconv(@bcat1.s26)%> <br />
+<% end %>
+<% if @btg1.s27 !='no' and @bcat1.s27!='no' and @bcat1.s27 !=''%>
+<%= converter.iconv(@btg1.s27) %>: <%=converter.iconv(@bcat1.s27)%> <br />
+<% end %>
+<% if @btg1.s28 !='no' and @bcat1.s28!='no' and @bcat1.s28 !='' %>
+<%= converter.iconv(@btg1.s28) %>: <%=converter.iconv(@bcat1.s28)%> <br />
+<% end %>
+<% if @btg1.s29 !='no' and @bcat1.s29!='no' and @bcat1.s29 !=''%>
+<%= converter.iconv(@btg1.s29) %>: <%=converter.iconv(@bcat1.s29)%> <br />
+<% end %>
+<% if @btg1.s30 !='no' and @bcat1.s30!='no' and @bcat1.s30 !='' and @bcat1.s30 !=nil%>
+<%= converter.iconv(@btg1.s30) %>: <%=converter.iconv(@bcat1.s30)%> <br />
+<% end %>
+
+<%end%>
+
+
+    </td>
+
+    <td>
+      <%@quan=Konkursitem.find :first,:conditions=>['konkursorder_id=? and k1s=?',params[:id],k1c]%>
+     <%=@quan.quantity%>
+    </td>
+    <td>
+       <%#=cat1.price%>
+       <% @price=Nprice1.find_by_k1c(cat1.k1c)%>
+      <%= @price.pp %>
+    </td>
+    <td>
+       <%=@summ=@quan.quantity*@price.pp%>
+      <%#=@quan.quantity%>
+      <%@price.pp%>
+      <% @total +=@summ %>
+    </td>
+  </tr>
+
+<% end %>
+    <tr>
+    <td colspan="5" ><%=converter.iconv('Общая сумма') %> <%=@total%> </td>
+  </tr>
+</table>
+
+

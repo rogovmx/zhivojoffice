@@ -1,0 +1,23 @@
+<h1>Новое меню</h1>
+
+<% form_for(@main1) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+      <%= f.cktext_area :content, :toolbar=>'Full', :width=>'100%', :heigth=>'100%' %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', main1s_path %>

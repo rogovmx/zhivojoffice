@@ -1,0 +1,87 @@
+
+<div id="top_index">
+  <div style="position: relative; position: relative; z-index: 11000; background-color: white;">
+
+  <noindex>
+
+    <a href="/" class="a_logo"><img src="/images3/logo_s.jpg" alt="Живой Офис" style="" /></a>
+
+  <div class="phone">
+    
+    <% if session[:city]=='spb' or session[:city]==nil %>
+    <span style="font-size: 28px; text-shadow: 1px 1px 1px #f47920;">+7 (812) </span>
+    <span style="font-weight: bold; font-size: 28px; color:#f47920; text-shadow: 1px 1px 1px #f47920;" >324 80 50</span> 
+    <% elsif session[:city]=='msk' %>
+    <span style="font-size: 28px; text-shadow: 1px 1px 1px #f47920;">+7 (495) </span>
+    <span style="font-weight: bold; font-size: 28px; color:#f47920; text-shadow: 1px 1px 1px #f47920;" >730 30 77</span>
+    <% elsif session[:city]=='smo' %>
+    <span style="font-size: 28px; text-shadow: 1px 1px 1px #f47920;">+7 (4812) </span>
+    <span style="font-weight: bold; font-size: 28px; color:#f47920; text-shadow: 1px 1px 1px #f47920;" >24 44 24</span>
+    <% end %>
+
+  </div>
+
+                <div class="choose_city">
+                  <span style=" font-weight: bold; display: inline-block; color: #f47920;">
+              <% if session[:city]=='spb' or session[:city] == nil %>
+             Санкт-Петербург
+               <%elsif session[:city]=='msk'%>
+              Москва
+              <%elsif session[:city]=='smo'%>
+              Смоленск
+                <% end %>  
+                  </span> <br/>
+             <span  onclick="tog('cities')" style="color: #999999; text-decoration:underline; cursor: pointer;"> другой город </span>
+             
+              <div id="cities" style="display: none;" onmouseover="show_id('cities')" onmouseout="zp('cities')" >
+               <%= link_to 'Санкт-Петербург' ,{:controller=>'kt1', :action=>'set_city', :city=>'spb'} ,{:class=>'city_a'} %> <br/>
+               <%= link_to 'Москва'  ,{:controller=>'kt1', :action=>'set_city', :city=>'msk'} ,{:class=>'city_a'}  %> <br/>
+               <%= link_to 'Смоленск'  ,{:controller=>'kt1', :action=>'set_city', :city=>'smo'} ,{:class=>'city_a'}  %>
+        
+              </div>
+
+
+                </div>
+
+   </noindex>
+
+
+  <div class="main_top_right_menu">
+
+    <a href="/"> покупателям </a> | <a href="/"> обратная связь </a> |
+                      <%unless login?%>
+   <a href="#" onclick="show_id('r11')" class="top_link4 login"> вход </a>
+
+   |  <a href="#" onclick="gopage('/login/add_user')">регистрация</a>
+
+                  <%else%>
+   <span class="user_name">Здравствуйте  <%= user_name %> ! </span>
+                  <a class="top_link4 reg" href="/login/logout">выход</a>
+                  <%end%>
+
+
+  <div id="r11" style="display: none"> <%=  render :partial=>'/part2/login1' %> </div>
+  </div>
+
+  <div class="main_menu">
+
+   
+    <%= render :partial => '/part_main/goods_menu' %>
+
+    <%= render :partial => '/part_main/search' %>
+
+    <span class="cart_comp">
+      <span id="comp"> <a href="/bas1/edit_cart" rel="nofollow"><img src ="/images3/top_comp.jpg" /> Сравнение </a> </span>
+      <span id="cart"> <a href="/bas1/edit_cart" rel="nofollow"> <img src ="/images3/top_cart.jpg" /> Корзина </a> </span>
+    </span>
+  </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+

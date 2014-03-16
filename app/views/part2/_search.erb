@@ -1,0 +1,26 @@
+                  <div id="search_div" >
+                 
+               <% unless  controller.controller_name == 'kt1' %>
+                    <div id="s_cat_menu">
+                     <%= link_to image_tag("/images2/alltov_a.jpg" , :alt=>"Все товары" , :style=>"float: left; border-bottom: 3px solid white; " ), :controller=>'kt3' , :action=>'sitemap' %>
+               
+               <div id="all_tov_menu"  >
+                <%cache 'left_menu_cat' do%>
+                    <%= render :partial => '/part2/left_menu2_cat' %>
+                <% end %>
+                </div>
+
+                  </div>
+               <% end %>
+
+                   <form name="search_form" method="get" action="/search/index" id="ser2">
+                    <input type=”text” id="ser22" name="search" value="<%=@text %>" placeholder="Выбирайте из 12 000 товаров!" />
+                       <input id="ser_butt" type="submit" value=""/>
+                          <%= link_to 'искать по брендам', {:controller=>'brends'} , :style=>'margin-left: 100px;' %>   <%= link_to 'искать по алфавиту', :controller=>'alf1' %>
+                    </form>
+                   
+                        
+                 
+
+
+                  </div>

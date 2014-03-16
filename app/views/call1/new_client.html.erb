@@ -1,0 +1,28 @@
+<% content_for(:cont) do %>
+<div id="cabinet_first">
+<%  inn=@new_user.inn %>
+  <%  @client=Client.find :first ,:conditions=>["inn=?",inn] %>
+<%= @client.name %>
+
+
+  
+  <!--
+ <%# form_for :client,:url=>{ :action=>'first1',:id_nu=>params[:id]} do |f| %>
+
+
+  <p>
+
+    <%#= f.text_field :Name %>
+  </p>
+  <p>
+   <%#= f.select(:vid_id,@vid)%>
+
+  </p>
+  <p>
+    <%#= f.submit "Далее" %>
+  </p>
+<%# end %>
+  -->
+</div>
+
+<%end%>

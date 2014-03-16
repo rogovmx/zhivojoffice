@@ -1,0 +1,43 @@
+<style type="text/css">
+#top_header td a.city_a {padding: 0px; color: #999999;}
+#top_header td a.city_a:hover {color:#00aeef;}
+</style>
+
+<div id="top_header" style="position: relative; z-index: 999;">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+          <!--    <td><a class="top_link1" href="">рус&nbsp;/&nbsp;eng</a></td> -->
+              <td><a class="top_link2" href="http://www.zhivojoffice.ru/contacts">контакты</a></td>
+              <td><a class="top_link3" href="/pr">о проекте</a></td>
+              <td valign="bottom" >
+
+                <div style="position: relative;  color:#00aeef; font-weight: normal; text-align: right;">
+              <% if session[:city]=='spb' or session[:city] == nil %>
+             Санкт-Петербург
+               <%elsif session[:city]=='msk'%>
+              Москва
+              <%elsif session[:city]=='smo'%>
+              Смоленск
+               <% end %>
+              <span id="set_city" onclick="show_id('change_city')" style="color: #999999; cursor: pointer;">| выбрать другой город </span>
+              <div id="change_city" style="display: none; position: absolute; right: 0px; text-align: left; width: 110px; padding: 5px; border: 1px solid #999999; background-color: white;" onmouseover="show_id('change_city')" onmouseout="zp('change_city')" >
+               <%= link_to 'Санкт-Петербург' ,{:controller=>'kt1', :action=>'set_city', :city=>'spb'} ,{:class=>'city_a'} %> <br/>
+               <%= link_to 'Москва'  ,{:controller=>'kt1', :action=>'set_city', :city=>'msk'} ,{:class=>'city_a'}  %> <br/>
+               <%= link_to 'Смоленск'  ,{:controller=>'kt1', :action=>'set_city', :city=>'smo'} ,{:class=>'city_a'}  %>
+              </div>
+                </div>
+
+              </td>
+              <!--   <td class="rails_login" id="rl"> -->
+              <td  id="rl"  style="text-align:right;">
+                  <%unless login?%>
+                        <%= link_to_remote "войти" ,{:url=>{:controller=>'kt1',:action=>'log1'},:update=>'r11',:html=>{:class=>'top_link4 login '}},:href => url_for(:controller=>'login',:action => "login"),:class=>'top_link4 login '%>
+                        <a class="top_link4 reg" href="/login/add_user">регистрация</a>
+                  <%else%>
+                  Здравствуйте  <%= user_name %> !                     <a class="top_link4 reg" href="/login/logout">выйти</a>
+                  <%end%>
+                  <div id="r11"> </div>
+             </td>
+            </tr>
+          </table>
+        </div>

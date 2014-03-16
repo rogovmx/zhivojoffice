@@ -1,0 +1,48 @@
+<h1>Listing zakaz1s</h1>
+
+<table>
+  <tr>
+    <th>Country</th>
+    <th>Region</th>
+    <th>Dep city</th>
+    <th>Dep date</th>
+    <th>Adl num</th>
+    <th>Chil num</th>
+    <th>Duration</th>
+    <th>Food type</th>
+    <th>Hotel grade</th>
+    <th>Cost from</th>
+    <th>Cost to</th>
+    <th>Name</th>
+    <th>Mail</th>
+    <th>Phone</th>
+    <th>Dop</th>
+  </tr>
+
+<% @zakaz1s.each do |zakaz1| %>
+  <tr>
+    <td><%=h zakaz1.country %></td>
+    <td><%=h zakaz1.region %></td>
+    <td><%=h zakaz1.dep_city %></td>
+    <td><%=h zakaz1.dep_date %></td>
+    <td><%=h zakaz1.adl_num %></td>
+    <td><%=h zakaz1.chil_num %></td>
+    <td><%=h zakaz1.duration %></td>
+    <td><%=h zakaz1.food_type %></td>
+    <td><%=h zakaz1.hotel_grade %></td>
+    <td><%=h zakaz1.cost_from %></td>
+    <td><%=h zakaz1.cost_to %></td>
+    <td><%=h zakaz1.name %></td>
+    <td><%=h zakaz1.mail %></td>
+    <td><%=h zakaz1.phone %></td>
+    <td><%=h zakaz1.dop %></td>
+    <td><%= link_to 'Show', zakaz1 %></td>
+    <td><%= link_to 'Edit', edit_zakaz1_path(zakaz1) %></td>
+    <td><%= link_to 'Destroy', zakaz1, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New zakaz1', new_zakaz1_path %>

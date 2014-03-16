@@ -1,0 +1,33 @@
+<% content_for(:cont) do %>
+
+ <script type="text/javascript" src="/javascripts/function.js"></script>
+ <h2>Сопутствующие товары</h2>
+<br/>
+<%= will_paginate @st  %>
+<br />
+
+<%  for st in @st do %>
+<% @cat=st %>
+<input type="button" style="color: green; font-weight: bold; cursor: pointer; position: relative; top: 9px;" onclick="tog('st<%=st.id%>')" value="Показать сопутствующие товары" />
+<%= render(:partial => 'cat_st_main',:object =>@cat) %>
+      <%#=link_to st.name , :controller=>'kt3' , :action=>'tov', :id=>st.id %>
+
+<div id="st<%=st.id%>" style="display: none;">
+<%for @col in st.collection do %>
+<% @tmp=Cat1.find_by_k1c(@col.k1c) %>
+<%#= link_to  @tmp.name , :controller=>'kt3' , :action=>'tov', :id=>@tmp.id if @tmp%>  
+<% @cat=@tmp %>
+<%= render(:partial => 'cat_st',:cat =>@cat, :col=>@col ) %>
+<% end %>
+</div>
+<hr/>
+<% end %>
+
+<br/>
+<%= will_paginate @st  %>
+<br />
+
+
+<br /> <br />
+
+<% end %>

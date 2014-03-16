@@ -1,0 +1,24 @@
+
+<div class="up_menu">
+  <% if @content.id == 1 %>
+  <%= link_to 'Главная' , {:action=>'index'} , :class => 'act'  %>
+  <%= link_to 'Наши цены' , {:action=>'price'} %>
+  <%= link_to 'Контакты' , {:action=>'contacts'}  %>
+  <%= link_to 'Информация' , {:action=>'info'}  %>
+  <% elsif @content.id == 2 %>
+    <%= link_to 'Главная' , {:action=>'index'}   %>
+  <%= link_to 'Наши цены' , {:action=>'price'} , :class => 'act'%>
+  <%= link_to 'Контакты' , {:action=>'contacts'}  %>
+  <%= link_to 'Информация' , {:action=>'info'}  %>
+  <% elsif @content.id == 3 %>
+    <%= link_to 'Главная' , {:action=>'index'}  %>
+  <%= link_to 'Наши цены' , {:action=>'price'} %>
+  <%= link_to 'Контакты' , {:action=>'contacts'} , :class => 'act'  %>
+  <%= link_to 'Информация' , {:action=>'info'}  %>
+  <% elsif @content.id == 4 %>
+    <%= link_to 'Главная' , {:action=>'index'}   %>
+  <%= link_to 'Наши цены' , {:action=>'price'} %>
+  <%= link_to 'Контакты' , {:action=>'contacts'}  %>
+  <%= link_to 'Информация' , {:action=>'info'} , :class => 'act' %>
+<% end %>
+</div>

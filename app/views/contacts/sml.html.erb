@@ -1,0 +1,144 @@
+<% content_for(:tit) do%>
+Живой офис. Контакты 
+<%  end %>
+
+<% content_for(:cont) do %>
+
+<div style="width:750px;">
+<h2 style ="color:red;">«Живой офис» в Смоленске</h2>
+<br><br>
+<div style="border-bottom:2px dashed #E7E7E7">
+
+    <table cellspacing="0" cellpadding="8" style="color:#A0A0A0">
+<tbody>
+
+<tr>
+  <td><script src="http://api-maps.yandex.ru/1.1/?key=AIZJlU4BAAAAa1wKLQIAWKQv4fS-Xys0EfTYg3deoZp_qIEAAAAAAAAAAACiudEZon20A2Z6hAmILYS89F2k-Q==&modules=pmap&wizard=constructor" type="text/javascript"></script>
+<script type="text/javascript">
+    YMaps.jQuery(window).load(function () {
+        var map = new YMaps.Map(YMaps.jQuery("#YMapsID-4522")[0]);
+        map.setCenter(new YMaps.GeoPoint(32.058393,54.767209), 16, YMaps.MapType.MAP);
+        map.addControl(new YMaps.Zoom());
+        map.addControl(new YMaps.ToolBar());
+        YMaps.MapType.PMAP.getName = function () { return "Народная"; };
+        map.addControl(new YMaps.TypeControl([
+            YMaps.MapType.MAP,
+            YMaps.MapType.SATELLITE,
+            YMaps.MapType.HYBRID,
+            YMaps.MapType.PMAP
+        ], [0, 1, 2, 3]));
+
+        YMaps.Styles.add("constructor#pmgnmPlacemark", {
+            iconStyle : {
+                href : "http://api-maps.yandex.ru/i/0.3/placemarks/pmgnm.png",
+                size : new YMaps.Point(28,29),
+                offset: new YMaps.Point(-8,-27)
+            }
+        });
+
+       map.addOverlay(createObject("Placemark", new YMaps.GeoPoint(32.05893,54.766477), "constructor#pmgnmPlacemark", "Живой офис - регионы"));
+
+        function createObject (type, point, style, description) {
+            var allowObjects = ["Placemark", "Polyline", "Polygon"],
+                index = YMaps.jQuery.inArray( type, allowObjects),
+                constructor = allowObjects[(index == -1) ? 0 : index];
+                description = description || "";
+
+            var object = new YMaps[constructor](point, {style: style, hasBalloon : !!description});
+            object.description = description;
+
+            return object;
+        }
+    });
+</script>
+
+<div id="YMapsID-4522" style="width:450px;height:350px"></div></td></span> <br>
+<td valign ="top" style="padding-left:15px;"><span style="color:gray; font-weight:bold;">Офис</span></br>
+214019, Смоленск, ул. Крупской, д.30Б <br/>
+Телефон: +7 (4812) 24-44-24 <br/>
+Время работы: с 9:00 до 18:00<br/>
+Выходные — суббота, воскресенье<br/>
+</span>
+</td>
+</tr>
+
+</tbody>
+</table>
+<br>
+</div>
+
+
+
+<br/>
+
+
+
+<br>
+
+<br>
+
+
+<br>
+<br>
+<div style="border-bottom:2px dashed #E7E7E7">
+
+        <table cellspacing="0" cellpadding="8" style="color:#A0A0A0">
+<tbody>
+
+<tr>
+  <td><!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту  (начало) -->
+<script src="http://api-maps.yandex.ru/1.1/?key=AIZJlU4BAAAAa1wKLQIAWKQv4fS-Xys0EfTYg3deoZp_qIEAAAAAAAAAAACiudEZon20A2Z6hAmILYS89F2k-Q==&modules=pmap&wizard=constructor" type="text/javascript"></script>
+<script type="text/javascript">
+    YMaps.jQuery(window).load(function () {
+        var map = new YMaps.Map(YMaps.jQuery("#YMapsID-5527")[0]);
+        map.setCenter(new YMaps.GeoPoint(32.023933,54.797713), 16, YMaps.MapType.MAP);
+        map.addControl(new YMaps.Zoom());
+        map.addControl(new YMaps.ToolBar());
+        YMaps.MapType.PMAP.getName = function () { return "Народная"; };
+        map.addControl(new YMaps.TypeControl([
+            YMaps.MapType.MAP,
+            YMaps.MapType.SATELLITE,
+            YMaps.MapType.HYBRID,
+            YMaps.MapType.PMAP
+        ], [0, 1, 2, 3]));
+
+        YMaps.Styles.add("constructor#pmgnmPlacemark", {
+            iconStyle : {
+                href : "http://api-maps.yandex.ru/i/0.3/placemarks/pmgnm.png",
+                size : new YMaps.Point(28,29),
+                offset: new YMaps.Point(-8,-27)
+            }
+        });
+
+       map.addOverlay(createObject("Placemark", new YMaps.GeoPoint(32.024469,54.797044), "constructor#pmgnmPlacemark", "Склад компании ООО \"Живой офис Регион\"<br/>Смоленск, ул. Кашена, д. 23"));
+
+        function createObject (type, point, style, description) {
+            var allowObjects = ["Placemark", "Polyline", "Polygon"],
+                index = YMaps.jQuery.inArray( type, allowObjects),
+                constructor = allowObjects[(index == -1) ? 0 : index];
+                description = description || "";
+
+            var object = new YMaps[constructor](point, {style: style, hasBalloon : !!description});
+            object.description = description;
+
+            return object;
+        }
+    });
+</script>
+
+<div id="YMapsID-5527" style="width:450px;height:350px"></div>
+<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (конец) --></td>
+  <td valign ="top" style="padding-left:15px;"><span style="color:gray; font-weight:bold;">Склад</span><br>
+214012, Смоленск, ул. Кашена, д. 23</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<br><br>
+</div>
+</div>
+
+<%end%>
+

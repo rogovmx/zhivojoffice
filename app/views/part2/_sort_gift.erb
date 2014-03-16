@@ -1,0 +1,48 @@
+
+    <!-- сортировка -->
+    <div class="sort_title">
+      сортировать по
+    </div>
+
+  <div class="sortirovka" >
+
+
+
+<div class="sort_col">
+    <div class="sort_subtitle">
+      цене:
+    </div>
+
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='pa' or params[:order]== nil %>">
+
+<%= link_to 'по возрастанию',:controller=>'kt3',:action=>'gifts',:id=>params[:id],:order=>'pa' %>
+    </li>
+<li class="<%='sort_act' if params[:order]=='pd'%>">
+<%= link_to 'по уменьшению',:controller=>'kt3',:action=>'gifts',:id=>params[:id],:order=>'pd'%>
+    </li>
+  </ul>
+
+
+
+</div>
+
+
+
+<div class="sort_col">
+    <div class="sort_subtitle">
+      наименованию:
+    </div>
+
+  <ul>
+    <li class="<%='sort_act' if params[:order]=='na'%>">
+    <%= link_to 'по алфавиту',:controller=>'kt3',:action=>'gifts',:id=>params[:id],:order=>'na' %>
+       </li>
+    <li class="<%='sort_act' if params[:order]=='nd'%>">
+  <%= link_to 'в обратном порядке',:controller=>'kt3',:action=>'gifts',:id=>params[:id],:order=>'nd'%>
+    </li>
+  </ul>
+</div>
+
+ <div class="clear"> </div>
+</div>

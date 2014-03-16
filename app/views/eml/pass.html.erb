@@ -1,0 +1,45 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+  .cp a {color:white; text-decoration: none;}
+   .cp {width: 150px; height: 17px; background-color:#f15a26; padding: 3px; text-align: center; vertical-align: middle; margin-top: 5px; }
+</style>
+
+
+<div class="green_title" style="width: 650px;">
+  Восстановление пароля: <%=params[:email]%>
+</div>
+
+<div style="margin-top: 30px; margin-bottom: 30px; font-weight: bold; width: 650px;">
+  Список Ваших регистраций. Выберите нужную и нажмите продолжить.
+  После этого Вам будет отправлено письмо с сылкой, перейдя по которой Вы сможете в Личном кабинете изменить пароль.
+</div>
+
+
+<% m=0 %>
+<% @mail.each do |mail| %>
+<% m +=1 %>
+<div style="font-size:small; border-bottom: 1px dotted #999999; margin-bottom: 5px; padding: 5px; width: 650px;">
+
+<% @client=Client.find :first, :conditions=>["id=?",mail.client1_id] %>
+  <b>Ваш логин:&nbsp; <span style="color: green">  <%=  mail.name%> </span> </b>
+
+  <br/>
+<%if @client and @client.name %>
+<b>Компания:&nbsp; <span style="color: green">  <%=@client.name%> </span> </b>  <br/>
+<%end%>
+<div class="cp">
+<%= link_to 'ПРОДОЛЖИТЬ',:controller=>'eml' ,:action=>'ppp',:id=>mail.id %>
+</div>
+   
+</div>
+<%end%>
+<% if m == 0 %>
+<div style="color:red; font-size: large; height: 100px; width: 500px;">
+Данного адреса электронной почты нет в базе, возможно Вы ошиблись при вводе.
+<br/>
+
+</div>
+<a href="/eml/em">Вернуться к вводу адреса</a>
+<% else %>
+  <% end %>
+<%end%>

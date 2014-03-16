@@ -1,0 +1,37 @@
+<% content_for(:cont) do %>
+
+
+<% form_for 'victs[]',:url=>{:action=>'update'} do |f| %>
+<h2>Редактирование викторины</h2>
+    <table class="info_tab" cellpadding="2" cellspacing="0" style="margin-top: 20px;" >
+
+    <%  @victs.each do |@victs| %>
+
+      <tr style="background-color: <%=cycle('#ffffff','#f5f5f5') %> ">
+      <td>
+        <div  style=" margin-bottom: 5px;">
+          <span style="color: green; font-weight: bold; margin-bottom: 5px; "> <%= @victs.id %> вопрос:</span>   <%= f.text_area :question , :style=>'margin-top: 5px; width: 900px; height:40px; font-weight: bold;' %>
+        </div>
+        <div style=" margin-bottom: 5px;">
+     
+     № пр. отв.: <%= f.text_field :right_q , :style=>'width: 20px; margin-right: 5px; ' %>
+    Ответ 1: <%= f.text_field :answ1  , :style=>'width: 200px; height:20px; margin-right: 5px;'  %>
+     Ответ 2: <%= f.text_field :answ2  , :style=>'width: 200px; height:20px;  margin-right: 5px;'  %>
+    Ответ 3: <%= f.text_field :answ3  , :style=>'width: 200px; height:20px;  margin-right: 5px;'  %>
+      </div
+    </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td style="color: red; font-weight: bold;">
+        <%= f.submit 'Сохранить' %> Если делаешь новую викторину, ОЧИСТЬ ТАБЛИЦЫ, СЕСТРА!
+        <div id="clt" style="display: inline; margin-left: 20px;">  <%= link_to_remote 'Очистить таблицы', :url=>{:controller=>'victorinaedit', :action=>'crush'} ,:update=>'clt' %> </div>
+      </td>
+
+    </tr>
+
+    </table>
+
+ <% end %>
+
+<% end %>

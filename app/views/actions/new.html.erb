@@ -1,0 +1,25 @@
+<% content_for(:cont) do %>
+<h1>New action</h1>
+
+<% form_for(@action) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :auto %><br />
+    <%= f.check_box :auto %>
+  </p>
+  <p>
+    <%= f.label :frecuency %><br />
+    <%= f.text_field :frecuency %>
+  </p>
+  <p>
+    <%= f.submit 'Создать' %>
+  </p>
+<% end %>
+
+<%= link_to 'Назад', actions_path %>
+<% end %>

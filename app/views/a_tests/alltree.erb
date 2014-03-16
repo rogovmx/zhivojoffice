@@ -1,0 +1,13 @@
+<table>
+  <% for razdel in @razdels do %>
+      <% for first1 in First1.find(:all , :conditions=>['kod >= ? and kod < ? ', razdel.id*100, (razdel.id+1)*100]) do %>
+          <% for tov2 in first1.tov2 do %>
+              <% for tov3 in tov2.tov3 do %>
+                <tr>
+                  <td> <%= razdel.name%>  </td> <td>  <%=first1.name  %> </td> <td> <%= tov2.name%>  </td> <td>  <%= tov3.name%> </td>
+                </tr>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% end %>
+</table>

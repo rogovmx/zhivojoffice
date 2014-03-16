@@ -1,0 +1,9 @@
+# TODO Operate on the page object
+#page.insert_html :bottom,:partial=>'/kt1/tvc'
+#page.replace_html 'bar1', :partial=>'/part/oc'
+#
+#page.replace_html 'dis',"iiiii"
+  id=params[:id]
+  update='zakaz_'+ id.to_s
+page.replace_html update  , :partial=>'/kt3/tvc'
+page.replace_html 'bar11', oc(id)

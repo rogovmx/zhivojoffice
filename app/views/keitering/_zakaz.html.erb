@@ -1,0 +1,52 @@
+
+
+<div id=zakaz_<%= @s.id %> >
+
+
+  <% update='zakaz_'+@s.id.to_s %>
+
+<% remote_form_for :keit_cart , :url=>{:controller=>'keitering', :action=>'create_cart', :id=>@s.id}  do |f| %>
+
+
+ <%= f.hidden_field :session_id ,:value=> request.session_options[:id] %>
+ <%if @user%>
+ <%= f.hidden_field :user_id ,:value=>@user.id  %>
+  <% else %>
+  <%= f.hidden_field :user_id ,:value=>''  %>
+ <%end%>
+
+ <%= f.hidden_field :price, :value=> @s.price %>
+ <%= f.hidden_field :name, :value=> @s.name %>
+   <%= f.hidden_field :keitering_id, :value=> @s.id %>
+
+
+  <table>
+    <tr> <td>
+          <table width="50px" cellpadding="0" cellspacing="0" style="border: 1px solid #99CCCC; height: 18px;" > <tr>
+            <td valign="top" style="padding-top: 2px; padding-left: 3px;">
+    <%= f.text_field :quantity ,:value=> 1 ,:size=>2,:class=>'in_right',:style=>'width: 30px; border:0px solid white;', :id=>@s.id.to_s+'pm' %>
+            </td> <td valign="middle" style="padding-top: 1px;" >
+              <div >
+              <img src="/images/arr_up_down.gif" width="9" height="18" border="0" usemap="#<%=@s.id.to_s+'pmap'%>" />
+<map name="<%=@s.id.to_s+'pmap'%>" id="<%=@s.id.to_s+'pmap'%>">
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick=" var ss555=getElementById('<%=@s.id.to_s+'pm' %>');ss555.value++;" />
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick=" var ss=getElementById('<%=@s.id.to_s+'pm'%>');if( ss.value>1) ss.value--;" /></map>
+              </div>
+            </td> </tr> </table> </td>
+            <td style="text-align: right;">
+
+              <%= f.submit 'заказать' , :class=>'z_v' , :style=>'padding-left:0px;'%>
+            </td> </tr>
+  </table>
+      <% end %>
+  <div id="zakazk_<%=@s.id.to_s %>">
+    <% @tvc=KeitCart.find :first,:conditions=>['session_id=? and keitering_id=?',request.session_options[:id], @s.id] %>
+    <% if @tvc  %>
+    <a href="/keitering/edit_cart" style="color: #999999; text-decoration: underline;">Товар в корзине </a>
+    <% end %>
+
+
+  </div>
+
+
+</div>

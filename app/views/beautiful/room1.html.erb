@@ -1,0 +1,30 @@
+<% content_for(:tit) do %>
+Хочу красивый офис 
+  <%end%>
+
+
+<% content_for(:cont) do %>
+
+<span>
+  <a href="#tov" onclick="return anchorScroller(this)"> <img src="/images2/hko_01.jpg" width="730px" style="float: left;" /> </a>
+</span>
+
+
+<div class="b_r_links">
+  <a href="/beautiful/room2">
+    <div class="b_r2"> </div>
+  </a>
+    <a href="/beautiful/room3">
+    <div class="b_r3"> </div>
+  </a>
+    <a href="/beautiful/room4">
+    <div class="b_r4"> </div>
+  </a>
+</div>
+
+<%= render :partial=>'tovar' %>
+<a name="tov"> </a>
+
+
+
+<%end%>

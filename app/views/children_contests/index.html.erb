@@ -1,0 +1,38 @@
+<% content_for(:tit) do %>
+Редактирование Котиков
+<% end  %>
+<% content_for(:cont) do %>
+<style type="text/css">
+table {  border-bottom: 1px dashed #b1b3b6; padding-bottom: 10px; margin-top: 10px; }
+.press a { font-size: 11px; margin-top: 10px; color: #808285;}
+.press p { margin-bottom: 10px; margin-top: 10px;}
+.press .img { float: left; display: inline; margin-right: 10px; }
+.press h3  {width: 500px; display: inline; }
+</style>
+
+<h2 style="color: red;">Список Котиков</h2>
+
+
+
+
+    <div style="margin-top: 15px; ">
+      <%= button_to "Добавить котика", new_children_contest_path %>
+    </div>
+    <% @children_contests.each do |contest| %>
+      <table class="press">
+        <tr>
+          <td>
+            <%= image_tag("cat_images/#{contest.image}", :width => "200px") %>
+          </td>
+          <td style="padding: 0px 10px; vertical-align: top; width: 100%;">
+            <h3 style="margin-bottom: 10px;"><%= contest.description %></h3>
+          </td>
+        </tr>
+      </table>
+      <div style="margin-bottom: 10px; padding: 5px; background-color:  #ededed;">
+        <%= button_to 'Изменить', edit_children_contest_path(contest) , :style=>'float: left; margin-right: 20px;' , :method=>'get' %>
+        <%= button_to 'Удалить', contest, :confirm => 'Вы уверены, что хотите удалить котика?', :method => :delete  , :style=>'float: right;'%>
+      </div>
+    <% end %>
+<% end %>
+

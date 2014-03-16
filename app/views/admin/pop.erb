@@ -1,0 +1,24 @@
+<h1>Редактирование Популярных направлений </h1>
+
+<table>
+  <tr>
+
+    <th>Название</th>
+
+  </tr>
+
+<% @countrs.each do |countr| %>
+  <tr>
+
+    <td><%=h countr.name %></td>
+
+
+    <td><%= link_to 'Редактировать', edit_countr_path(countr) %></td>
+    <td><%= link_to 'Удалить', countr, :confirm => 'Точно удалить?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новое направление', new_countr_path %>

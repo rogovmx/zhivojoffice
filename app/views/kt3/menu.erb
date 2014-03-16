@@ -1,0 +1,16 @@
+<% content_for(:cont) do %>
+
+<div id="all_cont">
+  <div id="left_menu2">
+    <%= render :partial=>'/part2/left_menu2' ,:kod=>@id %>
+  </div>
+
+  <div id="left_submenu">
+
+     <%= render :partial=>'/part2/left_submenu' ,:k=>@k , :name=>@name %>
+  </div>
+
+
+</div>
+
+<% end %>

@@ -1,0 +1,74 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+
+.need_form_item1 {padding-top: 10px; color: #f15a26; clear: both; }
+.need_form_item2 {float:left; margin-top: 10px; color: #f15a26; }
+.need_form_item3 {float:right; color: #f15a26; margin-top: 10px; text-align: right }
+.need_form_item4 {margin-top: 20px; color: #f15a26; }
+.need_form_item5 {float:left; margin-top: 10px; color: #87bc40; }
+
+ #zkvof .need_button input {text-align: right; margin-top: 20px; width: 122px; height: 30px; background: url(/images/need_button.jpg); border: none; margin-left: 182px; cursor: pointer;}
+.need_form_item1 input {width:260px}
+.need_form_item2 input {width:260px}
+.need_form_item3 input {width:70px; float: right}
+.need_form_item4 textarea {width:535px; height: 60px;}
+.need_form_item5 input {width:260px}
+#zz1_quest
+{
+width: 305px;
+}
+
+</style>
+  <div style="width: 540px;">
+<div>
+  
+  У вас есть срочные вопросы ? <br />
+  <span style="color:#f15a26; font-size: 13px">ЗАКАЖИТЕ ЗВОНОК И МЫ ПОЗВОНИМ ВАМ! </span>
+</div>
+    <br />
+    <div id="zkvof">
+  <% if @msg %>
+     <%= @msg %>
+  <% else %>
+<% form_for :zz1, :url=>{:action=>'callme'} do |f| %>
+  <%= f.error_messages %>
+      <div>
+  <div class="need_form_item1">
+    <%= f.label 'Тема звонка' %> <br />
+  <%  quest = ['Узнать цену' ,'Узнать наличие товара','Узнать сроки поставки','Нужна помощь в оформлении заказа ','Другое'] %>
+    <%=f.select :quest,quest  %>
+  </div>
+
+   <div class="need_form_item2">
+    <%= f.label 'Ваше имя' %> <br />
+    <%= f.text_field :name , :style=>'width: 300px;'%>
+  </div>
+
+   <div class="need_form_item1">
+    <%= f.label 'Компания'  %> <br />
+    <%= f.text_field :company , :style=>'width: 300px;'%>
+  </div>
+
+      <div class="need_form_item2">
+    <%= f.label 'Ваш телефон'%> <br />
+    <%= f.text_field :phone  , :style=>'width: 300px;'%>
+   
+ </div>
+
+<!--
+<input type="text" name="zz1[phone_cel]" id="zz1_phone_cell">
+-->
+
+
+        <div class="need_button" style="width: 535px; float: left;">
+    <%= f.submit "" %>
+  </div>
+      </div>
+<% end%>
+<% end %>
+    </div>
+ <br /><br />
+  
+  </div>
+<%end%>
+

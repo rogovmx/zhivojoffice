@@ -1,0 +1,75 @@
+<% content_for(:cont) do %>
+
+
+
+
+<% form_for :user11 ,:url=>{:action=>'upd_user2', :id=>@user.id , :page=>params[:page]} do |f| %>
+
+<h3 style="margin-top: 15px;"> Дата регистрации: <%= @user.created_at.to_date %> </h3>
+
+<table class="reg_tab" cellspacing="0" cellpadding="8" style="border: 1px solid #ff2d54; margin-top: 30px;" >
+<tbody>
+<tr style="background-color: #ff2d54; color: white; padding-left: 10px; height: 25px;">
+  <th colspan="2" valign="center" style="padding-left: 10px;" > Редактрование пользователя </th>
+</tr>
+
+<tr>
+<td style="">  Имя: </td><td class="bl"> <%= f.text_field :scr_name ,:value=>@user.scr_name %> </td>
+</tr>
+<tr>
+<td>  Отчество: </td><td class="bl"><%= f.text_field :patronymic,:value=>@user.patronymic %> </td>
+</tr>
+<tr>
+<td>  Фамилия: </td><td class="bl"> <%= f.text_field :surname,:value=>@user.surname %> </td>
+</tr>
+<tr>
+<td>  Компания: </td><td class="bl"><%= f.text_field :company_ind ,:value=>@user.company_ind%> </td>
+</tr>
+<tr>
+<td>  ИНН: </td><td class="bl"> <%= f.text_field :inn,:value=>@user.inn %> </td>
+</tr>
+<tr>
+<td>  Телефон: </td><td class="bl" > <%= f.text_field :phone,:value=>@user.phone %> </td>
+</tr>
+<tr>
+<td>  Мобильный телефон: </td><td class="bl"> <%= f.text_field :m_phone ,:value=>@user.m_phone%> </td>
+</tr>
+<tr>
+<td>  Почта: </td><td class="bl"> <%= f.text_field :mail,:value=>@user.mail %> </td>
+</tr>
+
+<tr>
+<td>  Город: </td><td class="bl">  <select name="user11[city]" id="user11_city" style="width:314px; ">
+  <option value="Санкт-Петербург" <%= 'selected="selected"' if @user.city == 'Санкт-Петербург' %> >Санкт-Петербург</option>
+  <option value="Москва" <%= 'selected="selected"' if @user.city == 'Москва' %> >Москва</option>
+  <option value="Смоленск" <%= 'selected="selected"' if @user.city == 'Смоленск' %> >Смоленск</option>
+</select> </td>
+</tr>
+
+<tr>
+  <td colspan="2" style="height: 30px; padding: 10px;">
+<%= f.submit "ОБНОВИТЬ" %>  <%=link_to "Вернуться к поиску" , {:action => 'users'}, :style=>'float: right;' %>
+  </td>
+</tr>
+
+<tr>
+<td style="font-weight: bold;">  Клиент: </td><td class="bl" style="font-weight: bold;">
+<%= if @client then @client.k1c + ', ' + @client.name else 'не привязан' end %>
+<%= link_to 'Редактировать', {:action =>'edit_client' , :id=>@client.id} , :style=>'color: green; float: right' if @client %>
+  <br/>  <br/>
+
+ <%=link_to 'Создать клиента',{:action=>'new_client',:id=>@user.id,:client=>@client_mb.id} , :style=>'color: green'  if @client_mb %> 
+  <span style="margin: 15px;">| </span>
+ <%=link_to 'Создать карточку',:action=>'ncc',:id=>@user.id unless @client%>
+
+</td>
+</tr>
+
+
+</tbody>
+</table>
+<% end %>
+
+
+
+<%end%>

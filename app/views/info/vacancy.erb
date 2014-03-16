@@ -1,0 +1,78 @@
+<% content_for(:tit) do %>
+Живой Офис. Вакансии
+<%end%>
+<% content_for(:cont) do %>
+<div class="vac_title">Вакансии </div>
+<% for vacancy in @vacancies do %>
+
+  <div class="v_name" onclick="tog('v<%=vacancy.id%>')">
+
+    <span style="color: yellow;">
+<%= vacancy.created_at.strftime("%d")%> <%=@names[vacancy.created_at.strftime("%m").to_i]%> <%=vacancy.created_at.strftime("%Y")%>
+    </span>
+ <%= vacancy.profession %> <br/>
+<%= vacancy.paiment %>
+
+</div>
+<table style="width: 100%; " border="0" class="vacancy" cellpadding="0" cellspacing="0" id="v<%=vacancy.id%>" >
+<tr>
+  <td style="width: 150px;">Город:</td>
+  <td><%= vacancy.city %></td>
+</tr>
+<% if vacancy.experience and vacancy.experience != ''%>
+<tr>
+  <td style="width: 150px;">Опыт:</td>
+  <td><%= vacancy.experience %></td>
+</tr>
+<% end %>
+<% if vacancy.education and vacancy.education != '' %>
+<tr>
+  <td>Образование:</td>
+  <td><%= vacancy.education %></td>
+</tr>
+<% end %>
+<% if vacancy.shedule and vacancy.shedule != ''%>
+<tr>
+  <td>График работы:</td>
+  <td><%= vacancy.shedule %></td>
+</tr>
+<% end %>
+<% if vacancy.duties and vacancy.duties != ''%>
+<tr>
+  <td>Обязанности:</td>
+  <td><%= vacancy.duties %></td>
+</tr>
+<% end %>
+<% if vacancy.requirements  and vacancy.requirements != ''%>
+<tr>
+  <td>Требования:</td>
+  <td><%= vacancy.requirements %></td>
+</tr>
+<% end %>
+<% if vacancy.conditions  and vacancy.conditions != ''%>
+<tr>
+  <td>Условия:</td>
+  <td><%= vacancy.conditions %></td>
+</tr>
+<% end %>
+<% if vacancy.preference  and vacancy.preference != ''%>
+<tr>
+  <td>Предпочтения:</td>
+  <td><%= vacancy.preference %></td>
+</tr>
+<% end %>
+<% if vacancy.paiment  and vacancy.paiment != ''%>
+<tr>
+  <td>Оплата:</td>
+  <td><%= vacancy.paiment %></td>
+</tr>
+<% end %>
+<tr>
+  <td>Контактное лицо:</td>
+  <td><%= vacancy.contact %></td>
+</tr>
+</table>
+<% end %>
+
+<%end%>
+

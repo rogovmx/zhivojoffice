@@ -1,0 +1,129 @@
+
+<div style="text-align:right;position:relative;top:35px;left:-25px;">
+  
+    <% @podvals.each do |podval| %>
+      <% if podval.id == @podval.id %>
+      <%= link_to_remote (image_tag('/images/podval/podv_act.jpg')),:url=>{:controller=>'fool12', :action => 'index', :id=>podval.id},:update=>'podvall' %>&nbsp;
+      <% else %>
+      <%= link_to_remote (image_tag('/images/podval/podv.jpg')),:url=>{:controller=>'fool12', :action => 'index', :id=>podval.id},:update=>'podvall' %>&nbsp;
+    <% end %>
+  <% end %>
+</div>
+
+
+  <% @cat1=Cat1.find :first, :conditions=> ['id=?',@podval.tov1_id] %>
+  <% @cat2=Cat1.find :first, :conditions=> ['id=?',@podval.tov2_id] %>
+  <% @cat3=Cat1.find :first, :conditions=> ['id=?',@podval.tov3_id] %>
+  <% @cat4=Cat1.find :first, :conditions=> ['id=?',@podval.tov4_id] %>
+  <% @cat5=Cat1.find :first, :conditions=> ['id=?',@podval.tov5_id] %>
+
+<div style="height: 26px; margin: 0 auto; position: relative; top: -10px;">
+    <img src="/images/podval/<%= @podval.divup %>.jpg" style="width: 901px; height: 29px;"/>
+
+</div>
+
+  <div class="content"  id="cvet" style="padding-left:35px;">
+
+  <table class="jq_cvet" id="cvet1" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td cpign="bottom" align="left">
+  <%= link_to image_tag("/images/podval/#{@podval.tov1img}.jpg", :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat1.id %>
+ </td>
+      <td cpign="bottom" align="left">
+                 <%= link_to image_tag("/images/podval/#{@podval.tov2img}.jpg", :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat2.id %>
+  </td>
+      <td cpign="bottom" align="left">
+            <%= link_to image_tag("/images/podval/#{@podval.tov3img}.jpg", :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat3.id %>
+    </td>
+      <td cpign="bottom" align="left">
+ <%= link_to image_tag("/images/podval/#{@podval.tov4img}.jpg", :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat4.id %>
+  </td>
+      <td cpign="bottom" align="left">
+<%= link_to image_tag("/images/podval/#{@podval.tov5img}.jpg", :width => '165px'),:controller=>'kt3',:action=>'tov',:id=>@cat5.id %>
+ </td>
+    </tr>
+    <tr>
+
+      <td class="cvet_name3"  >
+        
+  <div class="podval_item_name"><b>
+    <%= link_to @podval.tov1name,{:controller=>'kt3',:action=>'tov',:id=>@cat1.id} , :style=>"color: #{@podval.name_color}"  %></b>
+  </div>
+  <span style="color: <%= @podval.price_color%>">
+  
+    <% @cat=@cat1 %>
+<%= render  :partial =>'/kt3/uprice_podval', :object=>@cat %>
+  </span> <br />
+
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat1 %>
+             </div>
+ </td>
+      <td  class="cvet_name3"   >
+      <div class="podval_item_name"><b>
+        <%= link_to @podval.tov2name,{:controller=>'kt3',:action=>'tov',:id=>@cat2.id} , :style=>"color: #{@podval.name_color}"  %></b>
+      </div>
+
+          <span style="color: <%= @podval.price_color%>">
+    <% @cat=@cat2 %>
+<%= render  :partial =>'/kt3/uprice_podval', :object=>@cat %>
+        </span>  <br />
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat2 %>
+             </div>
+      </td>
+      <td  class="cvet_name3"  >
+        <div class="podval_item_name"><b>
+   <%= link_to @podval.tov3name,{:controller=>'kt3',:action=>'tov',:id=>@cat3.id} , :style=>"color: #{@podval.name_color}" %></b>
+ </div>
+  <span style="color: <%= @podval.price_color%>">
+
+    <% @cat=@cat3 %>
+<%= render  :partial =>'/kt3/uprice_podval', :object=>@cat %>
+  </span>  <br />
+
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat3 %>
+             </div>
+      </td>
+      <td  class="cvet_name3"  >
+        <div class="podval_item_name"><b>
+     <%= link_to @podval.tov4name ,{:controller=>'kt3',:action=>'tov',:id=>@cat4.id} , :style=>"color: #{@podval.name_color}"  %>
+</b>
+</div>
+  <span style="color: <%= @podval.price_color%>">
+
+    <% @cat=@cat4 %>
+<%= render  :partial =>'/kt3/uprice_podval', :object=>@cat %>
+
+  </span> <br />
+
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat4 %>
+             </div>
+
+      </td>
+
+      <td  class="cvet_name3"  >
+        <div class="podval_item_name"><b>
+        <%= link_to @podval.tov5name,{:controller=>'kt3',:action=>'tov',:id=>@cat5.id} , :style=>"color: #{@podval.name_color}"  %></b>
+        </div>
+  <span style="color: <%= @podval.price_color%>">
+
+    <% @cat=@cat5 %>
+<%= render  :partial =>'/kt3/uprice_podval', :object=>@cat %>
+  </span> <br />
+
+        <div id="update">
+         <%= render :partial =>'/part/zakaz_podval',:cat1=>@cat5 %>
+             </div>
+      </td>
+    </tr>
+
+  </table>
+
+  </div>
+  <div  style="margin: 5px auto;">
+      <img src="/images/podval/<%= @podval.divdown %>.jpg" style="width: 901px;"/>
+
+</div>

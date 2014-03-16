@@ -1,0 +1,62 @@
+<% content_for(:cont) do %>
+
+
+<div style="width: 500px; height: 600px;  float: left; padding: 15px; clear: both; ">
+   <h3 style="color: #b25ca5;">ОФОРМЛЕНИЕ ЗАКАЗА</h3> <br/>
+    <%= oc_cake %>
+  <br/>
+  <%=error_messages_for 'cake_order'%>
+  <% form_for (:cake_order) ,:url=>{:controller=>'cake1s' , :action=>'order2' }  do |f| %>
+<%if @user%>
+<%= f.hidden_field :user_id, :value=>@user.id   %>
+<% else %>
+<%= f.hidden_field :user_id, :value=>''  %>
+<% end %>
+<%= f.hidden_field :quantity, :value=>'1'   %>
+<%#= f.hidden_field :weight, :value=>@cart.weight   %>
+
+
+  <table width="443px" style="height: 246px;"  >
+
+
+    <tr>
+      <td style="color: #b25ca5;"> Ваше имя: </td> <td  > <%= f.text_field :name, :style=>'width: 300px;'  %>  </td>
+    </tr>
+    <tr>
+      <td style="color: #b25ca5;"> Телефон для связи: </td> <td > <%= f.text_field :phone, :style=>'width: 300px;'   %>  </td>
+    </tr>
+    <tr>
+      <td style="color: #b25ca5;"> Адрес доставки: </td> <td class="reg_inp" > <%= f.text_area :adres, :class=>'reg'   %>  </td>
+    </tr>
+
+
+    <tr>
+      <td style="width:221px;">
+        </td>
+      <td>
+
+<%= submit_tag '' ,:class=>'send' %>
+
+
+
+         </td>
+    </tr>
+
+  </table>
+<div class="zak">
+  <span style="">
+        <a href="/cake1s/"> ВЕРНУТЬСЯ К ВЫБОРУ ТОРТОВ&nbsp;
+ <img src="/images/cake/back.jpg" border=0 align="center" />
+      </a>
+      </span>
+</div>
+</div>
+<% end %>
+
+
+
+
+
+<%end%>
+
+

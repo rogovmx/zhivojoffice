@@ -1,0 +1,11 @@
+
+<div class="blueberry">
+
+      <ul class="slides">
+        <% Action.find(5).actionitems.sort{|a,b| a.sort <=> b.sort}.each do |actionitem| %>
+        <li>
+          <%= link_to image_tag("/images/action_items_images/#{actionitem.pic}") , "#{actionitem.link}", :title => "#{actionitem.title}"%>
+        </li>
+        <% end %>
+      </ul>
+</div>

@@ -1,0 +1,10 @@
+<div id="boltov444">
+<% @content.each do |cont| -%>
+<%=h cont.content %> 
+<%end-%>
+  </div>
+<%= periodically_call_remote :frequency =>10,
+:url=>{:controller=>'mess1',:action=>'boltov',:id_m=>@id},:update=>'boltov4444'
+%>
+
+

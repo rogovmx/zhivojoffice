@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>КОТкурс</title>
+  <%= stylesheet_link_tag 'contest' %>
+  <%= javascript_include_tag :defaults  %>
+</head>
+<body>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<div id="header">
+  <%= link_to image_tag("cats/cat_logo.png"), root_path, :class => "back_link" %>
+</div>
+
+<div id="container">
+
+	<%= yield  %>
+
+	<div style="clear: both; float: none;"></div>
+</div>
+
+<%= render :partial => '/part2/counters' %>
+</body>
+</html>

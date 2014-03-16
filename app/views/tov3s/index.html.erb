@@ -1,0 +1,116 @@
+<% content_for(:cont) do %>
+   <table style="width: 100%; margin-top: 40px;">
+      <tr>
+      <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+        <%= link_to "Редактирование разделов", razdel1s_path  %>
+        |
+        <%= link_to "Редактирование подгрупп 1 уровня", tov2s_path %>
+        |
+        <%= link_to "Редактирование подгрупп 2 уровня", tov2s_path %>
+        |
+        <%= link_to "Редактирование подгрупп 3 уровня", tov3s_path, :style => "color: red;" %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+      <h2>Выбрать подгруппу 2 уровня для просмотра подгрупп 3 уровня:</h2>
+      <% form_tag tov3s_path, :method => 'get' do %>
+        <%= select_tag :tov2_id, options_from_collection_for_select(@tov2s, :id, :name) %>
+        <%= submit_tag "Выбрать" %>
+      <% end %>
+      <%= link_to "Ко всем подгруппам 3 уровня", tov3s_path %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 5px;">
+      <% if params[:tov2_id] %>
+        <h2 style="color: red;">Подгруппы 3 уровня "<%= @tov2.name %>"</h2>
+      <% else %>
+        <h2 style="color: red;">Все подгруппы 3 уровня</h2>
+      <% end %>
+      </td> 
+    </tr>
+  </table>
+  Всего товаров: <%= all_cat1s %> <br/>
+  Товаров по категориям: <%= all_cat1s_in_tov3s %> <br/>
+  Товаров не учтено в категориях: <%= all_cat1s - all_cat1s_in_tov3s %>
+
+<% if @tov2.instance_of?(Array) %>
+<table>
+  <tr>
+    <th width="40">Код</th>
+    <th width="350">Название</th>
+    <th width="50">товары</th>
+    <th width="50">видимые</th>
+    <th width="60">Действия</th>
+  </tr>
+<% for tov2 in @tov2 %>
+  <tr style="background-color: #F0E68C;">
+    <td width="40" style="background-color: #F0E68C;"></td>
+    <td style="font-color: black;"><%= link_to tov2.name, tov3s_path(:tov2_id => tov2.id) %></td>
+    <td width="40" style="background-color: #F0E68C;"><%= cat1s_count(tov2) %></td>
+    <td width="40" style="background-color: #F0E68C;"><%= cat1s_visible_count(tov2) %></td>
+    <td width="60" style="background-color: #F0E68C;"></td>
+  </tr>
+  <% tov2.tov3.each do |tov3| %>
+    <tr>
+      <td width="40"><%=h tov3.id %></td>
+      <% if tov3.vis == true %>
+        <td width="350"><%=h tov3.name %></td>
+      <% else %>
+        <td width="350" style="background-color: #00BFFF;"><%=h tov3.name %></td>
+      <% end %>
+      <td width="40"><%= tov3.cat1.count %></td>
+      <td width="40"><%= tov3.cat1.visible.count %></td>
+      <td width="60">&nbsp;&nbsp;<%= link_to 'Редактировать', edit_tov3_path(tov3) %></td>
+      <% if @user.role =='sredaktor' %>
+        <td width="60">&nbsp;&nbsp;<%= link_to 'Удалить', tov3, :confirm => 'Точно удалить?', :method => :delete %></td>
+      <%end%>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+<% else %>
+<table>
+  <tr>
+    <th width="40">Код</th>
+    <th width="350">Название</th>
+    <th width="50">товары</th>
+    <th width="50">видимые</th>
+    <th width="60">Действия</th>
+  </tr>
+  <tr style="background-color: #F0E68C;">
+    <td width="40" style="background-color: #F0E68C;"></td>
+    <td style="font-color: black;"><%= link_to @tov2.name, tov3s_path(:tov2_id => @tov2.id) %></td>
+    <td width="40" style="background-color: #F0E68C;"><%= cat1s_count(@tov2) %></td>
+    <td width="40" style="background-color: #F0E68C;"><%= cat1s_visible_count(@tov2) %></td>
+    <td width="60" style="background-color: #F0E68C;"></td>
+  </tr>
+  <% @tov2.tov3.each do |tov3| %>
+    <tr>
+      <td width="40"><%=h tov3.id %></td>
+      <% if tov3.vis == true %>
+        <td width="350"><%=h tov3.name %></td>
+      <% else %>
+        <td width="350" style="background-color: #00BFFF;"><%=h tov3.name %></td>
+      <% end %>
+      <td width="40"><%= tov3.cat1.count %></td>
+      <td width="40"><%= tov3.cat1.visible.count %></td>
+      <td width="60">&nbsp;&nbsp;<%= link_to 'Редактировать', edit_tov3_path(tov3) %></td>
+      <% if @user.role =='sredaktor' %>
+        <td width="60">&nbsp;&nbsp;<%= link_to 'Удалить', tov3, :confirm => 'Точно удалить?', :method => :delete %></td>
+      <%end%>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to "Вернуться к группам 2 порядка", tov2s_path %>
+|
+<%= link_to 'Новая подгруппа 3 уровня', :controller=>'tov3s',:action=>'new',:tov2_id=>params[:tov2_id] %>
+<% if params[:tov2_id] %>
+  | <%= link_to "Все товары", tov3s_path %>
+<% end %>
+<%end%>
+

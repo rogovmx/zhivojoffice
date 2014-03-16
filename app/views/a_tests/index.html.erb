@@ -1,0 +1,34 @@
+<h1>Listing</h1>
+
+
+<%#= link_to 'mail' , :action=>'mm' %>
+
+<br/>
+
+
+<br/> <br/><br/>
+
+<% @user=User.find(session[:user_id]) if session[:user_id] %>
+
+<% form_for :user_id , :url=>{:controller=>'a_tests' , :action=>'userid' } do |f| %>
+<%#= session[:user_id] if session[:user_id] %> <%#= @user.name if session[:user_id] %>  <br/>
+UI<br/>
+<%= f.text_field :userid %>
+<%= f.submit %>
+<% end %>
+<br/>
+
+<% form_for :order , :url=>{:controller=>'a_tests' , :action=>'order' } do |f| %>
+OI<br/>
+<%= f.text_field :ord %>
+<%= f.submit %>
+<% end %>
+<br/>
+<a href="/"> На сайт </a>
+
+
+<br/>
+<br/>
+<br/>
+
+

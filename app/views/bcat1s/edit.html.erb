@@ -1,0 +1,133 @@
+<% content_for(:cont) do %>
+<div class="bcat1">
+
+<%= render :partial=>'har' %>
+
+<h2>Редактирование номенклатуры в подкатегории:</h2>
+<h1> <%=@btg.name %> </h1>
+<% form_for(@bcat1) do |f| %>
+<%= f.error_messages %>
+<h1 style="color: red;"><%= flash[:notice] -%> </h1>
+
+    <%= f.hidden_field :btg1_id, :value=>params[:btg1] %>
+
+<table>
+  <tr> <td> <%= f.label 'Номенклатура' %> </td> <td><%= f.text_field :s2 %> </td> </tr>
+ <% if @btg.s1 != 'no' %>  <tr> <td> <%= f.label @btg.s1 %> </td> <td><%= f.text_field :s1 %> </td> </tr> <% end %>
+ <% if @btg.s3 != 'no' %>  <tr> <td> <%= f.label @btg.s3 %></td> <td>
+   <% if btg1har?(@btg.id.to_s,3.to_s,'yes')%> <span id="bcat3a">  <select id="bcat1_s3"  name="bcat1[s3]">  <%= options_for_select(@btg1har.uniq , @bcat1.s3) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat3','bcat3a')">+</span></span>
+      <span id="bcat3" style="display: none;"><%= f.text_field :s3 %> </span>
+           <% else %> <%= f.text_field :s3 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s4 != 'no' %>  <tr> <td> <%= f.label @btg.s4 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,4.to_s,'yes')%> <span id="bcat4a">  <select id="bcat1_s4"  name="bcat1[s4]">  <%= options_for_select(@btg1har.uniq , @bcat1.s4) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat4','bcat4a')">+</span> </span><span id="bcat4" style="display: none;"><%= f.text_field :s4 %> </span>
+<% else %> <%= f.text_field :s4 %> <% end %>  </td> </tr> <% end %>
+ <% if @btg.s5 != 'no' %>  <tr> <td> <%= f.label @btg.s5 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,5.to_s,'yes')%>  <span id="bcat5a"> <select id="bcat1_s5"  name="bcat1[s5]">  <%= options_for_select(@btg1har.uniq , @bcat1.s5) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat5','bcat5a')">+</span> </span><span id="bcat5" style="display: none;"><%= f.text_field :s5 %> </span>
+<% else %><%= f.text_field :s5 %> <% end %> </td> </tr> <% end %>
+ <% if @btg.s6 != 'no' %>  <tr> <td> <%= f.label @btg.s6 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,6.to_s,'yes')%> <span id="bcat6a">  <select id="bcat1_s6"  name="bcat1[s6]">  <%= options_for_select(@btg1har.uniq , @bcat1.s6) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat6','bcat6a')">+</span></span> <span id="bcat6" style="display: none;"><%= f.text_field :s6 %> </span>
+<% else %><%= f.text_field :s6 %> <% end %> </td> </tr> <% end %>
+ <% if @btg.s7 != 'no' %>  <tr> <td> <%= f.label @btg.s7 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,7.to_s,'yes')%> <span id="bcat7a">  <select id="bcat1_s7"  name="bcat1[s7]">  <%= options_for_select(@btg1har.uniq , @bcat1.s7) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat7','bcat7a')">+</span></span> <span id="bcat7" style="display: none;"><%= f.text_field :s7 %> </span>
+<% else %> <%= f.text_field :s7 %><% end %></td> </tr> <% end %>
+ <% if @btg.s8 != 'no' %>  <tr> <td> <%= f.label @btg.s8 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,8.to_s,'yes')%>  <span id="bcat8a"> <select id="bcat1_s8"  name="bcat1[s8]">  <%= options_for_select(@btg1har.uniq , @bcat1.s8) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat8','bcat8a')">+</span></span> <span id="bcat8" style="display: none;"><%= f.text_field :s8 %> </span>
+ <% else %> <%= f.text_field :s8 %><% end %> </td> </tr> <% end %>
+ <% if @btg.s9 != 'no' %>  <tr> <td> <%= f.label @btg.s9 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,9.to_s,'yes')%> <span id="bcat9a">  <select id="bcat1_s9"  name="bcat1[s9]">  <%= options_for_select(@btg1har.uniq , @bcat1.s9) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat9','bcat9a')">+</span> </span><span id="bcat9" style="display: none;"><%= f.text_field :s9 %> </span>
+<% else %> <%= f.text_field :s9 %><% end %></td> </tr> <% end %>
+ <% if @btg.s10 != 'no' %>  <tr> <td> <%= f.label @btg.s10 %></td> <td>
+   <% if btg1har?(@btg.id.to_s,10.to_s,'yes')%>  <span id="bcat10a"> <select id="bcat1_s10"  name="bcat1[s10]">  <%= options_for_select(@btg1har.uniq , @bcat1.s10) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat10','bcat10a')">+</span></span> <span id="bcat10" style="display: none;"><%= f.text_field :s10 %> </span>
+  <% else %><%= f.text_field :s10 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s11 != 'no' %>  <tr> <td> <%= f.label @btg.s11 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,11.to_s,'yes')%>  <span id="bcat11a"> <select id="bcat1_s11"  name="bcat1[s11]">  <%= options_for_select(@btg1har.uniq , @bcat1.s11) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat11','bcat11a')">+</span></span> <span id="bcat11" style="display: none;"><%= f.text_field :s11 %> </span>
+<% else %><%= f.text_field :s11 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s12 != 'no' %>  <tr> <td> <%= f.label @btg.s12 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,12.to_s,'yes')%>  <span id="bcat12a"> <select id="bcat1_s12"  name="bcat1[s12]">  <%= options_for_select(@btg1har.uniq , @bcat1.s12) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat12','bcat12a')">+</span></span> <span id="bcat12" style="display: none;"><%= f.text_field :s12 %> </span>
+<% else %><%= f.text_field :s12 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s13 != 'no' %>  <tr> <td> <%= f.label @btg.s13 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,13.to_s,'yes')%> <span id="bcat13a">  <select id="bcat1_s13"  name="bcat1[s13]">  <%= options_for_select(@btg1har.uniq , @bcat1.s13) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat13','bcat13a')">+</span></span> <span id="bcat13" style="display: none;"><%= f.text_field :s13 %> </span>
+<% else %><%= f.text_field :s13 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s14 != 'no' %>  <tr> <td> <%= f.label @btg.s14 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,14.to_s,'yes')%>  <span id="bcat14a"> <select id="bcat1_s14"  name="bcat1[s14]">  <%= options_for_select(@btg1har.uniq , @bcat1.s14) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat14','bcat14a')">+</span></span> <span id="bcat14" style="display: none;"><%= f.text_field :s14 %> </span>
+<% else %><%= f.text_field :s14 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s15 != 'no' %>  <tr> <td> <%= f.label @btg.s15 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,15.to_s,'yes')%>  <span id="bcat15a"> <select id="bcat1_s15"  name="bcat1[s15]">  <%= options_for_select(@btg1har.uniq , @bcat1.s15) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat15','bcat15a')">+</span></span> <span id="bcat15" style="display: none;"><%= f.text_field :s15 %> </span>
+<% else %><%= f.text_field :s15 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s16 != 'no' %>  <tr> <td><%= f.label @btg.s16 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,16.to_s,'yes')%> <span id="bcat16a">  <select id="bcat1_s16"  name="bcat1[s16]">  <%= options_for_select(@btg1har.uniq , @bcat1.s16) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat16','bcat16a')">+</span></span> <span id="bcat16" style="display: none;"><%= f.text_field :s16 %> </span>
+<% else %><%= f.text_field :s16 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s17 != 'no' %>  <tr> <td> <%= f.label @btg.s17 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,17.to_s,'yes')%>  <span id="bcat17a"> <select id="bcat1_s17"  name="bcat1[s17]">  <%= options_for_select(@btg1har.uniq , @bcat1.s17) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat17','bcat17a')">+</span></span> <span id="bcat17" style="display: none;"><%= f.text_field :s17 %> </span>
+<% else %><%= f.text_field :s17 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s18 != 'no' %>  <tr> <td> <%= f.label @btg.s18 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,18.to_s,'yes')%>  <span id="bcat18a"> <select id="bcat1_s18"  name="bcat1[s18]">  <%= options_for_select(@btg1har.uniq , @bcat1.s18) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat18','bcat18a')">+</span></span> <span id="bcat18" style="display: none;"><%= f.text_field :s18 %> </span>
+<% else %><%= f.text_field :s18 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s19 != 'no' %>  <tr> <td><%= f.label @btg.s19 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,19.to_s,'yes')%>  <span id="bcat19a"> <select id="bcat1_s19"  name="bcat1[s19]">  <%= options_for_select(@btg1har.uniq , @bcat1.s19) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat19','bcat19a')">+</span></span> <span id="bcat19" style="display: none;"><%= f.text_field :s19 %> </span>
+<% else %><%= f.text_field :s19 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s20 != 'no' %>  <tr> <td><%= f.label @btg.s20 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,20.to_s,'yes')%> <span id="bcat20a">  <select id="bcat1_s20"  name="bcat1[s20]">  <%= options_for_select(@btg1har.uniq , @bcat1.s20) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat20','bcat20a')">+</span></span> <span id="bcat20" style="display: none;"><%= f.text_field :s20 %> </span>
+<% else %><%= f.text_field :s20 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s21 != 'no' %>  <tr> <td><%= f.label @btg.s21 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,21.to_s,'yes')%>  <span id="bcat21a"> <select id="bcat1_s21"  name="bcat1[s21]">  <%= options_for_select(@btg1har.uniq , @bcat1.s21) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat21','bcat21a')">+</span></span> <span id="bcat21" style="display: none;"><%= f.text_field :s21 %> </span>
+<% else %><%= f.text_field :s21 %> <% end %></td> </tr> <% end %>
+ <% if @btg.s22 != 'no' %>  <tr> <td><%= f.label @btg.s22 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,22.to_s,'yes')%>  <span id="bcat22a"> <select id="bcat1_s22"  name="bcat1[s22]">  <%= options_for_select(@btg1har.uniq , @bcat1.s22) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat22','bcat22a')">+</span></span> <span id="bcat22" style="display: none;"><%= f.text_field :s22 %> </span>
+ <% else %><%= f.text_field :s22 %> <% end %></td> </tr> <% end %>
+<% if @btg.s23 != 'no' %>  <tr> <td> <%= f.label @btg.s23 %></td> <td>
+     <% if btg1har?(@btg.id.to_s,23.to_s,'yes')%>  <span id="bcat23a"> <select id="bcat1_s23"  name="bcat1[s23]">  <%= options_for_select(@btg1har.uniq , @bcat1.s23) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat23','bcat23a')">+</span></span> <span id="bcat23" style="display: none;"><%= f.text_field :s23 %> </span>
+ <% else %> <%= f.text_field :s23 %> <% end %></td> </tr> <% end %>
+<% if @btg.s24 != 'no' %> <tr> <td><%= f.label @btg.s24 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,24.to_s,'yes')%> <span id="bcat24a">  <select id="bcat1_s24"  name="bcat1[s24]">  <%= options_for_select(@btg1har.uniq , @bcat1.s24) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat24','bcat24a')">+</span></span> <span id="bcat24" style="display: none;"><%= f.text_field :s24 %> </span>
+<% else %><%= f.text_field :s24 %> <% end %></td> </tr> <% end %>
+<% if @btg.s25 != 'no' %> <tr> <td><%= f.label @btg.s25 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,25.to_s,'yes')%> <span id="bcat25a">  <select id="bcat1_s25"  name="bcat1[s25]">  <%= options_for_select(@btg1har.uniq , @bcat1.s25) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat25','bcat25a')">+</span></span> <span id="bcat25" style="display: none;"><%= f.text_field :s25 %> </span>
+ <% else %><%= f.text_field :s25 %> <% end %></td> </tr> <% end %>
+<% if @btg.s26 != 'no' %> <tr> <td><%= f.label @btg.s26 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,26.to_s,'yes')%>  <span id="bcat26a"> <select id="bcat1_s26"  name="bcat1[s26]">  <%= options_for_select(@btg1har.uniq , @bcat1.s26) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat26','bcat26a')">+</span></span> <span id="bcat26" style="display: none;"><%= f.text_field :s26 %> </span>
+<% else %><%= f.text_field :s26 %> <% end %></td> </tr> <% end %>
+<% if @btg.s27 != 'no' %> <tr> <td> <%= f.label @btg.s27 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,27.to_s,'yes')%>  <span id="bcat27a"> <select id="bcat1_s27"  name="bcat1[s27]">  <%= options_for_select(@btg1har.uniq , @bcat1.s27) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat27','bcat27a')">+</span></span> <span id="bcat27" style="display: none;"><%= f.text_field :s27 %> </span>
+<% else %><%= f.text_field :s27 %> <% end %></td> </tr> <% end %>
+<% if @btg.s28 != 'no' %> <tr> <td> <%= f.label @btg.s28 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,28.to_s,'yes')%> <span id="bcat28a">  <select id="bcat1_s28"  name="bcat1[s28]">  <%= options_for_select(@btg1har.uniq , @bcat1.s28) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat28','bcat28a')">+</span></span> <span id="bcat28" style="display: none;"><%= f.text_field :s28 %> </span>
+<% else %><%= f.text_field :s28 %> <% end %></td> </tr> <% end %>
+<% if @btg.s29 != 'no' %> <tr> <td><%= f.label @btg.s29 %> </td> <td>
+     <% if btg1har?(@btg.id.to_s,29.to_s,'yes')%> <span id="bcat29a">  <select id="bcat1_s29"  name="bcat1[s29]">  <%= options_for_select(@btg1har.uniq , @bcat1.s29) %>  </select>
+     <span class="bcat_plus" onclick="tog3('bcat29','bcat29a')">+</span></span> <span id="bcat29" style="display: none;"><%= f.text_field :s29 %> </span>
+<% else %><%= f.text_field :s29 %> <% end %></td> </tr> <% end %>
+<% if @btg.s30 != 'no' %> <tr> <td><%= f.label @btg.s30 %> </td> <td> <%= f.text_area :s30 %> </td> </tr> <% end %>
+<tr><td><%= link_to 'Вернуться', {:action=>'index', :btg1=>@btg.id.to_s} %>  </td> <td> <%= f.submit 'Сохранить' %> </td> </tr>
+
+</table>
+
+<% end %>
+</div>
+<% end %>

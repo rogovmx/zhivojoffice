@@ -1,0 +1,54 @@
+
+<table width="300px;" height="100%" border="0" style="padding-top:0px;">
+  <tr>
+    <td style=" height:226px;" align="center" valign="center" colspan="2">
+     <% if @cake.img %>
+ <% unless @cake.img == ''  %>
+
+      
+ <%= link_to (image_tag("/images/cake/"+@cake.img+".jpg" ,:width=>"300px;")),:controller=>'cake1s',:action=>'show',:id=>@cake.id %><br>
+<%else%>
+
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=270px/>
+
+                  <br/>
+           <%end%>
+         <% else %>   
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=20px/>
+        <%end%>
+    </td>
+  </tr>
+
+  <tr>
+   
+    <td colspan="2" align="left" valign="top" style="height:28px;" class="tit_tov">
+      <%=  @cake.name %>
+       
+    </td>
+  
+  </tr>
+    <tr>
+
+    <td align="left" valign="top" style="height:28px;" class="cake_price">
+      ЦЕНА ЗА 1 КГ &nbsp;<%= @cake.price %> &nbsp;р.
+
+    </td>
+    <td align="right" valign="top" style="height:28px;" class="cake_price"  >
+       <%=link_to 'ЗАКАЗАТЬ',{:controller=>'cake1s',:action=>'show',:id=>@cake.id}, :class=>'tit_tov' %>
+      
+    </td>
+
+  </tr>
+</table>
+
+   
+    
+      <div id="<%='id_'+ @cake.id.to_s %>"> </div>
+
+
+
+
+
+
+
+

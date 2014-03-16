@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  experience: MyString
+  education: MyString
+  shedule: MyString
+  duties: MyText
+  requirements: MyText
+  conditions: MyText
+  preference: MyString
+  paiment: MyString
+  contact: MyString
+
+two:
+  experience: MyString
+  education: MyString
+  shedule: MyString
+  duties: MyText
+  requirements: MyText
+  conditions: MyText
+  preference: MyString
+  paiment: MyString
+  contact: MyString

@@ -1,0 +1,22 @@
+<ul>
+  <li>    <%= link_to 'Регистрационные данные' , :controller=>'cabinet' , :action=>'reg_data' %> </li>
+
+  <li>       <%= link_to 'Договоры и спецификации' , :controller=>'cabinet' , :action=>'tov_spec' %> </li>
+
+  <li>     <%= link_to 'Избранные товары' , :controller=>'cabinet' , :action=>'favorits' %> </li>
+
+   <li>    <%= link_to 'Заказы' , :controller=>'cabinet' , :action=>'order' %> </li>
+
+   <li>    <%= link_to 'Бонусная программа' , :controller=>'bonus2' %> </li>
+
+   <%#= link_to 'Переписка' , :controller=>'cabinet' , :action=>'' %>
+   <li>    <%= link_to 'Сотрудники (отделы)' , :controller=>'cabinet' , :action=>'sotr' %> </li>
+
+   <% if @user.client1_id != 0 %>
+   <li>      <%= link_to 'Задания на конкурс' , :controller=>'cabinet' , :action=>'konkurs'   %> </li>
+   <% end %>
+
+   <li>       <%= link_to 'Обратная связь' , :controller=>'cabinet' , :action=>'feedback' %> </li>
+
+   <li style="text-align: right;">       <%= link_to 'Выход' , {:controller=>'login' , :action=>'logout'} , :style=>'color: red' %> </li>
+</ul>

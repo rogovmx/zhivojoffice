@@ -1,0 +1,186 @@
+
+
+<%#=link_to image_tag('/images2/55_15_360.jpg') , '/kt3/tg_v2/99' , :style=>'margin-bottom: 10px; display: block;' if session[:city] != 'smo'%>
+
+
+<%=link_to image_tag('/images/kaleydoskop.jpg') , '/search/index?search=живой+офис' , :style=>'margin-bottom: 10px; display: block;'  if session[:city] != 'smo'%>
+<%#=link_to image_tag('/images2/correct_lent_small.jpg') , '/search/index?search=tombow' , :style=>'margin-bottom: 10px; display: block;' if session[:city]=='msk' or  session[:city]=='spb'%>
+<%#=link_to image_tag('/images2/ltz.gif') , '/search/index?search=leitz' , :style=>'margin-bottom: 10px;  display: block;' if session[:city]=='msk' or  session[:city]=='spb'%>
+
+<%#=link_to image_tag('/images2/smolensk.jpg') , {:controller=>'kt3' , :action=>'tg_v' , :id=>382} , :style=>'margin-bottom: 10px' if session[:city]=='smo'%>
+
+
+
+<div id="oc">
+
+<%
+      @cart_b2=0
+     if @cart_sum_bonus > 1000
+      @cart_b1 =@cart_sum_bonus % 1000
+      if @cart_sum_bonus < 5000
+      @cart_b2=((@cart_sum_bonus - @cart_b1)/1000)*10
+      else
+      @cart_b2=((@cart_sum_bonus - @cart_b1)/1000)*15
+      end
+     end
+%>
+
+  <table width="100%"  border="0" style="background-color:#f47920;" >
+    <tr >
+      <td width="40px;" align="center">
+        <img src="/images2/w_cart.jpg" alt="корзина"  />
+      </td>
+      <td align="left" valign="center" style="color:white;" >
+             Стоимость заказа:
+             <span style="font-weight: bold">
+   <%= number_to_currency(@cart_sum, :unit => '',:delimiter=>' ')%> р. </span> 
+   <% if (@cart_sum < 1000) and session[:city] != 'smo'  %>  <span style="font-weight: bold; cursor:  help;" title="Стоимость заказа меньше 1000р. Доставка 200р."> + 200р </span>
+   <% end %>
+
+      </td>
+      <td align="left" valign="center" style="color:white;" title="При покупке по данной цене" >
+          Бонусы*:
+       <span style="font-weight: bold">  <%=@cart_b2.to_i%> </span>
+         </td>
+    </tr>
+  </table>
+
+
+  </div>
+
+<% if @cart_sum >0 %>
+  <% form_for 'cart[]',:url=>{:controller=>'bas1',:action=>'u1'} do |f| %>
+
+<table width="100%" id="oc2" border="0">
+  <tr>
+    <th >Наименование</th>
+    <th>Цена&nbsp;р.</th>
+    <th>Кол-во</th>
+    <th>Сумма&nbsp;р.</th>
+    <th class="del"></th>
+
+  </tr>
+  <% @cart.each do |@cart| %>
+  
+<% @cat=Cat1.find_by_k1c(@cart.k1s) %>
+      <tr >
+
+
+
+       <td  align="left" style="border-bottom:dashed 1px #87bd41;color:#fff;padding:5px;" >
+
+          <%=link_to @cat.name,{:controller=>'kt3',:action=>'tov',:id=>@cat.id},:class=> 'g2',:style=>"color:#786e6e;" if @cat%>
+        <%  if @cart.k1s == '7774973992' and @cart.quantity > 300%>
+        <%  @m300 =   @cart.quantity - 300 %>
+          <br/><span style="color: black;"> 300 п. по цене - 113 р. <br/>
+           <%=@m300 %> п. по цене - <%=findprice('7774973992')%>  р.
+          </span>
+        <% end %>
+   
+ </td>
+
+<td style="border-bottom:dashed 1px #87bd41;padding:3px;" align="center">
+    <span style="font-family: Arial; font-size: 10px;font-weight:bold;"  id="price<%=@cart.id%>">        <%=number_to_currency(@cart.price, :unit => '',:delimiter=>' ')%></span>
+        </td>
+         <td   style="border-bottom:dashed 1px #87bd41;padding:3px;" align="center">
+
+
+           <table width="50px" cellpadding="0" cellspacing="0" style="border: 1px solid #99CCCC; height: 18px;" > <tr>
+               <td>
+<% if @cart.k1s == '7774975534' or  @cart.k1s == '7774975535'%>
+    <%= f.text_field :quantity ,:value=> @cart.quantity ,:size=>2,:class=>'in_right',:style=>'width: 25px; border:0px solid white;', :id=>@cart.id.to_s+'pm' , :onblur=>"wolf_zb('#{@cart.id.to_s+'pm'}')"%>
+<%# elsif @cart.k1s == '7774973992' %>
+    <%#= f.text_field :quantity ,:value=> @cart.quantity ,:size=>2,:class=>'in_right',:style=>'width: 25px; border:0px solid white;', :id=>@cart.id.to_s+'pm' , :onblur=>"wolf_izum('#{@cart.id.to_s+'pm'}' ,'#{'price' +@cart.id.to_s}' , '#{findprice('7774973992')}')" , :onmouseout=>"wolf_izum('#{@cart.id.to_s+'pm'}' ,'#{'price' + @cart.id.to_s}', '#{findprice('7774973992')}')" %>
+<% else %>
+    <%= f.text_field :quantity ,:value=> @cart.quantity ,:size=>2,:class=>'in_right',:style=>'width: 25px; border:0px solid white;', :id=>@cart.id.to_s+'pm' , :onkeyup=>"wolf('#{@cart.id.to_s+'pm'}')"%>
+<% end %>
+
+            </td> <td valign="middle" style="padding-top: 1px;" >
+              <div >
+              <img src="/images/arr_up_down.gif" width="9" height="18" border="0" usemap="#<%=@cart.id.to_s+'pmap'%>" />
+
+
+
+
+ <map name="<%=@cart.id.to_s+'pmap'%>" id="<%=@cart.id.to_s+'pmap'%>">
+   
+<% if @cart.k1s == '7774975534' or  @cart.k1s == '7774975535'%>
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick="arrows_zb('<%=@cart.id.to_s+'pm' %>', '+')" alt="+1"/>
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick="arrows_zb('<%=@cart.id.to_s+'pm' %>', '-')" alt="-1"/>
+  <!--
+ <%# elsif @cart.k1s == '7774973992' %>
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick="arrows_izum('<%#=@cart.id.to_s+'pm' %>', '+' , 'price<%#=@cart.id%>' , '<%#=findprice('7774973992') %>')" />
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick="arrows_izum('<%#=@cart.id.to_s+'pm' %>', '-', 'price<%#=@cart.id%>' , '<%#=findprice('7774973992') %>')" />
+   -->
+<% else %>
+ 
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick="arrows('<%=@cart.id.to_s+'pm' %>', '+')" alt="+1"/>
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick="arrows('<%=@cart.id.to_s+'pm' %>', '-')" alt="-1"/>
+ <% end %>
+  </map>
+
+
+              </div>
+            </td> </tr> </table>
+
+         </td>
+        <td   style="border-bottom:dashed 1px #87bd41;padding:3px;" align="center">
+      <%
+       if @cart.price
+        if @cart.k1s == '7774973992' and @cart.quantity > 300
+          @m300 =   @cart.quantity - 300
+          ss = 113 * 300 + findprice('7774973992') * @m300
+        else
+         ss=@cart.price*@cart.quantity
+        end
+       else
+       ss='Запрос цены'
+       end
+       %>
+ 
+ <span style="font-family: Arial; font-size: 10px;font-weight:bold;">  <%=number_to_currency(ss, :unit => '',:delimiter=>' ')%></span>
+       </td>
+       <td width="20px" style="border-bottom:dashed 1px #87bd41;padding:3px;" align="center">
+
+          <%= link_to "x",{:controller=>'bas1',:action=>'del_cart_item',:k1s=>@cart.k1s},:class=>'hk',:style=>'color:red; font-weight: bold;' %>
+   </td>
+     </tr>
+
+    <%end%>
+</table>
+
+<%= submit_tag "Пересчитать",:class=>'b1_pere', :style=>'cursor:pointer;' %>
+<%end%>
+
+  
+
+
+<% if @user and @user.role=='poduser' %>
+<%else%>
+<%# form_for :order , :url=>{:controller=>'bas1',:action=>'oz1'} do |f| %>
+<%#= f.hidden_field :legal_id ,:value=>@client.id  %>
+<%#= f.hidden_field :client_id, :value=>@client.id %>
+<%#= f.hidden_field :user_id,:value=> @user.id %>
+<%#= f.hidden_field :status,:value=> 'Не согласован' %>
+<%#= f.hidden_field :dost,:value=> 'Не доставлен' %>
+<%#= f.hidden_field :opl,:value=> 'Не оплачен' %>
+<%# if @user.city == 'Москва' %>
+<%#= f.hidden_field :city,:value=>2 %>
+<%# elsif @user.city == 'Смоленск' %>
+<%#= f.hidden_field :city,:value=>3 %>
+<%# elsif @user.city == 'Нижний Новгород' %>
+<%#= f.hidden_field :city,:value=>4 %>
+<%# else %>
+<%#= f.hidden_field :city,:value=>1 %>
+<%#end%>
+<%#= f.submit "Заказать" ,:class=>'b1_order'%>
+<%#end%>
+ 
+<%end%>
+
+<%= link_to 'Перейти к оформлению заказа' , {:controller=>'bas1' , :action=>'edit_cart'} , :class=>'b1_order' if login? %>
+
+<%end%>
+
+
+

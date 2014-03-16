@@ -1,0 +1,67 @@
+/*
+ * jQuery Blueberry Slider v0.4 BETA
+ * http://marktyrrell.com/labs/blueberry/
+ *
+ * Copyright (C) 2011, Mark Tyrrell <me@marktyrrell.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.blueberry { 
+max-width: 530px;
+background: #fff;
+margin-bottom: 10px;
+
+}
+
+.blueberry .slides {
+	display: block;
+	position: relative;
+	
+}
+.blueberry .slides li {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.blueberry .slides li img { width:  530px;
+
+       
+}
+.blueberry .slides li.active { display: block; position: relative; }
+.blueberry .crop li img { width:  530px;}
+
+.blueberry .pager {
+    padding: 3px;
+
+	height: 17px;
+	text-align: left;
+
+}
+.blueberry .pager li { display: inline-block; }
+.blueberry .pager li a,
+.blueberry .pager li a span {
+
+}
+.blueberry .pager li a {
+margin-left: 10px;
+}
+.blueberry .pager li a span {
+
+}
+.blueberry .pager li.active a span { display: inline-block; width: 17px; height: 17px; border: 1px dotted #5C2D91; }
+
+.blueberry .pager li.active a {}

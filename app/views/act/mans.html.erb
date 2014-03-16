@@ -1,0 +1,47 @@
+<% content_for(:cont) do %>
+
+<%=@content.content%>
+
+<table width="80%">
+  <tr>
+    <td colspan="4"  style="padding-right:0" align="right"  >
+<!--
+
+        <input  id="predl_order" value="ЗАКАЗАТЬ" {
+ location='/bas1/del_cart';}" type="button" />-->
+ <br><br>
+        <div id=zakaz >
+  <% update='zakaz' %>
+<% form_for :cart  , :url=>{:controller=>'kt1',:action=> :create_cart_n} do |f| %>
+
+
+ <%= f.hidden_field :Sesion_id ,:value=> request.session_options[:id] %>
+ <%= f.hidden_field :otdel ,:value=> "kanc" %>
+ <%if @user%>
+ <%= f.hidden_field :User_id ,:value=>@user.id  %>
+ <%end%>
+ <%= f.hidden_field :k1s ,:value=> '10 чел' %>
+
+ <%= f.hidden_field :price ,:value=> '5399' %>
+
+  <table>
+    <tr><td>
+    <%= f.hidden_field :quantity ,:value=> 1 ,:size=>3,:class=>'in_right' %>
+      </td><td>
+        <div class="cart_butt">  <input  id="predl_order" value="ЗАКАЗАТЬ" type="submit"> </div>
+<!--
+<input type="image"  src="/images/cart.gif" border=0 align="center" style="position:relative;top:-5px;"> -->
+<!-- <input type="image"  src="/images/basket.gif" border=0 align="absmiddle"> -->
+      </td></tr></table>
+    <% end %>
+
+</div>
+    </td>
+  </tr>
+</table>
+
+<%end%>
+
+  <% content_for(:bs) do %>
+  <%=bs%>
+  <%end%>

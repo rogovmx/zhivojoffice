@@ -1,0 +1,23 @@
+<% content_for(:cont) do %>
+<div style="color: #c49550; position: relative; top: -40px; left: 15px; width: 400px;">кейтеринг / меню</div>
+<div style="margin-left: 15px; margin-right: 15px; padding-bottom: 30px;">
+<% for set in @set %>
+<%@s = set%>
+ <%= render(:partial=> '/keitering/cat_keit', :object=>@s ) %>
+
+<% end %>
+  <br style="clear: both;"/>
+  
+  <div style="background: url(/images/keit/div.jpg) repeat-x center center; height: 10px;  margin-top: 10px; margin-bottom: 10px;" > </div>
+<% for ast in @assorty %>
+<%@s2 =ast%>
+ <%= render(:partial=> '/keitering/cat_keit2', :object=>@s2 ) %>
+
+<% end %>
+
+
+</div>
+<br/> <br/>
+<h3 style="color:#c49550; margin-left: 25px; margin-top: 25px; text-decoration: underline; clear: both; float: none; position: relative; top: 20px;" >Минимальная стоимость заказа 1500 рублей. Доставка включена в стоимость меню. </h3>
+<br/><br/>
+<% end %>

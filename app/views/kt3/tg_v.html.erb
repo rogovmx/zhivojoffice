@@ -1,0 +1,95 @@
+<%  @tov3=Tov3.find(params[:id]) %>
+<% content_for(:tit) do %>
+<% if @tg.size == 1 %>
+<%= @tg[0].fullname %>
+<% else %>
+ <%=@tov3.name%>
+<% end %>
+
+<%end%>
+
+ 
+<% content_for(:sort) do %>
+
+<%# for n in session[:filtr].keys do %>
+<%#= n + ': ' + session[:filtr][n] + '<br/>'%>
+<%# end  %>
+<%#= session[:filtr].size   %>
+<% if @btg %>
+
+<%= render :partial=>'/part2/sort_v'  %>
+<% else %>
+<%= render :partial=>'/part2/sort_v_old'  %>
+<% end %>
+
+     <!--  сортировка конец  -->
+<% end %>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+<% content_for(:cont) do %>
+<%#= image_tag ('/images2/spec_cat.gif') , :alt=>'Специальные цены на бумагу' , :style=>'margin-bottom: 10px;' if session[:city] != 'smo' %>
+
+
+  <%= hk(params[:id]) %>
+
+     <div id="tovar">
+   
+    <div style="width:550px; vertical-align: bottom;">
+      <span id="sel2" style="font-family: Arial; font-size: 11px;position:relative;top:-3px;display:inline; color:#808285; font-weight: bold;">Показывать по:
+ <select id="br11" style="font-family: Arial; font-size: 11px;  color:#808285; font-weight: bold;" onchange=perp($F('br11')); >
+   <%= options_for_select([12,15,18], @per_page.to_i) %>
+ </select></span>&nbsp;&nbsp;
+
+ <span  style="font-family: Arial; font-size: 11px;position:relative;top:-3px;  color:#808285; font-weight: bold;"">
+<%= link_to  'Показывать списком',{:controller=>'kt3',:action=>'tg_n',:id=>@tov3.id } , :style=>'color:#808285; font-weight: bold;'%></span>
+
+
+<%= will_paginate @tg  %>
+
+ 
+<%ff=0%>
+
+
+
+
+
+       <div id="<%#=@cat.tg%>" >
+         <table border="0" cellpadding="0" cellspacing="0" ><tr style="border-bottom: 1px dashed #808285;">
+       <% for tg in @tg do %>
+        <% @cat = tg %>
+
+ <% unless tg.raspr != 0 and session[:city]=='smo' %>
+
+
+<%ff+=1%>
+  <td valign="top" style="padding-right:12px; padding-top: 3px; <%= 'padding-right:0px;' if (ff%3)==0%> margin:0px;border-bottom:1px dashed #808285; ">
+
+
+
+<%= render(:partial => 'kt3/cat22v',:cat =>tg,:object=>@tov3) %>
+
+
+  </td>
+<% end %>
+
+<% if (ff%3)==0 %>
+  </tr><tr>
+  <%end%>
+
+    <% end %>
+  </tr></table>
+          </div>
+<%= will_paginate @tg %>
+     </div>
+
+
+ </div>
+
+<%  end %>
+
+
+
+
+

@@ -1,0 +1,55 @@
+
+<table width="695px" border="0" class="det_zak" cellpadding="0" cellspacing="0" >
+<tr style="color:#ffffff;background-color:#F47920;">
+  
+  <th> Код </th>
+  <th>Наименование  </th>
+  <th>Ед.изм.  </th>
+  <th width="70px;">Цена р.  </th>
+  <th>Кол-во  </th>
+  <th width="70px;">Сумма р. </th>
+
+ 
+</tr>
+<% @line.each do |cart| %>
+
+<% @cat=Cat1.find_by_k1c(cart.k1s) %>
+    <tr >
+
+       <td>      <%=@cat.kpk%>      </td>
+       <td      <%=link_to @cat.fullname,{:controller=>'kt1',:action=>'tov',:id=>@cat.id},:class=> 'g2',:style=>"color:#786e6e;" %>  </td>
+      <td>  <%= h @cat.ei %>     </td>
+        <td>     <%=cart.price%>
+        </td>
+
+       <td><%= cart.quantity %></td>
+       <td>
+         <% if cart.price %>
+<% ss=cart.price*cart.quantity %>
+         <%else%>
+         <% ss='Запрос цены' %>
+         <% end %>
+ <%=ss%>
+       </td>
+     </tr>
+     <%end%>
+
+   </table>
+
+<div style="color: #808285; font-weight: bold; padding-left: 440px; margin-top: 10px;"> стоимость заказа: <span style="color: #F47920;"> <%= @line.sum{ |p| p.price*p.quantity} %>  </span> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

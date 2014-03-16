@@ -1,0 +1,98 @@
+
+<style media='print' type='text/css'>
+#navbar-iframe {display: none; height: 0px; visibility: hidden;}
+.noprint {display: none;}
+
+</style>
+
+<br><br>
+
+<b>
+Заказ №<%=@order.id %>  </b><br/>
+<style>
+  #ttt
+  {
+     border-collapse:collapse;
+     border:solid 1px #000;
+  }
+  #ttt th
+  {
+
+    border:solid 1px #000;
+    text-align:left;
+    padding-left:5px;
+  }
+  #ttt td
+  {
+   
+    border:solid 1px #000;
+    text-align:left;
+    padding-left:5px;
+  }
+ 
+</style>
+<table id="ttt">
+  <tr>
+  <th>Код каталога</th>
+   <th>Название</th>
+    <th>Ед.изм</th>
+     <th>Цена</th>
+      <th>Кол-во</th>
+       <th>Сумма</th>
+        <th>Примечание</th>
+  </tr>
+<% @cart.each do |cart| %>
+
+
+<% @cat=Cat1.find_by_k1c(cart.k1c) %>
+
+  <tr>
+     <td><%=@cat.kpk%></td>
+      <td id="name"><%= if @cat.fullname != nil and @cat.fullname != '' then @cat.fullname else @cat.name end %></td>
+       <td><%=@cat.ei%></td>
+        <td>
+           <% if cart.price %>
+<%=cart.price%>
+          <%else%>
+          Запрос цены
+          <%end%>
+        </td>
+    <td><%=cart.quantity%></td>
+
+     <td>
+       <% if cart.price %>
+<%=  cart.quantity * cart.price  %>
+       <%end%>
+     </td>
+      <td></td>
+  </tr>
+  <%end%>
+   <tr>
+       <td colspan="5" align="right" style="border-top:dashed 1px #e7e7e7;padding:3px;"><b>Общая стоимость заказа:&nbsp;</b></td>
+       <td align="center" style="border-top:dashed 1px #e7e7e7;padding:3px;"><b><%=  @cart_sum %>р.</b></td>
+      <td style="border-top:dashed 1px #e7e7e7;padding:3px;"> <% if @cart_sum < 1000 and session[:city] != 'smo'%> Стоимость доставки 200р. <% end%> </td>
+     </tr>
+</table>
+<br/><br/>
+<div id="bottom"><b>Согласовано:</b> ___________________ /______________________ /<br /><br />
+  <b>
+  <% if @cart_sum < 1000 and session[:city] != 'smo'%> 
+  Доставка осуществляется бесплатно при сумме заказа от 1000 рублей. 
+При заказе на сумму менее 1000 рублей стоимость доставки 200 рублей.
+
+<% end%>
+
+  </b>
+
+<br/>
+  <b>Внимание! Эта предварительная заявка не является счетом, не является заказом, не принята к исполнению!<br />
+                    При оформлении заказа цены на товары и их наличие могут отличаться от указанных в заявке.<br />
+
+		    Цены указаны с учетом НДС.</b></div>
+<br/>
+
+
+<input type="button" value="Распечатать" onClick="window.print();" class="noprint"/> &nbsp;&nbsp;&nbsp;&nbsp;
+<!--
+<input type="button" value="Вернутся на сайт" onClick="javascript:history.go(-1)">
+  -->

@@ -1,0 +1,88 @@
+
+
+<table width="695px" border="0" style="border-bottom:dashed 1px #808285; margin-bottom: 5px;">
+
+     <tr>
+       <td width="60px" align="center" valign="center" >
+
+           <% if @cat.pic1 and @cat.pic1 != '' %>
+                  <%= link_to (image_tag("/img/"+@cat.pic1+".jpg" ,:width=>"50px")),:controller=>'kt3',:action=>'tov',:id=>@cat.id %>
+         <%else%>
+
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px; " height=50px/><br/>
+           <%end%>
+     </td>
+       <td style="width:50px; padding-left: 5px;">
+         <span style="font-family: Arial; font-size: 9px;font-weight:bold; color: #b1b3b6;">
+         <%@kod = Katalog.find :first ,:conditions=>["k1c=?",@cat.k1c] %>
+  <% if @kod %>
+     <%=@kod.kod%>
+  <%else%>
+     
+      <%end%>
+         </span>
+       </td>
+
+         <td valign="center" align="left" >
+
+         <%=link_to @cat.name,{:controller=>'kt1',:action=>'tov',:id=>@cat.id}, :class=>'tit_tov' %>
+
+         </td>
+    
+         <% @cat1=@cat %>
+         
+       <td  align="left" valign="center" width="70px">
+
+          <%unless login?%>
+          
+      <%else%>
+   <span style="font-family: Arial; font-size: 10px;font-weight:bold;">   </span>
+    <% @price_spec=TovSpec.find(:first,:conditions=>['legal_id=? and k1c=?',@user.client_id,@cat.k1c]) %>
+
+      <% unless @price_spec %>
+
+  <span style="color:red; font-size:18px;">    <%=h @cat.price %>р.&nbsp;</span>
+        <%else%>
+
+     <span style="color:green; font-size:18px;">     <%=h @price_spec.price_spec %>р.&nbsp;</span>
+        <%end%>
+
+<%end%>
+       </td>
+
+       <td align="right"  valign="cener" style=" width: 90px; padding-top: 10px; padding-right: 5px;">
+
+           <% @tvc=Cart.find :first,:conditions=>['sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+
+    <% if @tvc   %>
+      <%= render(:partial=> '/kt3/tvc') %>
+    <%  else  %>
+         <div id="tc">
+<%= render(:partial=> '/kt3/zakaz', :object=>@cat1,:object=>@user) %>
+         </div>
+ <% end %>
+ 
+
+
+       </td>
+
+     </tr>
+     
+
+         <% if login? %>
+            <% if @user.role !='admin_s' %>
+           <tr>
+            <td align="center" colspan="5">
+          
+                         <%else%>
+                           <%= link_to_remote "редактировать" ,{:url=>{:controller=>'kt1',:action=>'edit_tov',:id=>@cat.id},:update=>'rl'},:href => url_for(:controller=>'login',:action => "login")%>
+                          </td>
+                       </tr>
+             <%end%>
+
+        <%else%>
+        <%end%>
+       
+   </table>
+
+

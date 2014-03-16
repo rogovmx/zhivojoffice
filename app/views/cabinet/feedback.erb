@@ -1,0 +1,21 @@
+<% content_for(:cont) do %>
+
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="cabord_title">
+Обратная связь
+</div>
+<div style=" width: 695px; margin-bottom: 25px;">
+<% form_for :feedback , :url=>{:controller=>'cabinet', :action=>'feedback'} do |f| %>
+<%= f.hidden_field :user_id , :value=>@user.id %>
+<div style="padding: 15px; background-color: #fee0c6; border: 1px solid #f47920;margin-top: 20px;">
+  <p style="color:#f47920; margin-bottom: 5px; font-weight: bold;">НАПИСАТЬ СООБЩЕНИЕ</p>
+<%= f.text_area :msg , :style=>'width: 100%; height: 180px;  background-color: white;' %>
+</div>
+ <%= f.submit "ОТПРАВИТЬ" , :style=>'cursor: pointer; background-color:#A76FB0; font-weight: bold; text-align: center; width: 250px; float: right; border: none; color: white; height: 25px; margin-top: 25px; margin-bottom: 20px;' %>
+<% end %>
+
+</div>
+<% end %>

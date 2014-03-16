@@ -1,0 +1,36 @@
+
+<% content_for(:cont) do %>
+  <h1>Редактирование подгруппы</h1>
+
+<% form_for(@tov3) do |f| %>
+  <%= f.error_messages %>
+
+  
+  <p>
+    Родительская группа 2 порядка:<br/>
+    <%= f.collection_select :tov2_id, Tov2.all, :id, :name, {} %>
+  </p>
+ 
+  <p>
+    Название:<br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    Хлебные крошки:<br />
+    <%= f.text_field :hk %>
+  </p>
+  <p>
+    Резервное поле:<br />
+    <%= f.text_field :reserv %>
+  </p>
+   <p>
+    Номер по порядку:<br />
+    <%= f.text_field :ord %>
+  </p>
+  <p>
+    <%= f.submit "Обновить" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', tov3s_path %>
+<%end%>

@@ -1,0 +1,129 @@
+<div id="head">
+
+    <span style="float: right;  margin-left: 12px; margin-top: 10px;"  title="(812)324-80-50, доб. 1290">
+      <script type="text/javascript">
+<!--  Begin
+      user = "support";
+      site = "zhivojoffice.ru";
+      document.write('<a style="text-decoration:none; color: #808285;" href="mailto:' + user + '@' + site + '\">');
+      document.write('Поддержка сайта' + '</a>');
+      // End -->
+      </script>
+    </span>
+
+
+ <%unless login?%>
+  <span class="log">
+   <a href="#" onclick="show_id('up_login')"  style="font-size: 17px; margin-top: 10px;"> Вход </a>
+    <a href="#" onclick="gopage('/login/add_user')">Регистрация</a>
+     </span>
+ <%end%>
+
+
+
+  <%=  render :partial=>'/part2/login1' %>
+
+    <% if login? %>
+    <span class="hello" style="margin-top: 10px;">      Здравствуйте,  <%= user_name %>. </span>
+    <% end %>
+
+
+    
+    <div id="top_bonus">
+    <% if !login? %>
+    <%= link_to image_tag('/images2/bon.png') , {:controller=>'bonus2' , :action=>'rule'} %>
+    <% elsif login? and @user.role != 'poduser' and !@user.bonus%>
+      <div> <%= @bns.ost  if @bns%> </div>
+    <%= link_to 'Бонусы' , {:controller=>'bonus2' } %>
+    <%end%>
+    </div>
+
+
+
+
+  <div id="logo_box">
+ <%= link_to image_tag("/images2/#{Indexnew.find(2).new}") ,'/' , :alt => 'Живой Офис' %>
+     <span> все для жизни офисных сотрудников</span>
+  </div>
+
+
+  <div class="phone">
+    <% if session[:city]=='spb' or session[:city]==nil %>
+    <span style="font-size: 26px; color:#f47920; ">+7 (812) </span>
+    <span style="font-size: 26px; color:#f47920; " >324 80 50</span> <br>
+    <% elsif session[:city]=='msk' %>
+    <span style="font-size: 26px; color:#f47920; ">+7 (495) </span>
+    <span style="font-size: 26px; color:#f47920; " >730 30 77</span> <br>
+    <% elsif session[:city]=='smo' %>
+    <span style="font-size: 26px; color:#f47920; ">+7 (4812) </span>
+    <span style="font-size: 26px; color:#f47920; " >24 44 24</span> <br>
+    <% elsif session[:city]=='nn' %>
+    <span style="font-size: 26px; color:#f47920; ">+7 (831) </span>
+    <span style="font-size: 26px; color:#f47920; " >429 09 10</span> <br>
+    <% end %>
+
+
+  <noindex>
+
+    <div class="setcity">
+      <span style=" font-weight: bold;">
+        <% if session[:city]=='spb' or session[:city] == nil %>
+          Санкт-Петербург
+        <%elsif session[:city]=='msk'%>
+          Москва
+        <%elsif session[:city]=='smo'%>
+          Смоленск
+          <!--   <%#elsif session[:city]=='nn'%>
+          Нижний Новгород    -->
+        <% end %>
+      </span>
+      <span>|</span>
+      <span id="set_city" onclick="tog('change_city')" style="color: #999999; text-decoration: none; cursor: pointer;"> Другой город </span>
+        <div id="change_city" style="display: none; position: absolute; right: 0px; text-align: left; width: 120px; padding: 5px; border: 1px solid #999999; background-color: white;" onmouseover="show_id('change_city')" onmouseout="zp('change_city')" >
+          <%= link_to 'Санкт-Петербург' ,{:controller=>'kt1', :action=>'set_city', :city=>'spb'} ,{:class=>'city_a'} %> <br/>
+          <%= link_to 'Москва'  ,{:controller=>'kt1', :action=>'set_city', :city=>'msk'} ,{:class=>'city_a'}  %> <br/>
+          <%= link_to 'Смоленск'  ,{:controller=>'kt1', :action=>'set_city', :city=>'smo'} ,{:class=>'city_a'}  %>
+          <%#= link_to 'Нижний Новгород'  ,{:controller=>'kt1', :action=>'set_city', :city=>'nn'} ,{:class=>'city_a'}  %>
+        </div>
+    </div>
+
+  </noindex>
+
+  </div>
+
+
+
+
+
+<% if login? and !@user.bonus %>
+  <div class="top_cart">
+    <a href="/bonus2/editcart" rel="nofollow">
+      <img src="/images2/cart.jpg" alt="Корзина" />
+    </a>
+  </div>
+<% end %>
+
+
+
+</div>
+
+<%= render :partial => '/part2/main_menu' %>
+
+<%= render :partial => '/part2/cabinet' %>
+
+
+ <% if flash[:notice] -%>
+
+  <div id="notice" style="position:absolute; top: 0px; right: 320px; padding: 5px; background-color: red; display: inline;">
+
+    <h3 style="color: white;"> <%= flash[:notice] -%> </h3>
+  </div>
+<% end -%>
+
+
+
+
+
+
+
+

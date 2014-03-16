@@ -1,0 +1,63 @@
+<% content_for(:cont) do %>
+
+<style type="text/css">
+<!--
+
+
+.viktorina_start {
+	background-image: url(/images/viktor5_2.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	height: 220px;
+	width: 550px;
+
+}
+#start  a{
+	color: #EF568E;
+	text-decoration: none;
+}
+#start {
+
+	width:100px;
+	height: 70px;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bolder;
+	color: #EF568E;
+	line-height: 17px;
+}
+
+
+.info {
+	font-family: Arial, Helvetica, Tahoma, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #428f89;
+	margin-top: 30px;
+	margin-left: 10px;
+}
+-->
+</style>
+
+<div style=" width: 800px; height: 600px">
+
+
+<div class="viktorina_start">
+<div id="start">
+  </div></div>
+
+  <div class="info">
+    Правильных ответов:&nbsp;<%=@p%>
+  </div>
+
+<div class="info">Вы, безусловно, эрудит.<br />
+Но не на все вопросы удалось ответить правильно...
+<br /><br />
+Попробуйте свои силы в следующий раз!<br /><br />
+
+Вопросы викторины обновляются каждый месяц.<br />
+Участвуйте и выигрывайте!</div>
+
+
+  </div>
+<% end %>

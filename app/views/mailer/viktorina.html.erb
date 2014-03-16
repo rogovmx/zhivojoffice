@@ -1,0 +1,19 @@
+<h1> Победитель викторины! </h1>
+<hr/>
+<%@user = User.find(@order.user_id) %>
+
+ФИО:&nbsp;<%=@user.scr_name + ' ' + @user.patronymic + ' ' + @user.surname %> <br />
+Компания:&nbsp;<%=@user.company_ind%><br />
+ИНН:&nbsp;<%=@user.inn%><br />
+Телефон:&nbsp;<%=@user.phone%><br />
+
+
+<hr/>
+
+ <br>
+    
+    
+  
+
+
+

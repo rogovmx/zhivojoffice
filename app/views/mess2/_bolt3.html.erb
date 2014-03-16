@@ -1,0 +1,23 @@
+<% @mess.each do |mess| %>
+
+<%=  mess.id%> ::
+<%  @ll=Mcontent1.find :first,:conditions=>["messager_id=?",mess.id],:order=>'created_at desc'%>
+<% if @ll.name=='Елена' %>
+ <span style="color:red;">
+   Ждем ответа
+  <%else%>
+        <span style="color:green;">
+           <script>
+          
+          this.focus();
+        
+        </script>
+   Ответить
+  <%end%>
+          <%#=@ll.name%>
+          </span>
+<%= link_to_remote   mess.name ,:url=>{:controller=>'mess2',:action=>'oper',:id=>mess.id},:update=>'mess111'%>
+
+ &nbsp;&nbsp; <%=  link_to 'В архив' ,:controller=>'mess2',:action=>'arhiv',:id=>mess.id %>
+<br>
+<%end%>

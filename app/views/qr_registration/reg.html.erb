@@ -1,0 +1,117 @@
+<% content_for(:tit) do %>
+ Живой офис. Регистрация и зачисление 200 бонусов. 
+<% end %>
+
+<% content_for(:cont) do %>
+<style type="text/css">
+  #errorExplanation
+  {
+    padding:15px;
+    background-color:#dcdcdc;
+    color: red;
+  }
+
+  .errorExplanation h2
+  {
+    visibility:hidden;
+    display:none;
+  }
+  .errorExplanation p
+  {
+    visibility:hidden;
+    display:none;
+  }
+</style>
+
+
+
+<h1 style="color: #808285; font-weight: bold; line-height: 40px;">
+  Регистрация <span style=" color: red">+250 бонусов! </span>
+</h1>
+
+<div class="add_user_title" style="width: 452px;">
+   Для регистрации на сайте заполните следующую форму:
+</div>
+<div class="add_user" style="width: 440px;">
+ <p class="red"> Поля в красной рамке обязательны к заполнению.</p>
+
+  <%=error_messages_for 'user'%>
+
+    <% form_for :user do |form| %>
+      <input name="authenticity_token" type="hidden" value="3a0328c1591f06d9095a4c59aa9c22d9ec3afd49" />
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr class="odd">
+          <td><label for="user_name">Введите ваш логин:</label></td>
+          <td style="width: 250px;"> <%= form.text_field :name,:class=>'it' , :style=>'width: 250px;' %></td>
+        </tr>
+        <tr>
+          <td><label for="user_password">Введите пароль,<br />не менее пяти символов:</label></td>
+          <td> <%= form.password_field :password  , :style=>'width: 250px;' %></td>
+        </tr>
+        <tr class="odd">
+          <td><label for="user_password_confirmation">Введите пароль еще раз:</label></td>
+          <td>  <%= form.password_field :password_confirmation  , :style=>'width: 250px;' %></td>
+        </tr>
+        <tr>
+          <td><label for="user_scr_name">Ваше имя:</label></td>
+          <td><%= form.text_field :scr_name  , :style=>'width: 250px;'%></td>
+        </tr>
+
+        <tr class="odd">
+          <td><label for="user_mail">Введите ваш e-mail:</label></td>
+          <td><%= form.text_field :mail , :style=>'width: 250px;' %></td>
+        </tr>
+        <tr>
+          <td><label for="user_phone">Введите ваш телефон:</label></td>
+          <td>
+         <!-- <input id="user_phone" name="user[phoneprefix]" pattern="\S" size="4" type="text" />&nbsp;&nbsp;&nbsp;-->
+            <%= form.text_field :phone , :style=>'width: 250px;' %>
+            </td>
+        </tr>
+
+
+        <tr class="odd">
+          <td>
+
+         <label for="city">Ваш город</label>
+          </td>
+          <td>
+            <select name="user[city]" id="user_city" style="width:258px; height: 25px; line-height: 25px; border:1px solid #FF0000;">
+  <option value="Москва" selected="selected">Москва</option>
+  <option value="Санкт-Петербург" >Санкт-Петербург</option>
+  <option value="Смоленск" >Смоленск</option>
+   <option value="Нижний Новгород" >Нижний Новгород</option>
+</select>
+
+    </td>
+        </tr>
+        <tr >
+          <td colspan="2" height="30px;">
+            <p style=" float: left; width: 400px;">
+            <label for="soglasen" >Я согласна(согласен) получать от <a href="http://www.zhivojoffice.ru">www.zhivojoffice.ru</a> поздравления , информацию о бонусной программе и рекламных акциях.</label>
+            </p>
+            <p style="float: right;">
+<%= form.check_box :soglasen,:checked=>'checked' %>
+            </p>
+
+          </td>
+        </tr>
+      </table>
+         <p style="text-align: right;">
+         <%= submit_tag "Зарегистрироваться", :class => "submit" %>
+      </p>
+
+    <%end%>
+
+</div>
+
+<p style="color: #808285;" >
+   Личные сведения, полученные в распоряжение <a href="http://www.zhivojoffice.ru">www.zhivojoffice.ru</a>
+   при регистрации или каким-либо иным образом, не будут без разрешения пользователей передаваться третьим организациям и лицам,
+   за исключением ситуаций, когда этого требует закон или судебное решение.
+      </p>
+
+<%  end %>
+
+
+

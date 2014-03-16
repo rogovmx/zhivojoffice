@@ -1,0 +1,43 @@
+    <% @client=Client.find(@user.client_id) %>
+
+Юр.лицо: <%= @client.name %><br/>
+Код 1С: <%= @client.k1c %> <br/>
+Телефон: <%=@user.phone%> <br/>
+Login: <%=@user.name%>
+E-mail:&nbsp;<%=@user.mail%><br />
+Адрес доставки:<%= @user.city  %><br/>
+
+
+
+<table border="1" cellpadding="2" cellspacing="2" >
+  <tr>
+    <th>Код 1С</th>
+    <th>Название</th>
+    <th>Цена</th>
+    <th>
+      Количество
+    </th>
+  </tr>
+<% @order.each do |cart| %>
+  <% @cat=Cat1.find_by_k1c(cart.k1c) %>
+
+  <tr>
+    <td style="padding: 2px;">
+<%= cart.k1c %>
+    </td>
+    <td style="padding: 2px;">
+<%=@cat.fullname %>
+    </td>
+    <td style="padding: 2px;">
+  <%= cart.bonus_price %>
+    </td>
+    <td style="padding: 2px;">
+1
+    </td>
+  </tr>
+<%end%>
+</table>
+
+
+
+

@@ -1,0 +1,93 @@
+<% content_for(:cont) do %>
+
+
+
+
+
+<div class="cab_hk" style="color: green; width:665px;">Редактирование сотрудника(отдела) » <%=@user.scr_name %> <%=@user.surname %> <%=@user.otdel%>   </div>
+
+<div class="spens_form" style="width:695px;">
+
+<p style="color: #808285;"> После заполнения формы на почту сотрудника придет письмо c логином и паролем. </p>
+
+
+  <%=error_messages_for 'user'%>
+<% form_for :user11 ,:url=>{:controller=>'cabinet',:action=>'edit_sotr'} do |form| %>
+
+     
+      
+      <table border="0" cellspacing="0" cellpadding="0" class="reg_poduser">
+        <tr>
+          <th colspan="2" valign="top" ><div  class="sotr_title"> Для редактирования сотрудника на сайте заполните следующую форму: </div></th>
+        </tr>
+           <tr>
+          <td colspan="2" >
+             <p class="red">Поля в красной рамке обязательны к заполнению.</p>
+            </td>
+        </tr>
+        <tr class="odd">
+          <td><label for="user_name">Введите  логин, в дальнейшем он будет использоваться для идентификации  в качестве клиента <a href="">zhivojoffice.ru</a>:</label></td>
+          <td> <%= form.text_field :name, :size => 30 ,:class=>'it' ,:value=>@user.name %></td>
+        </tr>
+        <tr>
+          <td><label for="user_password" style="color: red; cursor: pointer;" onclick="show_pass('pass')">Изменить пароль, рекомендуется не менее 5 символов:</label></td>
+          <td id="pass"> <%#= form.text_field :password, :size => 30 %></td>
+        </tr>
+ 
+        <tr class="odd">
+          <td><label for="user_surname">Фамилия:</label></td>
+          <td> <%= form.text_field :surname, :size => 30  ,:class=>'input_n' ,:value=>@user.surname%></td>
+        </tr>
+        <tr>
+          <td><label for="user_scr_name">Имя:</label></td>
+          <td><%= form.text_field :scr_name, :size => 30 ,:value=>@user.scr_name%></td>
+        </tr>
+ 
+        <tr class="odd">
+          <td><label for="user_mail">Введите  e-mail:</label></td>
+          <td><%= form.text_field :mail, :size => 30 ,:value=>@user.mail%></td>
+        </tr>
+        <tr>
+          <td><label for="otdel">Отдел:</label></td>
+          <td><%= form.text_field :otdel, :size => 30 ,:value=>@user.otdel%></td>
+        </tr>
+  <tr class="odd">
+          <td><label for="limit">Лимит разового заказа в рублях: </label> <%= form.text_field :limit, :style=>'width: 60px' ,:value=>@user.limit ,:class=>'input_n' , :onkeyup=>"wolf_lim('user11_limit')"%></td>
+          <td style="vertical-align:middle;"><label for="buy" style="position: relative; top: -6px;">Право оформления заказа:</label> 
+
+    <%= form.check_box :buy , :checked=>'checked' if @user.buy%>
+    <%= form.check_box :buy  unless @user.buy%>
+
+          </td>
+        </tr> 
+    <tr>
+          <td colspan="2"><label for="only_specs" style="position: relative; top: -6px;">Заказ только из раздела «Договоры и спецификации»:</label>
+
+    <%= form.check_box :only_specs , :checked=>'checked' if @user.only_specs%>
+    <%= form.check_box :only_specs  unless @user.only_specs%>
+
+          </td>
+        </tr>
+
+
+        <tr>
+          <td colspan="2" align="right" valign="center" style="height: 70px;" >
+              <%= link_to 'Вернуться' , {:controller=>'cabinet' , :action=>'sotr'} , :style=>'float: left;'%>
+             <%= submit_tag "Сохранить", :style =>'font-weight: normal; background-image: none; background-color: #F47920; border: medium none; color: white; cursor: pointer; padding: 3px; padding-left: 10px; padding-right: 10px; text-align: center;' %>
+           
+
+          </td>
+        </tr>
+      </table>
+
+    <%end%>
+      <p style="color: #808285; margin-top: 10px;">Личные сведения, полученные в распоряжение <a href="http://www.zhivojoffice.ru">www.zhivojoffice.ru</a> при регистрации или каким-либо
+        иным образом, не будут без разрешения пользователей передаваться третьим организациям и лицам, за исключением ситуаций, когда этого требует
+        закон или судебное решение.</p>
+
+</div>
+
+
+<%  end %>
+
+

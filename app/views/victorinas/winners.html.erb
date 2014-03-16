@@ -1,0 +1,48 @@
+<% content_for(:cont) do %>
+<%unless login?%>
+
+                  <%else%>
+<% if @user.id == 2019 %>
+
+<style type="text/css">
+#needs  td {padding: 5px; border-left: 1px solid #76b3de; border-right: 1px solid #76b3de; }
+  .l1{background: #b3d9f3}
+  .l2{ background: white}
+</style>
+
+<div>
+<h1> Выигравшие участники </h1>
+<br/><br/>
+<h3>Время показано в UTC, наше время UTC+4 часа</h3>
+<br/><br/>
+<table id="needs"  border="0"  cellspacing="0" cellpadding="0" width="920px"  >
+    <tr style="color:white; background: #085285">
+    <td>Время</td>
+    <td>Имя</td>
+    <td>Отчество</td>
+    <td>Фамилия</td>
+    <td>Телефон</td>
+    <td>Компания</td>
+    
+  </tr>
+
+<% for victor_users in @victor_users %>
+  <% @wins = User.find_by_id(victor_users.user_id) %>
+  <tr class="<%= cycle('l1', 'l2')%>">
+    
+    <td><%=h victor_users.created_at %></td>
+    <td><%=h @wins.scr_name %></td>
+    <td><%=h @wins.patronymic %></td>
+    <td><%=h @wins.surname %></td>
+    <td><%=h @wins.phone %></td>
+    <td><%=h @wins.company_ind %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+<% end %>
+<% end %>
+<br /><br /><br /><br /><br /><br /><br />
+
+</div>
+<%end%>

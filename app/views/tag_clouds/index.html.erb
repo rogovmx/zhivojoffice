@@ -1,0 +1,48 @@
+
+
+<% content_for(:cont) do%>
+  <% ctg=0%>
+  <h1>Облако тэгов</h1>
+
+  <table style="padding: 3px;" >
+  <tr style="background-color: darkviolet ; font-weight: bold; color: white; line-height: 30px;">
+    <th>Название</th>
+    <th>Ссылка</th>
+    <th>Стиль (1...10)</th>
+    <th>Категория</th>
+    <th>Сортировка</th>
+  </tr>
+  <tr style="background-color:green; font-weight: bold; color: white; line-height: 20px;">
+    <td colspan="7" > Категория: <%=ctg.to_s %> | <%= link_to 'Новый тэг', new_tag_cloud_path , :style=>'color:white;'%> </td>
+  </tr>
+
+
+<% for tag_cloud in @tag_clouds %>
+    <% if tag_cloud.category and ctg<tag_cloud.category %>
+  <% ctg=tag_cloud.category %>
+  <% @razdel=Razdel1.find_by_id(ctg) %>
+  <tr style="background-color:green; font-weight: bold; color: white; line-height: 20px;">
+    <td colspan="7" > Категория: <%=ctg.to_s %> | <%=@razdel.name %>  | <%= link_to 'Новый тэг', {:action=>'new' , :id=>ctg} , :style=>'color:white;'%>
+ </td>
+  </tr>
+<% end %>
+
+  <tr>
+    <td><span class="tag-cloud-<%= tag_cloud.styleTag%>"><a href="<%=tag_cloud.link%>" title="<%= tag_cloud.name %>"><%= tag_cloud.name %></a></span></td>
+    <td><%=h tag_cloud.link %></td>
+    <td><%=h tag_cloud.styleTag %></td>
+    <td><%=h tag_cloud.category %></td>
+    <td><%=h tag_cloud.por %></td>
+   
+    <td><%= link_to 'Редактировать', edit_tag_cloud_path(tag_cloud) %></td>
+    <td><%= link_to 'Удалить', tag_cloud, :confirm => 'Точно?', :method => :delete %></td>
+  </tr>
+
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новый тэг', new_tag_cloud_path %>
+
+<%end%>

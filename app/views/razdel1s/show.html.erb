@@ -1,0 +1,21 @@
+<% content_for(:cont) do %>
+
+<p>
+  <b>Название раздела:</b>
+  <%=h @razdel1.name %>
+</p>
+
+<p>
+  <b>Текст на странице:</b>
+  <%=h @razdel1.name %>
+</p>
+
+<p>
+  <b>Top:</b>
+  <%=h @razdel1.link %>
+</p>
+
+
+<%= link_to 'Редактировать', edit_razdel1_path(@razdel1) %> |
+<%= link_to 'Вернуться', razdel1s_path %>
+<%end%>

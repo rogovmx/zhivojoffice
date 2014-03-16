@@ -1,0 +1,20 @@
+ <h3> <%=@title %>  </h3>
+<div class="goods_conteiner">
+ 
+  <% for good in @goods do %>
+  <%@good = good%>
+  <div class="goods_box">
+    <h2> <%=link_to good.name , :controller=>'kt3' , :action => 'tov' , :id => good.id %>  </h2>
+    <div class="photo_div"> <%=link_to image_tag("/img/#{good.pic1}.jpg"  )  , {:controller=>'kt3' , :action => 'tov' , :id => good.id} %>  </div>
+    <div>  <%=  render :partial=>'/part_main/zakaz' , :good => @good %></div>
+    <div class="bottom_goods"> 
+      <span id="comp_<%=@good.id %>">
+      <img  src="/images3/to_comp.jpg" />
+ <%= link_to_remote 'к сравнению' , :url=>{:controller=>'main', :action=>'create_comp', :id=>@good.id}  %>
+      </span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= link_to 'отложить' , '/' -%>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,38 @@
+
+<% @names=['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %>
+
+
+<div class="nb_title" style="margin-top: 10px;">
+
+  </div>
+<div id="news_box">
+
+
+          <div style="padding-left: 10px; margin-bottom: 20px; padding-right: 10px;">
+           •&nbsp;Сегодня,
+<%@day = Time.now.day %><%# @day= '0'+@day.to_s if @day.to_i < 10 %>
+<%  @month =  Time.now.month %> 
+<%= @day -%>&nbsp<%= @names[@month.to_i] -%>,
+           можно отметить:
+           <% @holiday = Holiday.find :first, :conditions =>['month=? and day=?',Time.now.month , Time.now.day] %>
+           <a href="/holiday/" style="text-decoration:none; font-size: 12px; color: black; margin-left: 0px;">
+          <%=truncate(@holiday.title, :lenght=>47)%>
+           </a>
+           <br/>
+         
+              <a href="/holiday/"> еще больше праздников...    </a>
+
+          </div>
+
+        
+          <div style=" padding-left: 10px; margin-bottom: 20px; padding-right: 10px;">
+            <a href="/desk_subjs/" style="text-decoration:none; font-size: 12px; color: black; margin-left: 0px;">
+              
+        •&nbsp;  <%= Indexnew.find(1).new %>
+
+
+ </a><br/>
+          <a href="/desk_subjs/">   читать дальше...        </a>
+         </div>
+
+        </div>

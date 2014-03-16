@@ -1,0 +1,21 @@
+
+<table>
+  <tr>
+    <th>Код 1с </th> <th>Наименование </th> <th>Старая цена</th> <th> Публичная </th>
+
+  </tr>
+<% for cat in @cat do %>
+<%#
+@t3 = Tov3.find_by_id(cat.tov3_id)
+@t2= Tov2.find_by_id(@t3.tov2_id) if @t3
+@t1 = First1.find_by_id(@t2.first1_id) if @t2
+%>
+  <tr>
+    <td> '<%= cat.k1c %> </td>
+    <td> <%= cat.fullname ? cat.fullname : cat.name %> </td>
+    <td> <%=get_old_price(cat.k1c) %> </td>
+    <td><%= findprice(cat.k1c) %>  </td>
+
+  </tr>
+<% end %>
+</table>

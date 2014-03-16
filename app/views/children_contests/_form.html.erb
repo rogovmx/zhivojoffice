@@ -1,0 +1,21 @@
+<% form_for(@children_contest, :html=>{:multipart => true}) do |f| %>
+<%= f.error_messages %>
+  <table style="margin-bottom:30px; border-spacing: 6px;">
+    <tr>
+      <td><%= f.label "Текущее Изображение" %></td>
+      <td><%= image_tag("/images/cat_images/#{@children_contest.image}", :width => "200px") if @children_contest.image %></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><%= f.label "Описание" %></td>
+      <td><%= f.cktext_area :description, :toolbar=>'Full', :size => "73x10" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Изображение" %></td>
+      <td><%= f.file_field :image %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "Обновить" %> <br/> <br/> 
+      <%= link_to 'Вернуться' , children_contests_path %>  </td>
+    </tr>
+  </table>
+<% end %>

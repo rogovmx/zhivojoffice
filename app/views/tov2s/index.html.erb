@@ -1,0 +1,83 @@
+
+<% content_for(:cont) do %>
+  <table style="width: 100%; margin-top: 40px;">
+      <tr>
+      <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+        <%= link_to "Редактирование разделов", razdel1s_path  %>
+        |
+        <%= link_to "Редактирование подгрупп 1 уровня", first1s_path %>
+        |
+        <%= link_to "Редактирование подгрупп 2 уровня", tov2s_path, :style => "color: red;" %>
+        |
+        <%= link_to "Редактирование подгрупп 3 уровня", tov3s_path %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+      <h2 style="margin-bottom: 20px;">Выбрать подгруппу 1 уровня для просмотра подгрупп 2 уровня:</h2>
+     
+      <input type="button" onclick="tog('razdels')" style="cursor: pointer; color:indigo; " value="Показать/убрать группы первого уровня" />
+
+      <table id="razdels" style="display:<%=  params[:first1_id] ? 'none' : 'block' %>" >
+        <tr> <th> Разделы </th> <th> Группы первого уровня </th> </tr>
+      <% for razdel in @razdel1s %>
+        <tr style="background-color: <%=cycle('white', '#e8e8e8')%>"> 
+          <td style="width: 265px;"><span style="color: navy; font-weight:  bold; cursor: pointer;"> <%= truncate(razdel.name, 50 )  %>  </span> </td>
+          <td><span>
+        <% for first1 in razdel.first1s %>
+          <% if first1.id == params[:first1_id].to_i %>
+        <nobr>  <%= link_to "#{first1.name}" , tov2s_path(:first1_id => first1.id), :style => "color: black;" %> </nobr> |
+          <% else %>
+          <nobr>  <%= link_to "#{first1.name}" , tov2s_path(:first1_id => first1.id), :style => "color: forestgreen;" %>  </nobr>|
+          <% end %>
+        <% end %>
+      </span>
+          </td>
+         </tr>
+     <% end %>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 5px;">
+      <% if params[:first1_id] %>
+        <h2 style="color: red;">Подгруппы второго уровня "<%= @first1[0].name %>"</h2>
+      <% else %>
+        <h2 style="color: red;">Все подгруппы второго уровня</h2>
+      <% end %>
+      </td>
+    </tr>
+  </table>
+
+<table>
+  <tr>
+    
+    <th>Название</th>
+    <th>Номер </th>
+  </tr>
+
+<% for first1 in @first1 %>
+   <tr style="line-height: 23px; background-color: #88cc60; color: white; font-weight: bold;"> <td colspan="5" style="padding-left: 30px;"><%= first1.name %> </td> </tr>
+<% for tov2 in first1.tov2.sort{|a,b| a.ord <=> b.ord } %>
+  <tr style="background-color:<%=cycle('white', '#e8e8e8')%>">
+   
+    <td><%= tov2.name %></td>
+    <td><%= tov2.ord %> </td>
+    
+    <td><%= link_to 'Редактировать', edit_tov2_path(tov2) %></td>
+    <% if @user.role =='sredaktor' %>
+    <td><%= link_to 'Удалить', tov2, :confirm => 'Точно удалить?', :method => :delete %></td>
+    <%end %>
+    <td><%= link_to 'Подгруппы', :controller=>'tov3s',:tov2_id=>tov2.id %></td>
+  </tr>
+<% end %>
+  <% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New tov2', new_tov2_path  %>
+<%= link_to "Вернуться к группам первого порядка", first1s_path %>
+|
+<%= link_to 'Новая подгруппа 2 порядка', :controller=>'tov2s',:action=>'new',:first1_id=>params[:first1_id] %>
+<%end%>

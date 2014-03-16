@@ -1,0 +1,59 @@
+
+<table width="160px;" height="100%" border="0" style="padding-top:0px; float: left; margin-right: 10px; ">
+  <tr>
+    <td style=" height:160px;" align="center" valign="center" colspan="2">
+     <% if @s2.prw and @s2.prw != ''  %>
+
+    
+       <div class="highslide-gallery">
+	<a href="<%='/images/keit/'+@s2.img %>" class="highslide" title="<%=@s2.name%>" onclick="return hs.expand(this, config1 )">
+		 <%= image_tag('/images/keit/'+@s2.prw , :alt=>@s2.name ) %>
+	</a>
+       </div>
+
+
+      
+<%else%>
+
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=160px/>
+
+                  <br/>
+           <%end%>
+         
+    </td>
+  </tr>
+<%if @s2.name and @s2.name!=''%>
+  <tr>
+   
+    <td colspan="2" align="left" valign="top" style="height:40px;" class="tit_tov">
+      <%=  @s2.name %>
+       
+    </td>
+  
+  </tr>
+ <% end %>
+    <tr>
+      <td align="left" valign="top"  class="water_opis" style="height: 70px; "  >
+       
+      <%= @s2.opis %>
+    </td>
+
+  </tr>
+    <tr >
+       <td style="color: #c49550; padding-left: 10px; height: 40px; ">
+         <span  style="color: #c49550;"> <%=@s2.price %> р. </span> <br/>
+          <span  style="color: #999999; font-size: 11px;"> Вес, гр. <%=@s2.weight %>  </span>
+
+         
+       </td>
+    </tr>
+
+
+</table>
+
+
+
+
+
+
+

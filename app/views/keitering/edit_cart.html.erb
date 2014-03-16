@@ -1,0 +1,153 @@
+
+<% content_for(:cont) do %>
+  <div style="color: #c49550; position: relative; top: -40px; left: 15px; width: 400px;">кейтеринг / Ваш заказ</div>
+<div style="position: relative;">
+
+  <h1 style="margin-left: 15px; color: #813325;"> Ваш заказ </h1>
+
+ <%# form_for 'cart[]',:url=>{:controller=>'water',:action=>'u1'} do |f| %>
+
+  <table class="keit1" width="915px" border="0" cellpadding="0" cellspacing="0" style=" margin: 10px; border-collapse: collapse;">
+<tr>
+
+  <th >
+Наименование
+  </th>
+  <th width="120px;">
+Цена, в рублях
+  </th>
+  <th >
+Количество
+  </th>
+   <th  >
+Сумма
+  
+  </th>
+
+  <th style="color:red; font-size:10px;padding:3px; text-align: center;" align="center">
+X
+  </th>
+</tr>
+<% @cart.each do |@cart| %>
+
+      <% @cat = Keitering.find(@cart.keitering_id) %>
+      <% ss=@cart.price*@cart.quantity %>
+      <% quantity= @cart.quantity %>
+
+
+     <tr >
+
+  
+       <td  class="w1" align="left"  >
+   <%=@cat.name  %>
+   </td>
+
+         <td  class="w1" width="55"  align="center">
+    <span style="font-family: Arial; font-size: 10px;font-weight:bold;">        <%=@cart.price%></span>
+        </td>
+
+       <td  class="w1"  align="center">
+
+  <table width="50px" cellpadding="0" cellspacing="0" style="border: 1px solid #999999; height: 18px;" > <tr>
+            <td valign="top" style="padding-top: 2px; padding-left: 3px;">
+      
+              <%= quantity %>
+      <%#= f.text_field :wquantity ,:value=>quantity,:size=>2,:class=>'in_right',:style=>'width: 30px; border:0px solid white;', :id=>@cart.id.to_s+'pm' %>
+
+      
+    
+            </td>
+
+           <td valign="middle" style="padding-top: 1px;" >
+
+             
+            </td>
+
+  
+    </tr> </table>
+
+       </td>
+       <td  class="w1"  width="65"  align="center">
+ 
+ <span style="font-family: Arial; font-size: 10px;font-weight:bold;">  <%=ss%></span>
+       </td>
+
+       <td class="w1" width="30px" align="center">
+
+          <%= link_to "Удалить",{:action=>'del_cart_item',:id=>@cart.id},:class=>'hk',:style=>'color:red;' %>
+
+</td>
+ </tr>
+     <%end%>
+
+     <tr>
+       
+       <td colspan="4" style="text-align: right; padding-top: 10px;" ><b style="color:#c49550;  font-size: 12px;"> Cтоимость заказа:&nbsp;</b> <b style="color:#813325; font-size: 14px;"><%=  @cart_sum %> р.</b></td>
+       <td  align="left" </td>
+       
+     </tr>
+  
+   </table>
+
+  <input class="clear_w" value='' type="button"
+ onclick="if (confirm('Вы уверены, что хотите все удалить?') )
+{  location='/keitering/del_cart';}"  />
+     <%#= submit_tag "ПЕРЕСЧИТАТЬ" , :class=>'sub_w'   %>
+
+<%# end %>
+
+  <br style="clear:both; float: none;"/>
+  <br/><br/>
+<h3 style="color:#c49550; margin-left: 25px; margin-top: 20px; text-decoration: underline; " >Минимальная стимость заказа 1500 рублей. Доставка включена в стоимость меню. </h3>
+<br/>
+
+<div style="margin-left: 15px; position: relative;" id="order_w">
+     <div style="position:absolute; top: 50px; left: 500px;">
+<h3 style="color:#813325; " >Дополнительно <br/>Вы можете заказать аренду:</h3>
+
+   <ul style=" color: #999999; list-style-position:  inside;">
+     <li>       посуды     </li>
+      <li>       мебели     </li>
+      <li>       текстиля     </li>
+      <li>      обслуживания     </li>
+   </ul>
+
+   </div>
+
+
+<br/>
+<% form_for :order , :url=>{:action=>'edit_cart'} do |t|  %>
+<table>
+  <tr> <td style="color:#999999;">
+Имя:</td><td> <%= t.text_field :name , :style=>'width:300px;'%> </td> </tr>
+  <tr> <td style="color:#999999;">
+      Телефон:</td> <td><%= t.text_field :phone, :style=>'width:300px;'  %> </td> </tr>
+  <tr> <td style="color:#999999;">
+Адрес доставки:</td> <td><%= t.text_area :adres , :style=>'width:300px; height: 100px;' %></td>
+
+<% if @user %>
+<%= t.hidden_field :user_id,:value=> @user.id %>
+<% else %>
+<%= t.hidden_field :user_id,:value=>'' %>
+<% end %>
+</tr>
+</table>
+
+   <%= t.submit "" , :class=>'zakaz_wb' %>
+
+<% end %>
+</div>
+
+
+
+  <br/>
+<div class="hk" style="width:545px; clear: both; float: none; padding-top: 20px;"><span class="ts" style="font-size: 12px">
+<%= link_to 'ПРОДОЛЖИТЬ ПОКУПКИ', {:action=>'index'} ,:class=>'hk_w' %> 
+ 
+   </span></div>
+
+   <br/>
+
+</div>
+
+  <%end%>

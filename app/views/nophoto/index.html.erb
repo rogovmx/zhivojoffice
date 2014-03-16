@@ -1,0 +1,73 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+ tr.nptr:hover { background-color: yellow;;}
+ .r1 {background-color:white;}
+  .r2 {background-color:#eeeeee;}
+  .edit_tov {margin-top: -235px;}
+  
+</style>
+
+<div style="margin: 10px;">
+  <%= link_to 'Нет такого файла не сервере' , :action=>'nofile' %>
+</div>
+<div style="margin: 10px;">
+  Загрузка нового фото товара на сервер
+</div>
+<div style="margin: 10px;">
+<%= form_tag "nophoto/upload_photo", { :multipart => true } %>
+  <%= file_field_tag 'upload[photo]' %>
+  <%= submit_tag "Загрузить" %>
+</div>
+
+<div class="it_title">
+ Нет фото в базе: <%=@tmp.size %> шт.
+</div>
+
+
+
+ <div class="hk" style="margin-top: 10px;" >
+
+<%= 'Все товары' unless params[:group] %>
+ <%= link_to 'Показать все товары' , :controller => 'nophoto' if params[:group] %>
+      <span style="color:#f97c13;">
+<form style="display: inline;" >
+        <select onChange="redir(this)" style="color:#03b1ee;  display: inline; border:  none; background-color: #eeeeee; text-transform: lowercase;  cursor: pointer; font-size:13px;">
+        <option value="" >Выберите подкатегорию: </option>
+          <% for tov in @tov3_names %>
+         <option value="<%='/nophoto/index?group='+tov.to_s %>" <%= 'selected="selected"' if (tov.to_s == params[:group])%> >
+<%=Tov3.find_by_id(tov).name if Tov3.find_by_id(tov)%></option>
+         <% end %>
+         <option value="/nophoto/index" >Все товары: </option>
+            </select>
+ </form>
+  </span>
+
+ </div>
+
+
+
+
+<%= will_paginate @np , :style=>'margin-top: 10px;' %>
+<br/><br/>
+<table class="np" cellpadding="5" cellspacing="0" border="0" style=" clear: both; width: 100%;" >
+  <tr>
+    <th> Код 1с</th> <th> Наименование</th> <th> Подкатегория</th> <th> Редактировать</th>
+  </tr>
+ <% for np in @np do %>
+  <% tov3=Tov3.find_by_id(np.tov3_id) %>
+  <tr class="nptr <%= cycle('r1', 'r2')%>" >
+    <td><%=np.k1c %>  </td>
+    <td title="<%= np.name%>"><%= link_to truncate(np.name, 60 ) , :controller=>'kt3' , :action=>'tov' , :id=>np.id%> </td>
+    <td><%=tov3.name if tov3 %>
+     <div id="<%='id_'+ np.id.to_s %>"> </div>
+    </td>
+    <td><%= link_to_remote "редактировать" ,{:url=>{:controller=>'kt1',:action=>'edit_tov',:id=>np.id},:update=>'id_'+ np.id.to_s},:href => url_for(:controller=>'login',:action => "login")%> </td>
+
+  </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @np , :style=>'margin-top: 10px;' %>
+<br/> <br/><br/>
+
+<% end %>

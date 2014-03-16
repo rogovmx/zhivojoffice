@@ -1,0 +1,42 @@
+
+    <!-- сортировка -->
+<% if  params[:holiday] != '1' %>
+    <div class="sort_title">
+      КОМУ
+    </div>
+
+  <div class="sortirovka" >
+<div id="gift_menu2">
+  <% if session[:gift] == 2 %>
+    <% if params[:holiday] == '6' %>
+   <%= link_to 'Подарки руководителю' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>6 }, :class=> 'gift_act' %>
+  <% else %>
+   <%= link_to 'Подарки руководителю' , :controller=> 'kt3' , :action => 'holiday' , :holiday=>6  %>
+  <% end %>
+
+    <% if params[:holiday] == '7' %>
+   <%= link_to 'Подарки коллеге' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>7} , :class=> 'gift_act'%>
+  <% else %>
+   <%= link_to 'Подарки коллеге' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>7 }   %>
+  <% end %>
+  <%= link_to 'Все подарки на 23 февраля' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>2 }  , :style=> 'border: none;' %>
+<% end %>
+
+   <% if session[:gift] == 3 %>
+    <% if params[:holiday] == '4' %>
+   <%= link_to 'Подарки руководителю' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>4 }, :class=> 'gift_act' %>
+  <% else %>
+   <%= link_to 'Подарки руководителю' , :controller=> 'kt3' , :action => 'holiday' , :holiday=>4  %>
+  <% end %>
+
+    <% if params[:holiday] == '5' %>
+   <%= link_to 'Подарки коллеге' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>5} , :class=> 'gift_act' %>
+  <% else %>
+   <%= link_to 'Подарки коллеге' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>5 }  %>
+  <% end %>
+  <%= link_to 'Все подарки на 8 марта ' , {:controller=> 'kt3' , :action => 'holiday' , :holiday=>3 }  , :style=> 'border: none;' %>
+  <% end %>
+</div>
+ <div class="clear"> </div>
+</div>
+    <% end %>

@@ -1,0 +1,38 @@
+<% content_for(:cont) do %>
+
+
+
+<% form_for :client,:url=>{:action=>'new_client_cart', :user=>@user.id} do |f| %>
+<table class="reg_tab" cellspacing="0" cellpadding="8" style="border: 1px solid #ff2d54; margin-top: 30px;" >
+<tbody>
+<tr style="background-color: #ff2d54; color: white; padding-left: 10px; height: 25px;">
+  <th colspan="2" valign="center" style="padding-left: 10px;" > Новая карточка клиента на сайте</th>
+</tr>
+
+<tr>
+<td style=""> Код 1С:  </td><td class="bl"><%= f.text_field :k1c %> </td>
+</tr>
+<tr>
+<td>  ИНН: </td><td class="bl">  <%= f.text_field :inn,:value=>@user.inn %></td>
+</tr>
+<tr>
+<td>  КПП: </td><td class="bl">  <%= f.text_field :kpp %> </td>
+</tr>
+<tr>
+<td> Название:  </td><td class="bl">  <%= f.text_field :name ,:value=>@user.company_ind%></td>
+</tr>
+<tr>
+<td>  Полное название: </td><td class="bl"> <%= f.text_field :fullname, :value=>@user.company_ind%> </td>
+</tr>
+<tr>
+  <td colspan="2" style="height: 30px; padding: 10px;">
+<%= f.submit "СОЗДАТЬ" %>  <%=link_to "Вернуться" , {:action=>'index'}, :style=>'float: right;' %>
+  </td>
+</tr>
+</tbody>
+</table>
+<% end %>
+
+
+
+<%end%>

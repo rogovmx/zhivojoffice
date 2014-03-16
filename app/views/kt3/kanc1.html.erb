@@ -1,0 +1,85 @@
+
+<% content_for(:tit) do%>
+<%= @k.name %> 
+<%  end %>
+
+<% content_for(:cont) do %>
+<%
+ @first2=First1.find :all  ,:order=>'name'     %>
+
+ <div class="hk" >
+
+     <span style="color:#808285;">
+<%= link_to 'Главная' ,{:controller=>'kt1',:action=>'index'},:class=>'hk',:style=>'color:#808285;text-transform: lowercase;' %>
+  </span>
+»
+   <span style="color:#808285;">
+<%#= link_to @first.name ,{:controller=>'kt3',:action=>'kanc1',:id=>@first.kod},:class=>'hk',:style=>'color:#808285;font-size:11px; text-transform: lowercase;' %>
+  </span>
+
+      <span style="color:#f97c13;font-size:11px;">
+     <form style="display: inline;" >
+        <select onChange="redir(this)" style="color:#03b1ee;  display: inline; border:  none; background-color: #eeeeee; text-transform: lowercase;  cursor: pointer; ">
+       
+          <% for tov in @first2 %>
+         <option value="<%='/kt3/kanc1/'+tov.kod.to_s %>" <%= 'selected="selected"' if (tov.id == @k.id)%> ><%=tov.name %></option>
+         <% end %>
+            </select>
+ </form>
+  </span>
+
+ </div>
+
+
+  <%#  cache(:fragment=>'kt3kanc1') do%>
+
+
+<div id="kanc_submenu">
+<div id="left_kanc_title" style=" background-image: url('/images2/title_back<%=params[:id][0,1]%>.jpg'); text-transform:lowercase;">
+  <%= @k.name %>
+ </div>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            -->
+
+  <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px;">
+    <tr>
+      <%ff=0%>
+
+  <% for gr in @gr2 do %>
+  <%ff+=1%>
+      <td valign="top">
+  <div class="kmenu_box">
+ <div class="kmenu"><%= gr.name %> </div>
+ <div class="kmenu_list">
+        <% @gr3=Tov3.find(:all,:conditions=> ["tov2_id=? and vis=?",gr.id,1],:order=>'ord') %>
+        <ul style="">
+
+        <% for gr3 in @gr3 do %>
+        <li style="color:#B53500; border-bottom:1px dashed #000;">
+        <%= link_to gr3.name ,{:controller=>'kt3',:action=>'tg_v',:id=>gr3.id}%>
+        </li>
+        <% end %>
+        <li><%= link_to gr.all ,{:controller=>'kt3',:action=>'tg_v2',:id=>gr.id}, :class=> 'g2'%> </li>
+        </ul>
+ </div>
+  </div>
+          </td>
+   <% if ff%2 == 0 %>
+    </tr> <tr>
+    <% end %>
+
+    <% end %>
+
+
+
+  </tr>
+  </table>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            -->
+</div>
+
+<%#end%>
+
+
+<% end %>
+
+

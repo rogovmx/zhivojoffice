@@ -1,0 +1,152 @@
+<div style="position: relative; width:175px; <%= 'border:solid 1px red; background-color: lightpink;' if login? and @user.role=='redaktor' and (!@cat.vis)%>">
+<% @it=It.find(:first,:conditions=>['user_id=? and k1c=? ',@user.id,@cat.k1c]) if @user%>
+<% if @it %>
+  <span style=" position: absolute; top: 152px; left: 147px;"> <img src="/images2/in_fav.jpg" /> </span>
+
+<% end %>
+<table width="166px;" height="100%" border="0" style="padding-top:0px; ">
+  <tr>
+
+    <td style="border:dashed 1px #808285; height:160px; " align="center" valign="center" colspan="2">
+  
+
+
+  <%= link_to (image_tag(img_cat(@cat.pic1) ,:width=>"160" , :alt=>@cat.fullname  , :title=>@cat.fullname)),:controller=>'kt3',:action=> (@cat.raspr == 3 ? 'set' : 'tov'),:id=>@cat.id %>
+
+
+
+ <%# if novelty?(@cat.created_at) and  !@cat.raspr %>
+ <!-- <div style="position:absolute; top: 150px; right: 10px;">
+      <%#= image_tag('/images2/new_01.gif')  %>
+  </div>  -->
+ <%# end %>
+
+ <% if @cat.raspr == 1 %>
+             <div style="position: absolute; top: 139px; right: 7px;">
+               <img src="/images2/super.gif" alt="Суперпредложение"  />
+             </div>
+ <% elsif @cat.raspr == 2 %>
+             <div style="position: absolute; top: 139px; right: 7px;">
+              <%= link_to image_tag('/images2/sale_02.png' , :alt=>"Распродажа" ) , '/kt3/sale' %>  
+             </div>
+ <% end %>
+
+
+
+
+    </td>
+
+  </tr>
+  <tr>
+    <td align="left" class="kpk" >
+
+
+  <% if @cat.kpk != nil and @cat.kpk != ''%>
+      Код каталога:<%=@cat.kpk%><br/>
+  <%else%>
+      <br/>
+      <%end%>
+
+    </td>
+  </tr>
+  <tr>
+
+    <% if @cat.tov3_id== 0 %>
+        <td colspan="2" valign="top" style="height:78px;">
+
+
+            <b>    <%=link_to @cat.name,{:controller=>'kt3',:action=>'tov',:id=>@cat.id}, :class=>'tit_tov' %></b>
+    </td>
+   
+    <% else %>
+    <td colspan="2" valign="top" style="height:58px;">
+
+          <%
+          if @cat.name and @cat.name.strip != ''
+          @name = @cat.name
+          else
+          @name = @cat.fullname
+          end
+          if @cat.name.include?('АКЦИЯ')
+          @name.insert(0 , '<span style="color:red">')
+          @name.insert(34 , '</span>')
+          end %>
+
+       <b>    <%=link_to @name,{:controller=>'kt3',:action=>(@cat.raspr == 3 ? 'set' : 'tov'),:id=>@cat.id}, :class=>'tit_tov' %></b>
+ 
+
+         <span style="color: red">  <%= 'Цена шт. ' + (@cat.price/@cat.opt).to_s + ' р.' if @cat.opt  %></span>
+
+    </td>
+    <%end%>
+  </tr>
+  
+</table>
+
+      </div>
+
+<div style="margin-bottom:0px; ">
+<table style="padding-bottom:0px;clear:both;" border="0" width="175px"  height="100%">
+  
+<tr>
+    <td valign="center" >
+ <%= render  :partial =>'/kt3/uprice',:user=>@user, :cat=>@cat %>
+    </td>
+     <% @cat1=@cat %>
+    <td valign="bottom" align="right" style="width:86px;">
+      <div id="<%='id_'+ @cat1.id.to_s%>">
+      </div>
+ <div id="dis">
+     <% if @price and @price.pp%>
+<%# if @cat.price %>
+
+              <% @tvc=Cart.find :first,:conditions=>['sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+   
+    <% if @tvc  || (login? && @user.only_specs) %>
+      <%= render(:partial=> '/kt3/tvc') %>
+   <br/>
+    <%  else  %>
+      <%# @uprice=uprice %>
+       <%= render(:partial=> '/kt3/zakaz_tg', :cat1=>@cat1,:user=>@user ,:uprice=>@uprice) %>
+    <% end %>
+       <%else%>
+      
+      <%end%>
+ </div>
+    </td>
+  </tr>
+  <tr>
+       <td align="center" colspan="2">
+
+         <% if login? %>
+            <% if (@user.role !='redaktor' and @user.role !='sredaktor')%>
+                   <%#= link_to  'Отзывы покупателей' ,:controller=>'coments', :action=>'index',:k1c=>@cat.k1c  %>
+                   <%#= link_to 'Оставить отзыв', :controller=>'coments',:action=>'new',:user_id=>@user.id,:k1c=>@cat.k1c %>
+
+                         <%else%>
+
+      <%= link_to_remote "редактировать" ,{:url=>{:controller=>'kt1',:action=>'edit_tov',:id=>@cat.id},:update=>'id_'+ @cat1.id.to_s},:href => url_for(:controller=>'login',:action => "login")%>
+       &nbsp;&nbsp;     <%= link_to "Удалить" ,:action=>'del_tov', :id=>@cat.id %>
+
+         <%  unless @cat.vis%>  <br/> <span style="color:red;"> <b>Не отображается</b></span>    <% end %>
+         <% unless @cat.spb%> <span style="color:red;"> <b>Нет в СПб</b></span>  <%end%>
+         <% unless @cat.msk%> <span style="color:red;"> <b>Нет в Мск</b></span>  <%end%>
+         <% unless @cat.smo%> <span style="color:red;"> <b>Нет в Смо</b></span>  <%end%>
+
+         <% if @cat.collection_id %> <span class="sha" style="padding: 3px; border: 1px solid white; background-color: green; color: white; position: absolute; bottom:  40px; left: 40px;">
+         <%=  link_to 'В коллекции >>' , {:controller=>'collections' , :action=>'one_coll', :id=>@cat.collection_id} , :style=>'color:white' %>
+         </span> <% end %>
+       <%end%>
+
+        <%else%>
+        <%end%>
+         </td>
+     </tr>
+</table>
+
+</div>
+
+
+
+
+

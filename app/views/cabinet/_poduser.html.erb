@@ -1,0 +1,118 @@
+
+
+
+<%if @cart and @cart.size !=0 %>
+
+
+<%#=  @sotr.id%>
+
+<div style="color:#00a1b0; margin-top: 10px; margin-bottom: 5px; font-weight: bold;">
+   Заказ от: <%=@sotr.scr_name%>&nbsp;<%=@sotr.surname%>.&nbsp;Отдел: <%=@sotr.otdel%>.
+</div>
+<% remote_form_for 'cart[]',:url=>{:controller=>'bas1',:action=>'u1_poduser', :us=>@sotr.id} , :update=>'details' do |f| %>
+
+<table width="695px" border="0" class="det_zak" cellpadding="0" cellspacing="0" >
+<tr style="color:#ffffff;background-color:#F47920;">
+  <th> </th>
+  <th>наименование  </th>
+  <th>цена р.  </th>
+  <th>кол-во  </th>
+  <th>сумма р.  </th>
+  <th>  </th>
+</tr>
+
+
+<% sum=0 %>
+  <% @cart.each do |@cart| %>
+
+<% @cat=Cat1.find_by_k1c(@cart.k1s) %>
+
+     <tr >
+       <td>
+         </td>
+
+       <td>
+       <% if @cat %>
+          <%=link_to @cat.name,{:controller=>'kt3',:action=>'tov',:id=>@cat.id} %>
+        <% end %>
+       </td>
+<td width="50px"><%=@cart.price%>    </td>
+         <td>
+                   <table width="30px" cellpadding="0" cellspacing="0" style="border: 1px solid #99CCCC; height: 18px;" > <tr>
+            <td valign="top" style="padding-top: 2px; padding-left: 3px; border: none">
+    <%= f.text_field :quantity ,:value=> @cart.quantity ,:size=>2,:class=>'in_right',:style=>'width: 25px; border:0px solid white;', :id=>@cart.id.to_s+'pm' %>
+            </td> <td valign="middle" style="padding-top: 1px;border: none" >
+              <div >
+              <img src="/images/arr_up_down.gif" width="9" height="18" border="0" usemap="#<%=@cart.id.to_s+'pmap'%>" />
+<map name="<%=@cart.id.to_s+'pmap'%>" id="<%=@cart.id.to_s+'pmap'%>">
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick=" var ss555=getElementById('<%=@cart.id.to_s+'pm' %>');ss555.value++;" />
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick=" var ss=getElementById('<%=@cart.id.to_s+'pm'%>');if( ss.value>1) ss.value--;" /></map>
+              </div>
+            </td> </tr> </table>
+         </td>
+        <td width="65px">
+          <% if @cart.price %>
+<% ss=@cart.price*@cart.quantity %>
+     <% sum +=ss  %>
+
+          <% else %>
+         <%ss='Запрос цены'%>
+         <%end%>
+<%=ss%>
+       </td>
+      
+       <td width="30px;">
+
+       <%= link_to_remote "В&nbsp;корзину",{:url=>{:controller=>'bas1',:action=>'priem_poduser',:k1s=>@cart.k1s,:us=>@sotr.id},:update=>'details'},{:style=>'color:green;'}%> <br/>
+       <%= link_to_remote "Удалить",{:url=>{:controller=>'bas1',:action=>'del_cart_item_poduser',:k1s=>@cart.k1s,:us=>@sotr.id},:update=>'details'},{:style=>'color:red;'} %>
+
+</td>
+
+     </tr>
+
+    <%end%>
+</table>
+
+<div style="color: #808285; font-weight: bold; padding-left: 440px; margin-top: 10px;"> стоимость заказа: <span style="color: #F47920;"> <%=sum %>  </span> </div>
+
+
+
+<%= submit_tag "ПЕРЕСЧИТАТЬ",:class=>'b1_pere' %>
+<%end%>
+
+
+
+<% form_for :order , :url=>{:controller=>'bas1',:action=> :oz_poduser,:us=>@sotr.id , :su =>1} do |f| %>
+
+
+
+<%= f.hidden_field :user1_id ,:value=>@sotr.id  %>
+<%= f.hidden_field :legal_id ,:value=>@user.client1_id  %>
+<%= f.hidden_field :client_id, :value=>@user.client1_id %>
+<%= f.hidden_field :user_id,:value=> @user.id %>
+<%#= f.hidden_field :user1_id,:value=> @sotr.id %>
+<%#= f.hidden_field :status,:value=> 'Не согласован' %>
+<%#= f.hidden_field :dost,:value=> 'Не доставлен' %>
+<%#= f.hidden_field :opl,:value=> 'Не оплачен' %>
+<% if @user.city == 'Москва' %>
+<%= f.hidden_field :city,:value=> 2 %>
+<% elsif @user.city == 'Смоленск' %>
+<%= f.hidden_field :city,:value=> 3 %>
+<% else %>
+<%= f.hidden_field :city,:value=> 1 %>
+<%end%>
+  <div style="padding: 15px; background-color: #fee0c6; border: 1px solid #f47920;margin-top: 20px;">
+  <p style="color:#f47920; margin-bottom: 5px; font-weight: bold;">КОММЕНТАРИИ К ЗАКАЗУ</p>
+  <%= f.text_area :dop , :style=>'width: 100%; height: 80px;  background-color: white;' %>
+  </div>
+
+<%= f.submit "Заказать" ,:class=>'b1_order' , :style=>'top: -180px; left: 610px;'%>
+
+<%end%>
+
+<% else %>
+<div class="green_title">
+  Нет заказов
+</div>
+
+<% end %>

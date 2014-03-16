@@ -1,0 +1,67 @@
+
+<% content_for(:tit) do %>
+ Живой офис. Новогодняя распродажа!
+<%end%>
+
+
+<% content_for(:sort) do %>
+<%#= render :partial=>'/part2/sort_v' %>
+     <!--  сортировка конец  -->
+<% end %>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+<% content_for(:cont) do %>
+  
+ <div class="red_title" style="margin-bottom: 10px; background-color: #7fcec8;">Живой офис. Новогодняя распродажа! </div>
+     <div id="tovar">
+
+    <div style="width:550px; vertical-align: bottom;">
+
+
+ <span  style="font-family: Arial; font-size: 11px;position:relative;top:-3px; color:#808285; font-weight: bold;">
+<%= link_to  'Показывать списком',{:controller=>'kt3',:action=>'newyear'} , :style=>'color:#808285; font-weight: bold;'%></span>
+
+
+<%= will_paginate @tg  %>
+
+
+<%ff=0%>
+
+
+       <div id="<%#=@cat.tg%>" >
+         <table border="0"  ><tr>
+       <% for tg in @tg do %>
+       <%ff+=1%>
+    <% @cat=Cat1.find(tg.id)  %>
+
+
+  <td valign="top" style="padding-right:10px; padding-top: 3px; <%= 'padding-right:0px;' if (ff%3)==0%> margin:0px;border-bottom:1px dashed #808285; ">
+    <div style="margin:0px;padding:0px;display:block;">
+
+
+<%= render(:partial => 'kt3/cat22v',:object =>@cat,:object=>@tov3) %>
+    </div>
+
+  </td>
+
+<% if (ff%3)==0 %>
+  </tr><tr>
+  <%end%>
+
+    <% end %>
+  </tr></table>
+          </div>
+<%= will_paginate @tg %>
+     </div>
+
+
+ </div>
+
+<%  end %>
+
+
+
+
+

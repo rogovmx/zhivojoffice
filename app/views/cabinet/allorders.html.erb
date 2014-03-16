@@ -1,0 +1,40 @@
+<% content_for(:cont) do %>
+<% @names=['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %>
+
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="cabord_title">
+ Заказы
+</div>
+<div style="width: 695px; float: left;">
+<%=link_to 'Вернуться к списку заказов по датам' , {:action=>'order'} , :style=>'float: left' %>
+
+ <%= will_paginate @tg  %>
+
+ <table width="695px" border="0" style="background-color:#a770af; color:white; text-align: center; font-size: 11px; line-height: 25px; clear: both; float: none;">
+  <tr>
+    <td style="width:65px;">Вид </td>
+     <td style="width:70px;"> Код каталога </td>
+     <td> Наименование товара </td>
+       <td style="width:80px;"> Цена </td>
+        <td style="width:80px;"> Корзина</td>
+  </tr>
+</table>
+
+       <% for tg in @tg do %>
+
+ <% @cat=Cat1.find(tg.id)  %>
+ <div class="grn11" id="<%=@cat.id%>" >
+<%= render(:partial => 'kt1/cat22',:object =>@cat,:object=>@tov3) %>
+ </div>
+     
+
+    <% end %>
+
+<%= will_paginate @tg %>
+
+</div>
+
+  <%end%>

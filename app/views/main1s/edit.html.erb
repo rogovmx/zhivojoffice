@@ -1,0 +1,25 @@
+<h1>Редактирование <%=@main1.title %>  </h1>
+
+<% form_for(@main1) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label 'Заголовок' %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p style="height: 700px;">
+    <%= f.label 'Контент' %><br />
+    <%= f.cktext_area :content, :toolbar=>'Full', :width=>'100%', :heigth=>'100%' %>
+    <%#= f.text_area :content, :toolbar=>'Full', :width=>'100%', :heigth=>'100%' %>
+  </p>
+  <p>
+    <%= f.submit 'Сохранить' %>
+  </p>
+<% end %>
+
+<%#= link_to 'Show', @main1 %> |
+<%= link_to 'Вернуться', main1s_path %>

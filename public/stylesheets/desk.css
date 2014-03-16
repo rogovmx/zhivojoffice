@@ -1,0 +1,71 @@
+/* 
+    Document   : desk
+    Created on : 23.11.2011, 15:03:50
+    Author     : mrogov
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* margin-bottom: -80px; margin-right: -180px;
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+root { 
+    display: block;
+}
+.about {position: relative ; left:-340px;  padding: 5px; background-color: #FFFFCC; width: 200px; height: 55px; }
+.about1 {position: relative ; left:10px;  padding: 5px; background-color: #FFFFCC; width: 200px; height: 55px; margin-bottom: -65px;}
+.subj {border-collapse: collapse; width: 700px; margin: 5px; margin-left: 15px;  padding-bottom: 5px; }
+  .subj td { vertical-align: top; padding-bottom: 10px;}
+  .answ {border-collapse: collapse; width: 100%; margin: 5px; position: relative;  left: -20px;}
+  .answ td {vertical-align: top;  padding-bottom: 5px;}
+  .answ tr { }
+  .name {font-size: 14px; color:#f15a26; margin-right: 10px;}
+  .date {font-size: 14px; color: #85c441; margin-right: 10px;}
+  .title {font-size: 14px; color: black; margin-right: 10px; font-weight: bold; margin-top: 5px;}
+  .text {font-size: 12px; color: black; padding-top: 5px; padding-left: 15px; margin-right: 10px; padding-bottom: 5px; }
+  .ndt { padding-top: 5px; padding-bottom: 5px; padding-left: 10px;  margin: 5px; margin-right: 10px; margin-left: 5px; }
+  .subj a {text-decoration: none; color: black;}
+  #new_mess {width: 562px; margin-bottom: 50px;}
+    #new_mess .label2 {color: #b1b3b6; padding-bottom: 0px; font-size: 10px; padding-left: 20px;}
+ #new_mess .okno {background-image: url(/images/ava/okno2.jpg); background-position: 0px 0px; background-color: transparent;
+        background-repeat: no-repeat; border: none; width: 562px; height: 102px; text-align: left; padding-top: 18px; padding-left: 20px; }
+ #new_mess .okno2 {background-image: url(/images/ava/okno3.jpg); background-position: 0px 0px; background-color: transparent;
+        background-repeat: no-repeat; border: none; width: 565px; height: 55px; text-align: left; padding-top: 5px; padding-left: 5px; }
+ #new_mess .okno textarea {border:0px solid white; overflow: auto; width: 530px; height: 78px; }
+  #new_mess .tema {  width: 550px; padding-top: 5px; overflow: auto; border:0px solid white;}
+  #new_mess .new_sub {width: 76px; height: 18px; background-image: url(/images/ava/write.jpg); float: right;
+           background-position: top left; background-repeat: no-repeat; border: none; background-color: transparent; cursor: pointer;}
+
+
+  .answ {margin-bottom: 10px; margin-top: 10px;}
+  .answ .okno {background-image: url(/images/ava/okno.jpg); background-position: 0px 0px; background-color: transparent;
+        background-repeat: no-repeat; border: none; width: 562px; height: 102px; text-align: left; padding-top: 18px; padding-left: 20px;}
+  .answ .okno textarea {border:0px solid white; overflow: auto; width: 530px; height: 78px;}
+  .answ input {width: 76px; height: 18px; background-image: url(/images/ava/write.jpg);
+           background-position: top left; background-repeat: no-repeat; border: none; background-color: transparent; cursor: pointer; }
+    .n_pics{margin-left: 10px;}
+  #photo2 img {margin-top: 50px;}
+    #photo img {margin-top: 50px;}
+  #pics {position: relative; top: -30px;}
+  #pics2 {position: relative; top: -30px;}
+
+  /*
+   deskprof
+*/
+
+.profile  {height: 30px; margin-left: 10px;}
+  .profile input {width: 250px; float: right;}
+  .profile label {float: left; }
+  .prof_sub {margin-top: 0px;}
+  .prof_sub a {margin-left: 10px; color: black; text-decoration: none;}
+  .prof_sub input {width: 76px; height: 18px; background-image: url(/images/ava/sohranit.jpg); margin-top: 0px;
+           background-position: top left; background-repeat: no-repeat; border: none; background-color: transparent; float: right}
+  #profile td {padding-left: 10px;}
+  .check {margin-top: 10px;}
+  .check input {margin-top: 10px;}
+  .avatar {margin-bottom: 40px;}
+  .upload_pic #picture_uploaded_picture{position: relative}
+  .upload_pic .sub{border: none; background: transparent; color: #41ad49; text-decoration: underline; margin-top: 10px; font-weight: bold;}

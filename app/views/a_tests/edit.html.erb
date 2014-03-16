@@ -1,0 +1,20 @@
+<h1>Editing a_test</h1>
+
+<% form_for(@a_test) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :int %><br />
+    <%= f.text_field :int %>
+  </p>
+  <p>
+    <%= f.label :str %><br />
+    <%= f.text_field :str %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @a_test %> |
+<%= link_to 'Back', a_tests_path %>

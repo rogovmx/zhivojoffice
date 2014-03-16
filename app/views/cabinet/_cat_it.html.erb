@@ -1,0 +1,87 @@
+<table  border="0" style=" width: 695px; border-bottom:dashed 1px #808285; margin-bottom: 5px;">
+
+     <tr>
+       <td width="60px" align="center" valign="middle" >
+
+         <% if @cat.pic1 and @cat.pic1 != '' %>
+         
+         <%= link_to (image_tag("/img/"+@cat.pic1+".jpg" ,:width=>"50px")),:controller=>'kt3',:action=>'tov',:id=>@cat.id %>
+      
+<%else%>
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px; " height=50px/>
+           <%end%>
+ 
+       </td>
+       <td style="width:50px; padding-left: 5px;">
+         <span style="font-family: Arial; font-size: 9px;font-weight:bold; color: #808285;">
+         <%@kod = Katalog.find :first ,:conditions=>["k1c=?",@cat.k1c] %>
+  <% if @kod %>
+     <%=@kod.kod%>
+  <%else%>
+      <br/>
+      <%end%>
+         </span>
+       </td>
+
+       <td valign="center" align="left" >
+
+      <b>    <%=link_to @cat.name,{:controller=>'kt3',:action=>'tov',:id=>@cat.id}, :class=>'tit_tov' %></b><br>
+
+  <div style="margin-top: 5px;">
+      <%unless login?%>
+
+<%else%>
+<% @it=It.find(:first,:conditions=>['user_id=? and k1c=? ',@user.id,@cat.k1c])%>
+
+
+
+<%end%>
+
+    <% @cat1=@cat %>
+   
+
+  </div>
+       </td>
+      
+        <td  align="left" valign="center" style="width: 80px;">
+
+           <%= render  :partial =>'kt3/uprice',:user=>@user, :cat=>@cat %>
+       </td>
+
+       <td align="right"  valign="cener" style=" width: 80px; padding-top: 10px; padding-right: 5px;">
+
+           <% @tvc=Cart.find :first,:conditions=>['sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+ 
+    <% if @tvc || (login? && @user.only_specs)%>
+      <%= render(:partial=> '/kt3/tvc') %><br>
+    <%  else  %>
+
+<%= render(:partial=> '/kt3/zakaz', :object=>@cat1,:object=>@user,:object=>@uprice) %>
+ <% end %>
+ 
+
+       </td>
+       <td  style="width: 60px; text-align: right;">
+
+          <div id=it_<%=@cat.id%>>
+ <%=link_to 'удалить',{:action=>'delete_it',:k1c=>@cat.k1c} , :style=>'text-decoration: none; color: red;' %>
+</div>
+       </td>
+
+     </tr>
+       <% if login? %>
+            <% if @user.role !='admin' %>
+                         <%else%>
+                          <tr>
+                          <td align="center" colspan="5">
+
+                          <%= link_to_remote "редактировать" ,{:url=>{:controller=>'kt1',:action=>'edit_tov',:id=>@cat.id},:update=>'rl'},:href => url_for(:controller=>'login',:action => "login")%>
+                           </td>
+                           </tr>
+                          <%end%>
+
+        <%else%>
+        <%end%>
+     
+   </table>
+

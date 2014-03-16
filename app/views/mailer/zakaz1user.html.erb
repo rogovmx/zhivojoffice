@@ -1,0 +1,92 @@
+<% @legals=Client.find(@order.legal_id) %>
+<%@user=User.find(@order.user_id)%>
+<% @cartgift = Cartgift.find :all , :conditions=>['user_id = ?' , @user.id] %>
+Спасибо, что вы сделали заказ на сайте «Живого офиса»! <br/>
+
+В течение 30 минут* наш менеджер свяжется с вами по телефону, который вы указали при регистрации на сайте. <br/>
+
+*(если заказ сделан в рабочие дни с 10:00 до 17:30)<br/><br/>
+
+<p>Если вам не позвонили в указанный срок, либо вы хотите оставить отзыв о работе «Живого офиса», перейдите по ссылке:
+
+
+  <a href="http://www.zhivojoffice.ru/confirms/pass/?order=1&confirm=<%=@rnd%>">отправить нам сообщение </a>.
+
+</p>
+<br />
+
+Номер заказа: <%=@order.id%><br>
+Сумма заказа: <%=@order.summa%>р.  
+<br />
+<br/>
+<% if @legals.id==1 %>
+Пользователь:&nbsp;<%=@user.name%>
+<br />Компания:&nbsp;<%=@user.company_ind%> <br />
+ФИО:&nbsp;<%=@user.surname%> <%=@user.scr_name %> <%=@user.patronymic %> <br />
+Телефон:&nbsp;<%=@user.phone%><br />
+ИНН:&nbsp;<%=@user.inn%><br />
+<%else%>
+Юр.лицо: <%= @legals.name %><br/>
+Телефон: <%=@user.phone%>
+Login: <%=@user.name%>
+<%end%>
+<br/>
+
+Адрес доставки:<%= @user.city  %><br/> 
+Дополнительно: <%=  @order.dop %> <br/>
+
+<% if @card and @card != '' and @order.summa >= 1000  %>
+<h2> Вы выбрали в подарок карту <%= @card%>.  </h2>
+<% end %>
+
+
+
+<br/>
+<table border="1" cellpadding="3" cellspacing="3" >
+  <tr>
+    <th>Код 1С</th>
+    <th>Название</th>
+    <th>Цена</th>
+    <th>Количество </th>
+  </tr>
+<% @order.lineitem.each do |cart| %>
+<% @cat=Cat1.find_by_k1c(cart.k1c) %>
+
+  <tr>
+    <td style="padding: 2px;">
+<%= cart.k1c %>
+    </td>
+    <td style="padding: 2px;">
+<%=@cat.fullname %>
+      <!--
+<%#  if cart.k1c == '7774973992' and cart.quantity > 300%>
+        <%#  @m300 =   cart.quantity - 300 %>
+          <br/><span style="color: black;"> 300 п. по цене - 113р. <br/>
+           <%#=@m300 %> п. по цене - <%#=cart.price%>р.
+          </span>
+ <%# end %>
+      -->
+    </td>
+    <td style="padding: 2px;">
+<%= cart.price %>
+    </td>
+    <td style="padding: 2px;">
+<%= cart.quantity %>
+    </td>
+  </tr>
+<%end%>
+</table>
+<br /> <br />
+
+<p>
+  Доставка осуществляется бесплатно при заказе от 1 000 рублей! При меньшей сумме заказа доставка составляет 200 рублей.
+
+</p>
+<br />
+
+<p>
+ www.zhivojoffice.ru <br />
+
+Внимание: Это письмо было автоматически отправлено с сайта «Живого офиса», отвечать на него не нужно.
+
+</p>

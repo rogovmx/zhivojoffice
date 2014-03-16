@@ -1,0 +1,24 @@
+
+<%@user=User.find(@info.user_id)
+@client = Client.find_by_id(@user.client_id) if @user.client_id
+%>
+
+<br/>
+<br />Компания:&nbsp;<%=@user.company_ind%> <br />
+ИНН:&nbsp;<%=@user.inn%> <br />
+Код 1С:&nbsp;<%=@client.k1c if @client%> <br />
+Город:&nbsp;<%=@user.city%><br /> <br />
+<h3> Клиент сообщил следующие данные:</h3>
+
+<b>Имя, Фамилия:</b>&nbsp;<%=@info.name %> <br />
+<b>Должность:</b>&nbsp;<%=@info.job %><br />
+<b>Пол:</b>&nbsp;<%=@info.sex %><br />
+<b>Дата рождения:</b>&nbsp;<%=@info.date_birth %><br />
+<b>Имя и день рождения детей:</b>&nbsp;<%=@info.children %><br />
+<b>Электронный адрес:</b>&nbsp;<%=@info.mail %> <br />
+<b>Мобильный телефон:</b>&nbsp;<%=@info.m_phone %><br />
+<b>Вид деятельности компании:</b>&nbsp;<%=@info.category %><br />
+<b>Сайт компании:</b>&nbsp;<%=@info.site %><br />
+
+
+<br/> <br/>

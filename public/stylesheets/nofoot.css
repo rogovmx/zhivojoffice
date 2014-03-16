@@ -1,0 +1,32 @@
+/* 
+    Document   : nofoot
+    Created on : 14.02.2012, 16:45:42
+    Author     : mrogov
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+.bcat1 {margin-top: 20px;}
+.bcat1 h1{color: yellowgreen;}
+.bcat1 select {width: 323px;}
+.bcat1 input[type="text"] {width: 319px;}
+.bcat1 textarea {width: 319px;}
+.bcat1 td {padding: 5px; border-bottom: 1px #dddddd solid;}
+.bcat1 tr {border-bottom: 1px #eeeeee solid;}
+.bcat_plus {font-weight: bold; font-size: 20px; color: green; cursor: pointer;}
+
+.trgray{background-color: #dddddd}
+
+.bcat1_tab {font-size: 11px;}
+
+.bcat1_tab th {font-weight: bold;border-right: 1px solid #dddddd;padding: 5px;}
+
+.btg1_tab tr:hover {background-color: #dddddd ;}

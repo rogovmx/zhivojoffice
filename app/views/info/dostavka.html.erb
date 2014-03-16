@@ -1,0 +1,8 @@
+<% content_for(:tit) do %>
+<%=@content.name if @content and @content.name%>
+<%end%>
+<% content_for(:cont) do %>
+<%= render :partial=>'/part2/info_menu' , :menu=>@menu %>
+<%= @content.content %>
+<%end%>
+

@@ -1,0 +1,8 @@
+<% content_for(:tit) do %>
+Редактирование слайда: <%=@actionitem.action.name %>
+<% end %>
+<% content_for(:cont) do %>
+<h1>Редактирование слайда: <%=@actionitem.action.name %> </h1>
+  <%= render :partial => "form"%>
+<%= link_to 'Назад', actionitems_path(:action_id => @actionitem.action_id) %>
+<% end %>

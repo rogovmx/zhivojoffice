@@ -1,0 +1,70 @@
+<% content_for(:tit) do %>
+ Живой Офис. Создание вакансии
+<%end%>
+<% content_for(:cont) do %>
+<br/> <br/>
+<div class="vac_title">Новая вакансия</div>
+
+<% form_for(@vacancy) do |f| %>
+<table style="width: 100%" border="0" class="vacancy" cellpadding="0" cellspacing="0"  >
+
+<tr>
+  <td style="width: 150px;">Город:</td>
+  <td><%= select_tag(:vacancy_city , '<option value="Санкт-Петербург" selected="selected">Санкт-Петербург</option> <option value="Москва">Москва</option> <option value="Смоленск">Смоленск</option> <option value="Тверь">Тверь</option>', :name=>'vacancy[city]',:style=>'margin: 5px;')  %></td>
+</tr>
+<tr>
+  <td style="width: 150px;">Профессия:</td>
+  <td><%= f.text_field :profession %></td>
+</tr>
+
+<tr>
+  <td style="width: 150px;">Опыт:</td>
+  <td><%= f.text_field :experience %></td>
+</tr>
+<tr>
+  <td>Образование:</td>
+  <td><%= f.text_field :education %></td>
+</tr>
+<tr>
+  <td>График работы:</td>
+  <td><%= f.text_field :shedule %></td>
+</tr>
+<tr>
+  <td>Обязанности:</td>
+  <td><%= f.text_area :duties , :style=>'width:98%; height:20px; background-color: papayawhip; border: 1px dotted silver; margin: 3px;' %></td>
+</tr>
+<tr>
+  <td>Требования:</td>
+  <td><%= f.text_area :requirements, :style=>'width:98%; height:20px; background-color: papayawhip; border: 1px dotted silver; margin: 3px;' %></td>
+</tr>
+<tr>
+  <td>Условия:</td>
+  <td><%= f.text_area :conditions , :style=>'width:98%; height:20px; background-color: papayawhip; border: 1px dotted silver; margin: 3px;'%></td>
+</tr>
+<tr>
+  <td>Предпочтения:</td>
+  <td><%= f.text_field :preference %></td>
+</tr>
+<tr>
+  <td>Оплата:</td>
+  <td><%= f.text_field :paiment %></td>
+</tr>
+<tr>
+  <td>Контактное лицо:</td>
+  <td><%= f.text_field :contact , :value=>'(812) 324-80-50, доб.(337), tilyna@spens.ru' %></td>
+</tr>
+<tr>
+  <td>Видимая?</td>
+  <td><%= f.check_box :visible %></td>
+</tr>
+
+<tr>
+  <td colspan="2" ><%= f.submit "Сохранить", :style=>'margin: 10px;' %></td>
+
+</tr>
+</table>
+<% end %>
+
+<%= link_to 'Вернуться', vacancies_path %>
+
+  <% end %>

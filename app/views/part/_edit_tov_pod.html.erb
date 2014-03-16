@@ -1,0 +1,207 @@
+ <div id="edit_tov" style=" text-align:center; border:solid 1px #dcdcdc;position:absolute; height: 580px;  left:50%; margin-left: -470px; margin-top: -200px;   padding: 10px;
+     background-image: url(/images/happy_back.png); background-repeat:  repeat; z-index:110000;">
+   <style type="text/css">
+    .edit td { background-color: #CCFFCC; }
+   </style>
+ <div style="text-align:center;">
+
+   <h2 style="background-color:white;"> Редактируем <%=@cat1.name %> </h2>
+
+<% form_for(@cat1) do |f| %>
+  <%= f.error_messages %>
+
+ 
+<!--   Код третьей группы:
+   <b style="color:red;"> <%#=@cat1.tov3_id %></b>
+  
+    Код 1С:
+  <b>  <%#= @cat1.k1c %></b>  -->
+ 
+  <table width="610px;" border="1" class="edit" >
+  <tr>
+    <td>
+      Код 1С:
+  <b style="color:red;">  <%= @cat1.k1c %></b> <br/>
+     Изменить код 1С:
+  <b>  <%= f.text_field :k1c %></b>
+  <!--  Код печатного каталога:<br />
+    <%#= f.text_field :kpk %>  -->
+
+    </td>
+    <td>
+    код третьей группы:<b style="color:red;"> <%=@cat1.tov3_id %></b> <br />
+      Изменить код третьей группы:<br />
+    <%= f.text_field :tov3_id %>
+       <!--  Код Комуса:<br />
+    <%#= f.text_field :kkom %> -->
+     </td>
+      <td rowspan="10" valign="top">
+    Описание:<br />
+    <%= f.text_area :opis %><br/>
+    <br/><br/>
+    Видимость для клиентов   <%= f.check_box :vis %> &nbsp;&nbsp; <span style="color: red;"> Подарок   <%= f.check_box :podarok %> &nbsp;&nbsp; </span>
+   <br/>
+    <span > Подарочная группа:
+  <% if @cat1.sign %>
+ <%= f.text_field :sign, :value=>@cat1.sign %>
+  <% else %>
+ <%= f.text_field :sign %>
+   <%end%>
+    </span>
+
+
+      </td>
+  </tr>
+ <!--  <tr>
+    <td>
+    Код Конторинга<br />
+    <%#= f.text_field :kkont %>
+    </td>
+    <td>
+    Код Прагматика<br />
+    <%#= f.text_field :kprog %>
+    </td>
+   </tr> -->
+   <tr>
+     <td>
+    Артикул производителя<br />
+    <%= f.text_field :arppr %>
+     </td>
+     <td>
+    Товарная группа:<br />
+    <%= f.text_field :tg %>
+     </td>
+   </tr>
+   <tr>
+     <td>
+    Порядок товарных групп:<br />
+    <%= f.text_field :portg %>
+     </td>
+     <td>
+    Название:<br />
+    <%= f.text_field :name %>
+     </td>
+   </tr>
+   <tr>
+     <td>
+    Цвет:<br />
+    <%= f.text_field :color %>
+     </td>
+     <td>
+    Формат:<br />
+    <%= f.text_field :format %>
+     </td>
+   </tr>
+   <tr>
+     <td>
+    Количество:<br />
+    <%= f.text_field :kl %>
+     </td>
+     <td>
+    Бренд:<br />
+    <%= f.text_field :brend %>
+   </td>
+   </tr>
+   <tr>
+     <td>
+    Суббренд:<br />
+    <%= f.text_field :subbrend %>
+  </td>
+
+     <td>
+    Рисунок 1:<br />
+    <%= f.text_field :pic1 %>
+  </td>
+   </tr>
+   <tr>
+     <td>
+    Рисунок 2<br />
+    <%= f.text_field :pic2 %>
+  </td>
+
+     <td>
+    Порядок в товарной группе:<br />
+    <%= f.text_field :tg1 %>
+ </td>
+   </tr>
+   <tr>
+     <td>
+    Единица измерения:<br />
+    <%= f.text_field :ei %>
+  </td>
+
+     <td>
+    Код печатного каталога:<br />
+    <%= f.text_field :k11 %><br/>
+    Синоним для поиска:<br />
+    <%= f.text_field :dop %>
+  </td>
+   </tr>
+ <!--  <tr>
+     <td>
+    Транспортная упаковка:<br />
+    <%#= f.text_field :tu %>
+   </td>
+
+     <td>
+    Цена транспортной упаковки:<br />
+    <%#= f.text_field :pricetu %>
+  </td>
+   </tr> -->
+   <tr>
+     <td>
+    Строка описания 1:<br />
+    <%= f.text_field :o1s %>
+   </td>
+
+     <td>
+     Строка описания 2:<br />
+    <%= f.text_field :o2s %>
+  </td>
+   </tr>
+     <tr>
+     <td>
+    Строка описания 3:<br />
+    <%= f.text_field :o3s %>
+   </td>
+
+     <td>
+     Вес:<br />
+    <%= f.text_field :kves %>
+  </td>
+   </tr>
+<!--    <tr>
+     <td>
+    Запах:<br />
+    <%#= f.text_field :kzap %>
+   </td>
+
+     <td>
+     Модификация:<br />
+    <%#= f.text_field :kmod %>
+  </td>
+   </tr>
+
+<tr>
+     <td>
+    Условие доставки:<br />
+    <%#= f.text_field :u_dost %>
+   </td>
+
+     <td>
+
+  </td>
+   </tr> -->
+  </table>
+ <br/>
+    <%= f.submit "Обновить и закрыть" %>&nbsp;
+
+    <span style="color: red; font-weight: bold;">  <%= link_to_remote "Закрыть не сохраняя" ,{:url=>{:controller=>'kt1',:action=>'close'},:update=>'id_'+ @cat1.id.to_s}%>
+    </span>
+ 
+<% end %>
+
+</div>
+     
+
+ </div>

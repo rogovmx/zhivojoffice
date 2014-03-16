@@ -1,0 +1,64 @@
+<% content_for(:cont) do %>
+
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="sotr_title">
+  Сотрудники
+</div>
+
+<%= link_to 'Как пользоваться сервисом' , {:controller=>'info' , :action=>'metress'} , :class=>'blue_link' %>
+<div style=" margin-top: 10px;   font-size: 18px;"><a href="/doc/bigoffice.pdf" style="color: #00AE4D;"> Скачать подробную инструкцию (pdf)</a> </div>
+<% if @sotr.size == 0 %>
+<%= link_to image_tag('/images2/metr.jpg'), 'Как пользоваться сервисом' , {:controller=>'desknews' , :action=>'metress'} %>
+<% else %>
+<table class="cab_sotr" cellspacing="0" cellpadding="0" border="0" width="695px;">
+<tr style="color:#ffffff;background-color:#808285;">
+ 
+  <th>  Ф.И.О. </th>
+
+  <th>Отдел </th>
+  <th>Заказы  </th>
+  <th>Лимит  </th>
+  <th> О.з.</th>
+  <th> </th>
+  <th> </th>
+</tr>
+
+<% @sotr.each do |sotr| %>
+  <tr style="<%= cycle('background-color:white;', 'background-color: #f0f2f5;')%>">
+
+   <td >
+   <%  @pcart=Cart.find :all , :conditions=>['user_id=?',sotr.id]%>
+    <%=sotr.scr_name%>&nbsp;<%=sotr.surname%>.
+
+   </td>
+  <td><%=sotr.otdel%></td>
+  <td>
+<% if @pcart.empty? %>
+    <span style="color: red;"> Корзина пуста. </span>
+ <% else %>
+  <%=link_to_remote "Посмотреть корзину", :url=>{:action=>'poduser_cart',:sotr=>sotr.id},:update=>'details',:success=>"new Effect.Highlight('details')"%>
+ <% end %>
+     </td>
+<td><%=sotr.limit%></td>
+<td> <span title="Право оформления заказа"> <%= sotr.buy ? 'да' : 'нет' %></span> </td>
+<td><%=link_to 'ред.', {:controller=>'cabinet' , :action=>'edit_sotr' , :id=>sotr.id} , {:style=>'color:green'} %> </td>
+  <td><%=link_to 'X', {:controller=>'cabinet' , :action=>'del_sotr' , :id=>sotr.id} , :confirm=>'Вы уверены?' , :style=>'color:red' %></td>
+  </tr>
+
+ <%end%>
+</table>
+<% end %>
+<% if @user.client1_id == 0 %>
+<h4>Вы не можете добавить сотрудника. Обратитесь к Вашему менеджеру.</h4>
+<% else %>
+<div class="add_sotr">
+<%= link_to  'Добавить сотрудника (отдел)' , :controller=>'cabinet',:action=>'add_pod_user' %>
+</div>
+<% end %>
+<div id="details"></div>
+
+ <%end%>
+
+

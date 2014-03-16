@@ -1,0 +1,111 @@
+<% content_for(:cont) do %>
+
+
+<script type="text/javascript">
+    function f() {
+        var login = document.getElementById('user_name')
+        login.value = login.value.replace(/\s/g, '')
+    }
+</script>
+
+<!-- Начало верстки -->
+
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+<div class="spens_form" style="width:695px;">
+
+<p style="color: #808285;"> После заполнения формы на почту сотрудника придет письмо с регистрационными данными. </p>
+
+  
+  <%=error_messages_for 'user'%>
+
+    <% form_for :user do |form| %>
+      <%= form.hidden_field :role, :value=>'poduser' %>
+      <%= form.hidden_field :role2, :value=>'poduser' %>
+      <%= form.hidden_field :client1_id, :value=>@main_user.client1_id %>
+      <%= form.hidden_field :client_id, :value=>@main_user.client1_id %>
+      <%= form.hidden_field :bonus, :value=>@main_user.bonus %>
+      <%= form.hidden_field :head_id, :value=>@main_user.id %>
+      <%= form.hidden_field :inn, :value=>@main_user.inn %>
+      <%= form.hidden_field :company_ind, :value=>@main_user.company_ind %>
+      <%= form.hidden_field :price, :value=>@main_user.price %>
+      <%= form.hidden_field :price1, :value=>@main_user.price1 %>
+      <%= form.hidden_field :phone, :value=>@main_user.phone %>
+      <%= form.hidden_field :soglasen, :value=> 1 %>
+   <!--   <input name="authenticity_token" type="hidden" value="3a0328c1591f06d9095a4c59aa9c22d9ec3afd49" />  -->
+      <table border="0" cellspacing="0" cellpadding="0" class="reg_poduser">
+        <tr>
+          <th colspan="2" valign="top" ><div  class="sotr_title"> Для регистрации сотрудника на сайте заполните следующую форму: </div></th>
+        </tr>
+           <tr>
+          <td colspan="2" >
+             <p class="red">Поля в красной рамке обязательны к заполнению.</p>
+            </td>
+        </tr>
+        <tr class="odd">
+          <td><label for="user_name">Введите логин <a href="">zhivojoffice.ru</a>:</label></td>
+          <td> <%= form.text_field :name,:class=>'it' , :onblur=>'f()' %></td>
+        </tr>
+        <tr>
+          <td><label for="user_password">Придумайте и введите пароль,<br />рекомендуется не менее пяти символов:</label></td>
+          <td> <%= form.text_field :password, :size => 30 %></td>
+        </tr>
+
+       <tr class="odd">
+          <td><label for="user_mail">E-mail:</label></td>
+          <td> <%= form.text_field :mail, :size => 30 %></td>
+        </tr>
+
+
+        <tr>
+          <td><label for="user_surname">Фамилия:</label></td>
+          <td> <%= form.text_field :surname, :size => 30  ,:class=>'input_n'%></td>
+        </tr>
+        <tr class="odd">
+          <td><label for="user_scr_name">Имя:</label></td>
+          <td><%= form.text_field :scr_name, :size => 30 %></td>
+        </tr>
+
+        <tr>
+          <td><label for="otdel">Отдел:</label></td>
+          <td><%= form.text_field :otdel, :size => 30 %></td>
+        </tr>
+  <tr class="odd">
+          <td><label for="limit">Лимит разового заказа в рублях: </label> <%= form.text_field :limit, :style=>'width: 60px' ,:value=>@user.limit ,:class=>'input_n' , :onkeyup=>"wolf('user11_limit')"%></td>
+          <td style="vertical-align:middle;"><label for="buy" style="position: relative; top: -6px;">Право оформления заказа:</label>
+
+    <%= form.check_box :buy %>
+
+
+          </td>
+        </tr>
+     <tr>
+          <td colspan="2"><label for="only_specs" style="position: relative; top: -6px;">Заказ только из раздела «Договоры и спецификации»:</label>
+
+    <%= form.check_box :only_specs%>
+
+          </td>
+        </tr>
+
+
+        <tr>
+          <td colspan="2" align="right" valign="center" style="height: 70px;" >
+              <%= link_to 'Вернуться' , {:controller=>'cabinet' , :action=>'sotr'} , :style=>'float: left;'%>
+             <%= submit_tag "Завершить оформление", :style =>'font-weight: normal; background-image: none; background-color: #F47920; border: medium none; color: white; cursor: pointer; padding: 3px; padding-left: 10px; padding-right: 10px; text-align: center;' %>
+            </td>
+        </tr>
+      </table>
+    
+    <%end%>
+      <p style="color: #808285; margin-top: 10px;">Личные сведения, полученные в распоряжение <a href="http://www.zhivojoffice.ru">www.zhivojoffice.ru</a> при регистрации или каким-либо
+        иным образом, не будут без разрешения пользователей передаваться третьим организациям и лицам, за исключением ситуаций, когда этого требует
+        закон или судебное решение.</p>
+
+</div>
+
+
+<%  end %>
+
+
+
+

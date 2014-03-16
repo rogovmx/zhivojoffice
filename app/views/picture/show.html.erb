@@ -1,0 +1,5 @@
+<img src="<%= url_for(:action =>'picture' , :id => @picture.id) %>" /><br>
+  <%= @picture.name %><br>
+    <%= @picture.content_type %><br>
+        <%= @picture.comment %><br>
+          <%=link_to url_for(:action =>'picture' , :id => @picture.id),:action =>'picture' , :id => @picture.id %>

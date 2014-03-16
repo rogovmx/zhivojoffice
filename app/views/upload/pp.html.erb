@@ -1,0 +1,5 @@
+
+
+<% for l in @list %>
+  <%= l %> &nbsp;  <%= link_to 'Загрузить в базу', :controller=>'zal1', :action=>'zalcat',:file=> l %> <br>
+  <% end %>

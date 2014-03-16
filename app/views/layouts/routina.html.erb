@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Убей рутину</title>
+  <%= stylesheet_link_tag 'routina' %>
+  <%= javascript_include_tag :defaults  %>
+</head>
+<body>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<div id="container">
+  <%= link_to image_tag("routine/logo_zo.png"), root_path, :class => "back_link" %>
+	<%= yield  %>
+
+
+  <div class="r_footer">
+    <span style="font-size: 16px; color: #DFFF60;">Подробности на сайте </span>
+    <a href="http://www.убейрутину.рф" target="_blank"  style="font-size: 20px; text-decoration: none; font-style: italic; color: #FACD0A;">www.убейрутину.рф </a>
+</div>
+
+
+	<div style="clear: both; float: none;"></div>
+</div>
+
+<%= render :partial => '/part2/counters' %>
+</body>
+</html>

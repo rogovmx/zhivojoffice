@@ -1,0 +1,108 @@
+
+
+<%# if @cat1.k11 != '999' %>
+<% if @user or @cat1.k11 != '999' %>
+<%# @comp = Cat1.find(params[:id]) %>
+
+ <% @comp = @cat1 %>
+ <div style="position: relative;">
+
+
+<% if !login? %>
+ <noindex>
+ <div id="<%= 'no_auth' + @comp.id.to_s %>" style="position: absolute; z-index: 1100; top: -20px; left: -140px; width: 165px; height: 40px; display: none; text-align: center;
+      font-weight: bold; padding: 12px; padding: 5px; background-color: white; border: 1px solid red; color: red;"> Вы не <%= link_to "авторизованы" , {:controller=>'login' , :action=>'login'}, :style=>'color:red; text-decoration: underline;' %>.<br/>
+   <span style=" font-size: 10px;">Содержимое корзины может не сохраниться.</span>  </div>
+ </noindex>
+<% elsif @comp.comp and @comp.comp!= '' %>
+  
+      <div id="<%= 'textblock_' + @comp.id.to_s %>"  
+           style=" position: absolute; z-index: 1000; top: -50px; left: -90px; width: 165px; height: 53px; display: none; color: white; text-align: center;
+           font-weight: bold; padding: 12px; padding-top: 15px;  background: url(/images/comp.png) no-repeat; background-position: left top;">
+<%= @comp.comp %>
+</div>
+
+
+<% end %>
+</div>
+
+<div id="zakaz_<%= @cat1.id %>" >
+
+
+<% remote_form_for :cart  , :url=>{:controller=>'kt3',:action=> :create_cart,:id=>@cat1.id} do |f| %>
+
+
+ <%= f.hidden_field :Sesion_id ,:value=> request.session_options[:id] %>
+ <%= f.hidden_field :otdel ,:value=> "kanc" %>
+ <%if @user%>
+ <%= f.hidden_field :User_id ,:value=>@user.id  %>
+ <%end%>
+ <%= f.hidden_field :k1s,:value=> @cat1.k1c %>
+ <%= f.hidden_field :price, :value=> @uprice %>
+
+   <% if @user and @user.role=='poduser' %>
+   <%if @user.head_id %>
+   <%= f.hidden_field :user ,:value=>@user.head_id  %>
+   <% else %>
+   <% @glav=User.find :first ,:conditions=>["client1_id=? and role = ?",@user.client1_id , 'user'] %>
+   <%= f.hidden_field :user ,:value=>@glav.id  %>
+   <% end %>
+    <%= f.hidden_field :user1_id ,:value=>@user.id  %>
+  <% end %>
+
+
+
+  <table>
+    <tr><td>
+        <table width="30px" cellpadding="0" cellspacing="0" style="border: 1px solid #99CCCC; height: 18px;" > <tr>
+            <td valign="top" style="padding-top: 2px; padding-left: 3px;">
+<% if @cat1.k1c == '7774975534' or  @cat1.k1c == '7774975535'%>
+    <%= f.text_field :quantity ,:value=> 1 ,:size=>2,:class=>'in_right',:style=>'width: 25px; border:0px solid white;', :id=>@cat1.id.to_s+'pm' , :onblur=>"wolf_zb('#{@cat1.id.to_s+'pm'}')"%>
+<%# elsif @cat1.k1c == '7774973992' %>
+    <%#= f.text_field :quantity ,:value=> 1 ,:size=>2,:class=>'in_right',:style=>'width: 25px; border:0px solid white;', :id=>@cat1.id.to_s+'pm' , :onblur=>"wolf_izum('#{@cat1.id.to_s+'pm'}' ,'#{'price' + @cat1.id.to_s}' , '#{findprice('7774973992')}')" , :onmouseout=>"wolf_izum('#{@cat1.id.to_s+'pm'}' ,'#{'price' + @cat1.id.to_s}', '#{findprice('7774973992')}')" %>
+<% else %>
+    <%= f.text_field :quantity ,:value=> 1 ,:size=>2,:class=>'in_right',:style=>'width: 25px; border:0px solid white;', :id=>@cat1.id.to_s+'pm' , :onkeyup=>"wolf('#{@cat1.id.to_s+'pm'}')"%>
+<% end %>
+            </td> <td valign="middle" style="padding-top: 1px;" >
+              <div >
+              <img src="/images/arr_up_down.gif" width="9" height="18" border="0" usemap="#<%=@cat1.id.to_s+'pmap'%>" />
+
+ <map name="<%=@cat1.id.to_s+'pmap'%>" id="<%=@cat1.id.to_s+'pmap'%>">
+ 
+<% if @cat1.k1c == '7774975534' or  @cat1.k1c == '7774975535'%>
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick="arrows_zb('<%=@cat1.id.to_s+'pm' %>', '+')" />
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick="arrows_zb('<%=@cat1.id.to_s+'pm' %>', '-')" />
+ <%# elsif @cat1.k1c == '7774973992' %>
+  <!--
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick="arrows_izum('<%#=@cat1.id.to_s+'pm' %>', '+' , 'price<%#=@cat1.id%>' , '<%#=findprice('7774973992') %>')" />
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick="arrows_izum('<%#=@cat1.id.to_s+'pm' %>', '-', 'price<%#=@cat1.id%>' , '<%#=findprice('7774973992') %>')" />
+   -->
+<% else %>
+
+  <area shape="rect" coords="0,0,9,8"  href="javascript:void(0);" onclick="arrows('<%=@cat1.id.to_s+'pm' %>', '+')" />
+  <area shape="rect" coords="0,10,9,18" href="javascript:void(0);" onclick="arrows('<%=@cat1.id.to_s+'pm' %>', '-')" />
+ <% end %>
+  </map>
+              </div>
+            </td> </tr> </table>
+
+      </td><td>
+
+ <% if login? and @cat1.comp != nil and @cat1.comp != ''  %>
+<%= f.submit "" ,:style=>'width:35px; height: 26px; border: none; background: url(/images2/o_cart.jpg) top left no-repeat; cursor: pointer; ' ,  :onclick=>"runSerial('#{'textblock_' + @comp.id.to_s}')" , :id=>'zak'+@cat1.id.to_s  %>
+<% elsif !login? %>
+<%= f.submit "" ,:style=>'width:35px; height: 26px; border: none; background: url(/images2/o_cart.jpg) top left no-repeat; cursor: pointer; ',  :onclick=>"runSerial('#{'no_auth' + @comp.id.to_s}')" , :id=>'zak'+@cat1.id.to_s  %>
+<% else %>
+ <%= f.submit "" ,:style=>'width:35px; height: 26px; border: none; background: url(/images2/o_cart.jpg) top left no-repeat; cursor: pointer; ' , :id=>'zak'+@cat1.id.to_s  %>
+<% end %>
+<!-- <input type="image"  src="/images/basket.gif" border=0 align="absmiddle"> -->
+ <%= image_tag('/images2/absent.jpg' ,:width=>'100px;' , :style=>'float: right;') if  @cat1.k11 == '999' %>
+      </td></tr></table>
+    <% end %>
+
+</div>
+
+<% else %>
+<%= image_tag('/images2/absent.jpg' ,:width=>'100px;') %>
+
+<% end %>

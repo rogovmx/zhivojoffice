@@ -1,0 +1,25 @@
+<% content_for(:cont) do %>
+<h1>Listing actions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Auto</th>
+    <th>Frecuency</th>
+  </tr>
+
+<% @actions.each do |action| %>
+  <tr>
+    <td><%=h action.name %></td>
+    <td><%=h action.auto %></td>
+    <td><%=h action.frecuency %></td>
+    <td><%= link_to 'Изменить', edit_action_path(action) %></td>
+    <td><%= link_to 'Удалить', action, :confirm => 'Вы уверены?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новая категория акций', new_action_path %>
+<% end %>

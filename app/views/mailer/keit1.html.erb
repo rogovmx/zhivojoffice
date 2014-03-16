@@ -1,0 +1,26 @@
+
+ФИО:&nbsp;<%=@order.name %> <br />
+Телефон:&nbsp;<%=@order.phone%><br />
+<br>
+
+Адрес доставки:<%= @order.adres  %><br>
+<hr/>
+
+ <br>
+    
+    
+  
+<% @order.likeit.each do |cart| %>
+  
+<% @keit=Keitering.find_by_id(cart.keitering_id) if cart.keitering_id %>
+
+
+<hr/>
+<b >Заказ:</b>&nbsp; <%= @keit.name %> <br/>
+<b>Количество: </b>&nbsp;<%= cart.quantity %><br/>
+<b>Цена: </b>&nbsp;<%= cart.price*cart.quantity %><br/>
+
+  
+<%end%>
+
+

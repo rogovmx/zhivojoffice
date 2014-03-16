@@ -1,0 +1,37 @@
+<%@legals=Legal.find :all, :conditions=>["client_id=?",@client.id]%>
+Юридические адреса:  <b> <%= @client.Name %></b>.
+
+<style>
+  #cl1 td
+  {
+    border:solid 1px #dcdcdc;
+  }
+</style>
+<div id="legals"></div>
+<table id="cl1" style="border:solid 1px #dcdcdc; border-collapse:collapse;width:550px;">
+  <tr>
+    <th style="width:160px;">Название</th>
+    <th style="width:40px;">ОПФ </th>
+    <th style="width:80px;">ИНН </th>
+    <th style="width:80px;">КПП</th>
+    <th style="width:50px;">Расчетный счет</th>
+    <th style="width:50px;">Банк</th>
+    <th style="width:20px;"></th>
+    <th style="width:40px;">Статус</th>
+    <th></th>
+  </tr>
+<% @legals.each do |legal| %>
+  <tr>
+    <td><%=legal.name%></td>
+     <td><%=legal.ofp%></td>
+     <td><%=legal.inn%></td>
+     <td><%=legal.kpp%></td>
+     <td><%=legal.ps%></td>
+     <td><%=legal.bank_id%></td>
+     <td><%=legal.ubp%></td>
+     <td><%=legal.status%></td>
+     <td><%#= link_to_remote 'редактировать' ,{:controller=>'manager', :action=>'edit_legals' ,:id=>legal.id,:update=>'legals'} %></td>
+  </tr>
+
+<%end%>
+</table>

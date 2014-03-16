@@ -1,0 +1,25 @@
+<% content_for(:cont) do %>
+<p>
+  <b>Title:</b>
+  <%=h @statp.title %>
+</p>
+
+<p>
+  <b>Название:</b>
+  <%=h @statp.name %>
+</p>
+
+<p>
+  <b>Контент:</b>
+  <%=h @statp.content %>
+</p>
+
+<p>
+  <b>Резерв:</b>
+  <%=h @statp.rezerv %>
+</p>
+
+
+<%= link_to 'Редактировать', edit_statp_path(@statp) %> |
+<%= link_to 'Вернутся', statps_path %>
+<%end%>

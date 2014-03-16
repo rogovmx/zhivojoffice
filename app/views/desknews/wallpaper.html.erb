@@ -1,0 +1,62 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+  .wallpaper {margin-left: 100px;}
+  .wallpaper th { padding: 5px;}
+  .wallpaper td { padding: 5px; padding-top: 0px; vertical-align: top;}
+  .wallpaper td a{ text-decoration: none; color: #f15a26; font-size: 11px;}
+  .wallpaper td a:hover{ text-decoration: none; color: #3265a4;}
+  .wallpaper td p{ width: 250px; color: #3265a4;}
+
+
+</style>
+<div style="margin: 0 auto;">
+<table class="wallpaper" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr>
+    <td>     <img src="/images/wallpaper/wall1.jpg" />   </td>
+    <td><p>ВЛЮБЛЕННЫЙ   </p>
+      <a href="/images/wallpaper/love/1024x768.jpg" target="_blank" tar >1024x768 </a><br/>
+      <a href="/images/wallpaper/love/1280x1024.jpg" target="_blank">1280x1024 </a><br/>
+      <a href="/images/wallpaper/love/1600x900.jpg" target="_blank">1600x900 </a><br/>
+      <a href="/images/wallpaper/love/1600x1200.jpg" target="_blank">1600x1200 </a><br/>
+      <a href="/images/wallpaper/love/1680x1050.jpg" target="_blank">1680x1050 </a><br/>
+      <a href="/images/wallpaper/love/1920x1080.jpg" target="_blank">1920x1080</a><br/>
+    </td>
+    <td><img src="/images/wallpaper/wall2.jpg" width="116" height="104" />    </td>
+    <td><p>СОЛНЕЧНЫЙ</p>
+    <p><a href="/images/wallpaper/sun/1024x768.jpg" target="_blank">1024x768 </a><br/>
+      <a href="/images/wallpaper/sun/1280x1024.jpg" target="_blank">1280x1024 </a><br/>
+      <a href="/images/wallpaper/sun/1600x900.jpg" target="_blank">1600x900 </a><br/>
+      <a href="/images/wallpaper/sun/1600x1200.jpg" target="_blank">1600x1200</a> <br/>
+      <a href="/images/wallpaper/sun/1680x1050.jpg" target="_blank">1680x1050 </a><br/>
+      <a href="/images/wallpaper/sun/1920x1080.jpg" target="_blank">1920x1080 </a></p></td>
+  </tr>
+  <tr>
+    <td>     <img src="/images/wallpaper/wall3.jpg" />   </td>
+    <td><p>БОДРЯЩИЙ</p>
+    <p><a href="/images/wallpaper/bodr/1024x768.jpg" target="_blank">1024x768 </a><br/>
+      <a href="/images/wallpaper/bodr/1280x1024.jpg" target="_blank">1280x1024</a> <br/>
+      <a href="/images/wallpaper/bodr/1600x900.jpg" target="_blank">1600x900 </a><br/>
+      <a href="/images/wallpaper/bodr/1600x1200.jpg" target="_blank">1600x1200</a> <br/>
+      <a href="/images/wallpaper/bodr/1680x1050.jpg" target="_blank">1680x1050 </a><br/>
+      <a href="/images/wallpaper/bodr/1920x1080.jpg" target="_blank">1920x1080</a></p></td>
+    <td><img src="/images/wallpaper/wall4.jpg" width="116" height="104" />    </td>
+    <td><p>ОЖИДАЮЩИЙ</p>
+    <p><a href="/images/wallpaper/wait/1024x768.jpg" target="_blank">1024x768 </a><br/>
+      <a href="/images/wallpaper/wait/1280x1024.jpg" target="_blank">1280x1024 </a><br/>
+      <a href="/images/wallpaper/wait/1600x900.jpg" target="_blank">1600x900 </a><br/>
+      <a href="/images/wallpaper/wait/1600x1200.jpg" target="_blank">1600x1200 </a><br/>
+      <a href="/images/wallpaper/wait/1680x1050.jpg" target="_blank">1680x1050 </a><br/>
+      <a href="/images/wallpaper/wait/1920x1080.jpg" target="_blank">1920x1080</a></p></td>
+  </tr>
+
+  
+  <tr> <td colspan="4" align="right" > <a href="/desk_subjs/">Все новости</a> </td></tr>
+</table>
+  <div class="wallpaper">
+  <%@links = 'desk_subjs'%> <%@subj = 'Рецепт хорошего настроения от Живого офиса!
+Новая зимняя коллекция обоев для рабочего стола! '%>
+<%= render(:partial=> 'part/links' , :object=>@links , :object=>@subj ) %>
+  </div>
+</div>
+<%end%>

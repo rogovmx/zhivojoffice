@@ -1,0 +1,20 @@
+<% content_for(:cont) do %>
+
+
+<div style="color: #c49550; position: relative; top: -40px; left: 15px; width: 400px;">кейтеринг / <a href="/keitering" style="text-decoration:underline; color:#c49550;" >меню</a> / <%=@s.name %> </div>
+<div style="margin-left: 15px; margin-right: 15px; padding-bottom: 30px;">
+
+ <%= render(:partial=> '/keitering/cat_keit', :object=>@s ) %>
+<% @ss = Set1.find :all , :conditions=>['keitering_id=?', @s.id] %>
+<% for set in @ss %>
+<% @s2=set %>
+
+<%= render(:partial=> '/keitering/cat_keit3', :object=>@s2 ) %>
+
+<% end %>
+
+</div>
+<br/>
+<h3 style="color:#c49550; margin-left: 25px; text-decoration: underline; clear: both; float: none; padding-top: 20px;" >Минимальная стоимость заказа 1500 рублей. Доставка включена в стоимость меню. </h3>
+<br/><br/>
+<% end %>

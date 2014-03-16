@@ -1,0 +1,43 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+  .tr1{background-color:papayawhip}
+  .tr2{background-color:white}
+</style>
+
+<div class="bcat1">
+<h1>Подкатегории</h1>
+
+
+<%= link_to 'Новая подкатегория', new_btg1_path if @user %>
+<br /> <br />
+<div>
+  <% for alf in @alf do %>
+  <% if alf == @letter %>
+    <%=link_to alf , {:action=>'index' , :letter=>alf} , :style=>'font-weight: bold; color:red;' %>&nbsp;&nbsp;
+  <% else %>
+  <%=link_to alf , :action=>'index' , :letter=>alf %>&nbsp;&nbsp;
+  <% end %>
+  <% end %>
+</div>
+<%#= will_paginate @btg1s ,:style=>'float: left;' %>
+<br /> <br />
+ <table border="0" cellpadding="0" style="clear: both;" class="btg1_tab">
+   <tr style=""><th> Название подкатегории: </th> </tr>
+
+<% @btg1s.each do |bcat1| %>
+   <tr class="<%= cycle('tr1','tr2') %>" > <td>  <b><%=h bcat1.name %></b>     </td>
+ <td style="padding-left: 25px; padding-right: 25px;"><b><%= link_to 'Редактировать', {:action=>'edit', :id=>bcat1.id} if @user and @user.role2=='s_manager'%></b></td>
+      <td style="padding-left: 25px; padding-right: 55px;"><b><%= link_to 'Номенклатура подкатегории',:controller=>'bcat1s',:btg1=>bcat1.id %></b></td>
+       <td><b><%= link_to 'Удалить', bcat1 , :confirm => 'Точно?', :method => :delete , :style=>'color: red;' if @user and @user.role2=='s_manager'%></b></td>
+  </tr>
+ <% end %>
+  </table>
+<br />
+<%#= will_paginate @btg1s ,:style=>'float: left;' %>
+<br /> <br />
+
+<%= link_to 'Новая подкатегория', new_btg1_path if @user%>
+
+</div>
+
+<% end %>

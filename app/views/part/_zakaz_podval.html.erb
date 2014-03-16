@@ -1,0 +1,35 @@
+
+<div id=zakaz_<%= @cat.id %> >
+
+
+<% remote_form_for :cart  , :url=>{:controller=>'kt3',:action=> 'create_cart' ,:id=>@cat.id} do |f| %>
+
+ <%= f.hidden_field :Sesion_id ,:value=> request.session_options[:id]  %>
+ <%= f.hidden_field :otdel ,:value=> "kanc" %>
+
+ <%= f.hidden_field :User_id ,:value=>@user.id if @user %>
+
+ <%= f.hidden_field :k1s,:value=> @cat.k1c %>
+ <%= f.hidden_field :price, :value=> findprice(@cat.k1c) %>
+
+  <%# if login? %>
+  <%# @price_spec=TovSpec.find(:first,:conditions=>['legal_id=? and k1c=?',@user.client_id,@cat.k1c]) %>
+  <%#end%>
+   <%# if @price_spec %>
+     <%#= f.hidden_field :price ,:value=> @price_spec.price_spec %>
+<%#else%>
+ <%#= f.hidden_field :price ,:value=> @cat.price %>
+<%#end%>
+
+
+  <table>
+    <tr><td>
+    <%= f.hidden_field :quantity ,:value=>1 %>
+      </td><td>
+
+<input type="image"  src="/images2/o_cart.jpg" border=0 align="center" />
+
+      </td></tr></table>
+    <% end if findprice(@cat.k1c)%>
+ 
+</div>

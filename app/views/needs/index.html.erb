@@ -1,0 +1,101 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+  label {font-weight: normal}
+.need_form_item1 {padding-top: 10px; color: #f15a26; clear: both; }
+.need_form_item2 {float:left; margin-top: 10px; color: #f15a26; }
+.need_form_item3 {float:right; color: #f15a26; margin-top: 10px; text-align: right }
+.need_form_item4 {margin-top: 20px; color: #f15a26; }
+.need_form_item5 {float:left; margin-top: 10px; color: #87bc40; }
+
+.need_button input {float: right; text-align: right; margin-top: 20px; width: 122px; height: 30px; background: url(/images/need_button.jpg); border: none}
+.need_form_item1 input {width:535px}
+.need_form_item2 input {width:450px}
+.need_form_item3 input {width:70px; float: right}
+.need_form_item4 textarea {width:535px; height: 60px;}
+.need_form_item5 input {width:260px}
+
+</style>
+  <div style="width: 540px;">
+<div>
+  <img src="/images/need_head.jpg" />
+       <br />  <br />
+  Если Вы не нашли в нашем каталоге интересующий Вас товар, заполните эту форму. <br />
+  <span style="color:#f15a26; font-size: 13px"> МЫ ВЫПОЛНИМ ВАШ ЗАКАЗ! </span>
+</div>
+    <br />  
+  
+ 
+<% form_for(@need) do |f| %>
+  <%= f.error_messages %>
+    <div>
+  <div class="need_form_item1">
+    <%= f.label 'Название товара*' %> <br />
+    <%= f.text_field :title %>
+  </div>
+
+   <div class="need_form_item2">
+    <%= f.label 'Бренд или производитель' %> <br />
+    <%= f.text_field :brend %>
+  </div>
+   <div class="need_form_item3">
+    <%= f.label 'Количество' %> <br />
+    <%= f.text_field :quantity %>
+</div>
+      <div class="need_form_item1">
+    <%= f.label 'Ссылка'%> <br />
+    <%= f.text_field :link %>
+    <span style="color:#b1b3b6"> (описание/изображение товара) </span>
+ </div>
+
+       <div class="need_form_item4">
+    <%= f.label 'Описание товара'%> <br />
+    <%= f.text_area :description %>
+ </div>
+
+   <div class="need_form_item5">
+    <%= f.label 'Имя*' %> <br />
+    <%= f.text_field :name %>
+ </div>
+
+      <div class="need_form_item5" style="float:right">
+    <%= f.label 'Фамилия' %> <br />
+    <%= f.text_field :user_f %>
+ </div>
+
+
+      <div class="need_form_item5">
+    <%= f.label 'Компания' %> <br />
+    <%= f.text_field :company_ind %>
+ </div>
+
+      <div class="need_form_item5" style="float:right">
+    <%= f.label 'Телефон*' %> <br />
+    <%= f.text_field :phone %>
+ </div>
+        <div class="need_form_item5" >
+    <%= f.label 'E-mail' %> <br />
+    <%= f.text_field :email %>
+          </div> <br /><br />
+
+                
+  <div style="color: #87bc40; clear: left">*Поля обязательные для заполнения</div>
+ <br />
+    </div>
+    <div class="need_button">
+    <%= f.submit "" %>
+  </div>
+<% end %>
+
+ <br /><br />
+  <%unless login?%>
+
+                  <%else%>
+<% if @user.id == 2019 %>
+  <a href="/view_needs">Посмотреть заказы</a>
+  <%elsif @user.id == 2133%>
+  <a href="/view_needs">Посмотреть заказы</a>
+  <% end %>
+  <% end %>
+  </div>
+
+  <% end %>

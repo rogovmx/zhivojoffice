@@ -1,0 +1,35 @@
+<% content_for(:cont) do %>
+
+<div style=" margin:  30px;">
+
+<% for hiref in @hiref do%>
+<hr />
+<% @client_hi=Client.find_by_id(hiref.client_id) if hiref.client_id %>
+<h2>Компания: <%=hiref.company_ind %>   </h2>
+<p><b>ИНН:</b> <%=hiref.inn %> <b>Код 1С:</b> <%=@client_hi.k1c if @client_hi %></p>
+<h4>Рефералы: </h4>
+<% @hisref=@referals.find_all{|f| f.ref == hiref.id} %>
+<ol style="list-style-position: inside; padding: 2px; ">
+  <% for hisref in @hisref do %>
+  <% @client_ref=Client.find_by_id(hisref.client_id) if hisref.client_id %>
+  <li> <span style="font-weight: bold; color:green;">Компания: <%=hisref.company_ind %> </span>
+    <p style="margin-left: 19px"><b> ИНН:</b><%=hisref.inn %> <b>Код 1С:</b> <%=@client_ref.k1c if @client_ref %>
+      <span style="margin-left: 30px; color: red;" > Заказов:
+<% @zakaz=Order.find :all , :conditions=>["user_id = ?",hisref.id]  %>
+
+<% if @zakaz.size > 0 %>
+<%= @zakaz.size %>
+<% else %>
+нет
+<% end %>
+      </span>  </p>
+  
+  </li>
+  <% end %>
+</ol>
+<% end %>
+</div>
+
+
+
+<% end %>

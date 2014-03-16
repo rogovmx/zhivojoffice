@@ -1,0 +1,29 @@
+<% form_for(@news_item, :html=>{:multipart => true}) do |f| %>
+<%= f.error_messages %>
+  <table style="margin-bottom:30px; border-spacing: 6px;">
+    <tr>
+      <td><%= f.label "Текущее Изображение" %></td>
+      <td><%= image_tag("/images/news_items/#{@news_item.image}", :width => "160px") if @news_item.image %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Заголовок" %></td>
+      <td><%= f.text_field :title, :size => 100 %></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><%= f.label "Текст" %></td>
+      <td><%= f.cktext_area :body, :toolbar=>'Full', :size => "73x10" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Видимость" %></td>
+      <td><%= f.check_box :visible %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Изображение" %></td>
+      <td><%= f.file_field :image %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "Обновить" %> <br/> <br/> 
+      <%= link_to 'Вернуться' , news_items_path %>  </td>
+    </tr>
+  </table>
+<% end %>

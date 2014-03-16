@@ -1,0 +1,189 @@
+* {margin: 0; padding: 0;}
+html, body {height: 100%;}
+body {
+margin: 0;
+padding: 0;
+direction: ltr;
+font-size: 1em;
+background-color: #bddc37;
+font-family: 'trebuchet ms';
+}
+
+#container {
+  width: 948px;
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto;
+  display: block;
+  background-image: url('/images/routine/routine_bg.jpg');
+  background-repeat: no-repeat;
+  background-color: #3c4513;
+  }
+
+.back_link img {
+  margin: 50px 0px 0px 70px;
+}
+
+#content {
+	display: block;
+	background-image: url('/images/routine/avtomat.png') !important;
+	background-repeat: no-repeat;
+	background-position: 0px 500px;
+	padding-top: 185px;
+}
+
+.main_list {
+	margin-left: 325px;
+}
+
+.main_list h1 {
+	color: #dfff60;
+	font-size: 17px;
+	font-weight: normal;
+	margin-right: 20px;
+}
+
+.main_list ul {
+	list-style-image: url('/images/routine/circle.png');
+	color: #ffffb0;
+	font-size: 0px;
+	font-weight: normal;
+	margin-bottom: 15px;
+	padding-right: 40px;
+}
+
+.main_list li {
+	margin-top: 8px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 14px;
+}
+
+.main_list span {
+	color: red;
+}
+
+#routinas a.first_season {
+	margin-top: 80px;
+	margin-left: 40px;
+	display: block;
+  width: 415px; 
+  height: 550px;
+  background-image: url('/images/routine/rutinaa1.png');
+  background-position:  0px 0px;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+#routinas a.first_season:hover {
+	background-position: -436px 0px;
+}
+
+#routinas a.second_season {
+	margin-top: 80px;
+	margin-right: 40px;
+  display: block;
+  width: 413px; 
+  height: 550px;
+  background-image: url('/images/routine/rutinaa2.png');
+  background-position:  0px 0px;
+  background-repeat: no-repeat;
+  float: right;
+}
+
+#routinas a.second_season:hover {
+	background-position: -436px 0px;
+}
+
+.links a {
+	color: #facd0a;
+	text-decoration: underline;
+	font-size: 25px;
+	float: left;
+}
+
+.links a:hover {
+	color: #bddc37;
+}
+
+.routinas {
+	margin-left: 40px;
+	margin-top: 80px;
+}
+
+#bars {
+	margin-top: 80px;
+}
+
+.left_bar {
+	margin-left: 40px;
+	float: left;
+	width: 410px;
+}
+
+.left_bar img {
+	display: block;
+	margin: 0 auto;
+}
+
+.right_bar {
+	margin-right: 40px;
+	width: 410px;
+	float: right;
+	margin-left: 40px;
+}
+
+.right_bar img {
+	display: block;
+	margin: 0 auto;
+}
+
+#bars a {
+	display: block;
+	font-weight: normal;
+	font-style: italic;
+	font-size: 12px;
+	line-height: 14px;
+	margin-top: 15px;
+	color: #dfff60;
+	text-decoration: none;
+}
+
+#bars a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+#bars p {
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 14px;
+	color: #ffffff;
+	margin-top: 8px;
+}
+
+#share42 {display: inline-block; padding: 6px 0 0 6px;}
+#share42 a {opacity: 0.9; margin-left: 10px;}
+#share42 a:hover {opacity: 1}
+
+.photos_guide {
+	margin-left: 60px;
+	margin-top: 400px;
+}
+
+.photos_index {
+  margin-top: 200px;
+  margin-left: 40px;
+}
+
+
+.r_footer {background-image: url('/images/routine/r_footer.png');
+           background-position: top center;
+           background-repeat: no-repeat;
+            height: 80px;
+            text-align: center;
+            font-family: 'trebuchet ms',helvetica,sans-serif;
+            padding-top:  58px;
+            margin-top: 20px;
+
+}

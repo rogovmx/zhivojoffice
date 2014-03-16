@@ -1,0 +1,66 @@
+
+
+<div id="ls_col_box">
+  <div class="ls_col">
+    <% ff=0 %>
+   <% @kat=First1.find:all,:select=>"name ,kod, id",:conditions=>["kod >? and kod <?",@r*100, (@r+1)*100] ,:order=>'kod' %>
+<% for k in @kat do %>
+    <% ff+=1%>
+  <div class="lsmenu_box">
+    <div class="kategory_title2">
+      <%= k.name %> <br/>
+       <%#= link_to 'Суперпредложение!' , {:controller => 'kt3' , :action => 'superprice' , :id => k.id} , :style=>'color: #F47920; font-size: 12px;'  if inraspr?(k.id)%>
+    </div>
+    
+<%  @gr2=Tov2.find(:all,:conditions=> ["first1_id=?",k.id],:order=>'ord') %>
+
+  <% for gr in @gr2 do %>
+
+ <%  @gr3 = Tov3.find(:all,:conditions=> ["tov2_id=? and vis=?",gr.id , 1],:order=>'ord')%>
+    
+   <% if @gr3.size != 0 %>
+    <div  class="smenu2" ><%= link_to gr.name ,{:controller=>'kt3',:action=>'tg_v2',:id=>gr.id}, :class=> 'g2' %>   </div>
+      <div class="smenu_box" style="<%='top: -40px;' if gr.name.size > 91  %>">
+        <span style="float: left"> + </span>
+
+        <div id="pk2<%=gr.id%>" class="smenu_list2">
+
+        <div class="smenu2" style="position: relative;  left: 1px; top: -2px;">
+         <%= link_to gr.name ,{:controller=>'kt3',:action=>'tg_v2',:id=>gr.id}, :class=> 'g2' , :style=>'color:#5C2D91;'  %>  </div>
+
+        <ul>
+
+        <% for gr3 in @gr3 do %>
+          <% if gr3.cat1.find_all { |x| x.send(session[:city] ? session[:city] : 'spb')}.any? %>
+            <li>
+            <% if k.id != 38 %>
+              <%= link_to gr3.name ,{:controller=>'kt3',:action=>'tg_v',:id=>gr3.id} %>
+            <% else %>
+              <%= link_to gr3.name ,{:controller=>'kt3',:action=>'tg_n',:id=>gr3.id}%>
+            <% end %>
+            </li>
+          <% end %>
+
+        <% end %>
+        </ul>
+        </div>
+      </div>
+   <% end %>
+
+
+
+ 
+    <% end %>
+
+  </div>
+
+    <% if ff==(@kat.size.div 2) %>
+  </div> <div class="ls_col">
+    <% end %>
+
+<% end %>
+</div>
+  <div class="clear"> </div>
+
+</div>
+

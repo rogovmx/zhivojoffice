@@ -1,0 +1,54 @@
+<% content_for(:cont) do %>
+
+
+<%unless login?%>
+              <a href="/login/login"> Войдите на сайт под своим логином</a>
+     <%else%>
+<% @vu=VictorUsers.find_by_user_id(@user.id) %>
+<% if @vu   %>
+<script type="text/javascript">
+	var targetURL="/victorinas/no";
+        <% if @user.id != 2019 %>
+        var time=<%=@vu.right+150-Time.now.seconds_since_midnight %>;
+        <%else%>
+         var time=<%=@vu.right+160%>
+         <%end%>
+	function timer(){
+var obj=document.getElementById('timer_inp');
+	 obj.innerHTML--;
+         <% if @user.id != 2019 %>
+         time--;
+         <%else%>
+         <%end%>
+	 if(time<=1){window.location=targetURL;setTimeout(function(){},1000);}
+	 else{setTimeout(timer,1000);}
+	}
+	setTimeout(timer,1000);
+	</script>
+<div style=" width: 800px; height: 600px">
+
+
+<div class="viktorina_start">
+  <div id="timer_box">
+    <span style="float:right; padding-right: 5px;">&nbsp;с. </span>
+<div id="timer_inp"><%=(@vu.right+150-Time.now.seconds_since_midnight).to_i %> </div>
+
+ </div>
+</div>
+
+  
+
+  <%= render(:partial=> '/victorinas/question', :object=>@vv ) %>
+  <% else %>
+  <a href="/victorinas/index">Вернуться на начало викторины</a>
+  <% end %>
+
+     <%end%> <!-- unless login -->
+              <br /><br /><br />
+
+              <h1> <%=@out %> </h1>
+  
+
+  </div>
+<% end %>
+

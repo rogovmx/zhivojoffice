@@ -1,0 +1,21 @@
+<% content_for(:cont) do %>
+<h1>Редактирование городов</h1>
+<% unless @cities == [] %>
+  <table class="info_tab" cellpadding="2" cellspacing="0" style="margin-top: 20px;">
+    <tr>
+      <th>Название города</th>
+    </tr>
+    <% for city in @cities %>
+      <tr>
+        <td><%=h city.name %></td>
+        <td><%= link_to 'Изменить', edit_city_path(city) %></td>
+        <td><%= link_to 'Удалить', city, :confirm => 'Вы уверены, что хотите удалить этот город?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= render :partial => "form"%>
+<%= link_to "К списку акций", sale_actions_path %>
+
+<% end %>

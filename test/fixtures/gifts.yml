@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  frw_id: 1
+  name: MyString
+  img_url: MyString
+  quantity: 1
+
+two:
+  frw_id: 1
+  name: MyString
+  img_url: MyString
+  quantity: 1

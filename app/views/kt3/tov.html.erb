@@ -1,0 +1,285 @@
+
+<% content_for(:tit) do%>
+
+<% if @cat.tov3_id == 0 %>
+  <%=h truncate(@cat.name, 50) %>
+<% else %>
+  <%=h @cat.name %>
+<% end %>
+
+<%  end %>
+
+<% content_for(:cont) do %>
+<%#= hk(params[:id]) %>
+<%= hk_tov(params[:id]) if @cat.tov3_id != 0 %>
+  <br/>
+    <%  cat=@cat %>
+
+<!-- -----  -->
+
+<table id="tovar_max">
+  <tr><td width="300px;" valign="center">
+      <div style="position:  relative; width: 300px; height: 300px; overflow: hidden;">
+
+      <div id="picture2" class="goodpicture">
+      <%#= image_tag("/img/#{@picts[0]}.jpg" ) %>
+      <%= image_tag("/img/#{@cat.pic1}.jpg" ) %>
+      </div>
+
+  <!--     <%# if @cat.cat1img.size != 0  %>
+        <div style="position: absolute; left: 130px; bottom: 0px;">
+          <%#= link_to_remote image_tag("/images2/pic_left.jpg"), :url => {:controller => 'kt3',:action => 'pic2', :next => -1 , :cat=>@cat.id}, :update => 'picture2' %>
+          <%#= link_to_remote image_tag("/images2/pic_right.jpg"), :url => {:controller => 'kt3',:action => 'pic2', :next => 1 , :cat=>@cat.id}, :update => 'picture2' %>
+        </div>
+        <%# end %>
+ -->
+    </div>
+  </td>
+  <td width="240px;" valign="top" >
+    
+    <div style="position: relative;" >
+   <% if @cat.cat1img.size != 0 %>
+      
+        <% if @cat.cat1img.size >3 %>
+      <span class="pic_arr" style="left:0px;" onclick="scroll_l('pic',<%=@cat.cat1img.size%>)"> <img src="/images2/pic_left.jpg" alt="" /> </span>
+     <span class="pic_arr" style="left:185px;" onclick="scroll_r('pic',<%=@cat.cat1img.size%>)"> <img src="/images2/pic_right.jpg" alt="" /> </span>
+      <% end %>
+
+      <div id="pic_box">
+        <div id="pic">
+        <div class="highslide-gallery">
+
+
+        <% for pic in @cat.cat1img do %>
+ <div class="picdiv"> 
+	<a href="<%="/img#{pic.pic.strip}.jpg"-%>" class="highslide"	onclick="return hs.expand(this, config1)">
+      <%#= link_to_remote image_tag("/img/"+ pic + ".jpg", :width => "50px"), {:url => {:controller => 'kt3',:action => 'pic1', :pic => pic}, :update => 'picture2'},{:class=>'highslide'} %>
+     		 <%= image_tag("/img#{pic.pic.strip}.jpg", :width => "50px") %>
+	</a>
+
+    </div> 
+        <% end %>
+          </div>
+
+         </div>
+       
+ </div>
+    <%end%>
+
+          </div>
+    
+
+
+
+    <table class="goodinfo" cellspacing="0" cellpadding="0" >
+<tbody>
+<tr>
+<td  style="height:135px;" valign="bottom" align="left">
+ <span class="kpk">
+  <% if @cat.kpk != nil and @cat.kpk != ''%>
+      Код каталога:<%=@cat.kpk%><br/>
+   <%end%>
+</span>
+    <% if login? %>
+  <% @img=Sertificat.find :first , :conditions=>['k1c=?',@cat.k1c] %>
+    <% if @img %>
+   <%= link_to 'Сертификат' , "javascript:open_win('/sertificates/#{@img.img.strip}.jpg',600,842)" if FileTest::exist?("public/sertificates/#{@img.img.strip}.jpg") %>
+   <%= link_to 'Сертификат 2' , "javascript:open_win('/sertificates/#{@img.img.strip}-(2).jpg',600,842)" if FileTest::exist?("public/sertificates/#{@img.img.strip}-(2).jpg") %>
+   <%= link_to 'Сертификат 3' , "javascript:open_win('/sertificates/#{@img.img.strip}-(3).jpg',600,842)" if FileTest::exist?("public/sertificates/#{@img.img.strip}-(3).jpg") %>
+   <%= link_to 'Сертификат 4' , "javascript:open_win('/sertificates/#{@img.img.strip}-(4).jpg',600,842)" if FileTest::exist?("public/sertificates/#{@img.img.strip}-(4).jpg") %>
+   <% end %>
+      <% end %>
+  <h3><%=cat.name %> </h3>
+  <span style="color: red">  <%= 'Цена шт. ' + (cat.price/cat.opt).to_s + ' р.' if cat.opt  %></span>
+
+
+</td>
+</tr>
+<tr>
+  <td style="height:45px;" align="left" valign="center" >
+    
+
+
+     <%= render  :partial =>'uprice_t',:user=>@user, :cat=>@cat %>
+  </td>
+</tr>
+<tr>
+  <td>
+
+<%@cat1=cat%>
+ <% @tvc=Cart.find :first,:conditions=>['sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+
+    <% if @tvc || (login? && @user.only_specs) %>
+      <%= render(:partial=> 'tvc') %>
+    <%  else  %>
+<% if @uprice %>
+<%= render :partial=> 'zakaz', :object=>@cat1,:object=>@user ,:object=>@uprice %>
+  <%end%>
+ <%end%>
+</td>
+</tr>
+<tr>
+
+<td class="favorite" style="height:100%" align="left" valign="bottom" >
+ <%unless login?%>
+ 
+<%else%>
+
+ 
+<% @it=It.find(:first,:conditions=>['user_id=? and k1c=? ',@user.id,@cat.k1c])%>
+<% if @it %>
+<%= render :partial=>'/kt1/it' %>
+<%else%>
+  <% if @cat.tov3_id != 0 %>
+  <%@tov3=Tov3.find(@cat.tov3_id)%>
+<% @f1=Tov2.find(@tov3.tov2_id) %>
+<% @kod_f1=First1.find(@f1.first1_id) %>
+<div id=it_<%=@cat.id%>>
+  <%  update='it_'+@cat.id.to_s %>
+<% remote_form_for :it  , :url=>{:controller=>'kt1',:action=> :create_it},:update=>update do |f| %>
+   <%= f.hidden_field :user_id ,:value=>@user.id  %>
+   <%= f.hidden_field :k1c ,:value=>@cat.k1c %>
+   <%= f.hidden_field :tg3 ,:value=>@tov3.id %>
+   <%= f.hidden_field :tg2 ,:value=>@tov3.tov2_id %>
+   <%= f.hidden_field :tg1 ,:value=>@f1.first1_id %>
+   <%= f.hidden_field :kod_f1 ,:value=>@kod_f1.kod %>
+   <%= f.hidden_field :brend ,:value=>@cat.brend %>
+  <img src="/images2/add_fav.jpg" />
+   <%=f.submit 'добавить в избранное',:class=>'it_submit'%>
+   <% end %>
+  <%end%>
+</div>
+<%end%>
+<%end%>
+
+
+
+
+ 
+  <% if @cat.raspr == 1 %>
+  <div style=" margin-top: 5px;">
+      <%= image_tag('/images2/super.gif')  %> <span style="color: #808285;">Суперпредложение!</span>
+  </div>
+ <% elsif @cat.raspr == 2 %>
+  <div style=" margin-top: 5px;">
+      <%= image_tag('/images2/sale_02.png')  %> <span style="color: #808285;">Распродажа!</span>
+  </div>
+ <% end %>
+
+  <% if old_price?(@cat.k1c) %>
+
+ <% end %>
+
+
+
+
+
+
+           <% if login? %>
+            <% if (@user.role !='redaktor' and @user.role !='sredaktor')%>
+            <%else%>
+            <%= link_to_remote "редактировать" ,{:url=>{:controller=>'kt1',:action=>'edit_tov',:id=>@cat.id},:update=>'edit_tov'},:href => url_for(:controller=>'login',:action => "login")%>
+   <%= link_to_remote "редактировать фото" ,{:url=>{:controller=>'kt1',:action=>'edit_tov_pics',:id=>@cat.id},:update=>'edit_tov'},:href => url_for(:controller=>'login',:action => "login")%>
+      
+         <%if @cat.vis != true%>
+                          &nbsp;&nbsp;  <span style="color:red;"> <b>Не отображается</b></span>
+ <%end%>
+    <%end%>
+
+        <%else%>
+        <%end%>
+                          <div id="edit_tov"> </div>
+
+</td>
+</tr>
+
+
+
+</tbody>
+</table>
+
+      
+         
+
+  </td>
+  </tr>
+</table>
+
+ <div id="subfooter" class="wide">
+
+
+
+<% if @bcat1 and  @btg1 %>
+              <div class="podval_menu" onclick="tog_st('fo_dop')">
+              <%# unless @tg.empty? %>
+             <!--   <span id="link_st"> Показать характеристики товара</span> -->
+              <%# else%>
+                <span id="link_st"> Скрыть характеристики товара</span>
+              <%# end %>
+                <img src="/images2/sort_d.gif" style="position: absolute; top: 10px; right: 10px;"/>
+              </div>
+                <div id="fo_dop" style="<%#='display: none' if !@tg.empty? %>">
+                   <%= render :partial=>'/kt3/kt3_st' %>
+              </div>
+ <% end %>
+
+
+  <!--     Сопутствующие и коллекция   + аналоги     -->
+<% if analog_any?(@cat) %>
+  <div class="st" > Аналоги:</div>
+  <div style="margin-top: 5px;">
+
+   <% ff=0 %>
+   <table border="0" cellpadding="0" cellspacing="0" ><tr style="border-bottom: 1px dashed #808285;">
+       <% for cat in @a_cat do%>
+          <%ff+=1%>
+          <td valign="top" style="padding-right:12px; padding-top: 3px; <%= 'padding-right:0px;' if (ff%3)==0%> margin:0px;border-bottom:1px dashed #808285; ">
+          <% @cat = cat%>
+          <%= render(:partial => 'kt3/cat22v',:cat =>@cat) %>
+          </td>
+
+          <% if (ff%3)==0 %>
+            </tr><tr>
+          <%end%>
+      <% end %>
+      </tr>
+   </table>
+ </div>
+<% end %>
+
+
+
+
+ <% unless @tg.empty? %>
+  <div class="st" > Вместе с этим товаром обычно покупают:</div>
+  <div style="margin-top: 5px;">
+
+    <% ff=0 %>
+      <table border="0" cellpadding="0" cellspacing="0" ><tr style="border-bottom: 1px dashed #808285;">
+       <% for @cat in @tg do%>
+<%ff+=1%>
+  <td valign="top" style="padding-right:12px; padding-top: 3px; <%= 'padding-right:0px;' if (ff%3)==0%> margin:0px;border-bottom:1px dashed #808285; ">
+<%= render(:partial => 'kt3/cat22v',:cat =>@cat) %>
+     </td>
+
+         <% if (ff%3)==0 %>
+          </tr><tr>
+          <%end%>
+ <% end %>
+      </tr>
+      </table>
+ </div>
+ <% end %>
+
+
+
+
+ </div>
+
+
+ 
+<% end %>
+
+
+
+<!-- ========================= -->

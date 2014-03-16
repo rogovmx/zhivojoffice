@@ -1,0 +1,8 @@
+# TODO Operate on the page object
+#page.insert_html :bottom,:partial=>'/kt1/tvc'
+#page.replace_html 'bar1', :partial=>'/part/oc'
+#
+#page.replace_html 'dis',"iiiii"
+  
+
+page.replace_html 'bar12', oc_cake

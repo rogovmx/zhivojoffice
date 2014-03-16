@@ -1,0 +1,31 @@
+<% form_for(@actionitem, :html=>{:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+<div style="margin-bottom: 20px; height: 10px; background-color: #B8E834;" class="clear"></div>
+<p style="float: right; margin-top: 55px;">
+  <%= image_tag("/images/action_items_images/#{@actionitem.pic}") if @actionitem.pic%>
+
+</p>
+
+  <p>
+  <%= f.hidden_field :action_id, :value => params[:action_id] %>
+  </p>
+  <p>
+    <b>  <%= f.label "Баннер" %></b>
+    <%= f.file_field :pic %>
+  </p>
+  <p style="margin-top: 15px;">
+    <b> <%= f.label "Описание" %> </b><br />
+    <%= f.text_area :title  , :style=>'width: 366px; height: 144px;'%>
+  </p>
+  <p style="margin-top: 20px;">
+    <b> <%= f.label "Порядок"  %> </b>
+    <%= f.text_field :sort, :style=>'width: 30px;' , :value=>(@actionitem.sort ? @actionitem.sort : @actionitems_max_sort) %>
+  </p>
+  <p  style="margin-top: 15px;">
+    <b>  <%= f.label "Ссылка (все что идет после zhivojoffice.ru)" %> </b><br />
+    <%= f.text_field :link , :style=>'width: 600px;'%>
+  </p>
+  <p style="margin-top: 20px; margin-bottom: 10px;">
+    <%= f.submit 'Обновить' %>
+  </p>
+<% end %>

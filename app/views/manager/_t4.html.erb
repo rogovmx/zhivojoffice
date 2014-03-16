@@ -1,0 +1,26 @@
+<%= @client.id %>
+<% @user=User.find :first,:conditions=>["client1_id=?",@client.id] %>
+
+<%if @user%>
+<%= @user.id %>
+<% @tov_spec=TovSpec.find:all,:conditions=>["legal_id=?",@client.id] %>
+<%if @tov_spec != nil%>
+<table>
+  <th>Название</th>
+  <th>Цена</th>
+  <% @tov_spec.each do |tov| %>
+  <tr>
+    <td>
+      <%@name=Cat1.find :first,:conditions=>["k1c=?",tov.k1c]%>
+      <%= @name.name %>
+    </td>
+    <td>
+      <%=tov.price_spec%>
+    </td>
+  </tr>
+  <%end%>
+</table>
+
+<%end%>
+
+<%end%>

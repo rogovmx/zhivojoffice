@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+      <%#= yield :tit %>
+    <title>Живой офис. Подарки для офисных сотрудников. </title>
+    <meta name="author" content="Administrator" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="товары для жизни офисных сотрудников" />
+    <meta http-equiv="content-language" content="ru" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+<%= stylesheet_link_tag 'index' %>
+<%= stylesheet_link_tag 'podarok' %>
+   <%= javascript_include_tag :defaults  %>
+      
+
+  </head>
+  <body>
+
+
+<%= render :partial=>'/part/left_right_menu' %>
+
+
+    <div id="container">
+
+      <div id="header-section" class="clearfix">
+        <div id="header" class="wide">
+      <div id="top_header">
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+              <%= link_to image_tag('/images/podarki/logo.jpg', :class=>'logo') ,{:controller=>'podarok', :action=>'out'}, :class=>'top_link1'%>
+            <!--  <a class="top_link1" href="/"><img src="/images/podarki/logo.jpg" alt="" class="logo" /></a>
+            -->
+            </td>
+           
+
+            <td align="right">
+              <a href="/bas1/edit_cart" class="basket" ></a></td>
+           
+            
+            <td id="rl">
+              <%unless login?%>
+                        <%= link_to_remote "войти" ,{:url=>{:controller=>'kt1',:action=>'log1'},:update=>'rl',:html=>{:class=>'top_link4 login '}},:href => url_for(:controller=>'login',:action => "login"),:class=>'top_link4 login '%>
+                        <a class="top_link4 reg" href="/login/add_user">регистрация</a>
+                  <%else%>
+                  Здравствуйте  <%= user_name %> !                     <a class="top_link4 reg" href="/login/logout">выйти</a>
+                  <%end%>
+
+              </td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+  
+
+
+        </div>
+
+      </div>
+
+      <div id="main-section" class="clearfix">
+
+        <div id="main" class="wide">
+
+        
+            <div class="content" >
+
+
+<%= yield %>
+
+
+            </div>
+          
+
+        </div>
+
+      </div>
+
+
+      <div id="push"></div>
+    </div>
+
+<%= render :partial => '/part2/counters' %>
+  </body>
+</html>

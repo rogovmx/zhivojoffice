@@ -1,0 +1,28 @@
+<div id="<%='a'+@desk_subj_id.id.to_s%>" class="answ">
+<%  form_for :desk_answ_new, :url=>{ :action => "save_answ" } do |f|  %>
+
+  <%= f.error_messages %>
+
+
+      <%= f.hidden_field :desk_subj_id, :value => @desk_subj_id.id%>
+
+  
+  <div class="okno">
+    <%= f.text_area :a_text , :rows=>'4' , :cols=>'64'  %>
+  </div>
+
+    <%= f.hidden_field :user_id, :value => @user.id %>
+
+
+  <span style="float: right; margin-right: 70px;" >
+    <%= f.submit "" %>
+     </span>
+  <span style="float: left;" >
+    <i onclick="zp('<%='a'+@desk_subj_id.id.to_s%>')" style="cursor: pointer;"> Не отвечать </i>
+     </span>
+
+
+ 
+<% end %>
+  
+</div>

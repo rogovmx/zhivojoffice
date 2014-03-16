@@ -1,0 +1,114 @@
+
+<table width="175px;" height="100%" border="0" style="padding-top:0px;">
+  <tr>
+    <td style=" height:175px;" align="center" valign="center" colspan="2">
+     <% if @cat.pic1 %>
+ <% unless @cat.pic1 == ''  %>
+
+      
+ <%= link_to (image_tag("/img/"+@cat.pic1+".jpg" ,:width=>"160")),:controller=>'podarok',:action=>'tov',:id=>@cat.id, :sign=>params[:sign], :price=>params[:price] %><br>
+<%else%>
+
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=80px/>
+
+                  <br/>
+           <%end%>
+         <% else %>   
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=80px/>
+        <%end%>
+    </td>
+  </tr>
+  <tr>
+    <td align="left" style="color:#cdcdcd;font-size:9px;">
+
+<%@kod = Katalog.find :first ,:conditions=>["k1c=?",@cat.k1c] %>
+  <% if @kod %>
+      Код каталога:<%=@kod.kod%><br>
+  <%else%>
+      <br/>
+      <%end%>
+ <% if @user and @user.role =='poduser' %>
+  <%@rtov=Razr1.find_by_k1c(@cat.k1c)  %>
+  <% if @rtov %>
+  <span style="font-size:10px; color:green" >Разрешенный товар.</span><br>
+  <%else%>
+ <!--  <span style="font-size:10px; color:red" >Не разрешенный товар.</span><br>-->
+  <%end%>
+  <%end%>
+
+    </td>
+  </tr>
+  <tr>
+    <% if @cat.tov3_id== 1170 %>
+    <td colspan="2" valign="top" style="height:28px;">
+      <% cc=@cat.name %>
+       <b>    <%=link_to cc,{:controller=>'podarok',:action=>'tov',:id=>@cat.id, :sign=>params[:sign], :price=>params[:price]}, :class=>'tit_tov' %></b>
+    </td>
+
+    <% else %>
+    <td colspan="2" valign="top" style="height:68px;">
+      <% cc=@cat.name %>
+       <b>    <%=link_to cc,{:controller=>'podarok',:action=>'tov',:id=>@cat.id, :sign=>params[:sign], :price=>params[:price]}, :class=>'tit_tov' %></b>
+    </td>
+    <%end%>
+  </tr>
+  
+</table>
+<div style="margin-bottom:0px;">
+<table style="padding-bottom:0px;clear:both;" border="0" width="175px"  height="100%">
+  
+<tr>
+    <td valign="center" style="width:90px;">
+ <%= render  :partial =>'kt3/uprice',:user=>@user, :cat=>@cat %>
+    </td>
+     <% @cat1=@cat %>
+    <td valign="bottom" align="right">
+      <div id="<%='id_'+ @cat1.id.to_s %>"> </div>
+ <div id="dis">
+     <% if @price %>
+<%# if @cat.price %>
+
+              <% @tvc=Cart.find :first,:conditions=>['sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+   
+    <% if @tvc  %>
+      <%= render(:partial=> '/kt1/tvc') %><br>
+    <%  else  %>
+      <%# @uprice=uprice %>
+       <%= render(:partial=> '/kt3/zakaz', :object=>@cat1,:object=>@user ,:object=>@uprice) %>
+    <% end %>
+       <%else%>
+      
+      <%end%>
+ </div>
+    </td>
+  </tr>
+  <tr>
+       <td align="center" colspan="5">
+
+         <% if login? %>
+            <% if (@user.role !='redaktor' and @user.role !='sredaktor')%>
+                   <%#= link_to  'Отзывы покупателей' ,:controller=>'coments', :action=>'index',:k1c=>@cat.k1c  %>
+                   <%#= link_to 'Оставить отзыв', :controller=>'coments',:action=>'new',:user_id=>@user.id,:k1c=>@cat.k1c %>
+
+                         <%else%>
+
+      <%= link_to_remote "редактировать" ,{:url=>{:controller=>'podarok',:action=>'edit_tov',:id=>@cat.id},:update=>'id_'+ @cat1.id.to_s},:href => url_for(:controller=>'login',:action => "login")%>
+       &nbsp;&nbsp;     <%= link_to "Удалить" ,:action=>'del_tov', :id=>@cat.id %>
+         <%if @cat.vis != true%>
+                          &nbsp;&nbsp;  <span style="color:red;"> <b>Не отображается</b></span>
+
+                             <%end%>
+    <%end%>
+
+        <%else%>
+        <%end%>
+         </td>
+     </tr>
+</table>
+
+</div>
+
+
+
+
+

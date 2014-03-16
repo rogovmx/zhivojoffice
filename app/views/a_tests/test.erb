@@ -1,0 +1,119 @@
+<form method="get" action="http://195.128.78.52/ZHIV-001D_130701_130729.txt" id="chartform" name="chartform">
+			<input type="hidden" value="1" name="market" id="issuer-profile-export-market">
+			<input type="hidden" value="179945" name="em" id="issuer-profile-export-quote">
+			<input type="hidden" value="ZHIV-001D" name="code" id="issuer-profile-export-quote-code">
+			<table width="100%" cellspacing="0" cellpadding="1" border="0">
+				<colgroup><col style="width: 250px; ">
+				<col style="width: 40px; ">
+				<col style="width: 110px; ">
+				<col style="width: 80px; ">
+				<col style="width: 110px; ">
+				</colgroup><tbody><tr id="issuer-profile-export-first-row">
+					<td>Интервал и периодичность</td>
+					<td colspan="3"><input type="hidden" value="1" name="df" id="issuer-profile-export-from-d"><input type="hidden" value="6" name="mf" id="issuer-profile-export-from-m"><input type="hidden" value="2013" name="yf" id="issuer-profile-export-from-y"><div id="issuer-profile-export-from-control">
+                                            <input type="text" value="29.07.2013"  id="issuer-profile-export-from" class="hasDatepicker"></div><div id="issuer-profile-export-dates-sep">&mdash;</div><input type="hidden" value="29" name="dt" id="issuer-profile-export-to-d"><input type="hidden" value="6" name="mt" id="issuer-profile-export-to-m"><input type="hidden" value="2013" name="yt" id="issuer-profile-export-to-y"><div id="issuer-profile-export-from-control">
+                                              <input type="text" value="29.07.2013"  id="issuer-profile-export-to" class="hasDatepicker"></div></td>
+					<td>
+						<div class="finam-ui-controls-select" style="width: 135px;"><div class="finam-ui-controls-select-title" style="width: 112px;">1 день</div><div class="finam-ui-controls-select-arrow"></div></div><select style="width: 135px; display: none;" name="p" id="issuer-profile-export-period">
+							<option value="1">тики</option>
+							<option value="2">1 мин.</option>
+							<option value="3">5 мин.</option>
+							<option value="4">10 мин.</option>
+							<option value="5">15 мин.</option>
+							<option value="6">30 мин.</option>
+							<option selected="selected" value="7">1 час</option>
+							<option value="8">1 день</option>
+							<option value="9">1 неделя</option>
+							<option value="10">1 месяц</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="issuer-profile-export-second-row">
+					<td>Имя выходного файла</td>
+					<td colspan="3"><input type="text" size="50" name="f" id="issuer-profile-export-file-name"></td>
+					<td>
+						<div class="finam-ui-controls-select" style="width: 135px;"><div class="finam-ui-controls-select-title" style="width: 112px;">.txt</div><div class="finam-ui-controls-select-arrow"></div></div><select style="width: 135px; display: none;" name="e" id="issuer-profile-export-file-ext">
+							<option value=".txt">.txt</option>
+							<option value=".csv">.csv</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%">Имя контракта</td>
+					<td colspan="4"><input type="text" value="ZHIV-001D" name="cn" size="25" id="issuer-profile-export-contract"></td>
+				</tr>
+				<tr>
+					<td>Формат</td>
+					<td>даты</td>
+					<td>
+						<div class="finam-ui-controls-select" style="width: 135px;"><div class="finam-ui-controls-select-title" style="width: 112px;">ггггммдд</div><div class="finam-ui-controls-select-arrow"></div></div><select style="width: 135px; display: none;" name="dtf" id="issuer-profile-export-format-date">
+							<option selected="selected" value="1">ггггммдд</option>
+							<option value="2">ггммдд</option>
+							<option value="3">ддммгг</option>
+							<option value="4">дд/мм/гг</option>
+							<option value="5">мм/дд/гг</option>
+						</select>
+					</td>
+					<td style="padding-left: 25px; ">времени</td>
+					<td>
+						<div class="finam-ui-controls-select" style="width: 135px;"><div class="finam-ui-controls-select-title" style="width: 112px;">ччммсс</div><div class="finam-ui-controls-select-arrow"></div></div><select style="width: 135px; display: none;" name="tmf" id="issuer-profile-export-format-time">
+							<option selected="selected" value="1">ччммсс</option>
+							<option value="2">ччмм</option>
+							<option value="3">чч:мм:сс</option>
+							<option value="4">чч:мм</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Выдавать время</strong></td>
+					<td colspan="4">
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tbody><tr>
+								<td><input type="radio" align="absmiddle" checked="checked" value="0" name="MSOR" id="MSOR0"></td>
+								<td><label for="MSOR0">начала свечи</label></td>
+								<td><input type="radio" align="absmiddle" value="1" name="MSOR" id="MSOR1"></td>
+								<td><label for="MSOR1">окончания свечи</label></td>
+								<td><input type="checkbox" checked="checked" name="mstime" id="issuer-profile-export-mstime"><input type="hidden" value="1" name="mstimever" id="issuer-profile-export-mstime-mstimever"></td>
+								<td><label for="issuer-profile-export-mstime">московское</label></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<td>Разделитель</td>
+					<td><label for="sep">полей</label></td>
+					<td>
+						<div class="finam-ui-controls-select" style="width: 135px;"><div class="finam-ui-controls-select-title" style="width: 112px;">запятая (,)</div><div class="finam-ui-controls-select-arrow"></div></div><select style="width: 135px; display: none;" name="sep" id="sep">
+							<option selected="selected" value="1">запятая (,)</option>
+							<option value="2">точка (.)</option>
+							<option value="3">точка с запятой (;)</option>
+							<option value="4">табуляция (»)</option>
+							<option value="5">пробел (&nbsp;)</option>
+						</select>
+					</td>
+					<td style="padding-left: 25px; "><label for="sep2">разрядов</label></td>
+					<td>
+						<div class="finam-ui-controls-select" style="width: 135px;"><div class="finam-ui-controls-select-title" style="width: 112px;">нет</div><div class="finam-ui-controls-select-arrow"></div></div><select style="width: 135px; display: none;" name="sep2" id="sep2">
+							<option selected="selected" value="1">нет</option>
+							<option value="2">точка (.)</option>
+							<option value="3">запятая (,)</option>
+							<option value="4">пробел (&nbsp;)</option>
+							<option value="5">кавычка (')</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="issuer-profile-export-fields">Формат записи в файл</label></td>
+					<td colspan="4"><div class="finam-ui-controls-select" style="width: 420px;"><div class="finam-ui-controls-select-title" style="width: 397px;">TICKER, PER, DATE, TIME, CLOSE</div><div class="finam-ui-controls-select-arrow"></div></div><select style="width: 420px; display: none;" name="datf" id="issuer-profile-export-fields"><option value="1">TICKER, PER, DATE, TIME, OPEN, HIGH, LOW, CLOSE, VOL</option><option value="2">TICKER, PER, DATE, TIME, OPEN, HIGH, LOW, CLOSE</option><option value="3">TICKER, PER, DATE, TIME, CLOSE, VOL</option><option value="4">TICKER, PER, DATE, TIME, CLOSE</option><option value="5">DATE, TIME, OPEN, HIGH, LOW, CLOSE, VOL</option></select></td>
+				</tr>
+			<tr>
+				<td><label for="at">Добавить заголовок файла<label></label></label></td>
+				<td colspan="4"><input type="checkbox" checked="checked" value="1" name="at" id="at" tabindex="19"></td>
+			</tr>
+			<tr>
+				<td><label for="fsp">Заполнять периоды без сделок<label></label></label></td>
+				<td colspan="4"><input type="checkbox" value="1" name="fsp" id="fsp" tabindex="20"></td>
+			</tr>
+			</tbody></table>
+			<div id="issuer-profile-export-button"><button type="submit" class="finam-ui-dialog-button-cancel"><span>Получить файл</span></button></div>
+		</form>

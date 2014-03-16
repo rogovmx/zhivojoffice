@@ -1,0 +1,20 @@
+<% content_for(:cont) do %>
+
+
+<h2 style="margin-top: 20px; margin-bottom: 20px;">Выберите файл для загрузки бонусов. Формат - xls. </h2>
+
+<% form_for :xls ,:html=>{:multipart => true}  do |form| %>
+
+<p>
+    <%= form.file_field :xls_file %>
+  <%= form.submit "Отправить" %>
+  </p>
+
+
+<% end %>
+
+
+
+
+
+<% end %>

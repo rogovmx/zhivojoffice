@@ -1,0 +1,21 @@
+
+
+ <%@k1c=Nprice1.find(:all)%>
+
+<% @k1c.each do |pr| %>
+<%# tmp = Nprice1.find :first , :conditions=>["k1c like ?", pr.k1c.to_s ]%>
+<% @cat=Cat1.find :first , :conditions=>['k1c=?', pr.k1c] %>
+
+<% if @cat %>
+<%= @cat.price %> --  <%= pr.pp %>
+
+<%  @cat.price = pr.pp %>
+<% @cat.save %>
+<%= (@cat.name + ' | ' + @cat.price.to_s) %> <br/>
+<%# sleep(1) %>
+<%# end %>
+
+<% end %>
+
+<% end %>
+

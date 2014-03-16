@@ -1,0 +1,59 @@
+
+<div id="boltov">
+
+  <%@mm=Messager.find(params[:id]) %>
+ 
+Имя клиента: <span style="color:green;"> <%= @mm.name %></span><br><br>
+  <div style="border:1px solid #000000;width:400px;height:450px;text-align:left;">
+    <div id="boltov444">
+<% @content.each do |cont| -%>
+ <% if cont.name=='Елена' %>
+      <span style="color:red;">
+  <%else%>
+        <span style="color:green;">
+  <%end%>
+[<%=cont.name%>]:
+<%=h cont.content %> <br>
+</span>
+<%end-%>
+  </div>
+
+
+
+
+
+
+
+<!--  <textarea cols="60" rows="25" readonly="true" >
+<%# @content.each do |cont| %>
+ <%#=cont.messager_id %>
+
+<%#=h cont.content %>
+<%#end%>
+
+ </textarea>-->
+  </div>
+  <div>
+
+<% form_for :mcontent,:url=>{:controller=>'mess2',:action=>'newcontent'} do |f| %>
+  <%= f.error_messages %>
+
+
+    <%= f.hidden_field :messager_id, :value=>params[:id] %>
+<%= f.hidden_field :name, :value=>'Елена' %>
+  <p>
+
+    <%= f.text_field :content %>
+  </p>
+
+  <p>
+    <%= f.submit "Отправить" %>
+  </p>
+<% end %>
+</div>
+  </div>
+<%#= periodically_call_remote :frequency =>10,
+:url=>{:controller=>'mess2',:action=>'boltov',:id=>params[:id]},:update=>'boltov1'
+%>
+ 
+

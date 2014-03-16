@@ -1,0 +1,39 @@
+<h1> Всего номенклатуры в загрузке: <%= @atmp %> </h1>
+<h1> Номенклатуры: <%= @exist %> </h1>
+<h1> Новая номенклатура: <%= @notexist %> </h1>
+<hr/>
+<table>
+<h1> Добавленные позиции: <%= @notexist_cat.size %> </h1>
+<% for ne in @notexist_cat do %>
+<% @kpk = Katalog.find_by_k1c(ne.k1s) %>
+<tr>
+<td><%= @kpk.kod if @kpk %></td>  <td><%= ne.k1s %></td> <td> <%= ne.name %> </td>
+</tr>
+
+<% end %>
+</table>
+<br/>
+
+<hr/>
+<h1> Недобавленные позиции(нет родителя): <%= @notov3.size %> </h1>
+<table>
+<% for nt in @notov3 do %>
+  <tr>
+    <td><%= nt.k1s %></td><td> <%= nt.name %></td><td> <%= nt.tov3 %> </td><td> <%= nt.tov2 %></td><td> <%= nt.first1 %>  </td>
+</tr>
+
+<% end %>
+</table>
+<hr/>
+
+<hr/>
+<h1> Недобавленные позиции(нет цены): <%= @noprice.size %> </h1>
+<table>
+<% for npr in @noprice do %>
+  <tr>
+    <td><%= npr.k1s %></td><td> <%= npr.name %></td>
+</tr>
+
+<% end %>
+</table>
+<hr/>

@@ -1,0 +1,15 @@
+
+<%@user=User.find(@fb.user_id)%>
+
+<br/>
+Пользователь:&nbsp;<%=@user.name%>
+<br />Компания:&nbsp;<%=@user.company_ind%> <br />
+ФИО:&nbsp;<%=@user.surname%>  <%=@user.scr_name %> <%=@user.patronymic %> <br />
+Телефон:&nbsp;<%=@user.phone%><br />
+E-mail:&nbsp;<%=@user.mail%><br />
+ИНН:&nbsp;<%=@user.inn%><br />
+Город:&nbsp;<%=@user.city%><br />
+<br/> <br/>
+
+<b>Сообщение: </b> <br/>
+<%=  @fb.msg %>

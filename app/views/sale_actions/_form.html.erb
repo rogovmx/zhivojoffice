@@ -1,0 +1,44 @@
+<% form_for(@sale_action, :html=>{:multipart => true}) do |f| %>
+<%= f.error_messages %>
+<%= f.hidden_field :city_id, :value => params[:city_id] %>
+  <table style="margin-bottom:30px; border-spacing: 6px;">
+    <tr>
+      <td><%= f.label "Баннер" %></td>
+      <td><%= image_tag("/images/sale_actions/#{@sale_action.image}") if @sale_action.image %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Ссылка баннера" %></td>
+      <td><%= f.text_field :link, :size => 100 %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Заголовок" %></td>
+      <td><%= f.text_field :header, :size => 100 %></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><%= f.label "Текст" %></td>
+      <td><%= f.cktext_area :body, :toolbar=>'Full', :size => "73x10" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Примечание" %></td>
+      <td><%= f.text_field :note, :size => 100 %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Позиция" %></td>
+      <td>
+      <%= f.text_field :position , :value=>(@sale_action.position ? @sale_action.position : @sale_action_max_pos)%>
+
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.label "Видимость" %></td>
+      <td><%= f.check_box :visibility %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Изображение" %></td>
+      <td><%= f.file_field :image %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "Обновить" %> <br/> <br/> <%= link_to 'Вернуться' , sale_actions_path(:city_id => session[:city_act])   %>  </td>
+    </tr>
+  </table>
+<% end %>

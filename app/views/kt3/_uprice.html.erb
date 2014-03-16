@@ -1,0 +1,38 @@
+﻿ <% @price=Nprice1.find :first ,:conditions=>["k1c=?",@cat.k1c] %>
+
+
+ <% if @price and @price.pp %>
+  
+           <% @price_spec=TovSpec.find(:first,:conditions=>['legal_id=? and k1c=?',@user.client_id,@cat.k1c]) if login?%>
+           <% if @price_spec %>
+               <% uprice=@price_spec.price_spec %>
+               <span class="uprice" id="price<%=@cat.id%>"  style="color:green;">
+
+               <% @pr=number_to_currency(uprice, :unit => '',:delimiter=>' ')%>
+               <%= @pr[0,@pr.size-2] -%><span class="kopeiki"><%= @pr[-2,2] -%></span>р.&nbsp;
+
+               </span>
+
+           <%else%>
+               <%  uprice = findprice(@cat.k1c)   %>
+
+              <%if @price.p1_old and (@price.pp < @price.p1_old) %>
+              <span style="color:#000000; font-size:12px; font-family: serif,Tahoma,sans-serif; text-decoration: line-through;">
+              <%=  number_to_currency(@price.p1_old, :unit => '',:delimiter=>' ') %>р.&nbsp;</span><br/>
+              <%end%>
+
+               <span class="uprice" id="price<%=@cat.id%>" >
+
+               <% @pr=number_to_currency(uprice, :unit => '',:delimiter=>' ')%>
+               <%= @pr[0,@pr.size-2] -%><span class="kopeiki"><%= @pr[-2,2]  -%></span>р.&nbsp;
+
+               </span>
+          <% end %>
+
+<% else %>
+<span class="uprice" id="price<%=@cat.id%>"  style="color: red;">
+Цена отсутствует
+</span>
+<% end %>
+
+<% @uprice=uprice %>

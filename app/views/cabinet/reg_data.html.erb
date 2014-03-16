@@ -1,0 +1,61 @@
+<% content_for(:cont) do %>
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<%if @manager%>
+<h3 style="margin-bottom: 10px;"> Ваш менеджер: <%= @manager.manager %>, E-mail: <a href="mailto:<%= @manager.mail %>" style="text-decoration:none; "><%= @manager.mail %></a>  </h3>
+<% end %>
+
+<table class="reg_tab" cellspacing="0" cellpadding="8" >
+<tbody>
+<tr class="reg_tab_title">
+  <th colspan="2" valign="center" style="padding-left: 10px;" > Проверьте Ваши данные</th>
+</tr>
+<tr>
+<td style="font-weight: bold;"> Логин: </td><td style="font-weight: bold; color: red; font-size: 18px;">  <%=h @user.name %> </td>
+</tr>
+<tr class="odd">
+<td style="">  Имя: </td><td class="bl"> <%=h @user.scr_name %> </td>
+</tr>
+<tr>
+<td>  Отчество: </td><td class="bl"> <%=h @user.patronymic %> </td>
+</tr>
+<tr class="odd">
+<td>  Фамилия: </td><td class="bl"> <%=h @user.surname %> </td>
+</tr>
+<tr>
+<td>  Компания: </td><td class="bl"> <%=h @user.company_ind %> </td>
+</tr>
+<tr class="odd">
+<td>  ИНН: </td><td class="bl"> <%=h @user.inn %> </td>
+</tr>
+<tr>
+<td>  Телефон: </td><td class="bl" > <%=h @user.phone %> </td>
+</tr>
+<tr class="odd">
+<td>  Мобильный телефон: </td><td class="bl"> <%=h @user.m_phone %> </td>
+</tr>
+<tr>
+<td>  Почта: </td><td class="bl"> <%=h @user.mail %> </td>
+</tr>
+
+<tr class="odd">
+<td>  Город: </td><td class="bl"> <%=h @user.city %> </td>
+</tr>
+
+<tr>
+  <td colspan="2" style="height: 30px; padding: 10px;"> <div id="l1" class="edit_link">
+<%= link_to 'РЕДАКТИРОВАТЬ',:controller=>'cabinet',:action=>'edit_user' %>
+</div>
+   <div id="l2" class="edit_link">
+<%= link_to 'ИЗМЕНИТЬ ПАРОЛЬ ',:controller=>'cabinet',:action=>'edit_pass' %>
+</div>
+  </td>
+</tr>
+</tbody>
+</table>
+
+
+<%end%>

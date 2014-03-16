@@ -1,0 +1,71 @@
+ <div id="edit_tov" style=" text-align:center; border:solid 1px #dcdcdc;position:absolute;   left:50%; margin-left: -400px; margin-top: -400px;   padding: 10px;
+     background-image: url(/images/happy_back.png); background-repeat:  repeat; z-index:110000;">
+   <style type="text/css">
+    .edit td { background-color: #CCFFCC; }
+   </style>
+ <div style="text-align:center;">
+
+   <h2 style="background-color:white;"> Редактируем <%=@cat1.name %>. ID= <%=@cat1.id.to_s %>. </h2>
+
+
+  <table width="100%" border="1" class="edit" >
+<% for f in @cat1.cat1img do  %>
+
+
+  <tr>
+    <td width="50px"> <img src="/img/<%=f.pic%>.jpg" width="50px" /></td>
+
+    <td>    Фото:   <%= f.pic %>
+      <div id="tov_pic<%=f.id%>" style="display:none; background-color: white;">
+<h3>Редактирование фото</h3>
+<% @cat1img=Cat1img.find(f.id) %>
+
+<% form_for(:cat1img , :url=>{:controller=>'cat1imgs', :action=>'update' , :id=>f.id , :path=>'public/img/big'},:html=>{:multipart => true} ) do |form| %>
+  <p>
+    <%= form.file_field :pic , :value=>@cat1img.pic%>
+  
+  </p>
+
+  <p>
+    <%= form.submit "Сохранить" %>
+  </p>
+<% end %>
+      </div>
+
+
+    </td>
+    <td width="100px"> <span onclick="tog('tov_pic'+<%=f.id.to_s%>)" style="cursor: pointer;">Открыть/Закрыть </span> </td>
+
+   <td width="60px">
+     <%= link_to_remote "Удалить" ,{:url=>{:controller=>'cat1imgs', :action=>'destroy' ,:id=>f.id , :cat1_id=>@cat1.id}} ,{:style=>'color: red; font-weight: bold;'}%>
+  </td>
+  </tr>
+ 
+<% end %>
+ </table>
+   <p style="cursor: pointer; padding: 10px; color:green; font-weight: bold;" onclick="tog('new_pic')">
+     Добавить фото
+   </p>
+
+   <div id="new_pic" style="display: none;">
+<h3>Добавление фото</h3>
+
+<% form_for(:cat1img , :url=>{:controller=>'cat1imgs', :action=>'new' , :id=>@cat1.id , :path=>'public/img/big'},:html=>{:multipart => true} ) do |form| %>
+  <p>
+    <%= form.file_field :pic %>
+    <%= form.hidden_field :cat1_id, :value=>@cat1.id %>
+  </p>
+
+  <p style="padding: 10px;">
+    <%= form.submit "Сохранить" %>
+  </p>
+<% end %>
+   </div>
+
+   <p>
+<%= link_to_remote "Закрыть" ,{:url=>{:controller=>'kt1',:action=>'close'},:update=>'edit_tov'} ,{:style=>'color: red; font-weight: bold;'}%>
+   </p>
+</div>
+     
+
+ </div>

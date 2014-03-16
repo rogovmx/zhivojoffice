@@ -1,0 +1,116 @@
+<% content_for(:cont) do %>
+
+<div style="margin-left: 100px; margin-bottom: 40px; min-height: 600px" >
+<h3>Редактирование профиля</h3>
+
+
+<br/>
+
+
+<% form_for(@deskprof) do |f| %>
+  <%= f.error_messages %>
+  <table>
+    <%= f.hidden_field :user_id , :value=>@user.id %>
+    <tr> <td valign="top" >
+        <div style="width: 100px; height: 100px; background-color: silver;  background-image: url(/images/ava/qq.jpg); background-position: center center;">
+           <% @img = Picture.find :first, :conditions=> ['id=?',@deskprof.picture_id] %>
+            <% if @deskprof and @img  %>
+                    <img src="<%= url_for(:action =>'picture' , :id => @deskprof.picture_id) %>" width="100px;" />
+                  
+                   
+            <% else %>
+            <%end%>
+
+        </div>
+      </td>
+      <td style="width: 350px;" valign="top">
+         <div class="profile">
+  <b>Имя:</b>
+  <%=h @user.scr_name %>
+         </div>
+ <div class="profile">
+  <b>Компания:</b>
+  <%=h @user.company_ind %>
+</div>
+
+
+        <div class="profile">
+<%= f.label "Ник:" %>
+    <%= f.text_field :nic , :value=>@deskprof.nic %> <br/>
+        </div>
+        <div class="profile">
+    <%= f.label "Должность:" %>
+    <%= f.text_field :job , :value=>@deskprof.job  %> <br/>
+    </div>
+
+        <div class="prof_sub"> <a href="/desk_subjs/"> Вернуться к новостям </a>
+    <%= f.submit ""  %>
+        </div>
+   </td> </tr>
+    </table>
+<br/>
+<h3>Выберите аватар</h3> 
+
+    <div class="avatar" style="width:450px; clear: both;">
+
+    <% for pict in @pict_user do %>
+    <div class="check" style="width: 70px; height: 100px; float: left; padding-left: 10px; padding-top: 10px; text-align: center;">
+
+    <img src="<%= url_for(:action =>'picture' , :id => pict.id) %>" width="70px;" />
+    <%= f.radio_button(:picture_id, pict.id ) %>
+    <%#=link_to 'Удалить', :action =>'destroy' , :id => pict.id %>
+    </div>
+    <% end %>
+
+   </div>
+
+    <% if @user.role == 'user' %>
+<div class="avatar" style="width:450px;  ">
+     
+          <% for ava in @pict_z%>
+            
+        <div class="check" style="width: 70px; height: 100px; float: left; padding-left: 10px; padding-top: 10px; text-align: center;">
+            <img src="<%= url_for(:action =>'picture' , :id => ava.id) %>" width="70px;" />
+             <%= f.radio_button(:picture_id, ava.id ) %>
+          </div>
+         
+          <% end %>
+</div>
+<% elsif @user.role == 'redaktor' %>
+    <div class="avatar" style="width:450px;  ">
+
+          <% for ava in @pict_o%>
+            
+        <div class="check" style="width: 70px; height: 100px; float: left; padding-left: 10px; padding-top: 10px; text-align: center;">
+            <img src="<%= url_for(:action =>'picture' , :id => ava.id) %>" width="70px;" />
+             <%= f.radio_button(:picture_id, ava.id ) %>
+          </div>
+         
+          <% end %>
+    </div>
+
+<% end %>
+    
+      
+<% end %>
+<div style="clear: both;">
+Вы можете загрузить картинку в формате jpg , размером не более 50 Килобайт.
+<%= error_messages_for("picture") %>
+<% form_for(:picture ,:url => {:action=>'save'}, :html =>{:multipart =>true}) do |form|%>
+<br/>
+
+  <%= form.hidden_field :user_id , :value=>@user.id %>
+  Загрузить Ваше изображение:<br/> <%= form.file_field("uploaded_picture") %>
+<br/>
+  <%= submit_tag("Загрузить картинку") %>
+
+
+<%  end %>
+<br/>
+</div>
+
+
+
+  </div>
+
+  <%end%>

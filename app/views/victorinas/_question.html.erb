@@ -1,0 +1,34 @@
+<div id="q_carrier" >
+ 
+
+<div class="question_box">
+  <div class="v_q"> <%= @vv.question %> </div>
+    <br />
+
+
+    <% form_for :vict_users_q, :url=>{:controller =>"victorinas" , :action => "save_vict_qs" } do |f| %>
+  
+    <%= f.radio_button(:user_answ, "1") %>
+  <span class="v_a">  <%= f.label('user_answ_1' , @vv.answ1) %> </span>
+
+      <br />
+      <%= f.radio_button(:user_answ, "2") %>
+  <span class="v_a">  <%= f.label('user_answ_2', @vv.answ2  ) %> </span>
+      <br />
+
+    <%= f.radio_button(:user_answ, "3") %>
+  <span class="v_a">  <%= f.label('user_answ_3' , @vv.answ3) %> </span>
+
+   <br />   <br />
+  
+    <%= f.hidden_field  :user_id,:value=>@user.id %>
+    <%= f.hidden_field  :id_question,:value=>@vv.id %>
+    
+    <%= f.submit("СЛЕДУЮЩИЙ ВОПРОС")   %>
+  
+   
+    <% end %>
+
+
+</div>
+</div>

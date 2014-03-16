@@ -1,0 +1,15 @@
+<ul>
+<% Razdel1.all.each do |r1| %>
+
+<%#= link_to_remote r1.name , :url=>{:controller=>'kt3' , :action=>'show_menu1' , :kod=>r1.id , :all=>'1' }, :before=>visual_effect(:blind_up, 'all_cont', :duration=> 0.1) %>
+<%#= link_to r1.name , r1.link %>
+  <li>
+<%= link_to r1.name , "/#{r1.link}" %>
+
+  </li>
+<% end %>
+  <li><%= link_to 'Подарки' , {:controller=>'kt3' , :action=>'gifts' } %>
+
+  </li>
+
+</ul>

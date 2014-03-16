@@ -1,0 +1,57 @@
+<% content_for(:cont) do %>
+
+<%cache(:fragment=>'brends') do%>
+
+<div class="fiol_title">Бренды</div>
+<% fff=0 %>
+<% @ages.each do |ag| %>
+ <%  flag=0 %>
+
+<% unless fff == 0 %>
+<div class="brend_serch" >
+<%converter1=Iconv.new('UTF-8','Windows-1251')%>
+    <%  ag1=converter1.iconv(ag) %>
+
+  <div class="litefiol_title" onclick="tog('<%='br'+fff.to_s %>')"><%= ag1 %>
+ <img src="/images2/arrow_d.png" width="10px" style="position: absolute; top: 10px; right: 10px;"/>
+  </div>
+
+    <table style="width: 100%;<%='display: none;' if fff>7 %> " id="br<%=fff%>">
+      <tr>
+    <% @brend.each do |brend| %>
+     
+    <% ff=brend %>
+   <%  converter=Iconv.new('Windows-1251','UTF-8') %>
+    <%  ff1=converter.iconv(ff) %>
+   <%# @search=Cat1.find :all, :conditions=>['brend=? and vis=?',ff,1] %>
+          <% if ff1[0,1]==ag  %>
+        <% flag +=1 %>
+        <td width="150px" align="left"  style="border-bottom: 1px dashed #000000;">
+  
+<%= link_to  brend ,{:controller=>'search',:search=> brend , :where=>'4' , :method=>'1'} , :style=>'text-transform: uppercase;' %>
+
+        </td>
+        <%if flag%6==0 %>
+      </tr><tr>
+        <%end%>
+      <%end%>
+        
+    <%end%>
+        <% @d= flag%6 %>
+        
+        <%if @d >0%>
+        <% (6-@d).times do %>
+        <td  style="border-bottom: 1px dashed #000000;"> </td>
+        <% end %>
+        <%end%>
+    </tr></table>
+
+</div>
+<% end %>
+<% fff+=1 %>
+<%end%>
+
+
+
+<%end%>
+<%end%>

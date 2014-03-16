@@ -1,0 +1,11 @@
+
+<div class="superprice">
+<h2>Выберите категорию </h2>
+<% for first in @first do %>
+
+<%= link_to first.name , :controller => 'kt3' , :action =>'superprice' , :id => first.id  if inraspr?(first.id)%>
+
+
+
+<% end %>
+</div>

@@ -1,0 +1,27 @@
+
+
+/* Menu */
+.menu_1 {background: url(/images/sale_b.jpg) no-repeat; background-position: 0px 0px; /* border-right: 1px dashed #fff; */}
+.menu_2 {background: url(/images/sale_b.jpg) no-repeat; background-position: -182px 0px;}
+.menu_3 {background: url(/images/sale_b.jpg) repeat-x; background-position: -364px 0px; /* border-left: 1px dashed #000; */}
+div.menu_1, div.menu_2, div.menu_3 {
+color: black;
+min-height:29px;
+height:29px;
+line-height: 12px;
+padding: 0px 2px 1px;
+padding-top: 12px;
+text-align: center;
+vertical-align: middle;
+font-weight:bold;
+}
+div.menu_2 {border-left: 1px dashed #fff; border-right: 1px dashed #fff;}
+th.menu_1, th.menu_2, th.menu_3 {
+color: #fff;
+min-height:29px;
+height:29px;
+line-height: 12px;
+padding: 0px 2px 1px;
+text-align: center;
+vertical-align: middle;
+}

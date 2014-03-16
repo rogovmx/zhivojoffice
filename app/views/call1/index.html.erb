@@ -1,0 +1,64 @@
+<% content_for(:cont) do %>
+<% @names=['нулября','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %>
+<div style="background-color: #ff2d54; color: white; padding-left: 10px; height: 30px; line-height: 30px; margin-top: 30px; font-weight: bold; margin-bottom: 10px;">
+ Новые клиенты
+</div>
+<%= will_paginate @new_user %>
+<table border="0" cellpadding="0" cellspacing="0" class="cab_sotr">
+  <tr style="color:white;background-color:#808285; height: 25px;">
+    <th>Регистрация</th>
+    <th>Клиент </th>
+     <th style="width:250px;">Привязать</th>
+      <th>Удалить</th>
+       
+  </tr>
+<% @new_user.each do |nu| %>
+  
+  <tr style="background-color:<%= cycle('white;','#eeeeee;')%>">
+    <td style="min-width: 400px;" id=<%= nu.id %>>
+  <%#= link_to nu.name ,:action=>'client_details', :id=>nu.id %>
+   <%#    @client=User.find(nu.id) %>
+  Город: <span class="black"> <%= nu.city %></span> <br />
+ Компания: <span class="black" title="<%= nu.mail %>"> <%= nu.company_ind %></span> <br />
+ ИНН: <span class="black"> <%= nu.inn %></span><br/>
+ ФИО: <span class="black"><%= nu.scr_name %> <%= nu.surname %></span><br/>
+Телефон: <span class="black"><%= nu.phone %> </span> <br/>
+Дата регистрации: <span class="black"><%=h nu.created_at.strftime("%d")%> <%=@names[nu.created_at.strftime("%m").to_i]%> <%=nu.created_at.strftime("%Y")%></span>
+
+
+  <%#= nu.name %>
+    </td>
+     <td>
+   <%  @client=Client.find :first ,:conditions=>["inn=?",nu.inn] %>
+
+
+
+    <% if @client %>
+<span class="black"><%= @client.name %>; ИНН <%=@client.inn %> </span>
+<br/><br/>
+<%= link_to 'Редактировать', :action=>'edit_user',:id=>nu.id %>
+      <%else%>
+       <span style="color:red;"> Новый клиент</span><br/><br/>
+<%= link_to 'Редактировать', :action=>'edit_user',:id=>nu.id , :page=>params[:page]%>
+  <%end%>
+    </td>
+    <td align="center">
+
+ <%=link_to 'Создать клиента',{:action=>'new_client',:id=>nu.id,:client=>@client.id} , :style=>'color: green'  if @client %> <br/> <br/>
+ <%=link_to 'Создать карточку',:action=>'ncc',:id=>nu.id%>
+
+
+
+
+    </td>
+     <td>
+ <%= link_to   'Удалить', {:action=>'del_user' ,:id=>nu.id} ,:confirm=>'Точно удалить?' ,:style=>'color: red;' %>
+    </td>
+    
+   
+
+  </tr>
+<%end%>
+</table>
+<%= will_paginate @new_user %>
+<%end%>

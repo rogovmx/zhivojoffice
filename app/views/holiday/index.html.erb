@@ -1,0 +1,69 @@
+<% content_for(:tit) do %>
+Живой офис. Праздник каждый день!
+<% end %>
+
+
+<% content_for(:cont) do %>
+ <style type="text/css">
+  .calend_box {}
+  #holy p {
+    width: 750px;
+}
+  .months a{
+	color: #663366;
+	text-decoration: none;
+}
+.months {
+	font-family: Arial, Helvetica, Tahoma, sans-serif;
+	color: #f15a26;
+	word-spacing: 0.22em;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+-->
+  </style>
+<div id="holy">
+<h2 style="width: 500px;">
+           Сегодня <span style="color:#F88120;"> <%= Time.now.day %>.<%= Time.now.month %>.<%= Time.now.year %> </span>  можно отметить
+           <% @holiday = Holiday.find :first, :conditions =>['month=? and day=?',Time.now.month , Time.now.day] %>
+          <%=h @holiday.title %>
+         </h2> <br/>
+<h1>Праздник каждый день</h1> <br/>
+<div class="months">
+<%=render :partial=>'/holiday/upmenu'  %>
+
+</div>
+   <%  @m = Time.now.month  %>
+  
+<img alt=" " src="<%='/images/holidays/calend_'+@m.to_s+'.gif'%>" /><br/><br/>
+<% @days=Holiday.find :all , :conditions=>['month=?',@m] %>
+<p style="font-weight: bold;">
+
+<% for day in @days %>
+
+  <span style="color:#F88120;">
+  <%if day.day<10 %>
+  &nbsp;<%= day.day.to_s %>.
+  <% else %>
+  <%= day.day.to_s %>.
+  <% end %>
+  </span>&nbsp;&nbsp; 
+  <% if day.day == Time.now.day  %>
+  <span style="color: #f88120">
+<%= day.title %>
+  </span>
+  <% else %>
+  <%= day.title %> 
+  <% end %>
+
+  <br/>
+<%end%>
+</p>
+<br/>
+<br/>
+
+<%@links = 'holiday'%> <%@subj = 'Праздник каждый день на сайте Живой офис'%>
+<%= render(:partial=> 'part/links' , :object=>@links , :object=>@subj ) %>
+
+</div>
+<%end%>

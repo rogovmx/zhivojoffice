@@ -1,0 +1,286 @@
+<%     
+    @k1=First1.find:all,:select=>"name ,kod",:conditions=>"kod >100 and kod <200"
+    #@k1=First1.find:all
+    @k2=First1.find:all,:select=>"name ,kod",:conditions=>"kod >200 and kod <300"
+    @k3=First1.find:all,:select=>"name ,kod",:conditions=>"kod >300 and kod <400"
+    @k4=First1.find:all,:select=>"name ,kod",:conditions=>"kod >400 and kod <500"
+    @k5=First1.find:all,:select=>"name ,kod",:conditions=>"kod >500 and kod <600"
+    @k6=First1.find:all,:select=>"name ,kod",:conditions=>"kod >600 and kod <700"
+    @k7=First1.find:all,:select=>"name ,kod",:conditions=>"kod >700 and kod <800"
+    @k8=First1.find:all,:select=>"name ,kod",:conditions=>"kod >800 and kod <900"
+    @k9=First1.find:all,:select=>"name ,kod",:conditions=>"kod >900 and kod <1000"
+    @k10=First1.find:all,:select=>"name ,kod",:conditions=>"kod >1000 and kod <1100"
+      %>
+
+<script type="text/javascript">
+    jq(document).ready(function(){
+
+
+    jq("#m_1").click(function () {
+      jq("#sm_1").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_2").click(function () {
+      jq("#sm_2").slideToggle("slow");
+       jq("#sm_1").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_3").click(function () {
+      jq("#sm_3").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_1").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_4").click(function () {
+      jq("#sm_4").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_1").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_5").click(function () {
+      jq("#sm_5").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_1").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_6").click(function () {
+      jq("#sm_6").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_1").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_7").click(function () {
+      jq("#sm_7").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_1").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_8").click(function () {
+      jq("#sm_8").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_1").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_9").click(function () {
+      jq("#sm_9").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_1").hide("slow");
+        jq("#sm_10").hide("slow");
+    });
+
+    jq("#m_10").click(function () {
+      jq("#sm_10").slideToggle("slow");
+       jq("#sm_2").hide("slow");
+        jq("#sm_3").hide("slow");
+        jq("#sm_4").hide("slow");
+        jq("#sm_5").hide("slow");
+        jq("#sm_6").hide("slow");
+        jq("#sm_7").hide("slow");
+        jq("#sm_8").hide("slow");
+        jq("#sm_9").hide("slow");
+        jq("#sm_1").hide("slow");
+    });
+
+
+
+
+
+
+  });
+
+  </script>
+
+
+      <div id="left_menu">
+
+
+    <button id="m_1">бумага и изделия из бумаги</button>
+
+    <div id="sm_1" >
+ 
+    <ul>
+
+        <% @k1.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+      <button id="m_2">хранение документов</button>
+
+    <div id="sm_2" style="display: none;">
+
+    <ul>
+
+        <% @k2.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+          <button id="m_3">канцелярские принадлежности</button>
+
+    <div id="sm_3" style="display: none;">
+    <ul>
+
+        <% @k3.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+
+              <button id="m_4">письменные приналежности</button>
+
+    <div id="sm_4" style="display: none;">
+    <ul>
+
+        <% @k4.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+                 <button id="m_5">компьютеры и аксессуары</button>
+
+    <div id="sm_5" style="display: none;">
+    <ul>
+
+        <% @k5.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+              <button id="m_6">оргтехника</button>
+
+    <div id="sm_6" style="display: none;">
+    <ul>
+
+        <% @k6.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+              <button id="m_7">бытовая техника</button>
+
+    <div id="sm_7" style="display: none;">
+    <ul>
+
+        <% @k7.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+
+               <button id="m_8">интерьер</button>
+
+    <div id="sm_8" style="display: none;">
+    <ul>
+
+        <% @k8.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+                   <button id="m_9">продукты</button>
+
+    <div id="sm_9" style="display: none;">
+    <ul>
+
+        <% @k9.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>      
+         
+                   
+                    <button id="m_10">товары для офисной жизни</button>
+
+    <div id="sm_10" style="display: none;">
+    <ul>
+
+        <% @k10.each do |k| %>
+          <li><%= link_to k.name, {:controller=>'kt3',:action=>'kanc1',:id=>k.kod },:class=>'li'%></li>
+        <% end %>
+      </ul>
+    </div>      
+                           
+
+
+      </div>

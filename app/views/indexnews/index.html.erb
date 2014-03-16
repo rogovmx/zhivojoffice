@@ -1,0 +1,38 @@
+<% content_for(:cont) do %>
+<h2>Новость на главной странице</h2>
+
+<div style="width: 220px;">
+<%= render :partial =>'/part2/newsbox2' %>
+</div>
+
+<%= link_to 'Редактировать', {:controller=>'indexnews', :action=>'edit' , :id=>'1'} %>
+
+
+
+
+<hr style="margin: 20px;"/>
+
+
+<h2>Логотип</h2>
+
+<%= image_tag("/images2/#{Indexnew.find(2).new}") %>
+<br/> <br/>
+<p><b>Выберите лого:</b> </p>
+
+<% form_for :logo, :url=>{:action => 'new_logo'} ,:html=>{:multipart => true}  do |form| %>
+
+<p>
+    <%= form.file_field :logo %>
+  <%= form.submit "Отправить" %>
+  </p>
+
+
+<% end %>
+
+  <br/>
+<% if Indexnew.find(2).new != 'zlogo.jpg' %>
+  <p><b>Поставить обычный логотип:</b> </p>
+  <%= link_to image_tag('/images2/zlogo.jpg'  , :style=>'border: 2px solid blue;'), {:controller=>'indexnews', :action=>'usual_logo' } , :confirm=>'Точно вернуть лого?'%>
+<% end %>
+
+<% end  %>

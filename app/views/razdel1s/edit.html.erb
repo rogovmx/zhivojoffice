@@ -1,0 +1,32 @@
+
+<% content_for(:cont) do %>
+<h1>Редактировать раздел <%= @razdel1.name %></h1>
+
+<% form_for(@razdel1) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <b>  Имя раздела: </b><br />
+    <%= f.text_field :name ,:size=>'80' %>
+  </p>
+  <br/>
+  <p>
+     <b> Ссылка:</b><br />
+    <%= f.text_field :link,:size=>'80' %>
+  </p>
+    <br/>
+  <p>
+    <b>  Расстояние выпадающего меню от верха:</b><br />
+    <%= f.text_field :top,:size=>'30' %>
+  </p>
+    <br/>
+  <p>
+    <%= f.submit "сохранить" %>
+  </p>
+<% end %>
+
+  <br/>  <br/>
+
+<%= link_to 'Вернуться', razdel1s_path %>
+
+<%end%>

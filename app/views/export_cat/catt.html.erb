@@ -1,0 +1,134 @@
+<table border="1">
+  <tr>
+    <td>
+      Наименование
+    </td>
+    <td>
+      Свойства
+    </td>
+    <td>
+      Ед.изм.
+    </td>
+    <td>
+      Количество
+    </td>
+    <td>
+      Цена
+    </td>
+    <td>
+      Сумма
+    </td>
+  </tr>
+<% @cat1.each do |cat1| %>
+  <tr>
+    <td>
+<%= cat1.name %>
+    </td>
+    <td>
+       <% k1c=cat1.k1c %>
+  <% @bcat1=Bcat1.find_by_s1(k1c) %>
+      <% if @bcat1 %>
+<% @btg1=Btg1.find_by_id(@bcat1.btg1_id) %>
+<% if @btg1.s3 !='no' and @bcat1.s3!='no' and @bcat1.s3 !='' %>
+<%= @btg1.s3 %> ....<%=@bcat1.s3%><br/>
+<% end %>
+<% if @btg1.s4 !='no' and @bcat1.s4!='no' and @bcat1.s4 !='' %>
+<%= @btg1.s4 %> ....<%=@bcat1.s4%><br/>
+<% end %>
+<% if @btg1.s5 !='no' and @bcat1.s5!='no' and @bcat1.s5 !='' %>
+<%= @btg1.s5 %> ....<%=@bcat1.s5%><br/>
+<% end %>
+<% if @btg1.s6 !='no' and @bcat1.s6!='no' and @bcat1.s6 !='' %>
+<%= @btg1.s6 %> ....<%=@bcat1.s6%><br/>
+<% end %>
+<% if @btg1.s7 !='no' and @bcat1.s7!='no' and @bcat1.s7 !='' %>
+<%= @btg1.s7 %> ....<%=@bcat1.s7%><br/>
+<% end %>
+<% if @btg1.s8 !='no' and @bcat1.s8!='no' and @bcat1.s8 !=''%>
+<%= @btg1.s8 %> ....<%=@bcat1.s8%><br/>
+<% end %>
+<% if @btg1.s9 !='no' and @bcat1.s9!='no' and @bcat1.s9 !='' %>
+<%= @btg1.s9 %> ....<%=@bcat1.s9%><br/>
+<% end %>
+<% if @btg1.s10 !='no' and @bcat1.s10!='no' and @bcat1.s10 !='' %>
+<%= @btg1.s10 %> ....<%=@bcat1.s10%><br/>
+<% end %>
+<% if @btg1.s11 !='no' and @bcat1.s11!='no' and @bcat1.s11 !='' %>
+<%= @btg1.s11 %> ....<%=@bcat1.s11%><br/>
+<% end %>
+<% if @btg1.s12 !='no' and @bcat1.s12!='no' and @bcat1.s12 !='' %>
+<%= @btg1.s12 %> ....<%=@bcat1.s12%><br/>
+<% end %>
+<% if @btg1.s13 !='no' and @bcat1.s13!='no' and @bcat1.s13 !=''%>
+<%= @btg1.s13 %> ....<%=@bcat1.s13%><br/>
+<% end %>
+<% if @btg1.s14 !='no' and @bcat1.s14!='no' and @bcat1.s14 !='' %>
+<%= @btg1.s14 %> ....<%=@bcat1.s14%><br/>
+<% end %>
+<% if @btg1.s15 !='no' and @bcat1.s15!='no' and @bcat1.s15 !=''%>
+<%= @btg1.s15 %> ....<%=@bcat1.s15%><br/>
+<% end %>
+<% if @btg1.s16 !='no' and @bcat1.s16!='no' and @bcat1.s16 !=''%>
+<%= @btg1.s16 %> ....<%=@bcat1.s16%><br/>
+<% end %>
+<% if @btg1.s17 !='no' and @bcat1.s17!='no' and @bcat1.s17 !=''%>
+<%= @btg1.s17 %> ....<%=@bcat1.s17%><br/>
+<% end %>
+<% if @btg1.s18 !='no' and @bcat1.s18!='no' and @bcat1.s18 !=''%>
+<%= @btg1.s18 %> ....<%=@bcat1.s18%><br/>
+<% end %>
+<% if @btg1.s19 !='no' and @bcat1.s19!='no' and @bcat1.s19 !=''%>
+<%= @btg1.s19 %> ....<%=@bcat1.s19%><br/>
+<% end %>
+<% if @btg1.s20 !='no' and @bcat1.s20!='no' and @bcat1.s20 !=''%>
+<%= @btg1.s20 %> ....<%=@bcat1.s20%><br/>
+<% end %>
+<% if @btg1.s21 !='no' and @bcat1.s21!='no' and @bcat1.s21 !=''%>
+<%= @btg1.s21 %> ....<%=@bcat1.s21%><br/>
+<% end %>
+<% if @btg1.s22 !='no' and @bcat1.s22!='no' and @bcat1.s22 !=''%>
+<%= @btg1.s22 %> ....<%=@bcat1.s22%><br/>
+<% end %>
+<% if @btg1.s23 !='no' and @bcat1.s23!='no' and @bcat1.s23 !=''%>
+<%= @btg1.s23 %> ....<%=@bcat1.s23%><br/>
+<% end %>
+<% if @btg1.s24 !='no' and @bcat1.s24!='no' and @bcat1.s24 !=''%>
+<%= @btg1.s24 %> ....<%=@bcat1.s24%><br/>
+<% end %>
+<% if @btg1.s25 !='no' and @bcat1.s25!='no' and @bcat1.s25 !=''%>
+<%= @btg1.s25 %> ....<%=@bcat1.s25%><br/>
+<% end %>
+<% if @btg1.s26 !='no' and @bcat1.s26!='no' and @bcat1.s26 !='' %>
+<%= @btg1.s26 %> ....<%=@bcat1.s26%><br/>
+<% end %>
+<% if @btg1.s27 !='no' and @bcat1.s27!='no' and @bcat1.s27 !=''%>
+<%= @btg1.s27 %> ....<%=@bcat1.s27%><br/>
+<% end %>
+<% if @btg1.s28 !='no' and @bcat1.s28!='no' and @bcat1.s28 !='' %>
+<%= @btg1.s28 %> ....<%=@bcat1.s28%><br/>
+<% end %>
+<% if @btg1.s29 !='no' and @bcat1.s29!='no' and @bcat1.s29 !=''%>
+<%= @btg1.s29 %> ....<%=@bcat1.s29%><br/>
+<% end %>
+<% if @btg1.s30 !='no' and @bcat1.s30!='no' and @bcat1.s30 !=''%>
+<%= @btg1.s30 %> ....<%=@bcat1.s30%><br/>
+<% end %>
+
+<%end%>
+
+    </td>
+    <td>
+      <%=cat1.ei%>
+    </td>
+    <td>
+
+    </td>
+    <td>
+       <%=cat1.price%>
+    </td>
+    <td>
+
+    </td>
+  </tr>
+<%end%>
+</table>

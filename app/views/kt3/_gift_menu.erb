@@ -1,0 +1,19 @@
+<div id="gift_menu" style="display: inline-block;">
+  <% if params[:holiday] == '1' %>
+  <%= link_to image_tag('/images2/feb_14_a.gif') , :controller=> 'kt3' , :action => 'holiday' , :holiday=>1  %>
+  <% else %>
+   <%= link_to image_tag('/images2/feb_14_n.gif') , :controller=> 'kt3' , :action => 'holiday' , :holiday=>1  %>
+  <% end %>
+
+  <% if params[:holiday] == '2'  or  params[:holiday] == '6' or  params[:holiday] == '7' %>
+   <%= link_to image_tag('/images2/feb_23_a.gif') , :controller=> 'kt3' , :action => 'holiday' , :holiday=>2  %>
+  <% else %>
+   <%= link_to image_tag('/images2/feb_23_n.gif') , :controller=> 'kt3' , :action => 'holiday' , :holiday=>2  %>
+  <% end %>
+
+  <% if params[:holiday] == '3' or params[:holiday] == nil or  params[:holiday] == '4' or  params[:holiday] == '5' and controller.action_name != 'gifts'%>
+   <%= link_to image_tag('/images2/mar_8_a.gif') , :controller=> 'kt3' , :action => 'holiday' , :holiday=>3  %>
+  <% else %>
+   <%= link_to image_tag('/images2/mar_8_n.gif') , :controller=> 'kt3' , :action => 'holiday' , :holiday=>3  %>
+  <% end %>
+</div>

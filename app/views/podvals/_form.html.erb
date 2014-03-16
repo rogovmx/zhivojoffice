@@ -1,0 +1,61 @@
+<% form_for(@podval ,:html=>{:multipart => true} ) do |f| %>
+    <%= f.error_messages %>
+    <table style="margin-bottom:30px;">
+      <tr><td style="font-weight: bold;" width="230px" height="30px">Название подвала </td><td><%= f.text_field :title %></td></tr>
+      <tr>
+        <td style="margin-bottom:10px; font-weight: bold;" width="230px" height="30px">
+          Графические элементы:</td><td width="230px" height="30px">верхняя часть блока</td><td width="230px" height="30px">нижняя часть блока</td>
+      </tr>
+
+      <tr>
+        <td width="230px" height="30px"></td><td width="230px" height="30px"><%= f.file_field :divup %></td><td width="230px" height="30px"><%= f.file_field :divdown %></td>
+      </tr>
+      <tr>
+        <td style="margin-bottom:10px; font-weight: bold;" width="230px" height="30px">
+        </td><td width="230px" height="30px">Цвет цены</td><td width="230px" height="30px">Цвет названия</td><td width="230px" height="30px">Видимость подвала</td>
+      </tr>
+      <tr>
+        <td width="230px" height="30px"></td><td width="230px" height="30px"><%= f.text_field :price_color %></td><td width="230px" height="30px"><%= f.text_field :name_color %></td><td><%= f.check_box :vis %></td>
+      </tr>
+
+    </table>
+    <table style="margin-bottom:30px;">
+      <tr style="font-weight: bold;">
+        <td style="margin-bottom:10px; font-weight: bold;" width="150px" height="30px">
+        </td><td width="230px" height="30px">идентификатор товара </td><td width="230px" height="30px">название товара</td><td width="230px" height="30px">фото</td>
+      </tr>
+      <tr>
+        <td style="margin-bottom:10px; font-weight: bold;" width="150px" height="30px">
+          Товар 1:</td><td width="230px" height="30px"><%= f.text_field :tov1_id %></td><td width="230px" height="30px"><%= f.text_field :tov1name %></td><td width="230px" height="30px"><%= f.file_field :tov1img %></td>
+      </tr>
+
+
+      <tr>
+        <td style="margin-bottom:10px; font-weight: bold;" width="150px" height="30px">
+          Товар 2:</td><td width="230px" height="30px"><%= f.text_field :tov2_id %></td><td width="230px" height="30px"><%= f.text_field :tov2name %></td><td width="230px" height="30px"><%= f.file_field :tov2img %></td>
+      </tr>
+
+
+      <tr>
+        <td style="margin-bottom:10px; font-weight: bold;" width="150px" height="30px">
+          Товар 3:</td><td width="230px" height="30px"><%= f.text_field :tov3_id %></td><td width="230px" height="30px"><%= f.text_field :tov3name %></td><td width="230px" height="30px"><%= f.file_field :tov3img %></td>
+      </tr>
+
+
+      <tr>
+        <td style="margin-bottom:10px; font-weight: bold;" width="150px" height="30px">
+          Товар 4:</td><td width="230px" height="30px"><%= f.text_field :tov4_id %></td><td width="230px" height="30px"><%= f.text_field :tov4name %></td><td width="230px" height="30px"><%= f.file_field :tov4img %></td>
+      </tr>
+
+      <tr>
+        <td style="margin-bottom:10px; font-weight: bold;" width="150px" height="30px">
+          Товар 5:</td><td width="230px" height="30px"><%= f.text_field :tov5_id %></td><td width="230px" height="30px"><%= f.text_field :tov5name %></td><td width="230px" height="30px"><%= f.file_field :tov5img %></td>
+      </tr>
+    </table>
+
+
+    <p style="margin-bottom:10px;">
+      <%= f.submit "Обновить" %>
+
+    </p>
+<% end %>

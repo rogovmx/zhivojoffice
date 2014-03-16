@@ -1,0 +1,48 @@
+<% content_for(:cont) do %>
+<style type="text/css">
+  .a_gray a{text-decoration: none; color: #999999; font-weight: bold;}
+</style>
+
+<div style="">
+  <table class="subj" cellspacing="0" cellpadding="0" style=" margin-left: 120px;" >
+   <tr>
+    <td style="width: 70px; padding: 0px;" valign="top" >
+      <img src="/images/ava/ava5.jpg" width="70px" />
+
+    </td>
+    <td style="width:700px;" valign="top"  >
+
+
+    <div class="ndt"  >
+
+            <span class="name">
+            Оптимизатор
+            </span>
+
+      <div class="title">
+      Спасибо, Ваше мнение очень важно для нас!
+      </div>
+      </div>
+         <div class="text"> </div>
+
+     </td>
+   </tr>
+  </table>
+  <div id="photo" style="width: 700px; height: 518px; background-image: url(/images/ava/n_back.gif);
+       background-position: top center; background-repeat: no-repeat; margin: 0 auto; padding-left: 80px; padding-top: 120px; ">
+
+<img src="/images/news/thanks.jpg" />
+<div class="a_gray" style="float: right; margin-top: 150px; margin-right: 50px;">
+  <a href="/"> Вернуться на сайт </a> &nbsp;&nbsp;&nbsp; <a href="/desk_subjs"> Еще новости  </a>   &nbsp;&nbsp;&nbsp;
+  <% if params[:id] != '1' %>
+ <%= link_to  'Результаты' , {:controller=>'desknews' , :action=>'opros2' , :id=>params[:id]} , :style=>'color:red;' %>
+  <% else %>
+  <% end %>
+</div>
+  </div>
+  
+  </div>
+
+
+
+<% end %>

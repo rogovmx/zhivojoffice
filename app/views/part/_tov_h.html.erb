@@ -1,0 +1,24 @@
+<% for tg in @tg do %>
+    <% @cat=Cat1.find(:first,:conditions=>['tg=? and tg1=?',tg.tg,'1'])  %>
+    <% if @cat==nil %>
+       <% @cat=Cat1.find(:first,:conditions=>['tg=?',tg.tg])  %>
+      <%end%>
+      <div id="<%=@cat.tg%>" style="width:545px; ">
+
+  <!-- <%#= render(:partial =>'cat1',:object=>@cat) %> -->
+ <div class="grn11" id="<%=@cat.id%>" >
+<%= render(:partial => 'cat22',:object =>@cat) %>
+
+  
+ </div>
+
+
+
+
+      </div>
+ 
+
+
+    <% end %>
+
+

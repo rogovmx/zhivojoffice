@@ -1,0 +1,171 @@
+
+<table class="bas1" width="100%" border="0" style=" border-top:dashed 1px #e7e7e7;border-bottom:dashed 1px #e7e7e7;">
+<tr style="background:transparent url(/images/zel.jpg) no-repeat;color:#ffffff;background-color:#88cc60;">
+  <th height="25px" style="color:#fff; font-size:10px;padding:3px;" align="center" >
+Условия <br>доставки
+  </th>
+  <th style="color:#fff; font-size:10px;padding:3px;" align="center">
+  Код п.к.
+  </th>
+   <th style="color:#fff; font-size:10px;padding:3px;" align="center">
+Наименование
+  </th>
+  <th style="color:#fff; font-size:10px;padding:3px;" align="center">
+Ед.изм.
+  </th>
+  <th style="color:#fff; font-size:10px;padding:3px;" align="center">
+Цена<br>
+  руб.
+  </th>
+  <th style="color:#fff; font-size:10px;padding:3px;" align="center">
+Кол-во
+  </th>
+   <th style="color:#fff; font-size:10px;padding:3px;" align="center">
+Сумма
+<br>
+  руб.
+  </th>
+
+
+</tr>
+<% @line.each do |cart| %>
+  <% if cart.otdel=='katr' %>
+    <% @cat=Rashod.find_by_k1c(cart.k1c) %>
+<% else %>
+<% @cat=Cat1.find_by_k1c(cart.k1c) %>
+<%end%>
+
+
+
+
+     <tr >
+    <!--   <td width="102px" align="left" valign="top">
+
+         <%# unless @cat.pic1=='' %>
+ <div style="border:1px solid #16c2fb;; width:80px; height:80px; text-align:center;padding-top:2px;">
+ <img src=http://www.spens.ru/pic/<%#=@cat.pic1%>.jpg  height=70px style="padding-top:5px;padding-bottom:5px;"><br>
+ </div>
+<%#else%>
+
+             <img src=/images/no_image_s.gif style="padding-top:5px;padding-bottom:5px;" height=80px><br>
+           <%#end%>
+      <%#=link_to @cat.tg,:action=>'tov',:id=>@cat.id%>
+
+       <span style="font-family: Arial; font-size: 9px;font-weight:bold;">
+      Код:<%#=@cat.kpk%>
+
+      <%# if @cat.arppr !=''  %>
+     <br>
+      Артикул:<%#=@cat.arppr%>
+      <%#end%>
+       </span>
+
+       </td>-->
+       <td width="30" height="35px;" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="center">
+ <% if @user.role =='poduser' %>
+  <%@rtov=Razr1.find_by_k1c(@cat.k1c)  %>
+  <% if @rtov %>
+  <span style="font-size:10px; color:green" >    Разрешенный товар. </span><br/>
+  <%end%>
+  <%end%>
+
+    
+       </td>
+       <td width="30" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="center">
+     <span style="font-family: Arial; font-size: 10px;font-weight:bold;">     <%=@cat.kpk%></span>
+       </td>
+       <td  align="left" style="border-top:dashed 1px #e7e7e7;color:#fff;padding:5px;" >
+
+       <% if cart.otdel=='katr' %>
+   <%=link_to @cat.name,{:controller=>'katr',:action=>'pr_mfu_4',:id=>@cat.id},:class=> 'g2',:style=>"color:#786e6e;" %>
+      <%else%>
+          <%=link_to @cat.name,{:controller=>'kt1',:action=>'tov',:id=>@cat.id},:class=> 'g2',:style=>"color:#786e6e;" %>
+
+<%end%>
+
+
+            </td>
+
+      <td  width="30" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="center">
+              <span style="font-family: Arial; font-size: 10px;font-weight:bold;">
+
+ <%= h @cat.ei %></span>
+
+
+
+
+
+
+
+       </td>
+        <td width="55" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="center">
+    <span style="font-family: Arial; font-size: 10px;font-weight:bold;">        <%=cart.price%></span>
+        </td>
+
+       <td  width="40" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="center"><%= cart.quantity %></td>
+       <td  width="65" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="center">
+         <% if cart.price %>
+<% ss=cart.price*cart.quantity %>
+         <%else%>
+         <% ss='Запрос цены' %>
+         <% end %>
+
+ <span style="font-family: Arial; font-size: 10px;font-weight:bold;">  <%=ss%></span>
+       </td>
+
+
+
+
+
+
+     </tr>
+     <%end%>
+
+
+   </table>
+
+
+
+<br>
+  <%# @legals=Legal.find(@order.legal_id) %>
+  <%# @adr_dost=AdrDost.find(@order.adr_dost_id) %>
+  <table class="bas1" width="100%" border="0" style=" border-top:dashed 1px #e7e7e7;border-bottom:dashed 1px #e7e7e7;">
+<tr style="background:transparent url(/images/zel.jpg) no-repeat;color:#ffffff;background-color:#88cc60;">
+  <th height="25" style="color:#fff; font-size:10px;padding:3px;" align="center" >
+
+  </th>
+
+
+
+</tr>
+<!--
+<tr>
+   <td width="30" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="left">
+     <span style="font-family: Arial; font-size: 10px;font-weight:bold;">Оформлен на юр.лицо:  <%#= @legals.name  %>    </span>
+     </td>
+     </tr><tr>
+     <td width="30" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="left">
+     <span style="font-family: Arial; font-size: 10px;font-weight:bold;">Доставка по адресу:  <%#= @adr_dost.street_id  %>    </span>
+     </td></tr><tr>
+     <td width="30" style="border-top:dashed 1px #e7e7e7;padding:3px;" align="left">
+     <span style="font-family: Arial; font-size: 10px;font-weight:bold;">Дата доставки:  <%#= @order.data_dost  %>    </span>
+     </td>
+</tr>
+-->
+
+
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,32 @@
+
+ФИО:&nbsp;<%=@order.name %> <br />
+Телефон:&nbsp;<%=@order.phone%><br />
+<br>
+
+Адрес доставки:<%= @order.adres  %><br>
+
+
+    
+    
+    
+  
+<% @order.liwater1.each do |cart| %>
+  
+<% @water=Water1.find_by_id(cart.water1_id) if cart.water1_id %>
+<% @disp = Wdisp.find_by_id(cart.wdisp_id) if cart.wdisp_id%>
+<%# @fill=Filler1.find_by_id(cart.filler1_id) %>
+<%# @price= cart.weight * @cake.price%>
+
+<% if cart.water1_id %>
+<b >Название воды:</b>&nbsp; <%= @water.name %> <br/>
+<b>Количество: </b>&nbsp;<%= cart.wquantity %><br/>
+<b>Цена: </b>&nbsp;<%= cart.price*cart.wquantity %><br/>
+<% elsif cart.wdisp_id %>
+<b >Название диспенсера/кулера:</b>&nbsp; <%= @disp.name %> <br/>
+<b>Количество: </b>&nbsp;<%= cart.dquantity %><br/>
+<b>Цена: </b>&nbsp;<%= cart.price*cart.dquantity %><br/>
+<% end %>
+  
+<%end%>
+
+

@@ -1,0 +1,38 @@
+<h1>Listing a_tests</h1>
+<% @ras = Raspr1.find :all, :order=>'id' %>
+
+
+<table>
+<%for ras in @ras%>
+
+
+<% @o = Raspr22.find :first , :conditions=>['k1c=?', ras.k1c]  %>
+<%if @o  %>
+  <tr> <td> <%= ras.k1c %></td> <td>
+<%= ras.name %> </td> <td>
+      <% if @o %>
+           <% if @o.quantity %>
+           <%= @o.quantity %>
+           <% ras.quantity = @o.quantity %>
+           <% ras.save %>
+           <% else  %>
+      Нет количества
+           <% ras.quantity = 0 %>
+           <% ras.save %>
+           <% end %>
+      <% else %>
+      0
+      <% ras.quantity = 0 %>
+      <% ras.save %>
+      <% end %>
+     </td> </tr>
+<% else %>
+<%end%>
+
+<%end%>
+</table>
+<br/> <br/><br/>
+<br/>
+<br/>
+
+

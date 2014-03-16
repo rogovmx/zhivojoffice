@@ -1,0 +1,36 @@
+<style>
+  #cl1 td
+  {
+    border:solid 1px #dcdcdc;
+  }
+</style>
+<div id="legals"></div>
+<table id="cl1" style="border:solid 1px #dcdcdc; border-collapse:collapse;width:550px;">
+  <tr>
+    <th style="width:160px;">Пользователь</th>
+   <!-- <th style="width:50px;">Юр.лицо</th>
+    <th style="width:80px;">Адрес</th> -->
+    <th style="width:80px;">Статус </th>
+
+
+  </tr>
+
+
+
+
+<%#@adr_dost=AdrDost.find :all, :conditions=>["client_id=?",@client.id]%>
+
+  <%@orders.each do |order|%>
+  <%  user=User.find(order.user_id)%>
+  <%#  legal=Legal.find(order.legal_id)%>
+  <%#  adr_dost=AdrDost.find(order.adr_dost_id)%>
+
+  <tr>
+  <td><%=user.name  %> </td>
+<!--  <td><%#= legal.name %> </td>
+  <td><%#= adr_dost.street_id %> </td> -->
+   <td><%= order.status %> </td>
+
+  </tr>
+<%end%>
+</table>

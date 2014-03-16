@@ -1,0 +1,59 @@
+<% content_for(:cont) do %>
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+<% form_for :user11 ,:url=>{:controller=>'cabinet',:action=>'chpass'} do |f| %>
+<table class="reg_tab" cellspacing="0" cellpadding="8" >
+<tbody>
+<tr class="reg_tab_title">
+  <th colspan="2" valign="center" style="padding-left: 10px;" > Редактирование пользователя</th>
+</tr>
+
+<tr>
+<td style="">  Имя: </td><td class="bl"> <%= f.text_field :scr_name ,:value=>@user.scr_name %> </td>
+</tr>
+<tr class="odd">
+<td>  Отчество: </td><td class="bl"><%= f.text_field :patronymic,:value=>@user.patronymic %> </td>
+</tr>
+<tr>
+<td>  Фамилия: </td><td class="bl"> <%= f.text_field :surname,:value=>@user.surname %> </td>
+</tr>
+<tr class="odd">
+<td>  Компания: </td><td class="bl"><%= f.text_field :company_ind ,:value=>@user.company_ind%> </td>
+</tr>
+<tr>
+<td>  ИНН: </td><td class="bl"> <%= f.text_field :inn,:value=>@user.inn %> </td>
+</tr>
+<tr class="odd">
+<td>  Телефон: </td><td class="bl" > <%= f.text_field :phone,:value=>@user.phone %> </td>
+</tr>
+<tr>
+<td>  Мобильный телефон: </td><td class="bl"> <%= f.text_field :m_phone ,:value=>@user.m_phone%> </td>
+</tr>
+<tr class="odd">
+<td>  Почта: </td><td class="bl"> <%= f.text_field :mail,:value=>@user.mail %> </td>
+</tr>
+
+<tr>
+<td>  Город: </td><td class="bl">  <select name="user11[city]" id="user11_city" style="width:314px; ">
+  <option value="Санкт-Петербург" <%= 'selected="selected"' if session[:city]=='spb' %> >Санкт-Петербург</option>
+  <option value="Москва" <%= 'selected="selected"' if session[:city]=='msk' %> >Москва</option>
+  <option value="Смоленск" <%= 'selected="selected"' if session[:city]=='smo' %> >Смоленск</option>
+</select> </td>
+</tr>
+
+<tr>
+  <td  style="height: 30px; padding: 10px;">
+<%= f.submit "ОБНОВИТЬ" , :class=>"edit_link"%>
+  </td>
+  <td>
+    <%= link_to 'Вернуться' , :action=>'reg_data' %>
+  </td>
+</tr>
+</tbody>
+</table>
+<% end %>
+
+
+<%end%>

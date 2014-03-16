@@ -1,0 +1,98 @@
+<% content_for(:cont) do %>
+<div class="bcat1">
+<h2>Номенклатура подкатегории:  </h2>
+<h1><%= @btg.name  %>   </h1>
+<%= link_to 'Новый товар', {:action=>'new', :btg1=>@btg.id} %>
+<br /> <br />
+
+<%= link_to 'Вернуться', {:controller=>'btg1s', :action=>'index' } %>
+<br /> <br />
+<div style=" width: 930px; overflow: auto; " id="b">
+<table border="0" cellpadding="0" cellspacing="0" class="bcat1_tab" >
+  <tr style="background-color: papayawhip;">
+    <% if @btg.s1 !='no' and @btg.s1 !='' %>  <th>  <%= @btg.s1 %> </th> <%end%>
+    <% if @btg.s2 !='no' and @btg.s2 !='' %>   <th><%= @btg.s2 %></th>  <%end%>
+    <% if @btg.s3 !='no' and @btg.s3 !='' %>   <th><%= @btg.s3 %></th>   <%end%>
+    <% if @btg.s4 !='no' and @btg.s4 !='' %>   <th><%= @btg.s4 %></th>   <%end%>
+    <% if @btg.s5 !='no' and @btg.s5 !='' %>   <th><%= @btg.s5 %></th>   <%end%>
+    <% if @btg.s6 !='no' and @btg.s6 !='' %>   <th><%= @btg.s6 %></th>   <%end%>
+    <% if @btg.s7 !='no' and @btg.s7 !='' %>   <th><%= @btg.s7 %></th>   <%end%>
+    <% if @btg.s8 !='no' and @btg.s8 !='' %>   <th><%= @btg.s8 %></th>   <%end%>
+    <% if @btg.s9 !='no' and @btg.s9 !='' %>   <th><%= @btg.s9 %></th>   <%end%>
+    <% if @btg.s10 !='no' and @btg.s10 !='' %>  <th><%= @btg.s10 %></th>  <%end%>
+    <% if @btg.s11 !='no' and @btg.s11 !='' %>  <th><%= @btg.s11 %></th>  <%end%>
+    <% if @btg.s12 !='no' and @btg.s12 !='' %>  <th><%= @btg.s12 %></th>  <%end%>
+    <% if @btg.s13 !='no' and @btg.s13 !='' %>  <th><%= @btg.s13 %></th>  <%end%>
+    <% if @btg.s14 !='no' and @btg.s14 !='' %>  <th><%= @btg.s14 %></th>  <%end%>
+    <% if @btg.s15 !='no' and @btg.s15 !='' %>  <th><%= @btg.s15 %></th>  <%end%>
+    <% if @btg.s16 !='no' and @btg.s16 !='' %>  <th><%= @btg.s16 %></th>  <%end%>
+    <% if @btg.s17 !='no' and @btg.s17 !='' %>  <th><%= @btg.s17 %></th>  <%end%>
+    <% if @btg.s18 !='no' and @btg.s18 !='' %>  <th><%= @btg.s18 %></th>  <%end%>
+    <% if @btg.s19 !='no' and @btg.s19 !='' %>  <th><%= @btg.s19 %></th>  <%end%>
+    <% if @btg.s20 !='no' and @btg.s20 !='' %>  <th><%= @btg.s20 %></th>  <%end%>
+    <% if @btg.s21 !='no' and @btg.s21 !='' %>  <th><%= @btg.s21 %></th>  <%end%>
+    <% if @btg.s22 !='no' and @btg.s22 !='' %>  <th><%= @btg.s22 %></th>  <%end%>
+    <% if @btg.s23 !='no' and @btg.s23 !='' %>  <th><%= @btg.s23 %></th>  <%end%>
+    <% if @btg.s24 !='no' and @btg.s24 !='' %>  <th><%= @btg.s24 %></th>  <%end%>
+    <% if @btg.s25 !='no' and @btg.s25 !='' %>  <th><%= @btg.s25 %></th>  <%end%>
+    <% if @btg.s26 !='no' and @btg.s26 !='' %>  <th><%= @btg.s26 %></th>  <%end%>
+    <% if @btg.s27 !='no' and @btg.s27 !='' %>  <th><%= @btg.s27 %></th>  <%end%>
+    <% if @btg.s28 !='no' and @btg.s28 !='' %>  <th><%= @btg.s28 %></th>  <%end%>
+    <% if @btg.s29 !='no' and @btg.s29 !='' %>  <th><%= @btg.s29 %></th>  <%end%>
+    <% if @btg.s30 !='no' and @btg.s30 !='' %>  <th><%= @btg.s30 %></th>  <%end%>
+
+    <td style="background-color:red;">Del</td>
+  </tr>
+
+<% @bcat1s.each do |bcat1| %>
+  <tr title="<%=h bcat1.s2%>" style="<%=cycle('background-color: white','background-color: #eeeeee')%>; width: 930px; overflow: scroll;">
+
+  <!--  <td><%=h bcat1.btg1_id %></td>
+    <td><%=h bcat1.k1c %></td>
+    <td><%=h bcat1.name %></td> -->
+    <% if @btg.s1!='no' and @btg.s1 !='' %>   <td><%= link_to 'Редактировать<br />'+bcat1.s1, {:action=>'edit',:id=>bcat1.id ,:btg1=>@btg.id} %></td>    <%end%>
+    <% if @btg.s2!='no' and @btg.s2 !='' %>   <td style=""><%=h truncate(bcat1.s2, 40) %></td>    <%end%>
+    <% if @btg.s3!='no' and @btg.s3 !='' %>   <td><%=h truncate(bcat1.s3,40) %></td>    <%end%>
+    <% if @btg.s4!='no' and @btg.s4 !='' %>   <td><%=h truncate(bcat1.s4,40) %></td>    <%end%>
+    <% if @btg.s5!='no' and @btg.s5 !='' %>   <td><%=h truncate(bcat1.s5,40) %></td>    <%end%>
+    <% if @btg.s6!='no' and @btg.s6 !='' %>   <td><%=h truncate(bcat1.s6,40) %></td>    <%end%>
+    <% if @btg.s7!='no' and @btg.s7 !='' %>   <td><%=h truncate(bcat1.s7,40) %></td>    <%end%>
+    <% if @btg.s8!='no' and @btg.s8 !='' %>   <td><%=h truncate(bcat1.s8,40) %></td>    <%end%>
+    <% if @btg.s9!='no' and @btg.s9 !='' %>   <td><%=h truncate(bcat1.s9,40) %></td>    <%end%>
+    <% if @btg.s10!='no' and @btg.s10 !='' %>  <td><%=h truncate(bcat1.s10,40) %></td>   <%end%>
+    <% if @btg.s11!='no' and @btg.s11 !='' %>  <td><%=h truncate(bcat1.s11,40) %></td>   <%end%>
+    <% if @btg.s12!='no' and @btg.s12 !='' %>  <td><%=h truncate(bcat1.s12,40) %></td>   <%end%>
+    <% if @btg.s13!='no' and @btg.s13 !='' %>  <td><%=h truncate(bcat1.s13,40) %></td>   <%end%>
+    <% if @btg.s14!='no' and @btg.s14 !='' %>  <td><%=h truncate(bcat1.s14,40) %></td>   <%end%>
+    <% if @btg.s15!='no' and @btg.s15 !='' %>  <td><%=h truncate(bcat1.s15,40) %></td>   <%end%>
+    <% if @btg.s16!='no' and @btg.s16 !='' %>  <td><%=h truncate(bcat1.s16,40) %></td>   <%end%>
+    <% if @btg.s17!='no' and @btg.s17 !='' %>  <td><%=h truncate(bcat1.s17,40) %></td>   <%end%>
+    <% if @btg.s18!='no' and @btg.s18 !='' %>  <td><%=h truncate(bcat1.s18,40) %></td>   <%end%>
+    <% if @btg.s19!='no' and @btg.s19 !='' %>  <td><%=h truncate(bcat1.s19,40) %></td>   <%end%>
+    <% if @btg.s20!='no' and @btg.s20 !='' %>  <td><%=h truncate(bcat1.s20,40) %></td>   <%end%>
+    <% if @btg.s21!='no' and @btg.s21 !='' %>  <td><%=h truncate(bcat1.s21,40) %></td>   <%end%>
+    <% if @btg.s22!='no' and @btg.s22 !='' %>  <td><%=h truncate(bcat1.s22,40) %></td>   <%end%>
+    <% if @btg.s23!='no' and @btg.s23 !='' %>  <td><%=h truncate(bcat1.s23,40) %></td>   <%end%>
+    <% if @btg.s24!='no' and @btg.s24 !='' %>  <td><%=h truncate(bcat1.s24,40) %></td>   <%end%>
+    <% if @btg.s25!='no' and @btg.s25 !='' %>  <td><%=h truncate(bcat1.s25,40) %></td>   <%end%>
+    <% if @btg.s26!='no' and @btg.s26 !='' %>  <td><%=h truncate(bcat1.s26,40) %></td>   <%end%>
+    <% if @btg.s27!='no' and @btg.s27 !='' %>  <td><%=h truncate(bcat1.s27,40) %></td>   <%end%>
+    <% if @btg.s28!='no' and @btg.s28 !='' %>  <td><%=h truncate(bcat1.s28,40) %></td>   <%end%>
+    <% if @btg.s29!='no' and @btg.s29 !='' %>  <td><%=h truncate(bcat1.s29,40) %></td>   <%end%>
+    <% if @btg.s30!='no' and @btg.s30 !='' %>  <td><div style="max-height: 30px; overflow: hidden;"><%=h truncate(bcat1.s30,40) %></div></td>   <%end%>
+
+
+
+
+    <td style="background-color:red;" align="center" ><%= link_to 'X', bcat1,{:confirm => 'Точно?', :method => :delete } if @user and @user.role2=='s_manager'%></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+
+<%= link_to 'Новый товар', {:action=>'new', :btg1=>@btg.id} %>
+<br /> <br />
+<%= link_to 'Вернуться', {:controller=>'btg1s', :action=>'index' } %>
+</div>
+<% end %>

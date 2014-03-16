@@ -1,0 +1,67 @@
+<div style="padding-top: 265px; background: url('/images2/bonus_back.gif') no-repeat 0px 0px;"> 
+
+                <div class="content">
+
+                <div class="bonus_nav">
+                  <div class="bonus_menu"><a href="/bonus2" >каталог бонусов</a>
+                 <% if login?  and !@user.bonus%>
+                  <a href="/bonus2/editcart">корзина с подарками</a>
+                 <%end%>
+                 <a href="/bonus2/rule" class="act" >как получить бонусы</a>
+                 <%#= link_to 'личный кабинет', {:controller=>'cabinet',:action=>  'reg_data'} , :style=>'position: relative; top: 40px; left: -50px;' %>
+                  </div>
+           
+               </div>
+
+             <% if login? and !@user.bonus %>
+<div style="color:#F1222A;; font-weight: bold; margin-bottom: 20px; margin-top: 20px;">Ваш бонусный счет:&nbsp;<%=@limit%>&nbsp;&nbsp;Можно выбрать <%=@count%> подарка
+  <h2> <%= 'Не заведена карточка на сайте. Свяжитесь с менеджером.' unless @client %>  </h2>
+</div>
+             <%end%>
+
+
+               </div>
+
+
+                <div id="rule_bonus" style="font-size:10pt; color: #808285; margin-top: 20px; margin-left: 4px; width: 714px;">
+
+<span style="color:#F1222A;font-size:11pt;font-weight:bold;">Что такое бонусная программа?</span><br/>
+Бонусная программа «Служебный роман» - это приятные сюрпризы, милые безделушки,<br/> красивые штучки, маленькие радости от «Живого офиса».<br/>
+Это подарки для вас, дорогие друзья!<br/><br/>
+
+<span style="color:#F1222A;font-size:11pt;font-weight:bold;">Как она работает?</span><br/>
+Бонусная программа не требует от вас дополнительных затрат. Вы просто заказываете необходимые для офиса товары по каталогу
+<%=link_to '"Живой офис"',:controller=>'zakaz_catalogs',:action=>'new' %> либо на сайте Живого офиса и получаете бонусы на ваш счет в личном кабинете за каждую покупку. <br/>
+Накопленные бонусы вы можете потратить на подарки из <a href="/bonus2">каталога </a> бонусной программы, 
+которые будут доставлены к вам в офис вместе с заказанной продукцией. С одним заказом вы можете получить не более трех подарков. 
+
+<br/><br/>
+<span style="color:#F1222A;font-size:11pt;font-weight:bold;">Как начисляются бонусы?</span><br/>
+При совершении покупки на сумму до 5 000 рублей за каждую полную 1 000 рублей вам начисляется 10 бонусов.  <br/>
+При покупке от 5 000 рублей за каждую полную 1 000 рублей вы получаете 15 бонусов. <br/>
+Действует накопительная система – вы можете тратить бонусы при совершении каждой покупки или копить на приглянувшийся подарок. 
+
+<br/><br/>
+<span style="color:#F1222A;font-size:11pt;font-weight:bold;">Как получить подарок?</span><br/>
+Для получения подарка из бонусного каталога вам необходимо <a href="/login/login">авторизоваться </a>, выбрать <a href="/bonus2">товар </a> и положить его в корзину. 
+
+<br/><br/>
+<span style="color:#F1222A;font-size:11pt;font-weight:bold;">Внимание!</span><br/>
+Доставка призов осуществляется вместе с заказанным товаром. Необходимо получить подтверждение о наличии призовых изделий на складе. Цвет и модель изделия могут отличаться от образцов, представленных в каталоге. 
+<br/><b/>
+<br/>
+  <span style="font-size:11pt;">
+  Вы всегда можете получить ответ на интересующий Вас вопрос по телефону <a href="/" style="font-size:11pt;text-decoration:none;">
+
+  <% if session[:city] == 'msk' %>
+   (495) 730-30-77
+  <% elsif session[:city] == 'smo' %>
+   (4812) 24-44-24
+ <% else %>
+   (812) 324-80-50
+ <% end %>
+    </a>.
+
+  </span>
+                </div>
+</div>

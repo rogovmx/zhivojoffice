@@ -1,0 +1,8 @@
+   <div style="border-top: 1px dotted #999999; padding-top: 5px; font-size:11px;" >
+     |
+   <% for t3all in @tov3all %>
+     <%  if t3all.name != @tov3.name %>
+     <nobr>  <%=link_to t3all.name , {:controller=>'kt3' , :action=>'tg_v', :id=>t3all.id}  %> |</nobr>
+   <% end %>
+   <% end %>
+    </div>

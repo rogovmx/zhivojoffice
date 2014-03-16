@@ -1,0 +1,184 @@
+<% content_for(:tit) do%>
+
+<% if @id==nil %>
+Доставка товаров в офис. Канцтовары, бумага, папки, архивы, хозяйственные товары для офиса, расходные материалы для оргтехники, офисная мебель. 
+<% else %>
+<%= @name%> 
+<% end %>
+
+<%  end %>
+
+
+<% content_for(:cont) do %>
+
+<div id="block_menu" onmousemove="zp('block_menu')">
+  
+</div>
+
+<%#= link_to image_tag('/images2/izumrud.jpg' , :style=>'margin-bottom: 10px; ') , '/kt3/tov/34793' %>
+
+<!--    Санкт-Петербург                     -->
+
+
+<% if (session[:city]=='spb') %>
+<%= link_to image_tag('/images2/cat_banner.jpg' , :style=>'margin-bottom: 20px; ') , '/kotiki' %>
+<%= link_to image_tag('/images2/banner_class_c.jpg' , :style=>'margin-bottom: 20px; width:530px;') , '/kt3/tov/53744' %>
+<%= link_to image_tag('/images2/banner_class_oct_31.jpg' , :style=>'margin-bottom: 20px; width:530px;') , '/kt3/tov/53613' %>
+<div>
+<%#= render :partial => '/part2/actions_zb' %>
+</div>
+
+<%#= periodically_call_remote :url=>{:controller=>'kt1' , :action=>'actions_index' , :show=>'auto'},:frequency => @actions.frecuency  if @actions and @actions.auto %>
+
+
+
+<%#= link_to image_tag('/images2/low_price_530.jpg' , :style=>'margin-bottom: 10px; ') , '/kt3/superprice' %>
+
+<%#= render :partial => '/part2/sets' %>
+
+<!-- Коды каталога 
+<%= render :partial => '/part2/catcod' if !login? || (login? and @ord == nil and @user.role != 'poduser') %>
+ -->
+
+<%#= link_to image_tag('/images2/bum80.gif' , :style=>'margin-bottom: 10px; ') , '/act'  if login?%>
+
+<%= link_to image_tag('/images2/certificate_spb.jpg' , :style=>'margin-bottom: 20px; margin-top: 20px, width:530px; height:148px;') , '/act' %>
+<!--
+<div style="height: 200px;">
+<div id="actions_index"  >
+<%= render :partial => '/part2/actions' %>
+</div>
+</div>
+-->
+
+
+
+
+<div class="clear" style="text-align: center; height: 20px; margin-bottom: 10px; display: none">
+  <img src="/images2/actions.jpg"  alt="Акции" width="45px" />
+</div>
+
+
+<!--
+<div class="clear" style="text-align: center; height: 39px; margin-bottom: 10px; display: none;">
+  <img src="/images2/per_ind.gif"  alt="всегда в живом офисе" />
+</div>
+
+
+
+<div id="act_always">
+<%= acts_always %>
+</div>
+-->
+
+
+
+
+
+
+<% end %>
+
+
+<!--    МОСКВА     -->
+
+
+<% if (session[:city]=='msk') %>
+
+<%#= link_to image_tag('/images2/big_sale_09.jpg' , :style=>'margin-bottom: 20px; ') , '/kt3/sale' %>
+<%= link_to image_tag('/images2/cat_banner.jpg' , :style=>'margin-bottom: 20px; ') , '/kotiki' %>
+<%= link_to image_tag('/images2/banner_class_c.jpg' , :style=>'margin-bottom: 20px; width:530px;') , '/kt3/tov/53744' %>
+<%= link_to image_tag('/images2/banner_class_oct_31.jpg' , :style=>'margin-bottom: 20px; width:530px;') , '/kt3/tov/53613' %>
+<div>
+<%#= render :partial => '/part2/actions_zb' %>
+</div>
+
+
+
+<%#= render :partial => '/part2/sets' %>
+
+<%#= link_to image_tag('/images2/low_price_530.jpg' , :style=>'margin-bottom: 10px; ') , '/kt3/superprice' %>
+<!-- Коды каталога  
+<%= render :partial => '/part2/catcod' if !login? || (login? and @ord == nil and @user.role != 'poduser') %>
+-->
+<%#= link_to image_tag('/images2/bum80.gif' , :style=>'margin-bottom: 10px; ') , '/act'  if login?%>
+<%= link_to image_tag('/images2/certificate_spb.jpg' , :style=>'margin-bottom: 20px; margin-top: 20px, width:530px; height:148px;') , '/act' %>
+<!--
+<div style="height: 200px;">
+<div id="actions_index"  >
+<%#= actions_index %>
+  <%= render :partial => '/part2/actions' %>
+</div>
+</div>
+-->
+
+
+
+
+<div class="clear" style="text-align: center; height: 20px; margin-bottom: 10px; display: none">
+  <img src="/images2/actions.jpg"  alt="Акции" width="45px" />
+</div>
+
+<!--
+<div class="clear" style="text-align: center; height: 39px; margin-bottom: 10px; display: none;">
+  <img src="/images2/per_ind.gif"  alt="всегда в живом офисе" />
+</div>
+
+
+<div id="act_always">
+<%= acts_always %>
+</div>
+-->
+
+<% end %>
+
+<!--    СМОЛЕНСК   -->
+
+<% if (session[:city]=='smo') %>
+
+
+
+
+<%= link_to image_tag('/images2/ipo_banner.jpg' , :style=>'margin-bottom: 10px; ') , '/about/IPO_zhivojoffice' %>
+<div style="position: relative; width: 530px; height: 345px; margin-bottom: 10px; margin-top: 10px; float: none; clear: both; " class="opa">
+<%= link_to image_tag('/images2/killrootwhite.gif' , :style=> "position:absolute; z-index: 100"), '/routine' %>
+<p style="position:absolute; z-index: 50">
+ Битва космического масштаба началась! Убей Рутину, живи в "Живом офисе"!
+</p>
+</div>
+
+
+
+<div id="main_pic" style="float: none; clear: both; margin-top: 10px;">
+  <div class="mp2" style="background-image: url('/images2/baner.jpg');">
+<img src="/images2/transp.gif" width="530" height="506" border="0" usemap="#Map" />
+  </div>
+</div>
+<map name="Map" id="Map">
+<area shape="poly" coords="42,63,30,63,24,58,48,47,101,29,139,18,169,8,182,18,169,28,154,39" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/1', {asynchronous:true, evalScripts:true}); return false;" />
+<area shape="poly" coords="179,48,178,39,183,29,193,25,202,22,211,22,218,23,224,26,226,33,227,38,229,45,229,51,234,55,234,62,233,71,230,79,217,87,195,87,185,80,176,59" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/2', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="130,48,135,53,137,63,132,74,126,83,133,85,143,87,148,97,157,110,164,120,166,132,167,142,159,148,151,153,146,161,142,169,133,171,128,179,111,198,71,188,57,164,58,148,52,135,44,126,42,114,48,94,64,72,101,65" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/3', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="28,214,22,198,28,187,43,182,62,190,82,203,101,205,165,203,170,210,149,220,104,223,81,230,63,240,45,245,31,243,14,231,20,220" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/4', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="63,244,78,242,113,244,131,254,132,269,125,287,133,297,129,309,124,326,114,334,80,329,62,319,39,315,30,305,34,289,40,289,53,252" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/5', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="13,349,111,337,114,342,130,460,125,466,37,479,30,477" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/6', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="163,94,175,91,199,92,216,98,230,106,244,116,245,92,254,73,263,58,279,44,297,39,318,40,346,50,359,62,360,80,360,92,351,108,342,122,329,149,340,158,339,164,331,167,323,169,322,176,331,181,338,190,330,196,319,201,313,208,306,214,293,219,302,225,316,239,310,246,275,220,255,222,254,230,273,230,281,233,293,241,296,249,301,256,300,262,317,276,321,289,329,297,332,305,318,316,304,312,304,289,279,268,254,254,247,257,245,273,239,281,238,302,236,329,217,329,215,301,221,288,230,254,220,247,184,252,164,259,162,271,161,278,150,283,137,278,135,265,143,254,152,247,163,240,174,237,183,231,192,223,185,211,174,204,162,195,152,186,147,173,156,155,168,148,182,144,195,145,181,133,169,111,157,104" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/7', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="361,85,371,70,378,70,437,109,440,115,442,123,451,129,452,137,448,142,433,135,419,134,362,93" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/8', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="397,39,420,15,435,13,452,16,464,11,479,12,495,17,509,31,515,47,513,65,505,62,481,31,477,34,489,50,509,78,509,87,515,94,501,113,478,128,456,132,416,62" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/9', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="351,148,364,142,372,132,380,139,391,134,402,130,407,136,416,137,427,144,436,143,445,159,443,170,435,180,425,175,422,187,413,175,404,176,402,183,400,195,391,195,380,187,378,199,379,235,392,230,406,232,427,247,435,258,426,260,413,255,419,264,414,266,396,261,397,278,395,287,391,301,351,302,333,271,324,268,317,264,332,243,346,241,357,243,365,248,369,236,365,195,358,193,350,202,344,185,351,165" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/10', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="423,195,418,228,455,256,503,242,508,207,495,196,487,182,500,173,501,152,451,155,447,177,441,181,430,182,436,192" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/11', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="403,271,442,258,469,259,507,273,512,283,511,292,506,296,500,304,492,309,470,315,451,321,439,329,422,332,406,329,403,318,412,312,451,301,417,305,409,302,408,288,403,281" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/12', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="347,303,359,306,369,312,405,335,392,363,336,328" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/13', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="423,332,509,341,494,456,409,447" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/14', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="301,317,393,377,399,437,394,446,379,456,278,382,288,329" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/15', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="250,338,244,326,248,314,259,314,270,320,270,331,267,337,275,344,276,354,270,361,268,367,270,378,263,384,252,389,243,383,238,375,239,364,229,361,227,353,226,343,238,337" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/16', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="158,345,152,337,157,326,167,318,184,314,205,315,211,328,213,336,222,341,225,354,223,366,197,384,175,384,156,377,149,362,152,352" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/17', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="158,299,162,307,177,307,198,299,211,289,202,277,180,275,158,284,144,291,135,309,128,391,126,405,128,419,153,428,172,421,185,411,177,394,165,387,150,388,140,390,147,312" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/18', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="206,396,216,396,319,422,327,429,336,432,341,440,330,443,314,445,297,441,298,458,293,463,265,462,258,460,257,443,251,434,261,432,209,418,200,411" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/19', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="145,433,159,431,170,437,219,433,231,428,242,429,246,481,237,486,223,481,177,482,162,489,151,491" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/20', {asynchronous:true, evalScripts:true}); return false;"/>
+<area shape="poly" coords="261,485,271,481,295,472,385,466,389,458,445,454,457,459,466,460,465,473,436,478,302,492,272,490" href="/beautiful/room1"  onmouseover="new Ajax.Updater('main_pic', '/kt1/chng_pic/21', {asynchronous:true, evalScripts:true}); return false;"/>
+</map>
+
+
+<% end %>
+
+<%  end %>
+

@@ -1,0 +1,191 @@
+
+<% content_for(:tit) do%>
+<title> <%=h @cat.name %> </title>
+<%  end %>
+
+
+<%#= hk(params[:id]) %>
+<%#= hk_tov(params[:id]) %>
+<div class="hk" style="width:545px;">
+   <span style="color:#808285;font-size:10px;">Назад: </span>   >>
+  <%= link_to 'Обратно к подаркам' ,{:controller=>'podarok',:action=>'index',:price=>params[:price], :sign=>params[:sign]},:class=>'hk',:style=>'color:#019f3d;' %>
+    >>
+   <span style="color:#f97c13;font-size:10px;"> <%= @cat.name   %></span>
+   </div>
+
+    <%  cat=@cat %>
+  <style type="text/css">
+    .goodpicture img {width: 290px; margin-top: 5px;}
+    .pic img {border: 1px solid #65D4F7;}
+    .pic {position: relative; left: -250px; top: 120px;}
+  </style>
+<!-- -----  -->
+ <%= render(:partial => 'podarok/find') %>
+
+<div style="float:left;">
+  <table style="margin-left:8px;">
+  <tr><td width="300px;" valign="center">
+    <div id="picture2" class="goodpicture">
+      <img src="/img/<%= cat.pic1 %>.jpg" width="250px;" />
+
+</div>
+  </td>
+  <td width="240px;">
+    <table class="goodinfo" cellspacing="0" cellpadding="0" >
+<tbody>
+<tr>
+<td  style="height:100px;" valign="bottom" align="left">
+<h3><%=h cat.name %></h3>
+<br/>
+<span style="color:#cdcdcd;font-size:10px; padding-left: 5px;">
+  <%@kod = Katalog.find :first ,:conditions=>["k1c=?",cat.k1c] %>
+  <% if @kod %>
+      Код каталога:<%=@kod.kod%>
+  <%else%>
+      
+      <%end%>
+</span>
+
+</td>
+</tr>
+<tr>
+  <td style="height:130px;" align="left">
+    <% if @cat.pic2 and @cat.pic2 != ''%>
+        <div class="pic">
+      <%@p1 = "/img/"+@cat.pic1+".jpg"%>
+      <%@p2 = "/img/"+@cat.pic2+".jpg"%>
+      <%= link_to_remote image_tag(@p1, :width => "30px"), :url => {:controller => 'kt3',:action => 'pic1', :id => cat.id}, :update => 'picture2'  %>
+      <%= link_to_remote image_tag(@p2, :width => "30px"), :url => {:controller => 'kt3', :action => 'pic2', :id => cat.id}, :update => 'picture2'  %>
+     
+    </div>
+<% else %>
+    <%end%>
+
+
+     <%= render  :partial =>'kt3/uprice',:user=>@user, :cat=>@cat %>
+
+
+<!--
+  Условия доставки: <%#=h cat.u_dost %> -->
+  </td>
+</tr>
+<tr>
+<td class="basket"  style="height:25px; padding-left: 5px;" align="left">
+<%@cat1=cat%>
+ <% @tvc=Cart.find :first,:conditions=>['sesion_id=? and k1s=?',request.session_options[:id],@cat1.k1c] %>
+
+    <% if @tvc  %>
+      <%= render(:partial=> 'tvc') %>
+    <%  else  %>
+<% if @uprice %>
+<%= render(:partial=> 'kt3/zakaz', :object=>@cat1,:object=>@user ,:object=>@uprice) %>
+  <%end%>
+ <%end%>
+</td>
+</tr>
+<tr>
+
+<td class="favorite" style="height:30px; padding-left: 5px;" align="left" valign="bottom" >
+ <%unless login?%>
+ 
+<%else%>
+  <% if @user and @user.role =='poduser' %>
+  <%@rtov=Razr1.find_by_k1c(@cat1.k1c)  %>
+  <% if @rtov %>
+  <span style="font-size:10px; color:green" >Разрешенный товар.</span><br>
+  <%else%>
+   <span style="font-size:10px; color:red" >Не разрешенный товар.</span><br>
+  <%end%>
+  <%end%>
+  <br>
+  <% if @user.role != 'redaktor' %>
+  <% @client=Client.find(@user.client1_id) %>
+  <% @rm=Rm1.find(:first,:conditions=>['clients_id=? and k1c=? ',@client.id,@cat.k1c])%>
+     <%else%>
+  <%end%>
+      <%if @rm%>
+  <span style="font-size:10px; color:#FB8120;" >    Рекомендованно менеджером. </span><br>
+      <%end%>
+<% @it=It.find(:first,:conditions=>['user_id=? and k1c=? ',@user.id,@cat.k1c])%>
+<% if @it %>
+  <%= render(:partial=> '/kt1/it') %>  <br>
+<%else%>
+  <%@tov3=Tov3.find(@cat.tov3_id)%>
+<% @f1=Tov2.find(@tov3.tov2_id) %>
+<% @kod_f1=First1.find(@f1.first1_id) %>
+<div id=it_<%=@cat.id%>>
+  <%  update='it_'+@cat.id.to_s %>
+<% remote_form_for :it  , :url=>{:controller=>'kt1',:action=> :create_it},:update=>update do |f| %>
+   <%= f.hidden_field :user_id ,:value=>@user.id  %>
+   <%= f.hidden_field :k1c ,:value=>@cat.k1c %>
+   <%= f.hidden_field :tg3 ,:value=>@tov3.id %>
+   <%= f.hidden_field :tg2 ,:value=>@tov3.tov2_id %>
+   <%= f.hidden_field :tg1 ,:value=>@f1.first1_id %>
+   <%= f.hidden_field :kod_f1 ,:value=>@kod_f1.kod %>
+   <%= f.hidden_field :brend ,:value=>@cat.brend %>
+  <input type="image"  src="/images/btn_fav.gif" border=0 align="center" style="position:relative;top:-10px;"/>
+   <%#=f.submit 'В избранные',:class=>'it_submit'%>
+  <%end%>
+</div>
+<%end%>
+<%end%>
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+  </td>
+  </tr>
+</table>
+    <br>
+ <div id="subfooter" class="wide">
+          <div class="gadget static_page">
+            <div class="content">
+
+              <div class="gadget podval_menu">
+                <div class="content">
+                  <ul>
+                    <li id="pmenu_1" class="current">
+                       <%= link_to_remote 'Описание товара',:url=>{:controller=>'kt1',:action=>'kt1_ot',:id=>@cat.id},:update=>'fo_dop',:success=>"$('pmenu_2').removeClassName('current');$('pmenu_3').removeClassName('current');Element.addClassName('pmenu_1','current');"  %>
+                  
+                      </li>
+                    <li id="pmenu_2"> 
+                      <%= link_to_remote 'Сопутствующие товары',:url=>{:controller=>'kt1',:action=>'kt1_st',:id=>@cat.id},:update=>'fo_dop',:success=>"$('pmenu_1').removeClassName('current');$('pmenu_3').removeClassName('current');Element.addClassName('pmenu_2','current');" %>
+                    
+                     </li> 
+                   <!--  <li id="pmenu_3"> -->
+                    
+                     <%#= link_to_remote 'Спецификация',:url=>{:action=>'kt1_spec',:id=>@cat.id},:update=>'fo_dop',:success=>"$('pmenu_1').removeClassName('current');$('pmenu_2').removeClassName('current');Element.addClassName('pmenu_3','current');"  %>
+                    <!--  </li> -->
+                  </ul>
+                </div>
+              </div>
+                <div id="fo_dop">
+                  <%  cat=@cat %>
+
+
+                  <%= render :partial=>'kt3/tov_pod1',:object=>@cat %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+<% content_for(:bs) do %>
+ <%=bs %>
+  <%  end %>
+
+  <% content_for(:sp) do %>
+   
+
+      <%=sp%>
+  <%  end %>
+

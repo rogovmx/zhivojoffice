@@ -1,0 +1,64 @@
+
+
+<table width="100%" border="0" style="border-bottom:dashed 1px #808285; margin-bottom: 5px;">
+   
+     <tr>
+       <td width="65px" align="left" valign="center" style="padding-top:3px; padding-left: 10px; height:50px;">
+         
+
+<% if @cat.pic1 %>
+         <% unless @cat.pic1 == ''  %>
+                                              
+         
+            <img src="<%='/img/'+@cat.pic1+'.jpg'%>" width="50px" onmouseover='build2("<%='pic'+@cat.id.to_s%>");' onmouseout='hide2("<%='pic'+@cat.id.to_s%>");' /> 
+     
+         <div style="display: none; position:absolute; left: 80px;  padding: 0pt; z-index: 1111; border: 1px solid #999999;"  id="<%='pic'+@cat.id.to_s%>">
+  <img src="<%='/img/'+@cat.pic1+'.jpg'%>" width="200px" border="0"/>
+</div>
+
+<%else%>
+
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=50px/>
+
+                 
+           <%end%>
+             <% else %>
+             <img src="/images/no_image_s.gif" style="padding-top:5px;padding-bottom:5px;" height=50px/>
+        <%end%>
+
+
+         
+
+       </td>
+       <td valign="center" align="cener" style="width: 70px;">
+         <span style="font-family: Arial; font-size: 10px; color: #808385;">
+       
+<%@kod = Katalog.find :first ,:conditions=>["k1c=?",@cat.k1c] %>
+  <% if @kod %>
+    <%=@kod.kod%>
+  <%else%>
+      <br/>
+      <%end%>
+           </span>
+
+       </td>
+
+       <td valign="center" align="left"  style="padding-top:10px;  ">
+        
+      <b>    <%=link_to @cat.name,{:controller=>'kt3',:action=>'tov',:id=>@cat.id}, :class=>'tit_tov' %></b> 
+    
+      </td>
+       <td colspan="2" align="right" valign="center" style=" padding-top: 10px; padding-right: 10px;"> <br/>
+ <%=button_to 'Удалить товар из группы' , :action=>'del_elem_st', :id=>@col.id %>
+       </td>
+       </tr>
+
+     <tr>
+       <td align="center" colspan="5">
+                             <%if @cat.vis != true%>
+                          &nbsp;&nbsp;  <span style="color:red;"> <b>Не отображается</b></span>
+                            <%end%>
+      </td>
+     </tr>
+                             
+   </table>

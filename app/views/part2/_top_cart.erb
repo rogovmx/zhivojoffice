@@ -1,0 +1,10 @@
+
+  <div class="top_cart">
+ <% if @q_tov and @q_tov != 0 %>
+    <%= link_to image_tag('/images2/cart.jpg' , :alt=>"Корзина") , {:controller=>'bas1', :action=>'edit_cart' } , :rel=>'nofollow' %>
+    <span class="cart_q"> <%= @q_tov %> </span>
+ <% else %>
+    <%= image_tag('/images2/cart0.jpg' , :alt=>"Корзина")%>
+ <% end %>
+
+  </div>

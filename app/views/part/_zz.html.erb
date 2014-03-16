@@ -1,0 +1,141 @@
+<script language="javascript"><!--
+function open_comm(fn,w,h)
+{
+
+window.open(fn, null,"height="+h+",width="+w+",top=360, left=260, status=0,toolbar=0,menubar=0,location=0, directories=0, resizable=0");
+}
+
+
+// --></script>
+<style>
+#advisor {
+	height: 121px;
+	width: 35px;
+	background-image: url(images/open12.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin-left: 0px;
+	position: absolute;
+	z-index: 30;
+	top: 200px;
+        left: 0px;
+}
+
+
+#advisor:hover {
+	height: 121px;
+	width: 329px;
+	background-image: url(http://www.zhivojoffice.ru/images/close.gif);
+	background-repeat: no-repeat;
+	background-position: right center;
+	margin-left: 0px;
+	visibility: visible;
+	border-top-width: medium;
+	border-top-style: solid;
+	border-top-color: #0BAF4E;
+	border-bottom-color: #0BAF4E;
+	border-bottom-width: medium;
+	border-bottom-style: solid;
+	background-color: #FFFFFF;
+}
+
+#advisor div.text {
+	height: 121px;
+	width: 270px;
+	margin-top: 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: right;
+	float: left;
+	visibility: hidden;
+}
+
+#advisor:hover div.text {
+	visibility: visible;
+}
+#advisor .text .name {
+	font-size: 20px;
+	color: #0033CC;
+	visibility: hidden;
+}
+#advisor:hover .text .name {
+	visibility: visible;
+}
+#advisor:hover .text .prof {
+	visibility: visible;
+}
+#advisor .text .prof {
+	font-size: 13px;
+	color: #FF3300;
+	visibility: hidden;
+}
+#advisor:hover .text .question {
+	visibility: visible;
+}
+#advisor .text .question {
+	margin-top: 20px;
+	visibility: hidden;
+}
+
+#advisor:hover .text .question a{
+		visibility: visible;
+}
+#advisor .text .question a{
+	font-size: 13px;
+	color: #0BAF4E;
+	margin-top: 20px;
+	text-decoration: none;
+	visibility: hidden;
+}
+
+#advisor:hover .img {
+	visibility: visible;
+}
+#advisor .img {
+	height: 98px;
+	width: 97px;
+	margin-top: 10px;
+	background-image: url(http://www.zhivojoffice.ru/images/parfenov.jpg);
+	visibility: hidden;
+	float: right;
+	margin-right: 45px;
+}
+
+</style>
+<div id="advisor"  >
+
+<div id="open">
+<div class="text" id="zkvof">
+  <% remote_form_for :zz1,:url=>{:controller=>'zz2',:action=>'new'},:update=>'zkvof' do |f| %>
+  <%= f.error_messages %>
+
+  
+  <p style="color:black; font-size:11px;">
+    Телефон:<br />
+    <%= f.text_field :phone  %>
+  </p>
+  <p style="color:black; font-size:11px;">
+    ФИО контактного лица:<br />
+    <%= f.text_field :name , :cols=>45%>
+  </p>
+  <br>
+  <p align="right">
+    <%= f.submit "Заказать звонок" %>
+  </p>
+<% end %>
+<!--
+<div class="name"> Анна </div>
+<div class="prof"> Дежурный консультант </div>
+<div class="question"> <a href="javascript:open_comm('/mess1',372,533)">Задать вопрос... </a></div>
+-->
+</div>
+  <!--
+<div class="img">
+
+</div>
+-->
+
+</div>
+
+
+</div>
+

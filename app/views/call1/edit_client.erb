@@ -1,0 +1,71 @@
+<% content_for(:cont) do %>
+
+
+
+
+<% form_for :client ,:url=>{:action=>'upd_client', :id=>@client.id } do |f| %>
+<table class="reg_tab" cellspacing="0" cellpadding="8" style="border: 1px solid #ff2d54; margin-top: 30px;" >
+<tbody>
+<tr style="background-color: #ff2d54; color: white; padding-left: 10px; height: 25px;">
+  <th colspan="2" valign="center" style="padding-left: 10px;" > Редактрование клиента </th>
+</tr>
+
+<tr>
+<td style="">  Код 1С: </td><td class="bl"> <%= f.text_field :k1c   %> </td>
+</tr>
+<tr>
+<td>  Название: </td><td class="bl"><%= f.text_field :name%> </td>
+</tr>
+<tr>
+<td>  Полное название: </td><td class="bl"> <%= f.text_field :fullname %> </td>
+</tr>
+<tr>
+<td>  ИНН: </td><td class="bl"><%= f.text_field :inn %> </td>
+</tr>
+<tr>
+<td>  КПП: </td><td class="bl"> <%= f.text_field :kpp %> </td>
+</tr>
+
+
+
+<tr>
+  <td colspan="2" style="height: 30px; padding: 10px;">
+<%= f.submit "ОБНОВИТЬ" %>  <%=link_to "Вернуться к поиску" , {:action =>'users'} , :style=>'float: right;' %>
+  </td>
+</tr>
+</tbody>
+</table>
+<% end %>
+
+<div style="margin-top: 20px;">
+<h3> Пользователи: <%=@users.size %>  </h3>
+<table class="cab_sotr" cellspacing="0" cellpadding="0" border="0">
+  <tr style="color:white;background-color:#808285; height: 25px;">
+    <th>Компания </th>
+    <th>ИНН </th>
+    <th>ФИО </th>
+
+    <th>E-mail </th>
+    <th>Телефон </th>
+    <th>Город </th>
+    <th></th>
+
+  </tr>
+<% @users.each do |user| %>
+  <tr  style="background-color:<%= cycle('white;','#eeeeee;')%>">
+    <td> <%= user.company_ind %>  </td>
+    <td> <%= user.inn %>   </td>
+    <td> <%= user.surname %>  <%= user.scr_name %>   <%= user.patronymic %>   </td>
+
+    <td> <%= user.mail %>   </td>
+    <td> <%= user.phone %>   </td>
+    <td> <%= user.city %>   </td>
+    <td> <%= link_to 'Ред.', {:action =>'edit_user2' , :id=>user.id} , :style=>'color: green;' %>   </td>
+
+  </tr>
+<%end %>
+</table>
+</div>
+
+
+<%end%>

@@ -1,0 +1,104 @@
+<% content_for(:cont) do %>
+
+
+<%= calendar_date_select_includes %>
+
+<div class="cab_hk">личный кабинет » <%= link_to 'Заказы' , :action=>'order' %>  » <%=@name %>   </div>
+
+<%#= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+
+<div class="cabord_title" style="width: 909px;">
+ Отчеты
+</div>
+<%=link_to 'Вернуться к заказам' , {:action=>'order'} , :style=>'float: left; ' unless @order.empty? %>
+<%=link_to 'Номенклатура заказов' , {:action=>'allorders'} , :style=>'float: left; margin-left: 20px;' unless @order.empty? %>
+
+<span style="color:green; float: right;">Зеленым цветом выделены товары из спецификации </span>
+
+<div style=" width: 923px; text-align: right; margin-bottom: 25px;">   </div>
+ <table class="cab_zakaz" cellspacing="0" cellpadding="0" border="0" width="900px">
+<tr style="color:white;background-color:#808285; height: 25px;">
+ <th> Дата  </th>
+  <th>Отдел </th>
+  <th>Сумма </th>
+ <th>Отчеты по отделам </th>
+
+</tr>
+   <% @otdel.each do |otdel| %>
+   <% @ord_otd = @order.find_all{|ord| ord.user1_id == otdel } %>
+   <% @otd_sum=@ord_otd.sum{|s| s.summa} %>
+      <tr style="<%= cycle('background-color:white;', 'background-color: #f0f2f5;')%>">
+        
+    <td> <%=h @ord_otd[-1].created_at.strftime("%d")%> <%=@names[@ord_otd[-1].created_at.strftime("%m").to_i]%> <%=@ord_otd[-1].created_at.strftime("%Y")%>  -
+         <%=h @ord_otd[0].created_at.strftime("%d")%> <%=@names[@ord_otd[0].created_at.strftime("%m").to_i]%> <%=@ord_otd[0].created_at.strftime("%Y")%>
+      
+</td>
+<td><% @sotr =  User.find_by_id(otdel) %>
+<%= if @sotr then @sotr.otdel + '.' else 'мой' end %>
+    <%= '<br/>' +  @sotr.scr_name + ' ' + @sotr.surname if @sotr%>.
+
+</td>
+<td> <%=@otd_sum %>  </td>
+
+    <td style="width: 500px;">
+
+<% if @sotr %>
+    <% remote_form_for :date  , :url=>{:controller => "cabinet" ,:action=>'show_report',:sotr =>@sotr.id}  do |f| %>
+      с: <%= calendar_date_select_tag "nd", @today,    :embedded => false,  :year_range => 2.months.ago..0.months.ago %> &nbsp;&nbsp;&nbsp;
+    по: <%= calendar_date_select_tag "kd", @today,    :embedded => false,  :year_range => 2.months.ago..0.months.ago %>
+    <%= f.submit 'Показать'  %>
+    <% end %>
+<% else %>
+    <% remote_form_for :date  , :url=>{:controller => "cabinet" ,:action=>'show_report' ,:sotr =>@user.id}  do |f| %>
+      с: <%= calendar_date_select_tag "nd", @today,    :embedded => false,  :year_range => 2.months.ago..0.months.ago %> &nbsp;&nbsp;&nbsp;
+    по: <%= calendar_date_select_tag "kd", @today,    :embedded => false,  :year_range => 2.months.ago..0.months.ago %>
+    <%= f.submit 'Показать'  %>
+    <% end %>
+<% end %>
+
+<%#= link_to_remote 'Посмотреть заказ', :url=>{:action=>'order_details',:id=>order.id},:update=>'details',:success=>"new Effect.Highlight('details')"%>   </td>
+
+      </tr>
+ <%end%>
+      <tr style="color:white;background-color:#808285; height: 25px;"> <td colspan="4"> <div>Общая сумма: <%= @summa %> </div>
+      
+        <div>
+        <% remote_form_for :date  , :url=>{:controller => "cabinet" ,:action=>'show_report' , :sotr=>'all'}  do |f| %>
+    Показать суммарный заказ всех отделов
+    с: <%= calendar_date_select_tag "nd", @today,    :embedded => false,  :year_range => 2.months.ago..0.months.ago %> &nbsp;&nbsp;&nbsp;
+по: <%= calendar_date_select_tag "kd", @today,    :embedded => false,  :year_range => 2.months.ago..0.months.ago %>
+<%= f.submit 'Показать'  %>
+<% end %>
+        </div>
+        </td> </tr>
+ </table>
+<div style="float: left; margin-bottom: 25px; clear: both;">  </div>
+   <div id="details" style="width: 100%">
+   <div style="color:#00a1b0; margin-top: 10px; margin-bottom: 5px;">
+ Все заказы:
+</div>
+     <div style="height: 600px; ; overflow: auto;">
+<table width="923px" border="0" class="det_zak" cellpadding="0" cellspacing="0" >
+  <tr style="color:#ffffff;background-color:#F47920;">
+  <th>наименование  </th>
+  <th>кол-во  </th>
+  <th>цена р.  </th>
+   <th>сумма р.  </th>
+
+</tr>
+     <% for line in @line do %>
+<% @price_spec=TovSpec.find(:first,:conditions=>['legal_id=? and k1c=?',@user.client_id,line.k1c]) %>
+  <tr style="color: red;">
+ <td style="<%='color: green' if @price_spec%>"> <%= Cat1.find_by_k1c(line.k1c).fullname || Cat1.find_by_k1c(line.k1c).name %> </td>
+ <td style="<%='color: green' if @price_spec%>">  <%= line.quantity %> </td> <td> <%= line.price %>  </td>
+ <td style="<%='color: green' if @price_spec%>"> <%= line.price*line.quantity %> </td>
+
+</tr>
+   <% end %>
+<tr><td colspan="4" style="text-align: right; font-weight: bold; padding-right: 20px;"> <div>Общая сумма: <%= @summa %> </div>  </td> </tr>
+</table>
+     </div>
+
+
+     </div>
+  <%end%>

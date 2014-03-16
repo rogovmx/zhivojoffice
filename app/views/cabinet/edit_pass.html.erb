@@ -1,0 +1,53 @@
+
+<% content_for(:cont) do %>
+
+  <%=error_messages_for 'user'%>
+
+
+<div class="cab_hk">личный кабинет » <%=@name %>   </div>
+
+
+
+
+
+<%= render :partial=>'/part2/cabinet_menu' , :menu=>@menu %>
+<% form_for :user11 ,:url=>{:controller=>'cabinet',:action=>'edit_pass'} do |f| %>
+    <%= f.hidden_field :name ,:value=>@user.name %>
+    <%= f.hidden_field :scr_name ,:value=>@user.scr_name %>
+    <%= f.hidden_field :patronymic,:value=>@user.patronymic %>
+    <%= f.hidden_field :surname,:value=>@user.surname %>
+    <%= f.hidden_field :phone,:value=>@user.phone %>
+    <%= f.hidden_field :m_phone ,:value=>@user.m_phone%>
+    <%= f.hidden_field :mail,:value=>@user.mail %>
+    <%= f.hidden_field :inn,:value=>@user.inn %>
+    <%= f.hidden_field :company_ind ,:value=>@user.company_ind%>
+<table class="reg_tab" cellspacing="0" cellpadding="8" >
+<tbody>
+<tr class="reg_tab_title">
+  <th colspan="2" valign="center" style="padding-left: 10px;" > Изменение пароля</th>
+</tr>
+
+<tr>
+<td style=""> Введите новый пароль: </td><td class="bl"> <%= f.text_field :password, :size => 30%> </td>
+</tr>
+
+
+
+<tr>
+  <td  style="height: 30px; padding: 10px;">
+<%= f.submit "ОБНОВИТЬ" , :class=>"edit_link"%>
+  </td>
+  <td>
+    <%= link_to 'Вернуться' , :action=>'reg_data' %>
+  </td>
+
+</tr>
+</tbody>
+</table>
+<% end %>
+
+
+<%end%>
+
+
+

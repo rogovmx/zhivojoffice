@@ -1,0 +1,56 @@
+
+<% if @actcards_now.size > 0 %>
+<h3 style="color: goldenrod;"> Вы уже выбрали карту:
+<% @actcards_now.each do |acn| %>
+  <%= acn.name %> 
+
+<% end %>
+</h3>
+<%= link_to 'Удалить карту' , {:controller=>'bas1' , :action=>'del_act_card'} %>
+
+<% end %>
+
+<% if @actcards_now.size  == 0 and @ac > 0 %>
+
+
+
+
+
+
+<h2 style="color: goldenrod;  "> Выберите карту в подарок.  </h2>
+
+<% 
+case
+when (@sum_wihiout_act >= 5000 and @sum_wihiout_act < 10000)
+  @nominal = 300
+when (@sum_wihiout_act >= 10000 and @sum_wihiout_act < 15000)  
+  @nominal = 500
+when (@sum_wihiout_act >= 15000 and @sum_wihiout_act < 20000)
+  @nominal = 1000
+when (@sum_wihiout_act >= 20000 and @sum_wihiout_act < 30000)
+  @nominal = 1500
+when (@sum_wihiout_act >= 30000 and @sum_wihiout_act < 50000)  
+  @nominal = 2000
+when (@sum_wihiout_act >= 50000 )
+  @nominal = 3500
+end
+%>
+
+  <% if session[:city] == 'spb'  %>
+    <%= link_to "Рив Гош. Номинал #{@nominal.to_s} р."  , {:controller=>'bas1' , :action=>'set_act_card' , :id=>3 , :nominal => @nominal} %>
+    <%= link_to  image_tag('/images2/karta_rivgosh.jpg' , :style=>'position: relative; top: 15px;')  , {:controller=>'bas1' , :action=>'set_act_card' , :id=>3, :nominal => @nominal} %>
+  <% elsif session[:city] == 'msk' %>
+    <%= link_to "Лэтуаль. Номинал #{@nominal.to_s} р."  , {:controller=>'bas1' , :action=>'set_act_card' , :id=>5 , :nominal => @nominal} %>
+    <%= link_to  image_tag('/images2/karta_letual.jpg' , :style=>'position: relative; top: 15px;')  , {:controller=>'bas1' , :action=>'set_act_card' , :id=>3, :nominal => @nominal} %>
+  <% end %>
+  <% unless @nominal == 300 %>
+    <%= link_to "ИКЕА. Номинал #{@nominal.to_s} р." ,{:controller=>'bas1' , :action=>'set_act_card' , :id=>2, :nominal => @nominal}%>
+    <%= link_to  image_tag('/images2/karta_ikea.jpg' , :style=>'position: relative; top: 15px;')  , {:controller=>'bas1' , :action=>'set_act_card' , :id=>2, :nominal => @nominal}%>
+    <%= link_to "Мвидео. Номинал #{@nominal.to_s} р. ", {:controller=>'bas1' , :action=>'set_act_card' , :id=>1 , :nominal => @nominal} %>
+    <%= link_to  image_tag('/images2/karta_mvideo.jpg' , :style=>'position: relative; top: 15px;') , {:controller=>'bas1' , :action=>'set_act_card' , :id=>4 , :nominal => @nominal}  %>
+  <% end %>
+
+
+<% end %>
+
+

@@ -1,0 +1,39 @@
+<div>
+   <% if @show == 1 %>
+  <%= link_to image_tag('/images2/cards_msk.gif' ), :controller=>'act'  %>
+  <% elsif @show == 2 %>
+  <%=link_to image_tag('/images2/kofevarka.gif') ,:controller=>'act'  %>
+  <% elsif @show == 3 %>
+  <%=link_to image_tag('/images2/spa_msk.gif') ,:controller=>'act'  %>
+  <% elsif @show == 4 %>
+  <%= link_to image_tag('/images2/pled_msk.gif' ), :controller=>'act'  %>
+  <% end %>
+
+</div>
+<div class="act_bott_links">
+  <%#= image_tag('/images2/vsegda-v-zhivom-office.gif')  %>
+  <div style="width: 530px; height: 23px; background-color:#efefef">
+  <% if @show == 1 %>
+  <%= link_to_remote image_tag('/images2/a.gif') , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>1}  %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>2} %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>3} %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>4} %>
+   <% elsif @show == 2 %>
+  <%= link_to_remote image_tag('/images2/n.gif') , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>1}  %>
+  <%= link_to_remote image_tag('/images2/a.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>2} %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>3} %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>4} %>
+  <% elsif @show == 3 %>
+  <%= link_to_remote image_tag('/images2/n.gif') , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>1}  %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>2} %>
+  <%= link_to_remote image_tag('/images2/a.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>3} %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>4} %>
+  <% elsif @show == 4 %>
+  <%= link_to_remote image_tag('/images2/n.gif') , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>1}  %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>2} %>
+  <%= link_to_remote image_tag('/images2/n.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>3} %>
+  <%= link_to_remote image_tag('/images2/a.gif' ) , :url=>{:controller=>'kt1' , :action=>'actions_index_msk' , :show=>4} %>
+  <% end %>
+   
+    </div>
+ </div>

@@ -1,0 +1,27 @@
+<% content_for(:tit) do %>
+ Живой Офис. Редактирование вакансий
+<%end%>
+<% content_for(:cont) do %>
+<br/><br/>
+<div class="vac_title">Редактирование вакансий: 
+<%= link_to "Санкт-Петербург", vacancies_path(:city => "Санкт-Петербург"), :style => "color: black;" %>
+|
+<%= link_to "Москва", vacancies_path(:city => "Москва"), :style => "color: black;" %>
+|
+<%= link_to "Тверь", vacancies_path(:city => "Тверь"), :style => "color: black;" %>
+|
+<%= link_to "Все вакансии", vacancies_path, :style => "color: black;" %>
+</div>
+<%= link_to 'Новая вакансия', new_vacancy_path %> <br/> <br/>
+
+<% @vacancies.each do |vacancy| %>
+<%= render :partial => "vacancies/vacancy", :locals => {:vacancy => vacancy} %>
+<% end %>
+
+<%= link_to 'Новая вакансия', new_vacancy_path %>
+
+<%end%>
+
+
+
+

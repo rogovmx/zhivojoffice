@@ -1,0 +1,76 @@
+<% content_for(:tit) do %>
+Акции <%=@city_now.name %>
+<% end  %>
+<% content_for(:cont) do %>
+<%= link_to "Редактировать список городов", cities_path %><br/>
+<table style="width: 100%;">
+  <tr> <td  style="padding: 5px;"><h2 style="color: red;">Акции <%= @city_now.name %>:</h2></td> </tr>
+<tr>
+  <td style="padding: 5px; font-weight: bold; text-decoration: none;">
+  <% for city in @cities %>
+
+  <% if city.id == session[:city_act].to_i %>
+  <%= link_to "Акции #{city.name}" , {:action=>'index' , :city_id => city.id} , :style=>'background-color: forestgreen; color: white; padding: 5px; border: 1px solid gray;  text-decoration: none; margin-right: 15px;'  %>
+   <% else %>
+  <%= link_to "Акции #{city.name}" , {:action=>'index' , :city_id => city.id} , :style=>' padding: 5px; border: 1px solid gray; color: black; background-color:  #E5E5E5; text-decoration: none; margin-right: 15px;'%>
+    <% end %>
+
+  <% end %>
+  </td>
+
+</tr>
+
+</table>
+
+
+
+    <div style="margin-bottom: 15px; margin-top: 15px; ">
+      
+      <%= button_to "Добавить новую акцию для города #{@city_now.name}", new_sale_action_path(:city_id => @city_now.id)  %><br/><br/>
+      <% unless @city_now.sale_actions.blank? %>
+        <% @city_now.sale_actions.sort{|a,b| a.position <=> b.position}.each do |sale_action| %>
+          <div style="background-color: <%= unless sale_action.visibility then "#AFEEEE" end %>;" >
+           <div class="info_txt" >
+            <table cellpadding="0" cellspacing="0" >
+              <tbody>
+                <tr>
+                  <% if sale_action.image %>
+                    <td valign="top">
+                    <%= link_to image_tag("sale_actions/#{sale_action.image}"), edit_sale_action_path(sale_action) %>
+                 
+                    </td>
+                  <% end %>
+                  <td valign="top" style="padding-left: 15px;">
+                    <% if sale_action.header %>
+                      <%= sale_action.header %><br/><br/>
+                    <% end %>
+                    <%= sale_action.body %>
+                    <% if sale_action.note %>
+                      <br/><br/><%= sale_action.note %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <div style="margin-bottom: 10px; padding: 5px; background-color:  #ededed;">
+                <h2 style="float: left; margin-right: 20px;">№: <%= sale_action.position %></h2>
+                <%= button_to 'Изменить', edit_sale_action_path(sale_action) , :style=>'float: left; margin-right: 20px;' , :method=>'get' %>
+                <%= button_to 'Удалить', sale_action, :confirm => 'Вы уверены, что хотите удалить эту акцию?', :method => :delete  , :style=>'float: right;'%>
+           <% unless sale_action.visibility %>
+              <%= button_to "Сделать видимой", sale_action_url(sale_action, :sale_action => { :visibility => 1 }), :method => :put %>
+            <% else %>
+              <%= button_to "Сделать невидимой", sale_action_url(sale_action, :sale_action => { :visibility => 0 }), :method => :put %>
+            <% end %>
+
+          </div>
+
+          </div>
+        
+
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
+<% end %>
+

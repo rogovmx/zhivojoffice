@@ -1,0 +1,129 @@
+<% content_for(:tit) do %>
+ Живой офис. Анкета клиента.
+
+<% end %>
+
+<% content_for(:cont) do %>
+
+<script>
+    function f() {
+        var login = document.getElementById('info_mail')
+        login.value = login.value.replace(/\s/g, '')
+    }
+</script>
+ 
+
+
+<style type="text/css">
+  #errorExplanation
+  {
+    padding:15px;
+    background-color:#dcdcdc;
+    color: red;
+  }
+
+  .errorExplanation h2
+  {
+    visibility:hidden;
+    display:none;
+  }
+  .errorExplanation p
+  {
+    visibility:hidden;
+    display:none;
+  }
+</style>
+
+<p style="color: #808285; font-weight: bold; position:relative; top: -15px;">
+ расскажи о себе
+</p>
+
+<div class="green_title" style="background-color: #00ae4d; width: 620px;">
+   Расскажи о себе - получи +100 бонусов на свой бонусный счет
+</div>
+<div class="add_info">
+  <p style="color:#f47920;"> Мы любим и ценим наших клиентов и хотим познакомиться с вами поближе. <br />
+«Живой офис» гарантирует сохранность информации, предоставленной в ходе опроса. </p>
+
+  <p>Информация необходима для приглашения к участию <br />
+в специальных программах, конкурсах, акциях для клиентов «Живого офиса», <br />
+разработки индивидуальных предложений, необходимых именно Вам! </p>
+
+  <p>Акция действует только для одного контактного лица от компании.</p>
+
+  <p style="color: red; font-size: 11px;">Заполняйте пожалуйста все поля. В случае отсутствия какой-либо информации (например нет сайта), в соответствующее поле впишите - «нет»</p>
+
+  <%=error_messages_for 'info'%>
+
+    <% form_for :info , {:controller=>'info' , :action=>'dop_info'} do |form| %>
+      <input name="authenticity_token" type="hidden" value="3a0328c1591f06d9095a4c59aa9c22d9ec3afd49" />
+      <%= form.hidden_field :user_id , :value=>@user.id %>
+      <%= form.hidden_field :client_id , :value=>@client.id  if @client%>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr class="odd">
+          <td><label for="info_name">Имя, Фамилия:</label></td>
+          <td style="width: 400px;"> <%= form.text_field :name, :value=>@user.scr_name + ' ' + @user.surname , :class=>'it' %></td>
+        </tr>
+        <tr>
+          <td><label for="info_job">Должность</label></td>
+          <td> <%= form.text_field :job  %></td>
+        </tr>
+        <tr class="odd">
+          <td><label for="info_sex">Пол</label></td>
+          <td>  <%= form.text_field :sex  %></td>
+        </tr>
+        <tr>
+          <td><label for="info_date_birth">Дата рождения</label></td>
+          <td> <%= form.text_field :date_birth  %></td>
+        </tr>
+        <tr class="odd">
+          <td><label for="info_children">Имя и день рождения детей</label></td>
+          <td><%= form.text_area :children , :style=>'width: 404px; height: 60px;' %></td>
+        </tr>
+        <tr>
+          <td><label for="info_mail">Электронный адрес </label></td>
+          <td> <%= form.text_field :mail  , :value=>@user.mail, :onblur=>'f()'%></td>
+        </tr>
+        <tr class="odd">
+          <td><label for="info_m_phone">Мобильный телефон</label></td>
+          <td><%= form.text_field :m_phone  %></td>
+        </tr>
+        <tr>
+          <td><label for="info_category">Вид деятельности компании</label></td>
+          <td>
+            <%= form.collection_select(:category, @area, :category, :category) %>
+                <%#= form.text_field :category  %>
+            </td>
+        </tr>
+
+        <tr class="odd">
+          <td>
+         
+         <label for="info_site">Сайт компании</label>
+          </td>
+          <td>  <%= form.text_field :site  %></td>
+        </tr>
+    
+            </table>
+      <br>
+      <p style="text-align: right; margin-right: 10px;">
+         <%= submit_tag "Завершить оформление", :class => "submit" %>
+      </p>
+    
+    <%end%>
+     
+</div>
+
+<p style="color: #808285; width: 600px;" >
+   Личные сведения, полученные в распоряжение <a href="http://www.zhivojoffice.ru">www.zhivojoffice.ru</a>
+   при регистрации или каким-либо иным образом, не будут без разрешения пользователей передаваться третьим организациям и лицам,
+   за исключением ситуаций, когда этого требует закон или судебное решение.
+      </p>
+
+
+
+
+<%  end %>
+
+
+

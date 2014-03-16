@@ -1,0 +1,21 @@
+<% content_for(:cont) do %>
+
+<h1>Редактирование новости</h1>
+
+<% form_for :indexnew , :url=>{:action=>'update' , :id=>'1'} do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+      <%= f.text_area :new , :style=>'width: 700px; height: 200px' %>
+  </p>
+  <br />
+  <p>
+    <%= f.submit "Сохранить" %>
+  </p>
+<% end %>
+
+  <br />
+<%= link_to 'Вернуться', :controller=>'indexnews' %>
+
+
+ <% end %>

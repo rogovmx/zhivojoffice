@@ -1,0 +1,38 @@
+<% content_for(:cont) do %>
+
+<h1>Редактирование подвалов</h1>
+
+<table class="info_tab" cellpadding="2" cellspacing="0" style="margin-top: 20px;">
+  <tr>
+    <th>Название подвала</th>
+    <th><%= button_to "Случайный главный подвал", { :controller => :podvals, :action => :random_podval } %></th>
+  </tr>
+
+  <% for podval in @podvals %>
+    <% unless podval.vis %>
+      <tr style="background-color: #40E0D0;">
+    <% else %>
+      <tr>
+    <% end %>
+      <td><%=h podval.title %></td>
+      <td><%= link_to 'Изменить', edit_podval_path(podval) %></td>
+      <td><%= link_to 'Удалить', podval, :confirm => 'Вы уверены, что хотите удалить этот подвал?', :method => :delete %></td>
+      <% unless podval.vis %>
+        <td><%= button_to "Сделать видимым", { :controller => :podvals, :action => :set_visible, :id => podval.id }, :method => :put %></td>
+      <% else %>
+        <td><%= button_to "Сделать невидимым", { :controller => :podvals, :action => :set_unvisible, :id => podval.id }, :method => :put %></td>
+      <% end %>
+      <% if podval.main == 0 %>
+        <td><%= button_to "Сделать главным", { :controller => :podvals, :action => :main_podval, :id => podval.id }, :method => :put %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'Создать новый подвал', new_podval_path %>
+    <div id="podvall">
+      <%= render :partial => 'part/podval', :podval => @podval, :podvals => @podvals %>
+    </div>
+<%end%>
